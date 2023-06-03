@@ -65,12 +65,20 @@ public enum BlockIDs {
 	dirtyBallast(false,null),
 	dirtierBallast(false,null),
 	asphalt(false, null),
-	asphaltSlab(false, null),
 	signalSpanish(false,null),//ItemsignalSpanish.class
 	kSignal(false,null),
 	metroMadridPole(false, null),
 	FortyFootContainer(true, ItemFortyFootContainer.class),
 	speedSign(false, null),
+
+
+
+	//Slabs
+	asphaltSlab(true, ItemAsphaltSlab.class),
+	asphaltDoubleSlab(true, ItemAsphaltSlab.class),
+
+	//Stairs
+	asphaltStairs(false, null),
 
 	;
 

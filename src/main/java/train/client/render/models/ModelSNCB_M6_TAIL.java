@@ -1,5 +1,5 @@
 //This File was created with the Minecraft-SMP Modelling Toolbox 2.3.0.0
-// Copyright (C) 2022 Minecraft-SMP.de
+// Copyright (C) 2023 Minecraft-SMP.de
 // This file is for Flan's Flying Mod Version 4.0.x+
 
 // Model: SNCB_M6_TAIL
@@ -9,13 +9,15 @@
 
 package train.client.render.models; //Path where the model is located
 
+
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import org.lwjgl.opengl.GL11;
 import tmt.ModelConverter;
 import tmt.ModelRendererTurbo;
 
-public class ModelSNCB_M6_TAIL extends ModelConverter//Same as Filename
+public class ModelSNCB_M6_TAIL extends ModelConverter //Same as Filename
 {
 	int textureX = 512;
 	int textureY = 512;
@@ -220,22 +222,22 @@ public class ModelSNCB_M6_TAIL extends ModelConverter//Same as Filename
 		bodyModel[182] = new ModelRendererTurbo(this, 177, 153, textureX, textureY); // Import Box560
 		bodyModel[183] = new ModelRendererTurbo(this, 113, 129, textureX, textureY); // Import Box561
 		bodyModel[184] = new ModelRendererTurbo(this, 457, 145, textureX, textureY); // Import Box562
-		bodyModel[185] = new ModelRendererTurbo(this, 465, 1, textureX, textureY, "lamp"); // Import lamp
-		bodyModel[186] = new ModelRendererTurbo(this, 1, 9, textureX, textureY, "lamp"); // Import lamp
-		bodyModel[187] = new ModelRendererTurbo(this, 65, 9, textureX, textureY, "lamp"); // Import lamp
-		bodyModel[188] = new ModelRendererTurbo(this, 345, 9, textureX, textureY, "lamp"); // Import lamp
-		bodyModel[189] = new ModelRendererTurbo(this, 361, 9, textureX, textureY, "lamp"); // Import lamp
-		bodyModel[190] = new ModelRendererTurbo(this, 401, 9, textureX, textureY, "lamp"); // Import lamp
-		bodyModel[191] = new ModelRendererTurbo(this, 417, 9, textureX, textureY, "lamp"); // Import lamp
-		bodyModel[192] = new ModelRendererTurbo(this, 449, 9, textureX, textureY, "lamp"); // Import lamp
-		bodyModel[193] = new ModelRendererTurbo(this, 297, 17, textureX, textureY, "lamp"); // Import lamp
-		bodyModel[194] = new ModelRendererTurbo(this, 481, 17, textureX, textureY, "lamp"); // Import lamp
-		bodyModel[195] = new ModelRendererTurbo(this, 497, 17, textureX, textureY, "lamp"); // Import lamp
-		bodyModel[196] = new ModelRendererTurbo(this, 1, 25, textureX, textureY, "lamp"); // Import lamp
-		bodyModel[197] = new ModelRendererTurbo(this, 17, 25, textureX, textureY, "lamp"); // Import lamp
-		bodyModel[198] = new ModelRendererTurbo(this, 33, 25, textureX, textureY, "lamp"); // Import lamp
-		bodyModel[199] = new ModelRendererTurbo(this, 49, 25, textureX, textureY, "lamp"); // Import lamp
-		bodyModel[200] = new ModelRendererTurbo(this, 81, 25, textureX, textureY, "lamp"); // Import lamp
+		bodyModel[185] = new ModelRendererTurbo(this, 465, 1, textureX, textureY); // Import lamp
+		bodyModel[186] = new ModelRendererTurbo(this, 1, 9, textureX, textureY); // Import lamp
+		bodyModel[187] = new ModelRendererTurbo(this, 65, 9, textureX, textureY); // Import lamp
+		bodyModel[188] = new ModelRendererTurbo(this, 345, 9, textureX, textureY); // Import lamp
+		bodyModel[189] = new ModelRendererTurbo(this, 361, 9, textureX, textureY); // Import lamp
+		bodyModel[190] = new ModelRendererTurbo(this, 401, 9, textureX, textureY); // Import lamp
+		bodyModel[191] = new ModelRendererTurbo(this, 417, 9, textureX, textureY); // Import lamp
+		bodyModel[192] = new ModelRendererTurbo(this, 449, 9, textureX, textureY); // Import lamp
+		bodyModel[193] = new ModelRendererTurbo(this, 297, 17, textureX, textureY); // Import lamp
+		bodyModel[194] = new ModelRendererTurbo(this, 481, 17, textureX, textureY); // Import lamp
+		bodyModel[195] = new ModelRendererTurbo(this, 497, 17, textureX, textureY); // Import lamp
+		bodyModel[196] = new ModelRendererTurbo(this, 1, 25, textureX, textureY); // Import lamp
+		bodyModel[197] = new ModelRendererTurbo(this, 17, 25, textureX, textureY); // Import lamp
+		bodyModel[198] = new ModelRendererTurbo(this, 33, 25, textureX, textureY); // Import lamp
+		bodyModel[199] = new ModelRendererTurbo(this, 49, 25, textureX, textureY); // Import lamp
+		bodyModel[200] = new ModelRendererTurbo(this, 81, 25, textureX, textureY); // Import lamp
 		bodyModel[201] = new ModelRendererTurbo(this, 57, 153, textureX, textureY); // Import Box215
 		bodyModel[202] = new ModelRendererTurbo(this, 505, 145, textureX, textureY); // Import Box215
 		bodyModel[203] = new ModelRendererTurbo(this, 361, 153, textureX, textureY); // Import Box215
@@ -245,14 +247,14 @@ public class ModelSNCB_M6_TAIL extends ModelConverter//Same as Filename
 		bodyModel[207] = new ModelRendererTurbo(this, 473, 153, textureX, textureY); // Import Box215
 		bodyModel[208] = new ModelRendererTurbo(this, 345, 25, textureX, textureY); // Import Box215
 		bodyModel[209] = new ModelRendererTurbo(this, 153, 153, textureX, textureY); // Import Box215
-		bodyModel[210] = new ModelRendererTurbo(this, 465, 25, textureX, textureY, "lamp"); // Import lamp
-		bodyModel[211] = new ModelRendererTurbo(this, 481, 25, textureX, textureY, "lamp"); // Import lamp
-		bodyModel[212] = new ModelRendererTurbo(this, 497, 25, textureX, textureY, "lamp"); // Import lamp
-		bodyModel[213] = new ModelRendererTurbo(this, 137, 33, textureX, textureY, "lamp"); // Import lamp
-		bodyModel[214] = new ModelRendererTurbo(this, 145, 33, textureX, textureY, "lamp"); // Import lamp
-		bodyModel[215] = new ModelRendererTurbo(this, 465, 33, textureX, textureY, "lamp"); // Import lamp
-		bodyModel[216] = new ModelRendererTurbo(this, 489, 33, textureX, textureY, "lamp"); // Import lamp
-		bodyModel[217] = new ModelRendererTurbo(this, 505, 33, textureX, textureY, "lamp"); // Import lamp
+		bodyModel[210] = new ModelRendererTurbo(this, 465, 25, textureX, textureY); // Import lamp
+		bodyModel[211] = new ModelRendererTurbo(this, 481, 25, textureX, textureY); // Import lamp
+		bodyModel[212] = new ModelRendererTurbo(this, 497, 25, textureX, textureY); // Import lamp
+		bodyModel[213] = new ModelRendererTurbo(this, 137, 33, textureX, textureY); // Import lamp
+		bodyModel[214] = new ModelRendererTurbo(this, 145, 33, textureX, textureY); // Import lamp
+		bodyModel[215] = new ModelRendererTurbo(this, 465, 33, textureX, textureY); // Import lamp
+		bodyModel[216] = new ModelRendererTurbo(this, 489, 33, textureX, textureY); // Import lamp
+		bodyModel[217] = new ModelRendererTurbo(this, 505, 33, textureX, textureY); // Import lamp
 		bodyModel[218] = new ModelRendererTurbo(this, 201, 161, textureX, textureY); // Import Box9
 		bodyModel[219] = new ModelRendererTurbo(this, 417, 153, textureX, textureY); // Import Box193
 		bodyModel[220] = new ModelRendererTurbo(this, 193, 153, textureX, textureY); // Import Box193
@@ -704,7 +706,7 @@ public class ModelSNCB_M6_TAIL extends ModelConverter//Same as Filename
 		bodyModel[55].addBox(0F, 0F, 0F, 1, 1, 6, 0F); // Import Box197
 		bodyModel[55].setRotationPoint(20F, -6F, -9F);
 
-		bodyModel[56].addBox(0F, 0F, 0F, 43, 1, 20, 0F); // Import Box202
+		bodyModel[56].addShapeBox(0F, 0F, 0F, 43, 1, 20, 0F,0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.8F, 0F, 0F, -0.8F, 0F, 0F, -0.8F, 0F, 0F, -0.8F, 0F); // Import Box202
 		bodyModel[56].setRotationPoint(-24F, -6F, -10F);
 
 		bodyModel[57].addShapeBox(0F, 0F, 0F, 1, 13, 13, 0F,0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F); // Import Box212

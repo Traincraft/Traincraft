@@ -1,20 +1,26 @@
-import org.apache.tools.ant.filters.ReplaceTokens
+
 
 buildscript {
-	repositories {
-		mavenCentral()
-		maven {
-            		name = "forge"
-            		url = "https://files.minecraftforge.net/maven"
-        	}
-		maven {
-			name = "gt"
-			url = "https://gregtech.overminddl1.com/"
-		}
-	}
-	dependencies {
-		classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
-	}
+    repositories {
+
+        maven {
+            url "https://repo1.maven.org/maven2" 
+        }
+
+        maven {
+            name = "forge"
+           url = "https://maven.minecraftforge.net/"
+        }
+        maven {
+            name = "sonatype"
+            url = "https://oss.sonatype.org/content/repositories/snapshots/"
+        }
+    }
+    dependencies {
+      classpath ('com.anatawa12.forge:ForgeGradle:1.2-1.0.+') {
+         changing = true
+     }
+    }
 }
 
 apply plugin: 'forge'

@@ -1,0 +1,6 @@
+name: J50
+type: steam
+mhp: 618
+speed: 80
+water capacity: 7000
+

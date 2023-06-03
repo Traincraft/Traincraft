@@ -8,6 +8,7 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import train.common.Traincraft;
 import train.common.api.AbstractTrains;
 import train.common.api.EntityRollingStock;
 import train.common.core.util.TraincraftUtil;
@@ -417,9 +418,10 @@ public class LinkHandler {
 			double vecZ=0;
 			int minIndex=0;
 
-			if(cart1.bogieLoco!=null || cart2.bogieLoco!=null){
 
+			if(cart1.bogieLoco!=null || cart2.bogieLoco!=null){
 				if(cart1.bogieLoco!=null && cart2.bogieLoco==null){
+					Traincraft.tcLog.info("1 only");
 					distancesX[0] = cart1.posX - cart2.posX ;
 					distancesZ[0] = cart1.posZ - cart2.posZ ;
 
@@ -435,6 +437,7 @@ public class LinkHandler {
 					}
 
 				}else if(cart1.bogieLoco==null){
+					Traincraft.tcLog.info("2 only");
 					distancesX[0] = cart1.posX - cart2.posX ;
 					distancesZ[0] = cart1.posZ - cart2.posZ ;
 					distancesX[1] = cart1.posX - cart2.bogieLoco.posX ;
@@ -449,6 +452,7 @@ public class LinkHandler {
 					}
 
 				}else{
+					Traincraft.tcLog.info("1 and 2");
 					distancesX[0] = cart1.posX - cart2.posX ;
 					distancesZ[0] = cart1.posZ - cart2.posZ ;
 					distancesX[1] = cart1.bogieLoco.posX - cart2.posX ;

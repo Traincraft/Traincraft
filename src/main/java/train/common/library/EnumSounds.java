@@ -120,6 +120,7 @@ public enum EnumSounds {
 	ElectricBR155(EntityLocoElectricBR155.class, "br155_chime", 1F, "mg_run", 0.6F, 8, "mg_idle", 0.4F, 50, false),
 	ElectricDB143(EntityLocoElectricDB143.class, "mg_horn", 1F, "mg_run", 0.6F, 8, "mg_idle", 0.4F, 50, false),
 	ElectricDStockEngine(EntityElectricDstockEngine.class, "dstock_whistle", 0.8F, "vl10_idle", 0.6F, 50, "vl10_idle", 0.6F, 50, false),
+	ElectricClass230Engine(EntityElectricClass230.class, "446Horn", 0.8F, "vl10_idle", 0.6F, 50, "vl10_idle", 0.6F, 50, false),
 	ElectricEU07(EntityLocoElectricEU07.class, "mg_horn", 1F, "mg_run", 0.6F, 8, "mg_idle", 0.4F, 50, false),
 	ElectricFeve3300(EntityLocoElectricFeve3300.class, "446Horn", 0.8F, "vl10_idle", 0.6F, 50, "vl10_idle", 0.6F, 50, false),
 	ElectricILMA(EntityLocoElectricILMA.class, "subway_horn", 0.8F, "MILW_Notch8", 0.6F, 50, "MILW_Idle", 0.6F, 50, false),
@@ -148,6 +149,11 @@ public enum EnumSounds {
 	CQ310(EntityElectricCQ310Loco.class, "subway_horn", 1F, "vl10_idle", 0.6F, 50, "vl10_idle", 0.6F, 50, false),
 	DuewagT4ER(EntityElectricDuewagT4ER.class, "tram_bell", 1F, "vl10_idle", 0.6F, 50, "vl10_idle", 0.6F, 50, false),
 	DuewagGT6ZRLoco(EntityElectricDuewagGT6ZRLoco.class, "tram_bell", 1F, "vl10_idle", 0.6F, 50, "vl10_idle", 0.6F, 50, false),
+	M8CLoco(EntityElectricM8CLoco.class, "tram_bell", 1F, "vl10_idle", 0.6F, 50, "vl10_idle", 0.6F, 50, false),
+	Class416Loco(EntityElectricClass416Loco.class, "british_two_tone", 1F, "vl10_idle", 0.6F, 50, "vl10_idle", 0.6F, 50, true),
+	DB420Loco(EntityElectricDB420Loco.class, "mg_horn", 1F, "mg_run", 0.6F, 8, "mg_idle", 0.4F, 50, false),
+	Class401Loco(EntityLocoElectricClass401.class, "mg_horn", 1F, "mg_run", 0.6F, 50, "vl10_idle", 0.6F, 50, false),
+	DuewagGT6ERLoco(EntityElectricDuewagGT6ERLoco.class, "tram_bell", 1F, "vl10_idle", 0.6F, 50, "vl10_idle", 0.6F, 50, false),
 
 	//American Stuff
 	Diesel3GS21B(EntityLocoDieselBapNRE3gs21b.class, "nathan_k3ha", 2.5F, "QSK19C_Notch8", 0.65F, 40, "QSK19C_Idle", 0.65F, 50, true),

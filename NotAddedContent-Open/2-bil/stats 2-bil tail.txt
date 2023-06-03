@@ -1,0 +1,3 @@
+name: 2-bil tail
+type: passenger
+mass: 10

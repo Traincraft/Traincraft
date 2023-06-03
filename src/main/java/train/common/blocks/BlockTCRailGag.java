@@ -23,12 +23,12 @@ import java.util.Random;
 
 public class BlockTCRailGag extends Block {
 	private IIcon texture;
-	float f = 0.125F;
 
 	public BlockTCRailGag() {
 		super(Material.iron);
 		setCreativeTab(Traincraft.tcTab);
 		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.125F, 1.0F);
+		getUseNeighborBrightness();
 	}
 
 	/**

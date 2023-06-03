@@ -1,0 +1,58 @@
+name: class 416 engine
+type: electric
+mhp: 850
+speed: I bet you can't guess it (answer at the bottom of this sheet)
+inventory: 9
+fuel capcity: 10
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+75mph again

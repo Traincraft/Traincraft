@@ -1,0 +1,5 @@
+Name: RW type 5 tender
+Mass: 8.0
+Type: Tender
+Slots: 70
+Water capacity: 15000

@@ -35,6 +35,7 @@ import train.common.api.EntityBogie;
 import train.common.api.EntityRollingStock;
 import train.common.core.CommonProxy;
 import train.common.core.Traincraft_EventSounds;
+import train.common.core.handlers.ConfigHandler;
 import train.common.entity.digger.EntityRotativeDigger;
 import train.common.entity.digger.EntityRotativeWheel;
 import train.common.entity.rollingStock.EntityJukeBoxCart;
@@ -72,7 +73,11 @@ public class ClientProxy extends CommonProxy {
 	public void registerEvents(FMLPreInitializationEvent event) {
 		super.registerEvents(event);
 		ClientTickHandler tickHandler = new ClientTickHandler();
-		CustomRenderHandler renderHandler = new CustomRenderHandler();
+		if (ConfigHandler.ENABLE_TRACK_HOLOGRAM){
+			CustomRenderHandler renderHandler = new CustomRenderHandler();
+			registerEvent(renderHandler);
+		}
+
 		HUDloco huDloco = new HUDloco();
 		if (Loader.isModLoaded("ComputerCraft")){
 			HUDMTC hudMTC = new HUDMTC();
@@ -80,7 +85,7 @@ public class ClientProxy extends CommonProxy {
 		}
 
 		registerEvent(tickHandler);
-		registerEvent(renderHandler);
+
 		registerEvent(huDloco);
 	}
 

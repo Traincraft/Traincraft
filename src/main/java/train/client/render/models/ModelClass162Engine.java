@@ -7,7 +7,7 @@
 // Created on: 17.07.2022 - 20:43:42
 // Last changed on: 17.07.2022 - 20:43:42
 
-package com.flansmod.client.model.YourPackage; //Path where the model is located
+package train.client.render.models; //Path where the model is located
 
 import tmt.ModelConverter;
 import tmt.ModelRendererTurbo;

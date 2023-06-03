@@ -28,6 +28,114 @@ fluid.tile.water=Eau
 fluid.tile.lava=Lave
 
 <!-- ## Items ## -->
+
+item.tc:tcRailSmallStraight.name=Droit Court
+item.tc:tcRailMediumStraight.name=Droit
+item.tc:tcRailLongStraight.name=Long Droit
+item.tc:tcRailVeryLongStraight.name=Droit Très Long
+
+item.tc:tcRailEmbeddedSmallStraight.name=Droit Court Sans Traversse
+item.tc:tcRailEmbeddedMediumStraight.name=Droit Sans Traversse
+item.tc:tcRailEmbeddedLongStraight.name=Long Droit Sans Traversse
+item.tc:tcRailEmbeddedVeryLongStraight.name=Droit Très Long Sans Traversse
+
+item.tc:tcRailSmallDiagonalStraight.name=Diagonal court
+item.tc:tcRailMediumDiagonalStraight.name=Diagonal
+item.tc:tcRailLongDiagonalStraight.name=Diagonal long
+item.tc:tcRailVeryLongDiagonalStraight.name=Diagonal Très Long
+
+item.tc:tcRailEmbeddedSmallDiagonalStraight.name=Diagonal court Sans Traversse
+item.tc:tcRailEmbeddedMediumDiagonalStraight.name=Diagonal Sans Traversse
+item.tc:tcRailEmbeddedLongDiagonalStraight.name=Diagonal Long Sans Traversse
+item.tc:tcRailEmbeddedVeryLongDiagonalStraight.name=Diagonal Très Long Sans Traversse
+
+item.tc:tcRailMediumTurn.name=Petit Virage
+item.tc:tcRailLargeTurn.name=Virage
+item.tc:tcRailVeryLargeTurn.name=Long Virage
+item.tc:tcRailSuperLargeTurn.name=Très Long Virage
+
+item.tc:tcRailEmbeddedMediumTurn.name=Petit Virage Sans Traversse
+item.tc:tcRailEmbeddedLargeTurn.name=Virage Sans Traversse
+item.tc:tcRailEmbeddedVeryLargeTurn.name=Long Virage Sans Traversse
+item.tc:tcRailEmbeddedSuperLargeTurn.name=Très Long Virage Sans Traversse
+
+item.tc:tcRailMedium45DegreeTurn.name=Petit Virage 45 Degres
+item.tc:tcRailLarge45DegreeTurn.name=Virage 45 Degres
+item.tc:tcRailVeryLarge45DegreeTurn.name=Gros Virage 45 Degres
+item.tc:tcRailSuperLarge45DegreeTurn.name=Très Gros Virage 45 Degres
+
+item.tc:tcRailEmbeddedMedium45DegreeTurn.name=Petit Virage 45 Degres Sans Traversse
+item.tc:tcRailEmbeddedLarge45DegreeTurn.name=Virage 45 Degres Sans Traversse
+item.tc:tcRailEmbeddedVeryLarge45DegreeTurn.name=Gros Virage 45 Degres Sans Traversse
+item.tc:tcRailEmbeddedSuperLarge45DegreeTurn.name=Très Gros Virage 45 Degres Sans Traversse
+
+item.tc:tcRailSmallParallelCurve.name=Petit Décalage
+item.tc:tcRailMediumParallelCurve.name=Décalage Normale
+item.tc:tcRailLargeParallelCurve.name=Grand Décalage
+
+item.tc:tcRailEmbeddedSmallParallelCurve.name=Petit Décalage Sans Traversse
+item.tc:tcRailEmbeddedMediumParallelCurve.name=Décalage Normale Sans Traversse
+item.tc:tcRailEmbeddedLargeParallelCurve.name=Grand Décalage Sans Traversse
+
+item.tc:tcRailTwoWaysCrossing.name=Traversser perpendiculaire
+item.tc:tcRailDiamondCrossing.name=Traversser a 45 Degres
+item.tc:tcRailDoubleDiamondCrossing.name=Double Traversser a 45 Degres
+item.tc:tcRailFourWaysCrossing.name=Traversser a 4 Vois
+item.tc:tcRailDiagonalTwoWaysCrossing.name=Traversser en Diagonal
+
+item.tc:tcRailEmbeddedTwoWaysCrossing.name=Traversser perpendiculaire Sans Traversse
+item.tc:tcRailEmbeddedDiamondCrossing.name=Traversser a 45 Degres Sans Traversse
+item.tc:tcRailEmbeddedDoubleDiamondCrossing.name=Double Traversser a 45 Degres Sans Traversse
+item.tc:tcRailEmbeddedDiagonalTwoWaysCrossing.name=Traversser a 4 Vois Sans Traversse
+item.tc:tcRailEmbeddedFourWaysCrossing.name=Traversser en Diagonal Sans Traversse
+
+item.tc:tcRailMediumSwitch.name=Petit Aiguillage a 90 Degres
+item.tc:tcRailLargeSwitch.name=Aiguillage a 90 Degres
+item.tc:tcRailMediumParallelSwitch.name=Aiguillage paralelles
+item.tc:tcRailMedium45DegreeSwitch.name=Aiguillage a 45 Degres
+
+item.tc:tcRailEmbeddedMediumSwitch.name= Petit Aiguillage a 90 Degres Sans Traversse
+item.tc:tcRailEmbeddedLargeSwitch.name=Aiguillage a 90 Degres Sans Traversse
+item.tc:tcRailEmbeddedMediumParallelSwitch.name=Aiguillage paralelles Sans Traversse
+item.tc:tcRailEmbeddedMedium45DegreeSwitch.name=Aiguillage a 45 Degres Sans Traversse
+
+item.tc:tcRailSlopeWood.name=Voie de Montée (Bois)
+item.tc:tcRailSlopeGravel.name=Voie de Montée (Gravier)
+item.tc:tcRailSlopeSnowGravel.name=Voie de Montée (Gravier Enneiger)
+item.tc:tcRailSlopeDynamic.name=Voie de Montée (Dynamique)
+
+item.tc:tcRailLargeSlopeWood.name=Grande Voie de Montée (Bois)
+item.tc:tcRailLargeSlopeGravel.name=Grande Voie de Montée (Gravier)
+item.tc:tcRailLargeSlopeBallast.name=Grande Voie de Montée (Ballast)
+item.tc:tcRailLargeSlopeSnowGravel.name=Grande Voie de Montée (Gravier Enneiger)
+item.tc:tcRailLargeSlopeDynamic.name=Grande Voie de Montée (Dynamique)
+
+item.tc:tcRailVeryLargeSlopeWood.name=Très Grande Voie de Montée (Bois)
+item.tc:tcRailVeryLargeSlopeGravel.name=Très Grande Voie de Montée (Gravier)
+item.tc:tcRailVeryLargeSlopeBallast.name=Très Grande Voie de Montée (Ballast)
+item.tc:tcRailVeryLargeSlopeSnowGravel.name=Très Grande Voie de Montée (Gravier Enneiger)
+item.tc:tcRailVeryLargeSlopeDynamic.name=Très Grande Voie de Montée (Dynamique)
+
+item.tc:tcRailEmbeddedSlopeDynamic.name=Voie de Montée Sans Traversse (Dynamique)
+item.tc:tcRailEmbeddedLargeSlopeDynamic.name=Grande Voie de Montée Sans Traversse (Dynamique)
+item.tc:tcRailEmbeddedVeryLargeSlopeDynamic.name=Très Grande Voie de Montée Sans Traversse(Dynamique)
+
+item.tc:tcRailLargeCurvedSlopeDynamic.name=Voie De Montée en Virage (Dynamique)
+item.tc:tcRailVeryLargeCurvedSlopeDynamic.name=Grande Voie De Montée en Virage (Dynamique)
+item.tc:tcRailSuperLargeCurvedSlopeDynamic.name=Très Grande Voie De Montée en Virage (Dynamique)
+
+item.tc:tcRailEmbeddedLargeCurvedSlopeDynamic.name=Voie De Montée en virage Sans Traversse (Dynamique)
+item.tc:tcRailEmbeddedVeryLargeCurvedSlopeDynamic.name=Grande Voie De Montée en Virage Sans Traversse(Dynamique)
+item.tc:tcRailEmbeddedSuperLargeCurvedSlopeDynamic.name=Très Grande Voie De Montée en Virage Sans Traversse(Dynamique)
+
+
+
+item.tc:tcRailSmallRoadCrossing.name=Rail Avec Asphalt (Asphalt Noir)
+item.tc:tcRailSmallRoadCrossing1.name=Rail Avec Asphalt (Asphalt Propre)
+item.tc:tcRailSmallRoadCrossing2.name=Rail Avec Asphalt (Asphalt Gris Claire)
+
+
+
 item.tc:diesel.name=Bidon de diesel
 item.tc:stake.name=Coupleur
 item.tc:steeldust.name=Poussière d'acier

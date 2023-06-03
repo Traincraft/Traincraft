@@ -27,7 +27,7 @@ public class EntityPassengerMetro2000 extends EntityRollingStock implements IPas
     @Override
     public void updateRiderPosition() {
         if(riddenByEntity!=null) {
-            riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset() + -0.3, posZ);
+            riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset() + 0.0f, posZ);
         }
     }
 

@@ -165,25 +165,57 @@ public class CustomRenderHandler {
         else if (item.getTrackType() == ItemTCRail.TrackTypes.SMALL_ROAD_CROSSING_2) {
             RenderTCRail.modelSmallStraight.render("crossing2", facing, 0, 0, 0, r, g, b, a);
         }
-        else if (item.getTrackType() == ItemTCRail.TrackTypes.TWO_WAYS_CROSSING) {
+        else if (item.getTrackType() == ItemTCRail.TrackTypes.DOUBLE_DIAMOND_CROSSING || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_DOUBLE_DIAMOND_CROSSING) {
+            String type = "normal";
+            if (item.getTrackType().getLabel().contains("EMBEDDED"))
+                type = "embedded";
             float dx = dir.getX();
             float dz = dir.getY();
-
-            RenderTCRail.modelTwoWaysCrossing.render( "crossing", dx, 0, dz, r, g, b, a );
-            RenderTCRail.modelSmallStraight.render("normal", 0, dx, 0, dz +1, r, g, b, a);
-            RenderTCRail.modelSmallStraight.render("normal", 1, dx + 1, 0, dz, r, g, b, a);
-            RenderTCRail.modelSmallStraight.render("normal", 2, dx, 0, dz - 1, r, g, b, a);
-            RenderTCRail.modelSmallStraight.render("normal", 3, dx - 1, 0, dz, r, g, b, a);
+            RenderTCRail.modelTwoWaysCrossing.render(type + "_diamond", dx, 0, dz, facing, r, g, b, a);
         }
-        else if (item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_TWO_WAYS_CROSSING) {
+        else if (item.getTrackType() == ItemTCRail.TrackTypes.DIAGONAL_TWO_WAYS_CROSSING || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_DIAGONAL_TWO_WAYS_CROSSING){
+            String type = "normal";
+            if (item.getTrackType().getLabel().contains("EMBEDDED"))
+                type = "embedded";
+            RenderTCRail.modelTwoWaysCrossing.render(type + "_diagonal_crossing", 0, 0, 0, facing, r, g, b, a);
+        }
+        else if (item.getTrackType() == ItemTCRail.TrackTypes.FOUR_WAYS_CROSSING || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_FOUR_WAYS_CROSSING){
+            String type = "normal";
+            if (item.getTrackType().getLabel().contains("EMBEDDED"))
+                type = "embedded";
+            RenderTCRail.modelTwoWaysCrossing.render(type + "_universal_crossing", 0, 0, 0, facing, r, g, b, a);
+        }
+        else if (item.getTrackType() == ItemTCRail.TrackTypes.DIAMOND_CROSSING || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_DIAMOND_CROSSING){
+            float yaw = MathHelper.wrapAngleTo180_float(player.rotationYaw);
+            boolean isLeftTurn = item.getTrackOrientation( facing, yaw ).equals("left");
+            String type = "normal";
+            if (item.getTrackType().getLabel().contains("EMBEDDED"))
+              type = "embedded";
+            float dx = dir.getX();
+            float dz = dir.getY();
+            if (isLeftTurn){
+                RenderTCRail.modelLeftDiamondCrossing.render(type , dx, 0, dz, facing, r, g, b, a);
+            }
+            else {
+                RenderTCRail.modelRightDiamondCrossing.render(type  , dx, 0, dz, facing, r, g, b, a);
+           }
+        }
+
+
+
+
+        else if (item.getTrackType() == ItemTCRail.TrackTypes.TWO_WAYS_CROSSING || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_TWO_WAYS_CROSSING) {
+            String type = "normal";
+            if (item.getTrackType().getLabel().contains("EMBEDDED"))
+                type = "embedded";
             float dx = dir.getX();
             float dz = dir.getY();
 
-            RenderTCRail.modelTwoWaysCrossing.render("embedded_crossing", dx, 0, dz, r, g, b, a );
-            RenderTCRail.modelSmallStraight.render("embedded", 0, dx, 0, dz +1, r, g, b, a);
-            RenderTCRail.modelSmallStraight.render("embedded", 1, dx + 1, 0, dz, r, g, b, a);
-            RenderTCRail.modelSmallStraight.render("embedded", 2, dx, 0, dz - 1, r, g, b, a);
-            RenderTCRail.modelSmallStraight.render("embedded", 3, dx - 1, 0, dz, r, g, b, a);
+            RenderTCRail.modelTwoWaysCrossing.render( type + "_crossing", dx, 0, dz, facing, r, g, b, a );
+            RenderTCRail.modelSmallStraight.render(type, 0, dx, 0, dz +1, r, g, b, a);
+            RenderTCRail.modelSmallStraight.render(type, 1, dx + 1, 0, dz, r, g, b, a);
+            RenderTCRail.modelSmallStraight.render(type, 2, dx, 0, dz - 1, r, g, b, a);
+            RenderTCRail.modelSmallStraight.render(type, 3, dx - 1, 0, dz, r, g, b, a);
         }
 
         // Slopes

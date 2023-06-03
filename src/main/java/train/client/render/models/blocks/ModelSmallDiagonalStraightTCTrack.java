@@ -14,7 +14,6 @@ import train.common.tile.TileTCRail;
 public class ModelSmallDiagonalStraightTCTrack extends ModelBase {
 
     private IModelCustom modelSmallDiagonalStraight;
-    private IModelCustom modelEmbeddedSmallDiagonalStraight;
 
 
     public ModelSmallDiagonalStraightTCTrack() {

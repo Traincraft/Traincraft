@@ -186,24 +186,126 @@ item.tc:reinforcedPlastic.name=Plástico de composite
 item.tc:reinforcedPlates.name=Composite 
 item.tc:composite_wrench.name=Llave inglesa compuesta 
 item.tc:minecartPassengerHighSpeedCarZeroED.name=Vagón de pasajeros de alta velocidad 
-item.tc:minecartNYTram.name=Metro N.Y. (EE.UU.) item.tc:minecartLocoHighSpeedZeroED.name=High Locomotora de alta velocidad item.tc:minecartLocoC62Class.name=Serie C62  [JNR] item.tc:minecartTenderC62Class.name=Ténder de la Serie C62  [JNR] item.tc:minecartLocoSteamShay.name=Shay (EE.UU.) item.tc:minecartLocoSteamAdler.name=Adler (R.U.) item.tc:minecartTenderAdler.name=Ténder Adler (R.U.) item.tc:minecartPassengerAdler.name=Vagón de pasajeros Adler (R.U.)
-item.tc:minecartCabooseLogging.name=Furgón de cola item.tc:minecartPassengerTramNY.name= Vagón de pasajeros del metro de N.Y. item.tc:minecartLocoSD40.name=SD40-2 (US) item.tc:zeppelin.name=Zepelín item.tc:copperRail.name=Fiel de cobre item.tc:steelRail.name=Riel de acero item.tc:tcRailMediumTurn.name=Curva mediana item.tc:tcRailLargeTurn.name=Curva grande item.tc:tcRailVeryLargeTurn.name=Curva más grande item.tc:tcRailLongStraight.name=Vía recta larga item.tc:tcRailMediumStraight.name=Vía recta mediana item.tc:tcRailSmallStraight.name=Vía recta pequeña item.tc:tcRailMediumSwitch.name=Conmutador perpendicular pequeño
-item.tc:tcRailLargeSwitch.name=Conmutador perpendicular grande 
-item.tc:tcRailMediumParallelSwitch.name=Conmutador en paralelo 
-i
-tem.tc:tcRailTwoWaysCrossing.name=Cruce perpenficular 
-item.tc:tcRailSlopeWood.name=Vía en pendiete (madera) 
-item.tc:tcRailSlopeGravel.name=Vía en pendiete (Grava) 
-item.tc:tcRailSlopeBallast.name=Vía en pendiete (Balasto) 
-item.tc:tcRailLargeSlopeWood.name=Vía en pendiete larga (Madera) 
-item.tc:tcRailLargeSlopeGravel.name=Vía en pendiete larga (Grava) 
-item.tc:tcRailLargeSlopeBallast.name=Vía en pendiete larga (Balasto) 
-item.tc:tcRailVeryLargeSlopeWood.name=Vía en pendiete más larga (Madera) 
-item.tc:tcRailVeryLargeSlopeGravel.name=Vía en pendiete más larga (Grava) 
-item.tc:tcRailVeryLargeSlopeBallast.name=Vía en pendiete más larga (Balasto) 
-item.tc:tcRailSmallRoadCrossing.name=Paso a nivel (Asfalto oscuro) 
-item.tc:tcRailSmallRoadCrossing1.name=Paso a nivel (Asfalto limpio) 
-item.tc:tcRailSmallRoadCrossing2.name=Paso a nivel (Asfalto claro) 
+item.tc:minecartNYTram.name=Metro N.Y. (EE.UU.)
+item.tc:minecartLocoHighSpeedZeroED.name=High Locomotora de alta velocidad
+item.tc:minecartLocoC62Class.name=Serie C62  [JNR]
+item.tc:minecartTenderC62Class.name=Ténder de la Serie C62  [JNR]
+item.tc:minecartLocoSteamShay.name=Shay (EE.UU.)
+item.tc:minecartLocoSteamAdler.name=Adler (R.U.)
+item.tc:minecartTenderAdler.name=Ténder Adler (R.U.)
+item.tc:minecartPassengerAdler.name=Vagón de pasajeros Adler (R.U.)
+item.tc:minecartCabooseLogging.name=Furgón de cola
+item.tc:minecartPassengerTramNY.name= Vagón de pasajeros del metro de N.Y.
+item.tc:minecartLocoSD40.name=SD40-2 (US) item.tc:zeppelin.name=Zepelín
+item.tc:copperRail.name=Fiel de cobre
+item.tc:steelRail.name=Riel de acero
+
+item.tc:tcRailSmallStraight.name=Recta corta
+item.tc:tcRailMediumStraight.name=Recta mediana
+item.tc:tcRailLongStraight.name=Recta larga
+item.tc:tcRailVeryLongStraight.name=Recta muy larga
+
+item.tc:tcRailEmbeddedSmallStraight.name=Recta corta sin traviesas
+item.tc:tcRailEmbeddedMediumStraight.name=Recta mediana sin traviesas
+item.tc:tcRailEmbeddedLongStraight.name=Recta larga sin traviesas
+item.tc:tcRailEmbeddedVeryLongStraight.name=Recta muy larga sin traviesas
+
+item.tc:tcRailSmallDiagonalStraight.name=Recta diagonal corta
+item.tc:tcRailMediumDiagonalStraight.name=Recta diagonal mediana
+item.tc:tcRailLongDiagonalStraight.name=Recta diagonal larga
+item.tc:tcRailVeryLongDiagonalStraight.name=Recta diagonal muy larga
+
+item.tc:tcRailEmbeddedSmallDiagonalStraight.name=Recta diagonal corta sin traviesas
+item.tc:tcRailEmbeddedMediumDiagonalStraight.name=Recta diagonal mediana sin traviesas
+item.tc:tcRailEmbeddedLongDiagonalStraight.name=Recta diagonal larga sin traviesas
+item.tc:tcRailEmbeddedVeryLongDiagonalStraight.name=Recta diagonal muy larga sin traviesas
+
+item.tc:tcRailMediumTurn.name=Curva mediana
+item.tc:tcRailLargeTurn.name=Curva larga
+item.tc:tcRailVeryLargeTurn.name=Curva muy larga
+item.tc:tcRailSuperLargeTurn.name=Curva super larga
+
+item.tc:tcRailEmbeddedMediumTurn.name=curva mediana sin traviesas
+item.tc:tcRailEmbeddedLargeTurn.name=curva larga sin traviesas
+item.tc:tcRailEmbeddedVeryLargeTurn.name=curva muy larga sin traviesas
+item.tc:tcRailEmbeddedSuperLargeTurn.name=curva super larga sin traviesas
+
+item.tc:tcRailMedium45DegreeTurn.name=Curva mediana de 45 grados
+item.tc:tcRailLarge45DegreeTurn.name=Curva larga de 45 grados
+item.tc:tcRailVeryLarge45DegreeTurn.name=Curva muy larga de 45 grados
+item.tc:tcRailSuperLarge45DegreeTurn.name=Curva super larga de 45 grados
+
+item.tc:tcRailEmbeddedMedium45DegreeTurn.name=Curva mediana de 45 grados sin traviesas
+item.tc:tcRailEmbeddedLarge45DegreeTurn.name=Curva larga de 45 grados sin traviesas
+item.tc:tcRailEmbeddedVeryLarge45DegreeTurn.name=Curva muy larga de 45 grados sin traviesas
+item.tc:tcRailEmbeddedSuperLarge45DegreeTurn.name=Curva super larga de 45 grados sin traviesas
+
+item.tc:tcRailSmallParallelCurve.name=Curva paralela corta
+item.tc:tcRailMediumParallelCurve.name=Curva paralela mediana
+item.tc:tcRailLargeParallelCurve.name=Curva paralela larga
+item.tc:tcRailEmbeddedSmallParallelCurve.name=Curva paralela corta sin traviesas
+item.tc:tcRailEmbeddedMediumParallelCurve.name=Curva paralela mediana sin traviesas
+item.tc:tcRailEmbeddedLargeParallelCurve.name=Curva paralela larga sin traviesas
+
+item.tc:tcRailTwoWaysCrossing.name=Travesía rectangular
+item.tc:tcRailDiamondCrossing.name=Travesía diagonal
+item.tc:tcRailDoubleDiamondCrossing.name=Travesía diagonal doble
+item.tc:tcRailFourWaysCrossing.name=Travesía rectangular doble
+item.tc:tcRailDiagonalTwoWaysCrossing.name=Travesía rectangular diagonal
+
+item.tc:tcRailEmbeddedTwoWaysCrossing.name=Travesía rectangular sin traviesas
+item.tc:tcRailEmbeddedDiamondCrossing.name=Travesía diagonal sin traviesas
+item.tc:tcRailEmbeddedDoubleDiamondCrossing.name=Travesía diagonal doble sin traviesas
+item.tc:tcRailEmbeddedDiagonalTwoWaysCrossing.name=Travesía rectangular doble sin traviesas
+item.tc:tcRailEmbeddedFourWaysCrossing.name=Travesía rectangular diagonal sin traviesas
+
+item.tc:tcRailMediumSwitch.name=Desvio mediano
+item.tc:tcRailLargeSwitch.name=Desvio largo
+item.tc:tcRailMediumParallelSwitch.name=Desvio paralelo
+item.tc:tcRailMedium45DegreeSwitch.name=Desvio mediano de 45 grados
+
+item.tc:tcRailEmbeddedMediumSwitch.name= Desvio mediano sin traviesas
+item.tc:tcRailEmbeddedLargeSwitch.name=Desvio largo sin traviesas
+item.tc:tcRailEmbeddedMediumParallelSwitch.name=Desvio paralelo sin traviesas
+item.tc:tcRailEmbeddedMedium45DegreeSwitch.name=Desvio de 45 grados sin traviesas
+
+item.tc:tcRailSlopeWood.name=Rampa (madera)
+item.tc:tcRailSlopeGravel.name=Rampa (gravilla)
+item.tc:tcRailSlopeBallast.name=Rampa(Ballast)
+item.tc:tcRailSlopeSnowGravel.name=Rampa(Gravilla nevada)
+item.tc:tcRailSlopeDynamic.name=Rampa (Dinamica)
+
+item.tc:tcRailLargeSlopeWood.name=Rampa larga (Madera)
+item.tc:tcRailLargeSlopeGravel.name=Rampa larga (Gravilla)
+item.tc:tcRailLargeSlopeBallast.name=Rampa larga (Balasto)
+item.tc:tcRailLargeSlopeSnowGravel.name=Rampa larga (Gravilla nevada)
+item.tc:tcRailLargeSlopeDynamic.name=Rampa larga (Dinamica)
+
+item.tc:tcRailVeryLargeSlopeWood.name=Rampa muy larga (Madera)
+item.tc:tcRailVeryLargeSlopeGravel.name=Rampa muy larga (Gravilla)
+item.tc:tcRailVeryLargeSlopeBallast.name=Rampa muy larga (Balasto)
+item.tc:tcRailVeryLargeSlopeSnowGravel.name=Rampa muy larga (Gravilla nevada)
+item.tc:tcRailVeryLargeSlopeDynamic.name=Rampa muy larga (Dinamica)
+
+item.tc:tcRailEmbeddedSlopeDynamic.name=Rampa sin traviesas (Dinamica)
+item.tc:tcRailEmbeddedLargeSlopeDynamic.name=Rampa larga sin traviesas (Dinamica)
+item.tc:tcRailEmbeddedVeryLargeSlopeDynamic.name=Rampa muy larga sin traviesas (Dinamica)
+
+item.tc:tcRailLargeCurvedSlopeDynamic.name=Rampa curvada larga (Dinamica)
+item.tc:tcRailVeryLargeCurvedSlopeDynamic.name=Rampa curvada muy larga (Dinamica)
+item.tc:tcRailSuperLargeCurvedSlopeDynamic.name=Rampa curvada super larga (Dinamica)
+
+item.tc:tcRailEmbeddedLargeCurvedSlopeDynamic.name=Rampa curvada larga sin traviesas (Dinamica)
+item.tc:tcRailEmbeddedVeryLargeCurvedSlopeDynamic.name=Rampa curvada muy larga sin traviesas (Dinamica)
+item.tc:tcRailEmbeddedSuperLargeCurvedSlopeDynamic.name=Rampa curvada super larga sin traviesas (Dinamica)
+
+item.tc:tcRailSmallRoadCrossing.name=Paso a nivel (Asfalto negro)
+item.tc:tcRailSmallRoadCrossing1.name=Paso a nivel (Asfalto claro)
+item.tc:tcRailSmallRoadCrossing2.name=Paso a nivel (Asfalto gris)
+
+
+
+
 item.tc:minecartLocoA4Mallard.name=A4 Mallard (R.U.) 
 item.tc:minecartLocoA4MallardTender.name=A4  Ténder de la Mallard (R.U.) 
 item.tc:minecartIC4_DSB_MG.name=IC4 DSB MG (DSB)

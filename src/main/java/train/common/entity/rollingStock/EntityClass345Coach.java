@@ -74,6 +74,6 @@ public class EntityClass345Coach extends EntityRollingStock implements IPassenge
 
     @Override
     public float getOptimalDistance(EntityMinecart cart) {
-        return 2.4F;
+        return 2.45F;
     }
 }
