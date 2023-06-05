@@ -9,7 +9,7 @@ buildscript {
 
         maven {
             name = "forge"
-           url = "https://maven.minecraftforge.net/"
+            url = "https://maven.minecraftforge.net/"
         }
         maven {
             name = "sonatype"
@@ -17,7 +17,7 @@ buildscript {
         }
     }
     dependencies {
-      classpath ('com.anatawa12.forge:ForgeGradle:1.2-1.0.+') {
+      classpath ('com.anatawa12.forge:ForgeGradle:1.2-1.1.+') {
          changing = true
      }
     }
