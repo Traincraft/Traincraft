@@ -1,0 +1,103 @@
+item.tc:tcRailSmallStraight.name=Reta pequena
+item.tc:tcRailMediumStraight.name=Reta média
+item.tc:tcRailLongStraight.name=Reta grande
+item.tc:tcRailVeryLongStraight.name=Reta muito grande
+
+item.tc:tcRailEmbeddedSmallStraight.name=Embutido reto pequeno
+item.tc:tcRailEmbeddedMediumStraight.name=Embutido reto médio
+item.tc:tcRailEmbeddedLongStraight.name=Embutido reto grande
+item.tc:tcRailEmbeddedVeryLongStraight.name=Embutido reto muito grande
+
+item.tc:tcRailSmallDiagonalStraight.name=Diagonal reta pequena
+item.tc:tcRailMediumDiagonalStraight.name=Diagonal reta média
+item.tc:tcRailLongDiagonalStraight.name=Diagonal reta grande
+item.tc:tcRailVeryLongDiagonalStraight.name=Diagonal reta muito grande
+
+item.tc:tcRailEmbeddedSmallDiagonalStraight.name=Embutido diagonal reto pequeno
+item.tc:tcRailEmbeddedMediumDiagonalStraight.name=Embutido diagonal reto médio
+item.tc:tcRailEmbeddedLongDiagonalStraight.name=Embutido diagonal reto grande
+item.tc:tcRailEmbeddedVeryLongDiagonalStraight.name=Embutido diagonal reto muito grande
+
+item.tc:tcRailMediumTurn.name=Curva média
+item.tc:tcRailLargeTurn.name=Curva grande
+item.tc:tcRailVeryLargeTurn.name=Curva muito grande
+item.tc:tcRailSuperLargeTurn.name=Curva super grande
+
+item.tc:tcRailEmbeddedMediumTurn.name=Embutido curvo médio
+item.tc:tcRailEmbeddedLargeTurn.name=Embutido curvo grande
+item.tc:tcRailEmbeddedVeryLargeTurn.name=Embutido curvo muito grande
+item.tc:tcRailEmbeddedSuperLargeTurn.name=Embutido curvo super grande
+
+item.tc:tcRailMedium45DegreeTurn.name=Curva média de 45 graus
+item.tc:tcRailLarge45DegreeTurn.name=Curva grande de 45 graus
+item.tc:tcRailVeryLarge45DegreeTurn.name=Curva muito grande de 45 graus
+item.tc:tcRailSuperLarge45DegreeTurn.name=Curva super grande de 45 graus
+
+item.tc:tcRailEmbeddedMedium45DegreeTurn.name=Embutido curvo médio de 45 graus
+item.tc:tcRailEmbeddedLarge45DegreeTurn.name=Embutido curvo grande de 45 graus
+item.tc:tcRailEmbeddedVeryLarge45DegreeTurn.name=Embutido curvo muito grande de 45 graus
+item.tc:tcRailEmbeddedSuperLarge45DegreeTurn.name=Embutido super grande de 45 graus
+
+item.tc:tcRailSmallParallelCurve.name=Curva paralela pequena
+item.tc:tcRailMediumParallelCurve.name=Curva paralela média
+item.tc:tcRailLargeParallelCurve.name=Curva paralela grande
+item.tc:tcRailEmbeddedSmallParallelCurve.name=Embutido curvo paralelo pequeno
+item.tc:tcRailEmbeddedMediumParallelCurve.name=Embutido curvo paralelo médio
+item.tc:tcRailEmbeddedLargeParallelCurve.name=Embutido curvo paralelo grande
+
+item.tc:tcRailTwoWaysCrossing.name=Cruzamento de duas vias
+item.tc:tcRailDiamondCrossing.name=Cruzamento em diamante
+item.tc:tcRailDoubleDiamondCrossing.name=Cruzamento em diamante duplo
+item.tc:tcRailFourWaysCrossing.name=Cruzamento de quatro vias
+item.tc:tcRailDiagonalTwoWaysCrossing.name=Cruzamento diagonal de duas vias
+
+item.tc:tcRailEmbeddedTwoWaysCrossing.name=Cruzamento embutido de duas vias
+item.tc:tcRailEmbeddedDiamondCrossing.name=Cruzamento em diamante embutido
+item.tc:tcRailEmbeddedDoubleDiamondCrossing.name=Cruzamento em diamante embutido duplo
+item.tc:tcRailEmbeddedDiagonalTwoWaysCrossing.name=Cruzamento em diagonal embutido
+item.tc:tcRailEmbeddedFourWaysCrossing.name=Cruzamento embutido de quatro vias
+
+item.tc:tcRailMediumSwitch.name=Comutador médio de 90 graus
+item.tc:tcRailLargeSwitch.name=Comutador grande de 90 graus
+item.tc:tcRailMediumParallelSwitch.name=Comutador paralelo
+item.tc:tcRailMedium45DegreeSwitch.name=Comutador médio de 45 graus
+
+item.tc:tcRailEmbeddedMediumSwitch.name=Comutador embutido médio de 90 graus
+item.tc:tcRailEmbeddedLargeSwitch.name=Comutador embutido grande de 90 graus
+item.tc:tcRailEmbeddedMediumParallelSwitch.name=Comutador paralelo embutido
+item.tc:tcRailEmbeddedMedium45DegreeSwitch.name=Comutador embutido médio de 45 graus
+
+item.tc:tcRailSlopeWood.name=Trilho inclinado (Madeira)
+item.tc:tcRailSlopeGravel.name=Trilho inclinado (Cascalho)
+item.tc:tcRailSlopeBallast.name=Trilho inclinado (Balastro)
+item.tc:tcRailSlopeSnowGravel.name=Trilho inclinado (Cascalho nevado)
+item.tc:tcRailSlopeDynamic.name=Trilho inclinado (Dinâmico)
+
+item.tc:tcRailLargeSlopeWood.name=Trilho inclinado grande (Madeira)
+item.tc:tcRailLargeSlopeGravel.name=Trilho inclinado grande (Cascalho)
+item.tc:tcRailLargeSlopeBallast.name=Trilho inclinado grande (Balastro)
+item.tc:tcRailLargeSlopeSnowGravel.name=Trilho inclinado grande (Cascalho nevado)
+item.tc:tcRailLargeSlopeDynamic.name=Trilho inclinado grande (Dinâmico)
+
+item.tc:tcRailVeryLargeSlopeWood.name=Trilho inclinado muito grande (Madeira)
+item.tc:tcRailVeryLargeSlopeGravel.name=Trilho inclinado muito grande (Cascalho)
+item.tc:tcRailVeryLargeSlopeBallast.name=Trilho inclinado muito grande (Balastro)
+item.tc:tcRailVeryLargeSlopeSnowGravel.name=Trilho inclinado muito grande (Cascalho nevado)
+item.tc:tcRailVeryLargeSlopeDynamic.name=Trilho inclinado muito grande (Dinâmico)
+
+item.tc:tcRailEmbeddedSlopeDynamic.name=Embutido inclinado (Dinâmico)
+item.tc:tcRailEmbeddedLargeSlopeDynamic.name=Embutido inclinado grande (Dinâmico)
+item.tc:tcRailEmbeddedVeryLargeSlopeDynamic.name=Embutido inclinado muito grande (Dinâmico)
+
+item.tc:tcRailLargeCurvedSlopeDynamic.name=Curva inclinada grande (Dinâmico)
+item.tc:tcRailVeryLargeCurvedSlopeDynamic.name=Curva inclinada muito grande (Dinâmico)
+item.tc:tcRailSuperLargeCurvedSlopeDynamic.name=Curva inclinada super grande (Dinâmico)
+
+item.tc:tcRailEmbeddedLargeCurvedSlopeDynamic.name=Embutido inclinado curvo grande (Dinâmico)
+item.tc:tcRailEmbeddedVeryLargeCurvedSlopeDynamic.name=Embutido inclinado curvo muito grande (Dinâmico)
+item.tc:tcRailEmbeddedSuperLargeCurvedSlopeDynamic.name=Embutido inclinado curvo super grande (Dinâmico)
+
+
+item.tc:tcRailSmallRoadCrossing.name=Cruzamento de trilho (Asfalto escuro)
+item.tc:tcRailSmallRoadCrossing1.name=Cruzamento de trilho (Asfalto claro)
+item.tc:tcRailSmallRoadCrossing2.name=Cruzamento de trilho (Asfalto cinza claro)

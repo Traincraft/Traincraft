@@ -203,28 +203,115 @@ item.tc:minecartLocoSD40.name=SD40-2 (US)
 item.tc:zeppelin.name=Zeppelin
 item.tc:copperRail.name=Tor Miedziany
 item.tc:steelRail.name=Tor Stalowy
-item.tc:tcRailMediumTurn.name=Średni Zakręt
-item.tc:tcRailLargeTurn.name=Duży Zakręt
-item.tc:tcRailVeryLargeTurn.name=Ogromny Zakręt
-item.tc:tcRailLongStraight.name=Długa Prosta
-item.tc:tcRailMediumStraight.name=Średnia Prosta
-item.tc:tcRailSmallStraight.name=Krótka Prosta
-item.tc:tcRailMediumSwitch.name=90 stopniowy Średni Rozjazd
-item.tc:tcRailLargeSwitch.name=90 stopniowy Duży Rozjazd
-item.tc:tcRailMediumParallelSwitch.name=Równoległy Rozjazd
-item.tc:tcRailTwoWaysCrossing.name=Dwustronne Skrzyżowanie
-item.tc:tcRailSlopeWood.name=Pochyły tor (Drewno)
-item.tc:tcRailSlopeGravel.name=Pochyły tor (Żwir)
-item.tc:tcRailSlopeBallast.name=Pochyły tor (Balast)
-item.tc:tcRailLargeSlopeWood.name=Large Pochyły tor (Drewno)
-item.tc:tcRailLargeSlopeGravel.name=Large Pochyły tor (Żwir)
-item.tc:tcRailLargeSlopeBallast.name=Large Pochyły tor (Balast)
-item.tc:tcRailVeryLargeSlopeWood.name=Very Large Pochyły tor (Drewno)
-item.tc:tcRailVeryLargeSlopeGravel.name=Very Large Pochyły tor (Żwir)
-item.tc:tcRailVeryLargeSlopeBallast.name=Very Large Pochyły tor (Balast)
-item.tc:tcRailSmallRoadCrossing.name=Przejazd Kolejowy (Black Asfalt)
-item.tc:tcRailSmallRoadCrossing1.name=Przejazd Kolejowy (Czysty Asfalt)
-item.tc:tcRailSmallRoadCrossing2.name=Przejazd Kolejowy (Jasno Szary Asfalt)
+
+
+item.tc:tcRailSmallStraight.name=Mały prosty tor
+item.tc:tcRailMediumStraight.name=Średni prosty tor
+item.tc:tcRailLongStraight.name=Długi prosty
+item.tc:tcRailVeryLongStraight.name=Bardzo długu prosty tor
+
+item.tc:tcRailEmbeddedSmallStraight.name=Osadzony mały prosty tor
+item.tc:tcRailEmbeddedMediumStraight.name=Osadzony średni tor
+item.tc:tcRailEmbeddedLongStraight.name=Osadzony długi tor
+item.tc:tcRailEmbeddedVeryLongStraight.name=Osadzony bardzo długi tor
+
+item.tc:tcRailSmallDiagonalStraight.name=Mały przekątny tor
+item.tc:tcRailMediumDiagonalStraight.name=Średni przekątny tor
+item.tc:tcRailLongDiagonalStraight.name=Długi przekątny tor
+item.tc:tcRailVeryLongDiagonalStraight.name=Bardzo długi przekątny tor
+
+item.tc:tcRailEmbeddedSmallDiagonalStraight.name=Osadzony mały przekątny tor
+item.tc:tcRailEmbeddedMediumDiagonalStraight.name=Osadzony średni przekątny tor
+item.tc:tcRailEmbeddedLongDiagonalStraight.name=Osadzony długi przekątny średni tor
+item.tc:tcRailEmbeddedVeryLongDiagonalStraight.name=Osadzony bardzo długi przekątny tor
+
+item.tc:tcRailMediumTurn.name=Średni zakręt
+item.tc:tcRailLargeTurn.name=Duży zakręt
+item.tc:tcRailVeryLargeTurn.name=Bardzo duży zakręt
+item.tc:tcRailSuperLargeTurn.name=Super duży zakręt
+
+item.tc:tcRailEmbeddedMediumTurn.name=Średni osadzony zakręt
+item.tc:tcRailEmbeddedLargeTurn.name=Duży osadzony zakręt
+item.tc:tcRailEmbeddedVeryLargeTurn.name=Bardzo duży osadzony zakręt
+item.tc:tcRailEmbeddedSuperLargeTurn.name=Super duży osadzony zakręt
+
+item.tc:tcRailMedium45DegreeTurn.name=Średni zakręt o 45°
+item.tc:tcRailLarge45DegreeTurn.name=Duży zakręt o 45°
+item.tc:tcRailVeryLarge45DegreeTurn.name=Bardzo duży zakręt o 45°
+item.tc:tcRailSuperLarge45DegreeTurn.name=Super duży zakręt o 45°
+
+item.tc:tcRailEmbeddedMedium45DegreeTurn.name=Średni osadzony zakręt o 45°
+item.tc:tcRailEmbeddedLarge45DegreeTurn.name=Duży osadzony zakręt o 45°
+item.tc:tcRailEmbeddedVeryLarge45DegreeTurn.name=Bardzo duży osadzony zakręt o 45°
+item.tc:tcRailEmbeddedSuperLarge45DegreeTurn.name=Super duży osadzony zakręt o 45°
+
+item.tc:tcRailSmallParallelCurve.name=Mała równoległa krzywa
+item.tc:tcRailMediumParallelCurve.name=Średnia równoległa krzywa
+item.tc:tcRailLargeParallelCurve.name=Duża równoległa krzywa
+item.tc:tcRailEmbeddedSmallParallelCurve.name=Mała osadzona równoległa krzywa
+item.tc:tcRailEmbeddedMediumParallelCurve.name=Średnia osadzona równoległa krzywa
+item.tc:tcRailEmbeddedLargeParallelCurve.name=Duża osadzona równoległa krzywa
+
+item.tc:tcRailTwoWaysCrossing.name=Dwu kierunkowe skrzyżowanie
+item.tc:tcRailDiamondCrossing.name=Diamentowe skrzyżowanie
+item.tc:tcRailDoubleDiamondCrossing.name=Podwójne diamentowe skrzyżowanie
+item.tc:tcRailFourWaysCrossing.name=cztero kierunkowe skrzyżowanie
+item.tc:tcRailDiagonalTwoWaysCrossing.name=Przekątne dwu kierunkowe skrzyżowanie
+
+item.tc:tcRailEmbeddedTwoWaysCrossing.name=Osadzone dwu kierunkowe skrzyżowanie
+item.tc:tcRailEmbeddedDiamondCrossing.name=Osadzone diamentowe skrzyżowanie
+item.tc:tcRailEmbeddedDoubleDiamondCrossing.name=Osadzone podwójne diamentowe skrzyżowanie
+item.tc:tcRailEmbeddedDiagonalTwoWaysCrossing.name=Osadzone przekątne skrzyżowanie
+item.tc:tcRailEmbeddedFourWaysCrossing.name=Osadzonye cztero kierunkowe skrzyżowanie
+
+item.tc:tcRailMediumSwitch.name=Średni rozjazd o 90°
+item.tc:tcRailLargeSwitch.name=Duży rozjazd 90°
+item.tc:tcRailMediumParallelSwitch.name=Równoległa bocznica
+item.tc:tcRailMedium45DegreeSwitch.name=Średni rozjazd o 45°
+
+item.tc:tcRailEmbeddedMediumSwitch.name= Średni Osadzony rozjazd 90°
+item.tc:tcRailEmbeddedLargeSwitch.name=Duży Osadzony rozjazd 90°
+item.tc:tcRailEmbeddedMediumParallelSwitch.name=Osadzona równoległa bocznica
+item.tc:tcRailEmbeddedMedium45DegreeSwitch.name=Średni osadzony rozjazd 45°
+
+item.tc:tcRailSlopeWood.name=Nachylony tor (Drewno)
+item.tc:tcRailSlopeGravel.name=Nachylony tor (Żwir)
+item.tc:tcRailSlopeBallast.name=Nachylony tor (Balast)
+item.tc:tcRailSlopeSnowGravel.name=Nachylony tor (Śnieżny żwir)
+item.tc:tcRailSlopeDynamic.name=Nachylony tor (Dynamiczny)
+
+item.tc:tcRailLargeSlopeWood.name=Duży Nachylony tor (Drewno)
+item.tc:tcRailLargeSlopeGravel.name=Duży Nachylony tor (Żwir)
+item.tc:tcRailLargeSlopeBallast.name=Duży Nachylony tor (Balast)
+item.tc:tcRailLargeSlopeSnowGravel.name=Duży Nachylony tor (Śnieżny żwir)
+item.tc:tcRailLargeSlopeDynamic.name=Duży Nachylony tor (Dynamiczny)
+
+item.tc:tcRailVeryLargeSlopeWood.name=Bardzo duży Nachylony tor (Drewno)
+item.tc:tcRailVeryLargeSlopeGravel.name=Bardzo duży Nachylony tor (Żwir)
+item.tc:tcRailVeryLargeSlopeBallast.name=Bardzo duży Nachylony tor (Balast)
+item.tc:tcRailVeryLargeSlopeSnowGravel.name=Bardzo duży Nachylony tor (Śnieżny żwirl)
+item.tc:tcRailVeryLargeSlopeDynamic.name=Bardzo duży Nachylony tor (Dynamiczny)
+
+item.tc:tcRailEmbeddedSlopeDynamic.name=Osadzony nachylony tor (Dynamiczny)
+item.tc:tcRailEmbeddedLargeSlopeDynamic.name=Osadzony duży nachylony tor (Dynamiczny)
+item.tc:tcRailEmbeddedVeryLargeSlopeDynamic.name=Osadzony bardzo duży nachylony tor (Dynamiczny)
+
+item.tc:tcRailLargeCurvedSlopeDynamic.name=Duży nachylony zakręt (Dynamiczny)
+item.tc:tcRailVeryLargeCurvedSlopeDynamic.name=Bardzo duży nachylony zakręt (Dynamiczny)
+item.tc:tcRailSuperLargeCurvedSlopeDynamic.name=Super duży nachylony zakręt (Dynamiczny)
+
+item.tc:tcRailEmbeddedLargeCurvedSlopeDynamic.name=Osadzony duży nachylony zakręt (Dynamiczny)
+item.tc:tcRailEmbeddedVeryLargeCurvedSlopeDynamic.name=Osadzony bardzo duży nachylony zakręt (Dynamiczny)
+item.tc:tcRailEmbeddedSuperLargeCurvedSlopeDynamic.name=Osadzony super dużu nachylony zakręt (Dynamiczny)
+
+
+
+item.tc:tcRailSmallRoadCrossing.name=Przejazd kolejowy (Czarny Asfalt)
+item.tc:tcRailSmallRoadCrossing1.name=Przejazd kolejowy (Czysty Asfalt)
+item.tc:tcRailSmallRoadCrossing2.name=Przejazd kolejowy (Jasno-szary Afsalt)
+
+
+
 item.tc:minecartLocoA4Mallard.name=A4 Mallard
 item.tc:minecartLocoA4MallardTender.name=Tender do A4 Mallard
 item.tc:minecartIC4_DSB_MG.name=IC4 DSB MG

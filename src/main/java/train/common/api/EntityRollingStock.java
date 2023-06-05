@@ -67,7 +67,7 @@ import static train.common.core.util.TraincraftUtil.isRailBlockAt;
 
 public class EntityRollingStock extends AbstractTrains implements ILinkableCart {
 	public int fuelTrain;
-	protected static final int matrix[][][] = {
+	protected static final int[][][] matrix = {
 			{ { 0, 0, -1 }, { 0, 0, 1 } }, { { -1, 0, 0 }, { 1, 0, 0 } }, { { -1, -1, 0 }, { 1, 0, 0 } }, { { -1, 0, 0 }, { 1, -1, 0 } }, { { 0, 0, -1 }, { 0, -1, 1 } }, { { 0, -1, -1 }, { 0, 0, 1 } }, { { 0, 0, 1 }, { 1, 0, 0 } }, { { 0, 0, 1 }, { -1, 0, 0 } }, { { 0, 0, -1 }, { -1, 0, 0 } }, { { 0, 0, -1 }, { 1, 0, 0 } } };
 
 	protected EntityPlayer playerEntity;
@@ -1033,7 +1033,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			 /**
 			 * Handles derail
 			 */
-			 if (this instanceof Locomotive && d13 > derailSpeed && i1 >= 6) {
+			 if ((this instanceof Locomotive || this instanceof ISecondBogie) && d13 > derailSpeed && i1 >= 6) {
 			 if (d9 > 0 && d10 < 0) {
 			 d10 = 0;
 			 d9 += 2;

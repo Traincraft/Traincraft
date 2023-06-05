@@ -421,7 +421,6 @@ public class LinkHandler {
 
 			if(cart1.bogieLoco!=null || cart2.bogieLoco!=null){
 				if(cart1.bogieLoco!=null && cart2.bogieLoco==null){
-					Traincraft.tcLog.info("1 only");
 					distancesX[0] = cart1.posX - cart2.posX ;
 					distancesZ[0] = cart1.posZ - cart2.posZ ;
 
@@ -437,7 +436,6 @@ public class LinkHandler {
 					}
 
 				}else if(cart1.bogieLoco==null){
-					Traincraft.tcLog.info("2 only");
 					distancesX[0] = cart1.posX - cart2.posX ;
 					distancesZ[0] = cart1.posZ - cart2.posZ ;
 					distancesX[1] = cart1.posX - cart2.bogieLoco.posX ;
@@ -451,10 +449,10 @@ public class LinkHandler {
 						euclidian[i] = MathHelper.sqrt_double((distancesX[i] * distancesX[i]) + (distancesZ[i] * distancesZ[i]));
 					}
 
-				}else{
-					Traincraft.tcLog.info("1 and 2");
-					distancesX[0] = cart1.posX - cart2.posX ;
-					distancesZ[0] = cart1.posZ - cart2.posZ ;
+				}
+				else{
+					distancesX[0] = cart1.posX - cart2.posX;
+					distancesZ[0] = cart1.posZ - cart2.posZ;
 					distancesX[1] = cart1.bogieLoco.posX - cart2.posX ;
 					distancesZ[1] = cart1.bogieLoco.posZ - cart2.posZ ;
 					distancesX[2] = cart1.posX - cart2.bogieLoco.posX ;
@@ -463,7 +461,7 @@ public class LinkHandler {
 					distancesZ[3] = cart1.bogieLoco.posZ - cart2.bogieLoco.posZ ;
 
 					for(int i = 0; i< distancesX.length;i++){
-						euclidian[i] = MathHelper.sqrt_double((distancesX[i] * distancesX[i]) + (distancesZ[i] * distancesZ[i]));
+						euclidian[i] = MathHelper.sqrt_double(((distancesX[i]) * (distancesX[i])) + ((distancesZ[i]) * (distancesZ[i])));
 					}
 				}
 				double minX = euclidian[0];
@@ -480,7 +478,8 @@ public class LinkHandler {
 				vecX=d;
 				vecZ=d1;
 
-			}else{
+			}
+			else{
 				d = cart1.posX - cart2.posX;
 				d1 = cart1.posZ - cart2.posZ;
 				vecX = cart1.posX - cart2.posX;
@@ -516,8 +515,8 @@ public class LinkHandler {
 			double stretch = d2 -getOptimalDistance(cart1, cart2);
 			//System.out.println("stretch "+stretch);
 
-			double springX = limitForce(0.4D * stretch * vecX * -1);
-			double springZ = limitForce(0.4D * stretch * vecZ * -1);
+			double springX = limitForce(0.1D * stretch * vecX * -1);
+			double springZ = limitForce(0.1D * stretch * vecZ * -1);
 
 
 
