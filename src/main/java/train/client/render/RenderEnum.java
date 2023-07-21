@@ -376,7 +376,7 @@ public enum RenderEnum {
 
 	locoBR_Britannia_Class(EntityLocoSteamBR_Britannia_Class.class, new ModelBR_Britannia_Class(), "BR_Britannia_", true, new float[] {-2.3f, -0.05f, 0 }, new float[] {0,180,180}, null, "largesmoke", 3, new ArrayList<double[]>() {
 		{
-			add(new double[] { 3.8D, 1.4D, 0D });
+			add(new double[] { 3.78D, 1.4D, 0D });
 		}
 	}, "explode", new ArrayList<double[]>() {
 		{
@@ -1159,8 +1159,8 @@ public enum RenderEnum {
 	KVB_2300(EntityElectricKVB_2300.class, new ModelKVB_2300(), "kvb_2300_", true,new float[] {-1.25F, 0.15F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	KVB_2300_B( EntityPassengerKVB_2300_B.class, new ModelKVB_2300_B(),"kvb_2300_", true, new float[] {0F, 0.15F, 0F},  new float[] { 0F, 0F, 180F },null, "", 0, null, "", null, 0, false),
 	//tcce5 new stuff (its mixed around in the file tbh)
-	BR_MK2F_Coach( EntityPassengerBR_MK2F_Coach.class, new ModelBR_MK2F_Coach(), "BR_Mk2f_", true, new float[] {0.5F,0F,0F}, new float[] {0F, 180F, 180F}, null, "",0,null, "", null, 0, false),
-	BR_MK2F_BSO(EntityPassengerBR_MK2F_BSO.class, new ModelBR_MK2F_BSO(), "BR_Mk2f_BSO_", true, new float[] {0.45F,0F,0F}, new float[] {0F, 180F, 180F}, null, "", 0 , null, "", null, 0, false),
+	BR_MK2F_Coach( EntityPassengerBR_MK2F_Coach.class, new ModelBR_MK2F_Coach(), "BR_Mk2f_", true, new float[] {0.485F,0F,0F}, new float[] {0F, 180F, 180F}, null, "",0,null, "", null, 0, false),
+	BR_MK2F_BSO(EntityPassengerBR_MK2F_BSO.class, new ModelBR_MK2F_BSO(), "BR_Mk2f_BSO_", true, new float[] {0.485F,0F,0F}, new float[] {0F, 180F, 180F}, null, "", 0 , null, "", null, 0, false),
 	BR_MK2F_DBSO(EntityElectricBR_MK2F_DBSO.class, new ModelBR_MK2F_DBSO(), "BR_Mk2f_DBSO_", true, new float[] {-1.5F, 0F, 0F},new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	BR_MK3_Buffet( EntityPassengerBR_MK3_Buffet.class, new ModelBR_MK3_Buffet(),"BR_Mk3_Buffet_", true, new float[] {0.15F, 0F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
 	BR_MK3_Coach( EntityPassengerBR_MK3_Coach.class, new ModelBR_MK3_Coach(),"BR_Mk3_Coach_", true, new float[] {0.15F, 0F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
@@ -1276,17 +1276,17 @@ public enum RenderEnum {
 	DuewagGT6ZTail(EntityPassengerDuewagGT6ZRTail.class, new ModelDuewagGT6ZRTail(), "Duewag_GT6_", true,new float[] {-0.85F, 0.2F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	M8CLoco(EntityElectricM8CLoco.class, new ModelM8CLoco(), "M8C_", true,new float[] {-1F, 0.2F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	M8CTail(EntityPassengerM8CTail.class, new ModelM8CTail(), "M8C_", true,new float[] {-1F, 0.2F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
-	Class416Loco(EntityElectricClass416Loco.class, new ModelClass416Engine(), "Class_205_", true, new float[] {-1.3F, 0.17F, 0F}, new float[] {0F, 180F, 180F}, null, "", 0, null, "", null, 0, false),
-	Class416Tail(EntityPassengerClass416Tail.class, new ModelClass416Tail(), "Class_205_", true, new float[] {0F, 0.17F, 0F}, new float[] {0F, 0F, 180F}, null, "", 0, null, "", null, 0, false),
+	Class416Loco(EntityElectricClass416Loco.class, new ModelClass416Engine(), "Class_205_", true, new float[] {-1.745F, 0.17F, 0F}, new float[] {0F, 180F, 180F}, null, "", 0, null, "", null, 0, false),
+	Class416Tail(EntityPassengerClass416Tail.class, new ModelClass416Tail(), "Class_205_", true, new float[] {0.075F, 0.17F, 0F}, new float[] {0F, 0F, 180F}, null, "", 0, null, "", null, 0, false),
 	DB420Loco(EntityElectricDB420Loco.class, new ModelDB420End(), "db420_", true,new float[] {-1.7F, 0.16F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	DB420Middle(EntityPassengerDB420Middle.class, new ModelDB420Middle(), "db420_",true,new float[] {0F, 0.16F, 0F},  new float[] { 0F, 0F, 180F }, null, "", 0, null, "", null, 0, false),
 	DB420Tail(EntityPassengerDB420Tail.class, new ModelDB420End(), "db420_",true,new float[] {0F, 0.16F, 0F},  new float[] { 0F, 0F, 180F }, null, "", 0, null, "", null, 0, false),
 	CattleVan(EntityCattleVan.class, new ModelCattleVan(), "cattle_van", false, new float[] { 0F, 0.15F, 0.0F }, new float[]{0F,0F,180F}, null, "", 0, null, "", null, 0, false),
-	Class401Loco(EntityLocoElectricClass401.class, new ModelClass401Engine(), "2-bil_", true, new float[] {-2.0F, 0.17F, 0F}, new float[] {0F, 180F, 180F}, null, "", 0, null, "", null, 0, false),
-	Class401Tail(EntityPassengerClass401Tail.class, new ModelClass401tail(), "2-bil_", true, new float[] {0F, 0.17F, 0F}, new float[] {0F, 0F, 180F}, null, "", 0, null, "", null, 0, false),
+	Class401Loco(EntityLocoElectricClass401.class, new ModelClass401Engine(), "2-bil_", true, new float[] {-1.7F, 0.17F, 0F}, new float[] {0F, 180F, 180F}, null, "", 0, null, "", null, 0, false),
+	Class401Tail(EntityPassengerClass401Tail.class, new ModelClass401tail(), "2-bil_", true, new float[] {0.02F, 0.17F, 0.03F}, new float[] {0F, 0F, 180F}, null, "", 0, null, "", null, 0, false),
 	passenger10tonBrakeVan(EntityPassenger10tonBrakeVan.class, new Model10tonBrakeVan(), "10ton_brakevan_", true, new float[] { 0F, 0.15F, 0.0F }, new float[]{0F,0F,180F}, null, "", 0, null, "", null, 0, false),
-	BR_MK2C_Coach( EntityPassengerBR_MK2C_Coach.class, new ModelBR_MK2C_Coach(), "BR_Mk2c_", true, new float[] {0.5F,0F,0F}, new float[] {0F, 180F, 180F}, null, "",0,null, "", null, 0, false),
-	BR_MK2C_BSO(EntityPassengerBR_MK2C_BSO.class, new ModelBR_MK2C_BSO(), "BR_Mk2c_BSO_", true, new float[] {0.45F,0F,0F}, new float[] {0F, 180F, 180F}, null, "", 0 , null, "", null, 0, false),
+	BR_MK2C_Coach( EntityPassengerBR_MK2C_Coach.class, new ModelBR_MK2C_Coach(), "BR_Mk2c_", true, new float[] {0.485F,0F,0F}, new float[] {0F, 180F, 180F}, null, "",0,null, "", null, 0, false),
+	BR_MK2C_BSO(EntityPassengerBR_MK2C_BSO.class, new ModelBR_MK2C_BSO(), "BR_Mk2c_BSO_", true, new float[] {0.485F,0F,0F}, new float[] {0F, 180F, 180F}, null, "", 0 , null, "", null, 0, false),
 	Class230Engine(EntityElectricClass230.class, new ModelClass230(), "Class_230_", true,new float[] {-1.3F, 0.16F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	Class230Middle(EntityClass230Middle.class, new ModelClass230Middle(), "Class_230_",true,new float[] {0F, 0.16F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	DuewagGT6ERLoco(EntityElectricDuewagGT6ERLoco.class, new ModelDuewagGT6ERLoco(), "Duewag_GT6ER_", true,new float[] {-0.85F, 0.2F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
