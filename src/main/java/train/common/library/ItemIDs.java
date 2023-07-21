@@ -682,6 +682,7 @@ public enum ItemIDs {
 	minecartClass230Middle("ItemRollingStock","Class_230_Middle_Icon", 1),
 	minecartDuewagGT6ERLoco("ItemRollingStock","Duewag_GT6ER_Loco_icon",2),
 	minecartDuewagGT6ERTail("ItemRollingStock","Duewag_GT6ER_Tail_icon",2),
+	minecartMineralwagon("ItemRollingStock", "Mineral_wagon_Icon", 6),
 
 
 	//signalSpanish("ItemsignalSpanish","signalSpanish", 1),
