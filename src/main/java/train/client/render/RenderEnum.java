@@ -1302,6 +1302,7 @@ public enum RenderEnum {
 	DuewagGT6ERLoco(EntityElectricDuewagGT6ERLoco.class, new ModelDuewagGT6ERLoco(), "Duewag_GT6ER_", true,new float[] {-0.85F, 0.2F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	DuewagGT6ERTail(EntityPassengerDuewagGT6ERTail.class, new ModelDuewagGT6ERTail(), "Duewag_GT6ER_", true,new float[] {-0.85F, 0.2F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	Mineralwagon(EntityFreightMineralwagon.class, new ModelMineralwagon(), "Mineral_wagon_", true, new float[] {0f, 0.15f, 0f}, new float[] {0f, 180f, 180f}, null, "", 0, null, "", null, 0, false ),
+	VentilatedVan(EntityFreightVentilatedVan.class, new ModelVentilatedVan(), "Ventilated_van_", true, new float[] {0f, 0.15f, 0f}, new float[] {0f, 180f, 180f}, null, "", 0, null, "", null, 0, false ),
 	;
 
 	private Class<? extends AbstractTrains> entityClass;
