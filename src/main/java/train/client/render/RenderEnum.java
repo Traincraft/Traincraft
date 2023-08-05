@@ -384,13 +384,23 @@ public enum RenderEnum {
 		}
 	}, 2, true),
 
-	locoJ50(EntityLocoSteamJ50.class, new ModelJ50(), "J50_", true, new float[] {-1.25f, 0.17f, 0 }, new float[] {0,180,180}, null, "largesmoke", 3, new ArrayList<double[]>() {
+	locoJ50(EntityLocoSteamJ50.class, new ModelJ50(), "J50_", true, new float[] {-1.25f, 0.07f, 0 }, new float[] {0,180,180}, null, "largesmoke", 3, new ArrayList<double[]>() {
 		{
 			add(new double[] { 2.7D, 1.5D, 0D });
 		}
 	}, "explode", new ArrayList<double[]>() {
 		{
 			add(new double[] { 2.8D, 0.05D, 0.65D });
+		}
+	}, 2, true),
+
+	locoSentinelY3(EntityLocoSteamSentinelY3.class, new ModelSentinelY3(), "Sentinel_Y3_", true, new float[] {-0.5f, 0.15f, 0}, new float[] {0, 180, 180}, null, "largesmoke", 2, new ArrayList<double[]>() {
+		{
+			add(new double[] { -0.5D, 1.5D, 0D });
+		}
+	}, "explode", new ArrayList<double[]>() {
+		{
+
 		}
 	}, 2, true),
 

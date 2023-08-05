@@ -738,6 +738,7 @@ item.tc:minecartDuewagGT6ERTail.name=Duewag GT6ER Tail
 item.tc:minecartMineralwagon.name=Mineral wagon (UK)
 item.tc:minecartJ50.name=J50
 item.tc:minecartVentilatedVan.name=Ventilated Van
+item.tc:minecartSentinelY3.name=Sentinel Y3
 
 
 <!-- ## Achievements ## -->
@@ -1326,6 +1327,7 @@ entity.tc.DuewagGT6ERTail.name=Duewag GT6ER Tail
 entity.tc.Mineralwagon.name=Mineral Wagon
 entity.tc.J50loco.name=J50
 entity.tc.Van.name=Ventilated van
+entity.tc.SentinelY3.name=Sentinel Y3
 
 
 description.villager.profession.tc.station_chief=Station Master

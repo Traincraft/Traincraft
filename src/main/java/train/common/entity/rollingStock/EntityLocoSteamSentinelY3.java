@@ -13,9 +13,9 @@ import train.common.api.SteamTrain;
 import train.common.library.EnumTrains;
 import train.common.library.GuiIDs;
 
-public class EntityLocoSteamJ50 extends SteamTrain {
-    public EntityLocoSteamJ50(World world) {
-        super(world, EnumTrains.J50loco.getTankCapacity(), LiquidManager.WATER_FILTER);
+public class EntityLocoSteamSentinelY3 extends SteamTrain {
+    public EntityLocoSteamSentinelY3(World world) {
+        super(world, EnumTrains.SentinelY3.getTankCapacity(), LiquidManager.WATER_FILTER);
         initLocoSteam();
     }
 
@@ -24,7 +24,7 @@ public class EntityLocoSteamJ50 extends SteamTrain {
         locoInvent = new ItemStack[inventorySize];
     }
 
-    public EntityLocoSteamJ50(World world, double d, double d1, double d2) {
+    public EntityLocoSteamSentinelY3(World world, double d, double d1, double d2) {
         this(world);
         setPosition(d, d1 + yOffset, d2);
         motionX = 0.0D;
@@ -131,7 +131,7 @@ public class EntityLocoSteamJ50 extends SteamTrain {
     }
     @Override
     public String getInventoryName() {
-        return "J50";
+        return "Sentinel Y3";
     }
 
     @Override
