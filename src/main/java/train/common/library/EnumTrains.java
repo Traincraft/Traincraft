@@ -554,7 +554,8 @@ public enum EnumTrains {
 	Class230Middle("Class 230 Middle", EntityClass230Middle.class, ItemIDs.minecartClass230Middle.item, "passenger", 0, 0, 2, 0, 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[]{"Red", "Green"}), 10, 0, "Pack: B.I.P."),
 	DuewagGT6ERLoco("DuewagGT6ERLoco", EntityElectricDuewagGT6ERLoco.class, ItemIDs.minecartDuewagGT6ERLoco.item, "electric", 250, 70, 0,20, 0, 100, 0.7, 0.8, 1000, TraincraftUtil.getBytesFromColors(new String[] {"Magenta","Green","Blue","White","Grey","Orange","Red","Yellow","Purple"}), 18, -1.95, "Pack: Trams In Motion"),
 	DuewagGT6ERTail("DuewagGT6ERTail", EntityPassengerDuewagGT6ERTail.class, ItemIDs.minecartDuewagGT6ERTail.item, "passenger", 0, 0, 1,0, 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[] {"Magenta","Green","Blue","White","Grey","Orange","Red","Yellow","Purple"}), 18, -1.35, "Pack: Trams In Motion"),
-	Mineralwagon("Mineralwagon", EntityFreightMineralwagon.class, ItemIDs.minecartMineralwagon.item, "freight", 1.5, TraincraftUtil.getBytesFromColors(new String[] {"Black", "Blue", "Grey", "Lightgrey", "Orange", "Yellow"}), 18, 45, "Pack: B.I.P.")
+	Mineralwagon("Mineralwagon", EntityFreightMineralwagon.class, ItemIDs.minecartMineralwagon.item, "freight", 1.5, TraincraftUtil.getBytesFromColors(new String[] {"Black", "Blue", "Grey", "Lightgrey", "Orange", "Yellow"}), 18, 45, "Pack: B.I.P."),
+	J50loco("J50loco", EntityLocoSteamJ50.class, ItemIDs.minecartJ50.item, "steam", 618, 80, 0, 5, 7, 100, 0.8, 0.8, 7000, TraincraftUtil.getBytesFromColors(new String[] {"Black", "Blue", "Brown", "Cyan", "Lime", "Green", "Grey", "LightBlue", "LightGrey", "Orange", "Pink", "Red", "Yellow"}), 18, 2.45f, "Pack: B.I.P."),
 	;
 
 //String trainType,int MHP,int maxSpeed, double mass, int fuelConsumption, int waterConsumption, int heatingTime, double accelerationRate, double brakeRate, int tankCapacity, String[] colors,

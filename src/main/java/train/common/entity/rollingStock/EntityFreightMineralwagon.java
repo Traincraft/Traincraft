@@ -75,7 +75,7 @@ public class EntityFreightMineralwagon extends Freight implements IInventory {
     }
     @Override
     public String getInventoryName() {
-        return "5 Plank";
+        return "Mineral Wagon";
     }
 
     @Override

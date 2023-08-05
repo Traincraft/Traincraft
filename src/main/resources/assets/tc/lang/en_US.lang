@@ -736,6 +736,7 @@ item.tc:minecartClass230Middle.name=Class 230 Middle
 item.tc:minecartDuewagGT6ERLoco.name=Duewag GT6ER Loco
 item.tc:minecartDuewagGT6ERTail.name=Duewag GT6ER Tail
 item.tc:minecartMineralwagon.name=Mineral wagon (UK)
+item.tc:minecartJ50.name=J50
 
 
 <!-- ## Achievements ## -->
@@ -1322,6 +1323,7 @@ entity.tc.Class230Middle.name=Class 230 Middle
 entity.tc.DuewagGT6ERLoco.name=Duewag GT6ER Loco
 entity.tc.DuewagGT6ERTail.name=Duewag GT6ER Tail
 entity.tc.Mineralwagon.name=Mineral Wagon
+entity.tc.J50loco.name=J50
 
 
 description.villager.profession.tc.station_chief=Station Master

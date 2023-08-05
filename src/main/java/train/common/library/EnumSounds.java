@@ -154,6 +154,7 @@ public enum EnumSounds {
 	DB420Loco(EntityElectricDB420Loco.class, "mg_horn", 1F, "mg_run", 0.6F, 8, "mg_idle", 0.4F, 50, false),
 	Class401Loco(EntityLocoElectricClass401.class, "mg_horn", 1F, "mg_run", 0.6F, 50, "vl10_idle", 0.6F, 50, false),
 	DuewagGT6ERLoco(EntityElectricDuewagGT6ERLoco.class, "tram_bell", 1F, "vl10_idle", 0.6F, 50, "vl10_idle", 0.6F, 50, false),
+	J50loco(EntityLocoSteamJ50.class, "a4_whistle", 1.25f, "steam_run", 0.5f, 25, "adler_run", 1, 40, true),
 
 	//American Stuff
 	Diesel3GS21B(EntityLocoDieselBapNRE3gs21b.class, "nathan_k3ha", 2.5F, "QSK19C_Notch8", 0.65F, 40, "QSK19C_Idle", 0.65F, 50, true),
