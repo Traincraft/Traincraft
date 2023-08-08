@@ -739,6 +739,9 @@ item.tc:minecartMineralwagon.name=Mineral wagon (UK)
 item.tc:minecartJ50.name=J50
 item.tc:minecartVentilatedVan.name=Ventilated Van
 item.tc:minecartSentinelY3.name=Sentinel Y3
+item.tc:minecartClass143Front.name=Class 143 Front
+item.tc:minecartClass143Rear.name=Class 143 Rear
+item.tc:minecartClass143Middle.name=Class 144 Middle
 
 
 <!-- ## Achievements ## -->
@@ -1328,6 +1331,9 @@ entity.tc.Mineralwagon.name=Mineral Wagon
 entity.tc.J50loco.name=J50
 entity.tc.Van.name=Ventilated van
 entity.tc.SentinelY3.name=Sentinel Y3
+entity.tc.Class143front.name=Class 143 Front
+entity.tc.Class143rear.name=Class 143 Rear
+entity.tc.Class143middle.name=Class 143 Middle
 
 
 description.villager.profession.tc.station_chief=Station Master

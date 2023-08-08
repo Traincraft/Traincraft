@@ -160,6 +160,14 @@ public enum RenderEnum {
 			add(new double[] { 0.6D, 1.55D, 0.0D });
 		}
 	}, "", null, 0, false),
+
+	Class143Front(EntityLocoDieselClass143.class, new ModelClass143(), "Class143_", true, new float[] {-1f, 0.15f, 0f}, new float[] {0f, 180f, 180f}, null, "smoke", 1, new ArrayList<double[]>() {
+		{
+			add(new double[] { -0.8D, 1.25D, 0.4D });
+		}
+	}, "", null, 0, false),
+
+
 	locoGP7Red(EntityLocoDieselGP7Red.class, new ModelGP7(), "gp7_", true, new float[] { -0.8F, -0.47F, 0.0F }, new float[] { 0F, 180F, 0F }, null, "smoke", 4, new ArrayList<double[]>() {
 		{
 			add(new double[] { -0.2D, 1.3D, 0.0D });
@@ -1313,6 +1321,9 @@ public enum RenderEnum {
 	DuewagGT6ERTail(EntityPassengerDuewagGT6ERTail.class, new ModelDuewagGT6ERTail(), "Duewag_GT6ER_", true,new float[] {-0.85F, 0.2F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	Mineralwagon(EntityFreightMineralwagon.class, new ModelMineralwagon(), "Mineral_wagon_", true, new float[] {0f, 0.15f, 0f}, new float[] {0f, 180f, 180f}, null, "", 0, null, "", null, 0, false ),
 	VentilatedVan(EntityFreightVentilatedVan.class, new ModelVentilatedVan(), "Ventilated_van_", true, new float[] {0f, 0.15f, 0f}, new float[] {0f, 180f, 180f}, null, "", 0, null, "", null, 0, false ),
+	Class143Rear(EntityPassengerClass143.class, new ModelClass143(), "Class143_",true,new float[] {0F, 0.15F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	Class143Middle(EntityPassengerClass143M.class, new ModelClass144(), "Class143_",true,new float[] {0F, 0.15F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+
 	;
 
 	private Class<? extends AbstractTrains> entityClass;

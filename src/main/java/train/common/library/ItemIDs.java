@@ -685,7 +685,10 @@ public enum ItemIDs {
 	minecartMineralwagon("ItemRollingStock", "Mineral_wagon_Icon", 6),
 	minecartJ50("ItemRollingStock", "J50_icon", 5),
 	minecartVentilatedVan("ItemRollingStock", "Ventilated_van_Icon", 3),
-	minecartSentinelY3("ItemRollingStock", "Sentinel_Y3_icon", 4)
+	minecartSentinelY3("ItemRollingStock", "Sentinel_Y3_icon", 4),
+	minecartClass143Front("ItemRollingStock", "Class143_icon", 5),
+	minecartClass143Rear("ItemRollingStock", "Class143_icon", 3),
+	minecartClass143Middle("ItemRollingStock", "Class144_icon", 2),
 
 
 	//signalSpanish("ItemsignalSpanish","signalSpanish", 1),

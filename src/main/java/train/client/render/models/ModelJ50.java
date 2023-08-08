@@ -10,6 +10,9 @@
 package train.client.render.models; //Path where the model is located
 
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.entity.Entity;
+import org.lwjgl.opengl.GL11;
 import tmt.ModelConverter;
 import tmt.ModelRendererTurbo;
 
@@ -388,22 +391,22 @@ public class ModelJ50 extends ModelConverter //Same as Filename
 		bodyModel[352] = new ModelRendererTurbo(this, 153, 145, textureX, textureY); // Box 101
 		bodyModel[353] = new ModelRendererTurbo(this, 170, 146, textureX, textureY); // Box 103
 		bodyModel[354] = new ModelRendererTurbo(this, 473, 17, textureX, textureY); // Box 102
-		bodyModel[355] = new ModelRendererTurbo(this, 489, 137, textureX, textureY); // lamp
-		bodyModel[356] = new ModelRendererTurbo(this, 489, 137, textureX, textureY); // lamp
-		bodyModel[357] = new ModelRendererTurbo(this, 489, 137, textureX, textureY); // lamp
-		bodyModel[358] = new ModelRendererTurbo(this, 489, 137, textureX, textureY); // lamp
-		bodyModel[359] = new ModelRendererTurbo(this, 201, 145, textureX, textureY); // lamp
-		bodyModel[360] = new ModelRendererTurbo(this, 201, 145, textureX, textureY); // lamp
-		bodyModel[361] = new ModelRendererTurbo(this, 201, 145, textureX, textureY); // lamp
-		bodyModel[362] = new ModelRendererTurbo(this, 201, 145, textureX, textureY); // lamp
-		bodyModel[363] = new ModelRendererTurbo(this, 225, 145, textureX, textureY); // lamp
-		bodyModel[364] = new ModelRendererTurbo(this, 225, 145, textureX, textureY); // lamp
-		bodyModel[365] = new ModelRendererTurbo(this, 225, 145, textureX, textureY); // lamp
-		bodyModel[366] = new ModelRendererTurbo(this, 225, 145, textureX, textureY); // lamp
-		bodyModel[367] = new ModelRendererTurbo(this, 249, 145, textureX, textureY); // lamp
-		bodyModel[368] = new ModelRendererTurbo(this, 249, 145, textureX, textureY); // lamp
-		bodyModel[369] = new ModelRendererTurbo(this, 249, 145, textureX, textureY); // lamp
-		bodyModel[370] = new ModelRendererTurbo(this, 249, 145, textureX, textureY); // lamp
+		bodyModel[355] = new ModelRendererTurbo(this, 489, 137, textureX, textureY, "lamp"); // lamp
+		bodyModel[356] = new ModelRendererTurbo(this, 489, 137, textureX, textureY, "lamp"); // lamp
+		bodyModel[357] = new ModelRendererTurbo(this, 489, 137, textureX, textureY, "lamp"); // lamp
+		bodyModel[358] = new ModelRendererTurbo(this, 489, 137, textureX, textureY, "lamp"); // lamp
+		bodyModel[359] = new ModelRendererTurbo(this, 201, 145, textureX, textureY, "lamp"); // lamp
+		bodyModel[360] = new ModelRendererTurbo(this, 201, 145, textureX, textureY, "lamp"); // lamp
+		bodyModel[361] = new ModelRendererTurbo(this, 201, 145, textureX, textureY, "lamp"); // lamp
+		bodyModel[362] = new ModelRendererTurbo(this, 201, 145, textureX, textureY, "lamp"); // lamp
+		bodyModel[363] = new ModelRendererTurbo(this, 225, 145, textureX, textureY, "lamp"); // lamp
+		bodyModel[364] = new ModelRendererTurbo(this, 225, 145, textureX, textureY, "lamp"); // lamp
+		bodyModel[365] = new ModelRendererTurbo(this, 225, 145, textureX, textureY, "lamp"); // lamp
+		bodyModel[366] = new ModelRendererTurbo(this, 225, 145, textureX, textureY, "lamp"); // lamp
+		bodyModel[367] = new ModelRendererTurbo(this, 249, 145, textureX, textureY, "lamp"); // lamp
+		bodyModel[368] = new ModelRendererTurbo(this, 249, 145, textureX, textureY, "lamp"); // lamp
+		bodyModel[369] = new ModelRendererTurbo(this, 249, 145, textureX, textureY, "lamp"); // lamp
+		bodyModel[370] = new ModelRendererTurbo(this, 249, 145, textureX, textureY, "lamp"); // lamp
 		bodyModel[371] = new ModelRendererTurbo(this, 497, 17, textureX, textureY); // Box 102
 		bodyModel[372] = new ModelRendererTurbo(this, 121, 25, textureX, textureY); // Box 113
 		bodyModel[373] = new ModelRendererTurbo(this, 281, 145, textureX, textureY); // Box 114
@@ -424,22 +427,22 @@ public class ModelJ50 extends ModelConverter //Same as Filename
 		bodyModel[388] = new ModelRendererTurbo(this, 353, 145, textureX, textureY); // Box 118
 		bodyModel[389] = new ModelRendererTurbo(this, 369, 145, textureX, textureY); // Box 119
 		bodyModel[390] = new ModelRendererTurbo(this, 289, 65, textureX, textureY); // Box 120
-		bodyModel[391] = new ModelRendererTurbo(this, 385, 145, textureX, textureY); // lamp
-		bodyModel[392] = new ModelRendererTurbo(this, 385, 145, textureX, textureY); // lamp
-		bodyModel[393] = new ModelRendererTurbo(this, 385, 145, textureX, textureY); // lamp
-		bodyModel[394] = new ModelRendererTurbo(this, 385, 145, textureX, textureY); // lamp
-		bodyModel[395] = new ModelRendererTurbo(this, 417, 145, textureX, textureY); // lamp
-		bodyModel[396] = new ModelRendererTurbo(this, 417, 145, textureX, textureY); // lamp
-		bodyModel[397] = new ModelRendererTurbo(this, 417, 145, textureX, textureY); // lamp
-		bodyModel[398] = new ModelRendererTurbo(this, 417, 145, textureX, textureY); // lamp
-		bodyModel[399] = new ModelRendererTurbo(this, 449, 145, textureX, textureY); // lamp
-		bodyModel[400] = new ModelRendererTurbo(this, 449, 145, textureX, textureY); // lamp
-		bodyModel[401] = new ModelRendererTurbo(this, 449, 145, textureX, textureY); // lamp
-		bodyModel[402] = new ModelRendererTurbo(this, 449, 145, textureX, textureY); // lamp
-		bodyModel[403] = new ModelRendererTurbo(this, 497, 145, textureX, textureY); // lamp
-		bodyModel[404] = new ModelRendererTurbo(this, 497, 145, textureX, textureY); // lamp
-		bodyModel[405] = new ModelRendererTurbo(this, 497, 145, textureX, textureY); // lamp
-		bodyModel[406] = new ModelRendererTurbo(this, 497, 145, textureX, textureY); // lamp
+		bodyModel[391] = new ModelRendererTurbo(this, 385, 145, textureX, textureY, "lamp"); // lamp
+		bodyModel[392] = new ModelRendererTurbo(this, 385, 145, textureX, textureY, "lamp"); // lamp
+		bodyModel[393] = new ModelRendererTurbo(this, 385, 145, textureX, textureY, "lamp"); // lamp
+		bodyModel[394] = new ModelRendererTurbo(this, 385, 145, textureX, textureY, "lamp"); // lamp
+		bodyModel[395] = new ModelRendererTurbo(this, 417, 145, textureX, textureY, "lamp"); // lamp
+		bodyModel[396] = new ModelRendererTurbo(this, 417, 145, textureX, textureY, "lamp"); // lamp
+		bodyModel[397] = new ModelRendererTurbo(this, 417, 145, textureX, textureY, "lamp"); // lamp
+		bodyModel[398] = new ModelRendererTurbo(this, 417, 145, textureX, textureY, "lamp"); // lamp
+		bodyModel[399] = new ModelRendererTurbo(this, 449, 145, textureX, textureY, "lamp"); // lamp
+		bodyModel[400] = new ModelRendererTurbo(this, 449, 145, textureX, textureY, "lamp"); // lamp
+		bodyModel[401] = new ModelRendererTurbo(this, 449, 145, textureX, textureY, "lamp"); // lamp
+		bodyModel[402] = new ModelRendererTurbo(this, 449, 145, textureX, textureY, "lamp"); // lamp
+		bodyModel[403] = new ModelRendererTurbo(this, 497, 145, textureX, textureY, "lamp"); // lamp
+		bodyModel[404] = new ModelRendererTurbo(this, 497, 145, textureX, textureY, "lamp"); // lamp
+		bodyModel[405] = new ModelRendererTurbo(this, 497, 145, textureX, textureY, "lamp"); // lamp
+		bodyModel[406] = new ModelRendererTurbo(this, 497, 145, textureX, textureY, "lamp"); // lamp
 		bodyModel[407] = new ModelRendererTurbo(this, 289, 65, textureX, textureY); // Box 126
 		bodyModel[408] = new ModelRendererTurbo(this, 81, 153, textureX, textureY); // Box 119
 		bodyModel[409] = new ModelRendererTurbo(this, 505, 145, textureX, textureY); // Box 119
@@ -521,14 +524,14 @@ public class ModelJ50 extends ModelConverter //Same as Filename
 		bodyModel[485] = new ModelRendererTurbo(this, 225, 41, textureX, textureY); // Box 0
 		bodyModel[486] = new ModelRendererTurbo(this, 137, 161, textureX, textureY); // Box 0
 		bodyModel[487] = new ModelRendererTurbo(this, 49, 177, textureX, textureY); // Box 0
-		bodyModel[488] = new ModelRendererTurbo(this, 177, 161, textureX, textureY); // lamp
-		bodyModel[489] = new ModelRendererTurbo(this, 233, 161, textureX, textureY); // lamp
-		bodyModel[490] = new ModelRendererTurbo(this, 273, 161, textureX, textureY); // lamp
-		bodyModel[491] = new ModelRendererTurbo(this, 289, 161, textureX, textureY); // lamp
-		bodyModel[492] = new ModelRendererTurbo(this, 329, 161, textureX, textureY); // lamp
-		bodyModel[493] = new ModelRendererTurbo(this, 41, 169, textureX, textureY); // lamp
-		bodyModel[494] = new ModelRendererTurbo(this, 57, 169, textureX, textureY); // lamp
-		bodyModel[495] = new ModelRendererTurbo(this, 73, 169, textureX, textureY); // lamp
+		bodyModel[488] = new ModelRendererTurbo(this, 177, 161, textureX, textureY, "lamp"); // lamp
+		bodyModel[489] = new ModelRendererTurbo(this, 233, 161, textureX, textureY, "lamp"); // lamp
+		bodyModel[490] = new ModelRendererTurbo(this, 273, 161, textureX, textureY, "lamp"); // lamp
+		bodyModel[491] = new ModelRendererTurbo(this, 289, 161, textureX, textureY, "lamp"); // lamp
+		bodyModel[492] = new ModelRendererTurbo(this, 329, 161, textureX, textureY, "lamp"); // lamp
+		bodyModel[493] = new ModelRendererTurbo(this, 41, 169, textureX, textureY, "lamp"); // lamp
+		bodyModel[494] = new ModelRendererTurbo(this, 57, 169, textureX, textureY, "lamp"); // lamp
+		bodyModel[495] = new ModelRendererTurbo(this, 73, 169, textureX, textureY, "lamp"); // lamp
 		bodyModel[496] = new ModelRendererTurbo(this, 57, 177, textureX, textureY); // Box 119
 		bodyModel[497] = new ModelRendererTurbo(this, 441, 169, textureX, textureY); // Box 0
 		bodyModel[498] = new ModelRendererTurbo(this, 481, 169, textureX, textureY); // Box 0
@@ -2177,11 +2180,11 @@ public class ModelJ50 extends ModelConverter //Same as Filename
 		bodyModel[637] = new ModelRendererTurbo(this, 165, 7, textureX, textureY); // Box 212
 		bodyModel[638] = new ModelRendererTurbo(this, 165, 7, textureX, textureY); // Box 212
 		bodyModel[639] = new ModelRendererTurbo(this, 165, 7, textureX, textureY); // Box 212
-		bodyModel[640] = new ModelRendererTurbo(this, 479, 203, textureX, textureY); // boiler tubes
-		bodyModel[641] = new ModelRendererTurbo(this, 479, 219, textureX, textureY); // boiler tubes
-		bodyModel[642] = new ModelRendererTurbo(this, 479, 251, textureX, textureY); // boiler tubes
-		bodyModel[643] = new ModelRendererTurbo(this, 479, 235, textureX, textureY); // boiler tubes
-		bodyModel[644] = new ModelRendererTurbo(this, 479, 267, textureX, textureY); // boiler tubes
+		bodyModel[640] = new ModelRendererTurbo(this, 479, 203, textureX, textureY, "lamp"); // boiler tubes
+		bodyModel[641] = new ModelRendererTurbo(this, 479, 219, textureX, textureY, "lamp"); // boiler tubes
+		bodyModel[642] = new ModelRendererTurbo(this, 479, 251, textureX, textureY, "lamp"); // boiler tubes
+		bodyModel[643] = new ModelRendererTurbo(this, 479, 235, textureX, textureY, "lamp"); // boiler tubes
+		bodyModel[644] = new ModelRendererTurbo(this, 479, 267, textureX, textureY, "lamp"); // boiler tubes
 		bodyModel[645] = new ModelRendererTurbo(this, 136, 282, textureX, textureY); // Box 125
 		bodyModel[646] = new ModelRendererTurbo(this, 136, 282, textureX, textureY); // Box 125
 
@@ -2626,4 +2629,21 @@ public class ModelJ50 extends ModelConverter //Same as Filename
 		bodyModel[646].addBox(0F, 0F, 0F, 4, 2, 0, 0F); // Box 125
 		bodyModel[646].setRotationPoint(-30F, -2.5F, -4F);
 	}
+	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
+
+		for (int i = 0; i < 647; i++) {
+			if (bodyModel[i].boxName != null && bodyModel[i].boxName.contains("lamp")) {
+				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
+				bodyModel[i].render(f5);
+				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
+			} else if (bodyModel[i].boxName != null && bodyModel[i].boxName.contains("cull")) {
+				GL11.glDisable(GL11.GL_CULL_FACE);
+				bodyModel[i].render(f5);
+				GL11.glEnable(GL11.GL_CULL_FACE);
+			} else {
+				bodyModel[i].render(f5);
+			}
+		}
+	}
+
 }
