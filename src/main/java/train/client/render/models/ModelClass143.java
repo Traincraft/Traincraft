@@ -528,7 +528,7 @@ public class ModelClass143 extends ModelConverter //Same as Filename
 		bodyModel[67].addBox(0F, 0F, 0F, 1, 1, 16, 0F); // Box 0
 		bodyModel[67].setRotationPoint(16F, 4.5F, -7F);
 
-		bodyModel[68].addShapeBox(0F, 0F, 0F, 1, 3, 5, 0F,0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0.25F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0.25F, 0F, 0F); // Lamp
+		bodyModel[68].addShapeBox(0F, 0F, 0F, 1, 3, 5, 0F,0F, 0F, 0F, -0.5F, 0F, 0.6F, -0.5F, 0F, 0F, 0.25F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0.6F, -0.5F, 0F, 0F, 0.25F, 0F, 0F); // Lamp
 		bodyModel[68].setRotationPoint(-29.5F, -4.5F, -9.5F);
 
 		bodyModel[69].addBox(0F, 0F, 0F, 1, 3, 11, 0F); // Box 75
@@ -726,7 +726,7 @@ public class ModelClass143 extends ModelConverter //Same as Filename
 		bodyModel[133].addBox(0F, 0F, 0F, 10, 10, 0, 0F); // Box 1
 		bodyModel[133].setRotationPoint(11.5F, 0F, 7F);
 
-		bodyModel[134].addShapeBox(0F, 0F, 0F, 1, 3, 5, 0F,0.25F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0.25F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F); // Lamp
+		bodyModel[134].addShapeBox(0F, 0F, 0F, 1, 3, 5, 0F,0.25F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0.6F, 0F, 0F, 0F, 0.25F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0.6F, 0F, 0F, 0F); // Lamp
 		bodyModel[134].setRotationPoint(-29.5F, -4.5F, 6.5F);
 
 		bodyModel[135].addShapeBox(0F, 0F, 0F, 1, 9, 1, 0F,-0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.25F, -0.75F, 0F, -0.25F, -0.25F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0.25F, -0.5F, 0F, -0.25F); // Box 64
@@ -1206,4 +1206,5 @@ public class ModelClass143 extends ModelConverter //Same as Filename
 	}
 
 }
+
 
