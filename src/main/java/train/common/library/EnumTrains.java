@@ -561,7 +561,7 @@ public enum EnumTrains {
 	Class143Front("Class143front", EntityLocoDieselClass143.class, ItemIDs.minecartClass143Front.item, "diesel", 225, 121, 0, 5, 0, 100, 0.9, 0.9, 7500,TraincraftUtil.getBytesFromColors(new String[] {"Black", "Blue", "Cyan", "Green", "Grey", "LightBlue", "LightGrey", "Lime", "Magenta", "Orange", "Pink", "Purple", "Red", "White", "Yellow"}), 18, -2,"Pack: B.I.P."),
 	Class143Rear("Class143rear", EntityPassengerClass143.class, ItemIDs.minecartClass143Rear.item, "passenger", 3, TraincraftUtil.getBytesFromColors(new String[] {"Black", "Blue", "Cyan", "Green", "Grey", "LightBlue", "LightGrey", "Lime", "Magenta", "Orange", "Pink", "Purple", "Red", "White", "Yellow"}), 18, 0,"Pack: B.I.P."),
 	Class143Middle("Class143middle", EntityPassengerClass143M.class, ItemIDs.minecartClass143Middle.item, "passenger", 2.5, TraincraftUtil.getBytesFromColors(new String[] {"Blue", "Grey", "Magenta", "Pink", "Purple", "White", "Yellow"}), 18, 0,"Pack: B.I.P."),
-
+	locoDieselCD754("Loco Diesel CD754", EntityLocoDieselCD754.class,  ItemIDs.minecartCD754.item,"diesel", 1974, 101, 0, 60, 0, 170, 0.66, 0.96, 5000, TraincraftUtil.getBytesFromColors(new String[]{"Red"}), 13,  -2.8),
 	;
 
 //String trainType,int MHP,int maxSpeed, double mass, int fuelConsumption, int waterConsumption, int heatingTime, double accelerationRate, double brakeRate, int tankCapacity, String[] colors,

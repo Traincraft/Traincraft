@@ -155,6 +155,11 @@ public enum RenderEnum {
 			add(new double[] { 1.25D, 1.15D, 0.0D });
 		}
 	}, "", null, 0, false),
+	locoCD754(EntityLocoDieselCD754.class, new ModelCD754(), "cd754_", true, new float[] { -2.2F, 0.05F, 0.0F }, new float[] { 180F, 0F, 0F }, new float[] { 0.8F, 0.8F, 0.8F }, "smoke", 5, new ArrayList<double[]>() {
+		{
+			add(new double[] { 1.25D, 1.15D, 0.0D });
+		}
+	}, "", null, 0, false),
 	locoChME3(EntityLocoDieselChME3.class, new ModelChME3(), "chme3", false, new float[] { -0.5F, -0.47F, 0.0F }, null, null, "smoke", 4, new ArrayList<double[]>() {
 		{
 			add(new double[] { 0.6D, 1.55D, 0.0D });

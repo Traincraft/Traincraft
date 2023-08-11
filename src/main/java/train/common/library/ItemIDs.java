@@ -232,6 +232,7 @@ public enum ItemIDs {
 	minecartPassengerBlue("ItemRollingStock", "train_passenger_3", 2),
 	minecartGP7Red("ItemRollingStock", "train_gp7", 10),
 	minecartCD742("ItemRollingStock", "train_cd742", 10),
+	minecartCD754("ItemRollingStock", "CD754_Icon", 10),
 	minecartFlatCartSU("ItemRollingStock", "train_flat_su", 1),
 	minecartFlatCartUS("ItemRollingStock", "train_flat_us", 1),
 	minecartBoxCartUS("ItemRollingStock", "train_box_us", 4),
