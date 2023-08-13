@@ -1231,224 +1231,8 @@ public class ItemTCRail extends ItemPart {
 			}
 			else if (tempType == TrackTypes.LARGE_RIGHT_PARALLEL_CURVE || tempType == TrackTypes.EMBEDDED_LARGE_RIGHT_PARALLEL_CURVE) {
 
-				switch (tempType){
-					case LARGE_RIGHT_PARALLEL_CURVE:
-						idVariantSTurn = ItemIDs.tcRailLargeParallelCurve.item;
-						typeVariantSTurn = TrackTypes.LARGE_RIGHT_PARALLEL_CURVE.getLabel();
-						break;
-					case EMBEDDED_LARGE_RIGHT_PARALLEL_CURVE:
-						idVariantSTurn = ItemIDs.tcRailEmbeddedLargeParallelCurve.item;
-						typeVariantSTurn = TrackTypes.EMBEDDED_LARGE_RIGHT_PARALLEL_CURVE.getLabel();
-						break;
-				}
-				if (l == 2) {
-
-					for (int check = 1; check < 6; check++) {
-						if (!canPlaceTrack(player, world, x , y + 1, z - check))
-							return false;
-					}
-					for (int check = 4; check < 9; check++) {
-						if (!canPlaceTrack(player, world, x + 1, y + 1, z - check))
-							return false;
-					}
-					for (int check = 7; check < 12; check++) {
-						if (!canPlaceTrack(player, world, x + 2, y + 1, z - check))
-							return false;
-					}
-					for (int check = 11; check < 16; check++) {
-						if (!canPlaceTrack(player, world, x + 3, y + 1, z - check))
-							return false;
-					}
-
-					int[] xArray = {x, x , x , x , x , x ,x+1,x+1,x+1,x+1,x+1};
-					int[] zArray = {z,z-1,z-2,z-3,z-4,z-5,z-4,z-5,z-6,z-7,z-8};
-
-					if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 2, x+3, z-15, 22, x + 22.5,
-							y + 1, z + 1 , typeVariantSTurn, idVariantSTurn))
-						return false;
-					TileTCRail tcRailTurn = (TileTCRail) world.getTileEntity(x , y + 1, z );
-
-					int[] xArray2 = {x+3 ,x+2,x+2,x+2,x+2 ,x+2 ,x+3 ,x+3 ,x+3 ,x+3 ,x+3};
-					int[] zArray2 = {z-15,z-7,z-8,z-9,z-10,z-11,z-10,z-11,z-12,z-13,z-14};
-
-					if (tcRailTurn != null) {
-						tcRailTurn.hasModel = true;
-						if (!putDownTurn(player, world, false, x, y, z, xArray2, zArray2, 3, false, 2, x+3, z-15, 22, x - 18.5,
-								y + 1, z - 15, TrackTypes.MEDIUM_LEFT_TURN.getLabel(), null))
-							return false;
-						TileTCRail tcRailTurn2 = (TileTCRail) world.getTileEntity(x+3, y + 1, z-15);
-
-						if (tcRailTurn2 != null) {
-							tcRailTurn2.hasModel = false;
-							tcRailTurn2.isLinkedToRail = true;
-							tcRailTurn2.linkedX = x;
-							tcRailTurn2.linkedY = y + 1;
-							tcRailTurn2.linkedZ = z ;
-						}
-						tcRailTurn.isLinkedToRail = true;
-						tcRailTurn.linkedX = x+3;
-						tcRailTurn.linkedY = y + 1;
-						tcRailTurn.linkedZ = z-15;
-					}
-					return true;
-
-				}
-
-				if (l == 0) {
-					for (int check = 1; check < 6; check++) {
-						if (!canPlaceTrack(player, world, x , y + 1, z + check))
-							return false;
-					}
-					for (int check = 4; check < 9; check++) {
-						if (!canPlaceTrack(player, world, x - 1, y + 1, z + check))
-							return false;
-					}
-					for (int check = 7; check < 12; check++) {
-						if (!canPlaceTrack(player, world, x - 2, y + 1, z + check))
-							return false;
-					}
-					for (int check = 11; check < 16; check++) {
-						if (!canPlaceTrack(player, world, x - 3, y + 1, z + check))
-							return false;
-					}
-
-					int[] xArray = {x, x , x , x , x , x ,x-1,x-1,x-1,x-1,x-1};
-					int[] zArray = {z,z+1,z+2,z+3,z+4,z+5,z+4,z+5,z+6,z+7,z+8};
-
-					if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 0, x-3, z+15, 22, x - 21.5,
-							y + 1, z , typeVariantSTurn, idVariantSTurn))
-						return false;
-					TileTCRail tcRailTurn = (TileTCRail) world.getTileEntity(x , y + 1, z );
-
-					int[] xArray2 = {x-3 ,x-2,x-2,x-2,x-2 ,x-2 ,x-3 ,x-3 ,x-3 ,x-3 ,x-3};
-					int[] zArray2 = {z+15,z+7,z+8,z+9,z+10,z+11,z+10,z+11,z+12,z+13,z+14};
-
-					if (tcRailTurn != null) {
-						tcRailTurn.hasModel = true;
-						if (!putDownTurn(player, world, false, x, y, z, xArray2, zArray2, 1, false, 0, x - 3, z + 15, 22, x + 19.5,
-								y + 1, z + 16, TrackTypes.MEDIUM_LEFT_TURN.getLabel(), null))
-							return false;
-						TileTCRail tcRailTurn2 = (TileTCRail) world.getTileEntity(x-3, y + 1, z+15);
-
-						if (tcRailTurn2 != null) {
-							tcRailTurn2.hasModel = false;
-							tcRailTurn2.isLinkedToRail = true;
-							tcRailTurn2.linkedX = x;
-							tcRailTurn2.linkedY = y + 1;
-							tcRailTurn2.linkedZ = z ;
-						}
-						tcRailTurn.isLinkedToRail = true;
-						tcRailTurn.linkedX = x - 3;
-						tcRailTurn.linkedY = y + 1;
-						tcRailTurn.linkedZ = z + 15;
-					}
-					return true;
-
-				}
-
-				if (l == 1) {
-
-					for (int check = 1; check < 6; check++) {
-						if (!canPlaceTrack(player, world, x- check , y + 1, z))
-							return false;
-					}
-					for (int check = 4; check < 9; check++) {
-						if (!canPlaceTrack(player, world, x - check, y + 1, z -1))
-							return false;
-					}
-					for (int check = 7; check < 15; check++) {
-						if (!canPlaceTrack(player, world, x - check, y + 1, z -2))
-							return false;
-					}
-					for (int check = 11; check < 18; check++) {
-						if (!canPlaceTrack(player, world, x - check, y + 1, z -3))
-							return false;
-					}
-
-					int[] xArray = {x,x-1,x-2,x-3,x-4,x-5,x-4,x-5,x-6,x-7,x-8};
-					int[] zArray = {z, z , z , z , z , z ,z-1,z-1,z-1,z-1,z-1};
-
-					if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 1, x-15, z-3, 22, x + 1,
-							y + 1, z - 21.5 , typeVariantSTurn, idVariantSTurn))
-						return false;
-					TileTCRail tcRailTurn = (TileTCRail) world.getTileEntity(x , y + 1, z );
-
-					int[] xArray2 = {x-15,x-7,x-8,x-9,x-10,x-11,x-10,x-11,x-12,x-13,x-14};
-					int[] zArray2 = {z-3 ,z-2,z-2,z-2,z-2 ,z-2 ,z-3 ,z-3 ,z-3 ,z-3 ,z-3};
-
-					if (tcRailTurn != null) {
-						tcRailTurn.hasModel = true;
-						if (!putDownTurn(player, world, false, x, y, z, xArray2, zArray2, 2, false, 1, x - 15, z - 3, 22, x - 15,
-								y + 1, z + 19.5, TrackTypes.MEDIUM_LEFT_TURN.getLabel(), null))
-							return false;
-						TileTCRail tcRailTurn2 = (TileTCRail) world.getTileEntity(x-15, y + 1, z-3);
-
-						if (tcRailTurn2 != null) {
-							tcRailTurn2.hasModel = false;
-							tcRailTurn2.isLinkedToRail = true;
-							tcRailTurn2.linkedX = x;
-							tcRailTurn2.linkedY = y + 1;
-							tcRailTurn2.linkedZ = z ;
-						}
-						tcRailTurn.isLinkedToRail = true;
-						tcRailTurn.linkedX = x - 15;
-						tcRailTurn.linkedY = y + 1;
-						tcRailTurn.linkedZ = z- 3;
-					}
-					return true;
-
-				}
-				if (l == 3) {
-
-					for (int check = 1; check < 6; check++) {
-						if (!canPlaceTrack(player, world, x+ check , y + 1, z))
-							return false;
-					}
-					for (int check = 4; check < 9; check++) {
-						if (!canPlaceTrack(player, world, x + check, y + 1, z +1))
-							return false;
-					}
-					for (int check = 7; check < 12; check++) {
-						if (!canPlaceTrack(player, world, x + check, y + 1, z +2))
-							return false;
-					}
-					for (int check = 11; check < 16; check++) {
-						if (!canPlaceTrack(player, world, x + check, y + 1, z +3))
-							return false;
-					}
-
-					int[] xArray = {x,x+1,x+2,x+3,x+4,x+5,x+4,x+5,x+6,x+7,x+8};
-					int[] zArray = {z, z , z , z , z , z ,z+1,z+1,z+1,z+1,z+1};
-
-					if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 3, x+15, z+3, 22, x ,
-							y + 1, z + 22.5 , typeVariantSTurn, idVariantSTurn))
-						return false;
-					TileTCRail tcRailTurn = (TileTCRail) world.getTileEntity(x , y + 1, z );
-
-					int[] xArray2 = {x+15,x+7,x+8,x+9,x+10,x+11,x+10,x+11,x+12,x+13,x+14};
-					int[] zArray2 = {z+3 ,z+2,z+2,z+2,z+2 ,z+2 ,z+3 ,z+3 ,z+3 ,z+3 ,z+3};
-
-					if (tcRailTurn != null) {
-						tcRailTurn.hasModel = true;
-						if (!putDownTurn(player, world, false, x, y, z, xArray2, zArray2, 0, false, 3, x - 15, z + 3, 22, x +16,
-								y + 1, z - 18.5, TrackTypes.MEDIUM_LEFT_TURN.getLabel(), null))
-							return false;
-						TileTCRail tcRailTurn2 = (TileTCRail) world.getTileEntity(x+15, y + 1, z+3);
-
-						if (tcRailTurn2 != null) {
-							tcRailTurn2.hasModel = false;
-							tcRailTurn2.isLinkedToRail = true;
-							tcRailTurn2.linkedX = x;
-							tcRailTurn2.linkedY = y + 1;
-							tcRailTurn2.linkedZ = z ;
-						}
-						tcRailTurn.isLinkedToRail = true;
-						tcRailTurn.linkedX = x + 15;
-						tcRailTurn.linkedY = y + 1;
-						tcRailTurn.linkedZ = z+ 3;
-					}
-					return true;
-
+				if (!largeRightParallelCurve(player, world, x, y, z, l, tempType)){
+					return false;
 				}
 				if (player==null || !player.capabilities.isCreativeMode) {
 					--itemstack.stackSize;
@@ -1457,225 +1241,10 @@ public class ItemTCRail extends ItemPart {
 			}
 			else if (tempType == TrackTypes.LARGE_LEFT_PARALLEL_CURVE|| tempType == TrackTypes.EMBEDDED_LARGE_LEFT_PARALLEL_CURVE) {
 
-				switch (tempType){
-					case LARGE_LEFT_PARALLEL_CURVE:
-						idVariantSTurn = ItemIDs.tcRailLargeParallelCurve.item;
-						typeVariantSTurn = TrackTypes.LARGE_LEFT_PARALLEL_CURVE.getLabel();
-						break;
-					case EMBEDDED_LARGE_LEFT_PARALLEL_CURVE:
-						idVariantSTurn = ItemIDs.tcRailEmbeddedLargeParallelCurve.item;
-						typeVariantSTurn = TrackTypes.EMBEDDED_LARGE_LEFT_PARALLEL_CURVE.getLabel();
-						break;
-				}
-				if (l == 2) {
-
-					for (int check = 1; check < 6; check++) {
-						if (!canPlaceTrack(player, world, x , y + 1, z - check))
-							return false;
-					}
-					for (int check = 4; check < 9; check++) {
-						if (!canPlaceTrack(player, world, x - 1, y + 1, z - check))
-							return false;
-					}
-					for (int check = 7; check < 12; check++) {
-						if (!canPlaceTrack(player, world, x - 2, y + 1, z - check))
-							return false;
-					}
-					for (int check = 11; check < 16; check++) {
-						if (!canPlaceTrack(player, world, x - 3, y + 1, z - check))
-							return false;
-					}
-
-					int[] xArray = {x, x , x , x , x , x ,x-1,x-1,x-1,x-1,x-1};
-					int[] zArray = {z,z-1,z-2,z-3,z-4,z-5,z-4,z-5,z-6,z-7,z-8};
-
-					if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 2, x-3, z-15, 22, x -21.5,
-							y + 1, z + 1 , typeVariantSTurn, idVariantSTurn))
-						return false;
-					TileTCRail tcRailTurn = (TileTCRail) world.getTileEntity(x , y + 1, z );
-
-					int[] xArray2 = {x-3 ,x-2,x-2,x-2,x-2 ,x-2 ,x-3 ,x-3 ,x-3 ,x-3 ,x-3};
-					int[] zArray2 = {z-15,z-7,z-8,z-9,z-10,z-11,z-10,z-11,z-12,z-13,z-14};
-
-					if (tcRailTurn != null) {
-						tcRailTurn.hasModel = true;
-						if (!putDownTurn(player, world, false, x, y, z, xArray2, zArray2, 1, false, 2, x-3, z-15, 22, x + 19.5,
-								y + 1, z - 15, TrackTypes.MEDIUM_RIGHT_TURN.getLabel(), null))
-							return false;
-						TileTCRail tcRailTurn2 = (TileTCRail) world.getTileEntity(x-3, y + 1, z-15);
-
-						if (tcRailTurn2 != null) {
-							tcRailTurn2.hasModel = false;
-							tcRailTurn2.isLinkedToRail = true;
-							tcRailTurn2.linkedX = x;
-							tcRailTurn2.linkedY = y + 1;
-							tcRailTurn2.linkedZ = z ;
-						}
-						tcRailTurn.isLinkedToRail = true;
-						tcRailTurn.linkedX = x-3;
-						tcRailTurn.linkedY = y + 1;
-						tcRailTurn.linkedZ = z-15;
-					}
-					return true;
-
+				if (!largeLeftParallelCurve(player, world, x, y, z, l, tempType)){
+					return false;
 				}
 
-				if (l == 0) {
-					for (int check = 1; check < 6; check++) {
-						if (!canPlaceTrack(player, world, x , y + 1, z + check))
-							return false;
-					}
-					for (int check = 4; check < 9; check++) {
-						if (!canPlaceTrack(player, world, x + 1, y + 1, z + check))
-							return false;
-					}
-					for (int check = 7; check < 12; check++) {
-						if (!canPlaceTrack(player, world, x + 2, y + 1, z + check))
-							return false;
-					}
-					for (int check = 11; check < 16; check++) {
-						if (!canPlaceTrack(player, world, x + 3, y + 1, z + check))
-							return false;
-					}
-
-					int[] xArray = {x, x , x , x , x , x ,x+1,x+1,x+1,x+1,x+1};
-					int[] zArray = {z,z+1,z+2,z+3,z+4,z+5,z+4,z+5,z+6,z+7,z+8};
-
-					if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 0, x+3, z+15, 22, x + 22.5,
-							y + 1, z , typeVariantSTurn, idVariantSTurn))
-						return false;
-					TileTCRail tcRailTurn = (TileTCRail) world.getTileEntity(x , y + 1, z );
-
-					int[] xArray2 = {x+3 ,x+2,x+2,x+2,x+2 ,x+2 ,x+3 ,x+3 ,x+3 ,x+3 ,x+3};
-					int[] zArray2 = {z+15,z+7,z+8,z+9,z+10,z+11,z+10,z+11,z+12,z+13,z+14};
-
-					if (tcRailTurn != null) {
-						tcRailTurn.hasModel = true;
-						if (!putDownTurn(player, world, false, x, y, z, xArray2, zArray2, 3, false, 0, x + 3, z +15, 22, x - 18.5,
-								y + 1, z + 16, TrackTypes.MEDIUM_RIGHT_TURN.getLabel(), null))
-							return false;
-						TileTCRail tcRailTurn2 = (TileTCRail) world.getTileEntity(x+3, y + 1, z+15);
-
-						if (tcRailTurn2 != null) {
-							tcRailTurn2.hasModel = false;
-							tcRailTurn2.isLinkedToRail = true;
-							tcRailTurn2.linkedX = x;
-							tcRailTurn2.linkedY = y + 1;
-							tcRailTurn2.linkedZ = z ;
-						}
-						tcRailTurn.isLinkedToRail = true;
-						tcRailTurn.linkedX = x + 3;
-						tcRailTurn.linkedY = y + 1;
-						tcRailTurn.linkedZ = z + 15;
-					}
-					return true;
-
-				}
-
-				if (l == 1) {
-
-					for (int check = 1; check < 6; check++) {
-						if (!canPlaceTrack(player, world, x- check , y + 1, z))
-							return false;
-					}
-					for (int check = 4; check < 9; check++) {
-						if (!canPlaceTrack(player, world, x - check, y + 1, z +1))
-							return false;
-					}
-					for (int check = 7; check < 12; check++) {
-						if (!canPlaceTrack(player, world, x - check, y + 1, z +2))
-							return false;
-					}
-					for (int check = 11; check < 16; check++) {
-						if (!canPlaceTrack(player, world, x - check, y + 1, z +3))
-							return false;
-					}
-
-					int[] xArray = {x,x-1,x-2,x-3,x-4,x-5,x-4,x-5,x-6,x-7,x-8};
-					int[] zArray = {z, z , z , z , z , z ,z+1,z+1,z+1,z+1,z+1};
-
-					if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 1, x-15, z+3, 22, x + 1,
-							y + 1, z + 22.5 , typeVariantSTurn, idVariantSTurn))
-						return false;
-					TileTCRail tcRailTurn = (TileTCRail) world.getTileEntity(x , y + 1, z );
-
-					int[] xArray2 = {x-15,x-7,x-8,x-9,x-10,x-11,x-10,x-11,x-12,x-13,x-14};
-					int[] zArray2 = {z+3 ,z+2,z+2,z+2,z+2 ,z+2 ,z+3 ,z+3 ,z+3 ,z+3 ,z+3};
-
-					if (tcRailTurn != null) {
-						tcRailTurn.hasModel = true;
-						if (!putDownTurn(player, world, false, x, y, z, xArray2, zArray2, 0, false, 1, x - 15, z + 3, 22, x - 15,
-								y + 1, z - 18.5, TrackTypes.MEDIUM_LEFT_TURN.getLabel(), null))
-							return false;
-						TileTCRail tcRailTurn2 = (TileTCRail) world.getTileEntity(x-15, y + 1, z+3);
-
-						if (tcRailTurn2 != null) {
-							tcRailTurn2.hasModel = false;
-							tcRailTurn2.isLinkedToRail = true;
-							tcRailTurn2.linkedX = x;
-							tcRailTurn2.linkedY = y + 1;
-							tcRailTurn2.linkedZ = z ;
-						}
-						tcRailTurn.isLinkedToRail = true;
-						tcRailTurn.linkedX = x - 15;
-						tcRailTurn.linkedY = y + 1;
-						tcRailTurn.linkedZ = z+ 3;
-					}
-					return true;
-
-				}
-				if (l == 3) {
-
-					for (int check = 1; check < 6; check++) {
-						if (!canPlaceTrack(player, world, x+ check , y + 1, z))
-							return false;
-					}
-					for (int check = 4; check < 9; check++) {
-						if (!canPlaceTrack(player, world, x + check, y + 1, z -1))
-							return false;
-					}
-					for (int check = 7; check < 12; check++) {
-						if (!canPlaceTrack(player, world, x + check, y + 1, z -2))
-							return false;
-					}
-					for (int check = 11; check < 16; check++) {
-						if (!canPlaceTrack(player, world, x + check, y + 1, z -3))
-							return false;
-					}
-
-					int[] xArray = {x,x+1,x+2,x+3,x+4,x+5,x+4,x+5,x+6,x+7,x+8};
-					int[] zArray = {z, z , z , z , z , z ,z-1,z-1,z-1,z-1,z-1};
-
-					if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 0, x+15, z-3, 22, x ,
-							y + 1, z - 21.5 , typeVariantSTurn, idVariantSTurn))
-						return false;
-					TileTCRail tcRailTurn = (TileTCRail) world.getTileEntity(x , y + 1, z );
-
-					int[] xArray2 = {x+15,x+7,x+8,x+9,x+10,x+11,x+10,x+11,x+12,x+13,x+14};
-					int[] zArray2 = {z-3 ,z-2,z-2,z-2,z-2 ,z-2 ,z-3 ,z-3 ,z-3 ,z-3 ,z-3};
-
-					if (tcRailTurn != null) {
-						tcRailTurn.hasModel = true;
-						if (!putDownTurn(player, world, false, x, y, z, xArray2, zArray2, 0, false, 0, x - 15, z - 3, 22, x +16,
-								y + 1, z + 19.5, TrackTypes.MEDIUM_LEFT_TURN.getLabel(), null))
-							return false;
-						TileTCRail tcRailTurn2 = (TileTCRail) world.getTileEntity(x+15, y + 1, z-3);
-
-						if (tcRailTurn2 != null) {
-							tcRailTurn2.hasModel = false;
-							tcRailTurn2.isLinkedToRail = true;
-							tcRailTurn2.linkedX = x;
-							tcRailTurn2.linkedY = y + 1;
-							tcRailTurn2.linkedZ = z ;
-						}
-						tcRailTurn.isLinkedToRail = true;
-						tcRailTurn.linkedX = x + 15;
-						tcRailTurn.linkedY = y + 1;
-						tcRailTurn.linkedZ = z- 3;
-					}
-					return true;
-
-				}
 				if (player==null || !player.capabilities.isCreativeMode) {
 					--itemstack.stackSize;
 				}
@@ -6711,7 +6280,272 @@ public class ItemTCRail extends ItemPart {
 		return false;
 	}
 
+	private boolean largeRightParallelCurve(EntityPlayer player, World world, int x, int y, int z, int l, TrackTypes tempType) {
 
+		int[] xArray = {0, 0 , 0 , 0 , 0 , 0 ,1,1,1,1,1};
+		int[] zArray = {0,1,2,3,4,5,4,5,6,7,8};
+		int[] xArray2 = {3 ,2,2,2,2 ,2 ,3 ,3 ,3 ,3 ,3};
+		int[] zArray2 = {15,7,8,9,10,11,10,11,12,13,14};
+
+		if (l == 2) {
+
+
+
+
+			if (!putDownTurn(player, world, false, x, y, z, flipArraySign(xArray, x, false), flipArraySign(zArray, z, true), l, false, 2, x+3, z-15, 22, x + 22.5,
+					y + 1, z + 1 , tempType.getLabel(), tempType.getItem().item))
+				return false;
+			TileTCRail tcRailTurn = (TileTCRail) world.getTileEntity(x , y + 1, z );
+
+			if (tcRailTurn != null) {
+				tcRailTurn.hasModel = true;
+				if (!putDownTurn(player, world, false, x, y, z, flipArraySign(xArray2, x, false), flipArraySign(zArray2, z, true), 3, false, 2, x+3, z-15, 22, x - 18.5,
+						y + 1, z - 15, TrackTypes.MEDIUM_LEFT_TURN.getLabel(), null))
+					return false;
+				TileTCRail tcRailTurn2 = (TileTCRail) world.getTileEntity(x+3, y + 1, z-15);
+
+				if (tcRailTurn2 != null) {
+					tcRailTurn2.hasModel = false;
+					tcRailTurn2.isLinkedToRail = true;
+					tcRailTurn2.linkedX = x;
+					tcRailTurn2.linkedY = y + 1;
+					tcRailTurn2.linkedZ = z ;
+				}
+				tcRailTurn.isLinkedToRail = true;
+				tcRailTurn.linkedX = x+3;
+				tcRailTurn.linkedY = y + 1;
+				tcRailTurn.linkedZ = z-15;
+			}
+			return true;
+
+		}
+
+		if (l == 0) {
+
+
+
+			if (!putDownTurn(player, world, false, x, y, z, flipArraySign(xArray, x, true), flipArraySign(zArray, z, false), l, false, 0, x-3, z+15, 22, x - 21.5,
+					y + 1, z , tempType.getLabel(), tempType.getItem().item))
+				return false;
+			TileTCRail tcRailTurn = (TileTCRail) world.getTileEntity(x , y + 1, z );
+
+
+			if (tcRailTurn != null) {
+				tcRailTurn.hasModel = true;
+				if (!putDownTurn(player, world, false, x, y, z, flipArraySign(xArray2, x, true), flipArraySign(zArray2, z, false), 1, false, 0, x - 3, z + 15, 22, x + 19.5,
+						y + 1, z + 16, TrackTypes.MEDIUM_LEFT_TURN.getLabel(), null))
+					return false;
+				TileTCRail tcRailTurn2 = (TileTCRail) world.getTileEntity(x-3, y + 1, z+15);
+
+				if (tcRailTurn2 != null) {
+					tcRailTurn2.hasModel = false;
+					tcRailTurn2.isLinkedToRail = true;
+					tcRailTurn2.linkedX = x;
+					tcRailTurn2.linkedY = y + 1;
+					tcRailTurn2.linkedZ = z ;
+				}
+				tcRailTurn.isLinkedToRail = true;
+				tcRailTurn.linkedX = x - 3;
+				tcRailTurn.linkedY = y + 1;
+				tcRailTurn.linkedZ = z + 15;
+			}
+			return true;
+
+		}
+
+		if (l == 1) {
+
+			if (!putDownTurn(player, world, false, x, y, z, flipArraySign(zArray, x, true), flipArraySign(xArray, z, true), l, false, 1, x-15, z-3, 22, x + 1,
+					y + 1, z - 21.5 , tempType.getLabel(), tempType.getItem().item))
+				return false;
+			TileTCRail tcRailTurn = (TileTCRail) world.getTileEntity(x , y + 1, z );
+
+
+			if (tcRailTurn != null) {
+				tcRailTurn.hasModel = true;
+				if (!putDownTurn(player, world, false, x, y, z, flipArraySign(zArray2, x, true), flipArraySign(xArray2, z, true), 2, false, 1, x - 15, z - 3, 22, x - 15,
+						y + 1, z + 19.5, TrackTypes.MEDIUM_LEFT_TURN.getLabel(), null))
+					return false;
+				TileTCRail tcRailTurn2 = (TileTCRail) world.getTileEntity(x-15, y + 1, z-3);
+
+				if (tcRailTurn2 != null) {
+					tcRailTurn2.hasModel = false;
+					tcRailTurn2.isLinkedToRail = true;
+					tcRailTurn2.linkedX = x;
+					tcRailTurn2.linkedY = y + 1;
+					tcRailTurn2.linkedZ = z ;
+				}
+				tcRailTurn.isLinkedToRail = true;
+				tcRailTurn.linkedX = x - 15;
+				tcRailTurn.linkedY = y + 1;
+				tcRailTurn.linkedZ = z- 3;
+			}
+			return true;
+
+		}
+		if (l == 3) {
+
+			if (!putDownTurn(player, world, false, x, y, z, flipArraySign(zArray, x, false), flipArraySign(xArray, z, false), l, false, 3, x+15, z+3, 22, x ,
+					y + 1, z + 22.5 , tempType.getLabel(), tempType.getItem().item))
+				return false;
+			TileTCRail tcRailTurn = (TileTCRail) world.getTileEntity(x , y + 1, z );
+
+			if (tcRailTurn != null) {
+				tcRailTurn.hasModel = true;
+				if (!putDownTurn(player, world, false, x, y, z, flipArraySign(zArray2, x, false), flipArraySign(xArray2, z, false), 0, false, 3, x - 15, z + 3, 22, x +16,
+						y + 1, z - 18.5, TrackTypes.MEDIUM_LEFT_TURN.getLabel(), null))
+					return false;
+				TileTCRail tcRailTurn2 = (TileTCRail) world.getTileEntity(x+15, y + 1, z+3);
+
+				if (tcRailTurn2 != null) {
+					tcRailTurn2.hasModel = false;
+					tcRailTurn2.isLinkedToRail = true;
+					tcRailTurn2.linkedX = x;
+					tcRailTurn2.linkedY = y + 1;
+					tcRailTurn2.linkedZ = z ;
+				}
+				tcRailTurn.isLinkedToRail = true;
+				tcRailTurn.linkedX = x + 15;
+				tcRailTurn.linkedY = y + 1;
+				tcRailTurn.linkedZ = z+ 3;
+			}
+			return true;
+
+		}
+		return false;
+	}
+
+	private boolean largeLeftParallelCurve(EntityPlayer player, World world, int x, int y, int z, int l, TrackTypes tempType){
+
+		int[] xArray = {0, 0 , 0 , 0 , 0 , 0 ,1,1,1,1,1};
+		int[] zArray = {0,1,2,3,4,5,4,5,6,7,8};
+		int[] xArray2 = {3 ,2,2,2,2 ,2 ,3 ,3 ,3 ,3 ,3};
+		int[] zArray2 = {15,7,8,9,10,11,10,11,12,13,14};
+
+		if (l == 2) {
+
+			if (!putDownTurn(player, world, false, x, y, z, flipArraySign(xArray, x, true), flipArraySign(zArray, z, true), l, false, 2, x-3, z-15, 22, x -21.5,
+					y + 1, z + 1 ,tempType.getLabel(), tempType.getItem().item))
+				return false;
+			TileTCRail tcRailTurn = (TileTCRail) world.getTileEntity(x , y + 1, z );
+
+
+
+			if (tcRailTurn != null) {
+				tcRailTurn.hasModel = true;
+				if (!putDownTurn(player, world, false, x, y, z, flipArraySign(xArray2, x, true), flipArraySign(zArray2, z, true), 1, false, 2, x-3, z-15, 22, x + 19.5,
+						y + 1, z - 15, TrackTypes.MEDIUM_RIGHT_TURN.getLabel(), null))
+					return false;
+				TileTCRail tcRailTurn2 = (TileTCRail) world.getTileEntity(x-3, y + 1, z-15);
+
+				if (tcRailTurn2 != null) {
+					tcRailTurn2.hasModel = false;
+					tcRailTurn2.isLinkedToRail = true;
+					tcRailTurn2.linkedX = x;
+					tcRailTurn2.linkedY = y + 1;
+					tcRailTurn2.linkedZ = z ;
+				}
+				tcRailTurn.isLinkedToRail = true;
+				tcRailTurn.linkedX = x-3;
+				tcRailTurn.linkedY = y + 1;
+				tcRailTurn.linkedZ = z-15;
+			}
+			return true;
+
+		}
+
+		if (l == 0) {
+
+			if (!putDownTurn(player, world, false, x, y, z,flipArraySign(xArray, x, false), flipArraySign(zArray, z, false), l, false, 0, x+3, z+15, 22, x + 22.5,
+					y + 1, z , tempType.getLabel(), tempType.getItem().item))
+				return false;
+			TileTCRail tcRailTurn = (TileTCRail) world.getTileEntity(x , y + 1, z );
+
+			if (tcRailTurn != null) {
+				tcRailTurn.hasModel = true;
+				if (!putDownTurn(player, world, false, x, y, z, flipArraySign(xArray2, x, false), flipArraySign(zArray2, z, false), 3, false, 0, x + 3, z +15, 22, x - 18.5,
+						y + 1, z + 16, TrackTypes.MEDIUM_RIGHT_TURN.getLabel(), null))
+					return false;
+				TileTCRail tcRailTurn2 = (TileTCRail) world.getTileEntity(x+3, y + 1, z+15);
+
+				if (tcRailTurn2 != null) {
+					tcRailTurn2.hasModel = false;
+					tcRailTurn2.isLinkedToRail = true;
+					tcRailTurn2.linkedX = x;
+					tcRailTurn2.linkedY = y + 1;
+					tcRailTurn2.linkedZ = z ;
+				}
+				tcRailTurn.isLinkedToRail = true;
+				tcRailTurn.linkedX = x + 3;
+				tcRailTurn.linkedY = y + 1;
+				tcRailTurn.linkedZ = z + 15;
+			}
+			return true;
+
+		}
+
+		if (l == 1) {
+
+
+			if (!putDownTurn(player, world, false, x, y, z, flipArraySign(zArray, x, true), flipArraySign(xArray, z, false), l, false, 1, x-15, z+3, 22, x + 1,
+					y + 1, z + 22.5 , tempType.getLabel(), tempType.getItem().item))
+				return false;
+			TileTCRail tcRailTurn = (TileTCRail) world.getTileEntity(x , y + 1, z );
+
+			if (tcRailTurn != null) {
+				tcRailTurn.hasModel = true;
+				if (!putDownTurn(player, world, false, x, y, z, flipArraySign(zArray2, x, true), flipArraySign(xArray2, z, false), 0, false, 1, x - 15, z + 3, 22, x - 15,
+						y + 1, z - 18.5, TrackTypes.MEDIUM_LEFT_TURN.getLabel(), null))
+					return false;
+				TileTCRail tcRailTurn2 = (TileTCRail) world.getTileEntity(x-15, y + 1, z+3);
+
+				if (tcRailTurn2 != null) {
+					tcRailTurn2.hasModel = false;
+					tcRailTurn2.isLinkedToRail = true;
+					tcRailTurn2.linkedX = x;
+					tcRailTurn2.linkedY = y + 1;
+					tcRailTurn2.linkedZ = z ;
+				}
+				tcRailTurn.isLinkedToRail = true;
+				tcRailTurn.linkedX = x - 15;
+				tcRailTurn.linkedY = y + 1;
+				tcRailTurn.linkedZ = z+ 3;
+			}
+			return true;
+
+		}
+		if (l == 3) {
+
+			if (!putDownTurn(player, world, false, x, y, z, flipArraySign(zArray, x, false), flipArraySign(xArray, z, true), l, false, 0, x+15, z-3, 22, x ,
+					y + 1, z - 21.5 , tempType.getLabel(), tempType.getItem().item))
+				return false;
+			TileTCRail tcRailTurn = (TileTCRail) world.getTileEntity(x , y + 1, z );
+
+
+			if (tcRailTurn != null) {
+				tcRailTurn.hasModel = true;
+				if (!putDownTurn(player, world, false, x, y, z, flipArraySign(zArray2, x, false), flipArraySign(xArray2, z, true), 0, false, 0, x - 15, z - 3, 22, x +16,
+						y + 1, z + 19.5, TrackTypes.MEDIUM_LEFT_TURN.getLabel(), null))
+					return false;
+				TileTCRail tcRailTurn2 = (TileTCRail) world.getTileEntity(x+15, y + 1, z-3);
+
+				if (tcRailTurn2 != null) {
+					tcRailTurn2.hasModel = false;
+					tcRailTurn2.isLinkedToRail = true;
+					tcRailTurn2.linkedX = x;
+					tcRailTurn2.linkedY = y + 1;
+					tcRailTurn2.linkedZ = z ;
+				}
+				tcRailTurn.isLinkedToRail = true;
+				tcRailTurn.linkedX = x + 15;
+				tcRailTurn.linkedY = y + 1;
+				tcRailTurn.linkedZ = z- 3;
+			}
+			return true;
+
+		}
+		return false;
+	}
 
 	/**
 	 * Drop the previous block before placing the track.
