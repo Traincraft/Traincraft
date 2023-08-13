@@ -121,7 +121,7 @@ public class ModelEmbeddedStopper extends ModelBase {
         box5.render(f5);
         GL11.glRotatef(90, 0, 1, 0);
         tmt.Tessellator
-                .bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
+                .bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_embedded.png"));
         GL11.glColor4f(1, 1, 1, 1);
         track.renderAll();
     }
