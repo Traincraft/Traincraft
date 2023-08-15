@@ -1328,6 +1328,10 @@ public enum RenderEnum {
 	VentilatedVan(EntityFreightVentilatedVan.class, new ModelVentilatedVan(), "Ventilated_van_", true, new float[] {0f, 0.15f, 0f}, new float[] {0f, 180f, 180f}, null, "", 0, null, "", null, 0, false ),
 	Class143Rear(EntityPassengerClass143.class, new ModelClass143(), "Class143_",true,new float[] {0F, 0.15F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	Class143Middle(EntityPassengerClass143M.class, new ModelClass144(), "Class143_",true,new float[] {0F, 0.15F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	Class374Front( EntityElectricClass374.class, new ModelClass374Front(),"Class_374_Front_", true, new float[] {-2.6F, 0.162F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
+	Class374PremierPanto( EntityPassengerClass374PremierPanto.class, new ModelClass374PremierPanto(),"Class_374_Premier_Panto_", true, new float[] {0F, 0.162F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
+	Class374StandardPanto( EntityPassengerClass374StandardPanto.class, new ModelClass374StandardPanto(),"Class_374_Standard_Panto_", true, new float[] {0F, 0.162F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
+	Class374Buffet( EntityPassengerClass374Buffet.class, new ModelClass374Buffet(),"Class_374_Buffet_", true, new float[] {0F, 0.162F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
 
 	;
 
