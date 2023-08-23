@@ -193,22 +193,22 @@ public class ModelDuewagGT6ZRTail extends ModelConverter //Same as Filename
 		bodyModel[155] = new ModelRendererTurbo(this, 375, 96, textureX, textureY); // Box 380
 		bodyModel[156] = new ModelRendererTurbo(this, 476, 100, textureX, textureY); // Box 325
 		bodyModel[157] = new ModelRendererTurbo(this, 495, 101, textureX, textureY); // Box 326
-		bodyModel[158] = new ModelRendererTurbo(this, 223, 92, textureX, textureY); // Box 328
+		bodyModel[158] = new ModelRendererTurbo(this, 223, 92, textureX, textureY,"lamp"); // Box 328
 		bodyModel[159] = new ModelRendererTurbo(this, 495, 115, textureX, textureY); // Box 333
 		bodyModel[160] = new ModelRendererTurbo(this, 457, 62, textureX, textureY); // Box 333
 		bodyModel[161] = new ModelRendererTurbo(this, 169, 38, textureX, textureY); // Box 336
-		bodyModel[162] = new ModelRendererTurbo(this, 41, 1, textureX, textureY); // Box 381 l
-		bodyModel[163] = new ModelRendererTurbo(this, 41, 1, textureX, textureY); // Box 382 l
-		bodyModel[164] = new ModelRendererTurbo(this, 41, 1, textureX, textureY); // Box 383 l
-		bodyModel[165] = new ModelRendererTurbo(this, 41, 1, textureX, textureY); // Box 384 l
-		bodyModel[166] = new ModelRendererTurbo(this, 41, 5, textureX, textureY); // Box 385 l
-		bodyModel[167] = new ModelRendererTurbo(this, 41, 5, textureX, textureY); // Box 386 l
-		bodyModel[168] = new ModelRendererTurbo(this, 41, 5, textureX, textureY); // Box 387 l
-		bodyModel[169] = new ModelRendererTurbo(this, 41, 5, textureX, textureY); // Box 388 l
-		bodyModel[170] = new ModelRendererTurbo(this, 49, 5, textureX, textureY); // Box 389 l
-		bodyModel[171] = new ModelRendererTurbo(this, 49, 5, textureX, textureY); // Box 390 l
-		bodyModel[172] = new ModelRendererTurbo(this, 49, 5, textureX, textureY); // Box 391 l
-		bodyModel[173] = new ModelRendererTurbo(this, 49, 5, textureX, textureY); // Box 392 l
+		bodyModel[162] = new ModelRendererTurbo(this, 41, 1, textureX, textureY,"lamp"); // Box 381 l
+		bodyModel[163] = new ModelRendererTurbo(this, 41, 1, textureX, textureY,"lamp"); // Box 382 l
+		bodyModel[164] = new ModelRendererTurbo(this, 41, 1, textureX, textureY,"lamp"); // Box 383 l
+		bodyModel[165] = new ModelRendererTurbo(this, 41, 1, textureX, textureY,"lamp"); // Box 384 l
+		bodyModel[166] = new ModelRendererTurbo(this, 41, 5, textureX, textureY,"lamp"); // Box 385 l
+		bodyModel[167] = new ModelRendererTurbo(this, 41, 5, textureX, textureY,"lamp"); // Box 386 l
+		bodyModel[168] = new ModelRendererTurbo(this, 41, 5, textureX, textureY,"lamp"); // Box 387 l
+		bodyModel[169] = new ModelRendererTurbo(this, 41, 5, textureX, textureY,"lamp"); // Box 388 l
+		bodyModel[170] = new ModelRendererTurbo(this, 49, 5, textureX, textureY,"lamp"); // Box 389 l
+		bodyModel[171] = new ModelRendererTurbo(this, 49, 5, textureX, textureY,"lamp"); // Box 390 l
+		bodyModel[172] = new ModelRendererTurbo(this, 49, 5, textureX, textureY,"lamp"); // Box 391 l
+		bodyModel[173] = new ModelRendererTurbo(this, 49, 5, textureX, textureY,"lamp"); // Box 392 l
 		bodyModel[174] = new ModelRendererTurbo(this, 198, 65, textureX, textureY); // Box 361
 		bodyModel[175] = new ModelRendererTurbo(this, 198, 76, textureX, textureY); // Box 362
 		bodyModel[176] = new ModelRendererTurbo(this, 198, 52, textureX, textureY); // Box 363
@@ -238,10 +238,10 @@ public class ModelDuewagGT6ZRTail extends ModelConverter //Same as Filename
 		bodyModel[200] = new ModelRendererTurbo(this, 169, 81, textureX, textureY); // Box 419
 		bodyModel[201] = new ModelRendererTurbo(this, 177, 1, textureX, textureY); // Box 420
 		bodyModel[202] = new ModelRendererTurbo(this, 236, 9, textureX, textureY); // Box 275
-		bodyModel[203] = new ModelRendererTurbo(this, 49, 1, textureX, textureY); // Sta_Light_1
-		bodyModel[204] = new ModelRendererTurbo(this, 49, 1, textureX, textureY); // Sta_Light_2
-		bodyModel[205] = new ModelRendererTurbo(this, 49, 1, textureX, textureY); // Sta_Light_4
-		bodyModel[206] = new ModelRendererTurbo(this, 49, 1, textureX, textureY); // Sta_Light_3
+		bodyModel[203] = new ModelRendererTurbo(this, 49, 1, textureX, textureY,"lamp"); // Sta_Light_1
+		bodyModel[204] = new ModelRendererTurbo(this, 49, 1, textureX, textureY,"lamp"); // Sta_Light_2
+		bodyModel[205] = new ModelRendererTurbo(this, 49, 1, textureX, textureY,"lamp"); // Sta_Light_4
+		bodyModel[206] = new ModelRendererTurbo(this, 49, 1, textureX, textureY,"lamp"); // Sta_Light_3
 		bodyModel[207] = new ModelRendererTurbo(this, 283, 121, textureX, textureY); // Box 367
 		bodyModel[208] = new ModelRendererTurbo(this, 286, 121, textureX, textureY); // Box 368
 		bodyModel[209] = new ModelRendererTurbo(this, 291, 121, textureX, textureY); // Box 369
@@ -258,7 +258,7 @@ public class ModelDuewagGT6ZRTail extends ModelConverter //Same as Filename
 		bodyModel[220] = new ModelRendererTurbo(this, 302, 121, textureX, textureY); // Box 315
 		bodyModel[221] = new ModelRendererTurbo(this, 309, 121, textureX, textureY); // Box 316
 		bodyModel[222] = new ModelRendererTurbo(this, 217, 1, textureX, textureY); // Box 294
-		bodyModel[223] = new ModelRendererTurbo(this, 281, 33, textureX, textureY); // Box 170
+		bodyModel[223] = new ModelRendererTurbo(this, 281, 33, textureX, textureY,"lamp"); // Box 170
 		bodyModel[224] = new ModelRendererTurbo(this, 1, 19, textureX, textureY); // Box 321
 		bodyModel[225] = new ModelRendererTurbo(this, 1, 19, textureX, textureY); // Box 322
 		bodyModel[226] = new ModelRendererTurbo(this, 3, 52, textureX, textureY); // Box 336
@@ -1023,5 +1023,26 @@ public class ModelDuewagGT6ZRTail extends ModelConverter //Same as Filename
 
 		bodyModel[246].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F,0F, 0F, -0.5F, 0.1F, 0F, -0.2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.6F, -0.6F, 0F, -0.5F, -0.4F, 0F, -0.3F, 0F, 0F, -0.5F, 0F); // Box 346
 		bodyModel[246].setRotationPoint(-27.2F, 2.5F, -6F);
+	}
+	@Override
+	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
+	{
+		for (int i = 0; i < 247; i++) {
+			if (bodyModel[i].boxName != null && bodyModel[i].boxName.contains("lamp") ) {
+				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
+				bodyModel[i].render(f5);
+				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
+			}else if (bodyModel[i].boxName != null && bodyModel[i].boxName.contains("cull")) {
+				GL11.glDisable(GL11.GL_CULL_FACE);
+				bodyModel[i].render(f5);
+				GL11.glEnable(GL11.GL_CULL_FACE);
+			} else {
+				bodyModel[i].render(f5);
+			}
+		}
+	}
+
+	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5)
+	{
 	}
 }

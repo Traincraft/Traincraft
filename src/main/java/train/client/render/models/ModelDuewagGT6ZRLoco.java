@@ -76,7 +76,7 @@ public class ModelDuewagGT6ZRLoco extends ModelConverter //Same as Filename
 		bodyModel[38] = new ModelRendererTurbo(this, 481, 25, textureX, textureY); // Box 5
 		bodyModel[39] = new ModelRendererTurbo(this, 265, 33, textureX, textureY); // Box 6
 		bodyModel[40] = new ModelRendererTurbo(this, 217, 1, textureX, textureY); // Box 294
-		bodyModel[41] = new ModelRendererTurbo(this, 281, 33, textureX, textureY); // Box 170 l
+		bodyModel[41] = new ModelRendererTurbo(this, 281, 33, textureX, textureY,"lamp"); // Box 170 l
 		bodyModel[42] = new ModelRendererTurbo(this, 305, 33, textureX, textureY); // Box 92
 		bodyModel[43] = new ModelRendererTurbo(this, 313, 33, textureX, textureY); // Box 93
 		bodyModel[44] = new ModelRendererTurbo(this, 321, 33, textureX, textureY); // Box 94
@@ -253,26 +253,26 @@ public class ModelDuewagGT6ZRLoco extends ModelConverter //Same as Filename
 		bodyModel[215] = new ModelRendererTurbo(this, 375, 96, textureX, textureY); // Box 380
 		bodyModel[216] = new ModelRendererTurbo(this, 476, 100, textureX, textureY); // Box 325
 		bodyModel[217] = new ModelRendererTurbo(this, 495, 101, textureX, textureY); // Box 326
-		bodyModel[218] = new ModelRendererTurbo(this, 223, 92, textureX, textureY); // Box 328 l
+		bodyModel[218] = new ModelRendererTurbo(this, 223, 92, textureX, textureY,"lamp"); // Box 328 l
 		bodyModel[219] = new ModelRendererTurbo(this, 495, 115, textureX, textureY); // Box 333
 		bodyModel[220] = new ModelRendererTurbo(this, 457, 62, textureX, textureY); // Box 333
 		bodyModel[221] = new ModelRendererTurbo(this, 169, 38, textureX, textureY); // Box 336
-		bodyModel[222] = new ModelRendererTurbo(this, 49, 1, textureX, textureY); // Sta_Light_1
-		bodyModel[223] = new ModelRendererTurbo(this, 49, 1, textureX, textureY); // Sta_Light_2
-		bodyModel[224] = new ModelRendererTurbo(this, 49, 1, textureX, textureY); // Sta_Light_4
-		bodyModel[225] = new ModelRendererTurbo(this, 49, 1, textureX, textureY); // Sta_Light_3
-		bodyModel[226] = new ModelRendererTurbo(this, 41, 1, textureX, textureY); // Box 381 l
-		bodyModel[227] = new ModelRendererTurbo(this, 41, 1, textureX, textureY); // Box 382 l
-		bodyModel[228] = new ModelRendererTurbo(this, 41, 1, textureX, textureY); // Box 383 l
-		bodyModel[229] = new ModelRendererTurbo(this, 41, 1, textureX, textureY); // Box 384 l
-		bodyModel[230] = new ModelRendererTurbo(this, 41, 5, textureX, textureY); // Box 385
-		bodyModel[231] = new ModelRendererTurbo(this, 41, 5, textureX, textureY); // Box 386
-		bodyModel[232] = new ModelRendererTurbo(this, 41, 5, textureX, textureY); // Box 387
-		bodyModel[233] = new ModelRendererTurbo(this, 41, 5, textureX, textureY); // Box 388
-		bodyModel[234] = new ModelRendererTurbo(this, 49, 5, textureX, textureY); // Box 389 l
-		bodyModel[235] = new ModelRendererTurbo(this, 49, 5, textureX, textureY); // Box 390 l
-		bodyModel[236] = new ModelRendererTurbo(this, 49, 5, textureX, textureY); // Box 391 l
-		bodyModel[237] = new ModelRendererTurbo(this, 49, 5, textureX, textureY); // Box 392 l
+		bodyModel[222] = new ModelRendererTurbo(this, 49, 1, textureX, textureY,"lamp"); // Sta_Light_1
+		bodyModel[223] = new ModelRendererTurbo(this, 49, 1, textureX, textureY,"lamp"); // Sta_Light_2
+		bodyModel[224] = new ModelRendererTurbo(this, 49, 1, textureX, textureY,"lamp"); // Sta_Light_4
+		bodyModel[225] = new ModelRendererTurbo(this, 49, 1, textureX, textureY,"lamp"); // Sta_Light_3
+		bodyModel[226] = new ModelRendererTurbo(this, 41, 1, textureX, textureY,"lamp"); // Box 381 l
+		bodyModel[227] = new ModelRendererTurbo(this, 41, 1, textureX, textureY,"lamp"); // Box 382 l
+		bodyModel[228] = new ModelRendererTurbo(this, 41, 1, textureX, textureY,"lamp"); // Box 383 l
+		bodyModel[229] = new ModelRendererTurbo(this, 41, 1, textureX, textureY,"lamp"); // Box 384 l
+		bodyModel[230] = new ModelRendererTurbo(this, 41, 5, textureX, textureY,"lamp"); // Box 385
+		bodyModel[231] = new ModelRendererTurbo(this, 41, 5, textureX, textureY,"lamp"); // Box 386
+		bodyModel[232] = new ModelRendererTurbo(this, 41, 5, textureX, textureY,"lamp"); // Box 387
+		bodyModel[233] = new ModelRendererTurbo(this, 41, 5, textureX, textureY,"lamp"); // Box 388
+		bodyModel[234] = new ModelRendererTurbo(this, 49, 5, textureX, textureY,"lamp"); // Box 389 l
+		bodyModel[235] = new ModelRendererTurbo(this, 49, 5, textureX, textureY,"lamp"); // Box 390 l
+		bodyModel[236] = new ModelRendererTurbo(this, 49, 5, textureX, textureY,"lamp"); // Box 391 l
+		bodyModel[237] = new ModelRendererTurbo(this, 49, 5, textureX, textureY,"lamp"); // Box 392 l
 		bodyModel[238] = new ModelRendererTurbo(this, 198, 65, textureX, textureY); // Box 361
 		bodyModel[239] = new ModelRendererTurbo(this, 198, 76, textureX, textureY); // Box 362
 		bodyModel[240] = new ModelRendererTurbo(this, 198, 52, textureX, textureY); // Box 363
@@ -1460,4 +1460,26 @@ public class ModelDuewagGT6ZRLoco extends ModelConverter //Same as Filename
 		bodyModel[355].addShapeBox(0F, 0F, 0F, 10, 3, 2, 0F,0F, -0.25F, 0F, 0F, -0.25F, 0F, 0F, -0.25F, 0F, 0F, -0.25F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F); // Box 360
 		bodyModel[355].setRotationPoint(-16F, -19F, -10F);
 	}
+	@Override
+	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
+	{
+		for (int i = 0; i < 356; i++) {
+			if (bodyModel[i].boxName != null && bodyModel[i].boxName.contains("lamp") ) {
+				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
+				bodyModel[i].render(f5);
+				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
+			}else if (bodyModel[i].boxName != null && bodyModel[i].boxName.contains("cull")) {
+				GL11.glDisable(GL11.GL_CULL_FACE);
+				bodyModel[i].render(f5);
+				GL11.glEnable(GL11.GL_CULL_FACE);
+			} else {
+				bodyModel[i].render(f5);
+			}
+		}
+	}
+
+	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5)
+	{
+	}
+
 }
