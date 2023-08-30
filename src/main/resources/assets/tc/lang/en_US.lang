@@ -747,6 +747,13 @@ item.tc:minecartClass374Front.name=Class 374 Eurostar Front
 item.tc:minecartClass374PremierPanto.name=Class 374 Eurostar Premier Panto
 item.tc:minecartClass374StandardPanto.name=Class 374 Eurostar Standard Panto
 item.tc:minecartClass374Buffet.name=Class 374 Eurostar Buffet
+item.tc:minecartClass387Front.name=Class 387 Front
+item.tc:minecartClass387Coach.name=Class 387 Coach
+item.tc:minecartClass387Panto.name=Class 387 Panto
+item.tc:minecartClass387Tail.name=Class 387 Tail
+item.tc:minecartClass378Front.name=Class 378 Front
+item.tc:minecartClass378Middle.name=Class 378 Middle
+item.tc:minecartClass378Tail.name=Class 378 Tail
 
 
 <!-- ## Achievements ## -->
@@ -1344,6 +1351,14 @@ entity.tc.Class374Front.name=Class 374 Eurostar Front
 entity.tc.Class374PremierPanto.name=Class 374 Eurostar Premier Panto
 entity.tc.Class374StandardPanto.name=Class 374 Eurostar Standard Panto
 entity.tc.Class374Buffet.name=Class 374 Eurostar Buffet
+entity.tc.Class387Front.name=Class 387 Front
+entity.tc.Class387Coach.name=Class 387 Coach
+entity.tc.Class387Panto.name=Class 387 Panto
+entity.tc.Class387Tail.name=Class 387 Tail
+entity.tc.Class378Front.name=Class 378 Front
+entity.tc.Class378Middle.name=Class 378 Middle
+entity.tc.Class378Tail.name=Class 378 Tail
+
 
 
 description.villager.profession.tc.station_chief=Station Master

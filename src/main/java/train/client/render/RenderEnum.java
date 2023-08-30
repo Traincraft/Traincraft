@@ -1332,6 +1332,13 @@ public enum RenderEnum {
 	Class374PremierPanto( EntityPassengerClass374PremierPanto.class, new ModelClass374PremierPanto(),"Class_374_Premier_Panto_", true, new float[] {0F, 0.162F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
 	Class374StandardPanto( EntityPassengerClass374StandardPanto.class, new ModelClass374StandardPanto(),"Class_374_Standard_Panto_", true, new float[] {0F, 0.162F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
 	Class374Buffet( EntityPassengerClass374Buffet.class, new ModelClass374Buffet(),"Class_374_Buffet_", true, new float[] {0F, 0.162F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
+	Class387Front( EntityElectricClass387Front.class, new ModelClass387Front(),"Class_387_", true, new float[] {-2F, 0F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
+	Class387Coach( EntityPassengerClass387Coach.class, new ModelClass387Coach(),"Class_387_Middle_", true, new float[] {0F, 0F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
+	Class387Panto( EntityPassengerClass387Panto.class, new ModelClass387Panto(),"Class_387_Middle_", true, new float[] {0F, 0F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
+	Class387Tail( EntityPassengerClass387Tail.class, new ModelClass387Front(),"Class_387_", true, new float[] {0F, 0F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
+	Class378Front( EntityElectricClass378Front.class, new ModelClass378Front(),"Class_378_", true, new float[] {-1.9F, 0.2F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
+	Class378Middle( EntityPassengerClass378Middle.class, new ModelClass378Middle(),"Class_378_Middle_", true, new float[] {0F, 0.2F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
+	Class378Tail( EntityPassengerClass378Tail.class, new ModelClass378Front(),"Class_378_", true, new float[] {0F, 0.2F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
 
 	;
 
