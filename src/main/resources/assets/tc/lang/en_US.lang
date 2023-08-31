@@ -754,6 +754,7 @@ item.tc:minecartClass387Tail.name=Class 387 Tail
 item.tc:minecartClass378Front.name=Class 378 Front
 item.tc:minecartClass378Middle.name=Class 378 Middle
 item.tc:minecartClass378Tail.name=Class 378 Tail
+item.tc:minecartJacknail.name=MW class 88bte
 
 
 <!-- ## Achievements ## -->
@@ -1358,7 +1359,8 @@ entity.tc.Class387Tail.name=Class 387 Tail
 entity.tc.Class378Front.name=Class 378 Front
 entity.tc.Class378Middle.name=Class 378 Middle
 entity.tc.Class378Tail.name=Class 378 Tail
-
+entity.tc.Jacknail.name=MW class 88bte
+entity.tc.CD754.name=CD754
 
 
 description.villager.profession.tc.station_chief=Station Master

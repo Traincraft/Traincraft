@@ -10,6 +10,9 @@
 package train.client.render.models; //Path where the model is located
 
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.entity.Entity;
+import org.lwjgl.opengl.GL11;
 import tmt.ModelConverter;
 import tmt.ModelRendererTurbo;
 
@@ -219,10 +222,10 @@ public class Model10tonBrakeVan extends ModelConverter //Same as Filename
 		bodyModel[184] = new ModelRendererTurbo(this, 41, 105, textureX, textureY); // Box 83
 		bodyModel[185] = new ModelRendererTurbo(this, 41, 105, textureX, textureY); // Box 83
 		bodyModel[186] = new ModelRendererTurbo(this, 41, 105, textureX, textureY); // Box 83
-		bodyModel[187] = new ModelRendererTurbo(this, 417, 49, textureX, textureY); // lamp
-		bodyModel[188] = new ModelRendererTurbo(this, 417, 49, textureX, textureY); // lamp
-		bodyModel[189] = new ModelRendererTurbo(this, 417, 49, textureX, textureY); // lamp
-		bodyModel[190] = new ModelRendererTurbo(this, 417, 49, textureX, textureY); // lamp
+		bodyModel[187] = new ModelRendererTurbo(this, 417, 49, textureX, textureY, "lamp"); // lamp
+		bodyModel[188] = new ModelRendererTurbo(this, 417, 49, textureX, textureY, "lamp"); // lamp
+		bodyModel[189] = new ModelRendererTurbo(this, 417, 49, textureX, textureY, "lamp"); // lamp
+		bodyModel[190] = new ModelRendererTurbo(this, 417, 49, textureX, textureY, "lamp"); // lamp
 		bodyModel[191] = new ModelRendererTurbo(this, 177, 81, textureX, textureY); // Box 101
 		bodyModel[192] = new ModelRendererTurbo(this, 193, 1, textureX, textureY); // Box 102
 		bodyModel[193] = new ModelRendererTurbo(this, 337, 81, textureX, textureY); // Box 103
@@ -230,10 +233,10 @@ public class Model10tonBrakeVan extends ModelConverter //Same as Filename
 		bodyModel[195] = new ModelRendererTurbo(this, 337, 81, textureX, textureY); // Box 103
 		bodyModel[196] = new ModelRendererTurbo(this, 337, 81, textureX, textureY); // Box 103
 		bodyModel[197] = new ModelRendererTurbo(this, 337, 81, textureX, textureY); // Box 103
-		bodyModel[198] = new ModelRendererTurbo(this, 417, 49, textureX, textureY); // lamp
-		bodyModel[199] = new ModelRendererTurbo(this, 417, 49, textureX, textureY); // lamp
-		bodyModel[200] = new ModelRendererTurbo(this, 417, 49, textureX, textureY); // lamp
-		bodyModel[201] = new ModelRendererTurbo(this, 417, 49, textureX, textureY); // lamp
+		bodyModel[198] = new ModelRendererTurbo(this, 417, 49, textureX, textureY, "lamp"); // lamp
+		bodyModel[199] = new ModelRendererTurbo(this, 417, 49, textureX, textureY, "lamp"); // lamp
+		bodyModel[200] = new ModelRendererTurbo(this, 417, 49, textureX, textureY, "lamp"); // lamp
+		bodyModel[201] = new ModelRendererTurbo(this, 417, 49, textureX, textureY, "lamp"); // lamp
 		bodyModel[202] = new ModelRendererTurbo(this, 177, 81, textureX, textureY); // Box 101
 		bodyModel[203] = new ModelRendererTurbo(this, 193, 1, textureX, textureY); // Box 102
 		bodyModel[204] = new ModelRendererTurbo(this, 337, 81, textureX, textureY); // Box 103
@@ -881,4 +884,21 @@ public class Model10tonBrakeVan extends ModelConverter //Same as Filename
 		bodyModel[211].addShapeBox(0F, 0F, 0F, 1, 19, 1, 0F,0F, 0F, 0F, 0.05F, 0F, 0F, 0.05F, 0F, 0.05F, 0F, 0F, 0.05F, 0F, 0F, 0F, 0.05F, 0F, 0F, 0.05F, 0F, 0.05F, 0F, 0F, 0.05F); // Box 83
 		bodyModel[211].setRotationPoint(20F, -19F, -4F);
 	}
+	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
+
+		for (int i = 0; i < 212; i++) {
+			if (bodyModel[i].boxName != null && bodyModel[i].boxName.contains("lamp")) {
+				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
+				bodyModel[i].render(f5);
+				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
+			} else if (bodyModel[i].boxName != null && bodyModel[i].boxName.contains("cull")) {
+				GL11.glDisable(GL11.GL_CULL_FACE);
+				bodyModel[i].render(f5);
+				GL11.glEnable(GL11.GL_CULL_FACE);
+			} else {
+				bodyModel[i].render(f5);
+			}
+		}
+	}
+
 }

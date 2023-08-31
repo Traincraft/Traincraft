@@ -417,6 +417,16 @@ public enum RenderEnum {
 		}
 	}, 2, true),
 
+	locoJacknail(EntitylocoSteamJacknail.class,new ModelMWClass88BTE(), "0-8-0_box_tank_", true, new float[] {-1.25f, 0.15f, 0 }, new float[] {0, 180, 180}, null, "largesmoke", 2, new ArrayList<double[]>() {
+		{
+			add(new double[] { 2.5D, 1.5D, 0D });
+		}
+	}, "explode", new ArrayList<double[]>() {
+		{
+			add(new double[] { 2.5D, 0.05D, 0.65D });
+		}
+	}, 2, true),
+
 	locoC41_080(EntityLocoSteamC41_080.class, new ModelC41_080(), "locoC41_080", false, new float[] {  -3.5F, -0.5F, 0.0F }, new float[] { 0, 180, 180 }, null, "largesmoke", 3, new ArrayList<double[]>() {
 		{
 			add(new double[] { 3.55D, 1.65D, 0D });

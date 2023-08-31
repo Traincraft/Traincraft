@@ -683,7 +683,7 @@ public enum ItemIDs {
 	minecartClass230Middle("ItemRollingStock","Class_230_Middle_Icon", 1),
 	minecartDuewagGT6ERLoco("ItemRollingStock","Duewag_GT6ER_Loco_icon",2),
 	minecartDuewagGT6ERTail("ItemRollingStock","Duewag_GT6ER_Tail_icon",2),
-	minecartMineralwagon("ItemRollingStock", "Mineral_wagon_Icon", 6),
+	minecartMineralwagon("ItemRollingStock", "Mineral_wagon_Icon", 4),
 	minecartJ50("ItemRollingStock", "J50_icon", 5),
 	minecartVentilatedVan("ItemRollingStock", "Ventilated_van_Icon", 3),
 	minecartSentinelY3("ItemRollingStock", "Sentinel_Y3_icon", 4),
@@ -701,6 +701,7 @@ public enum ItemIDs {
 	minecartClass378Front("ItemRollingStock", "Class_378_Front_Icon", 5),
 	minecartClass378Middle("ItemRollingStock", "Class_378_Middle_Icon", 2),
 	minecartClass378Tail("ItemRollingStock", "Class_378_Tail_Icon", 2),
+	minecartJacknail("ItemRollingStock", "0-8-0_box_tank_icon", 5),
 
 
 	//signalSpanish("ItemsignalSpanish","signalSpanish", 1),
