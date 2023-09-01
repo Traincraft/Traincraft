@@ -634,6 +634,7 @@ public enum ItemIDs {
 	minecartClass162Engine("ItemRollingStock","Class_162_Engine_icon",2),
 	minecartClass162CoachB("ItemRollingStock","Class_162_Coach_B_icon",1),
 	minecartClass162CoachA("ItemRollingStock","Class_162_Coach_A_icon",1),
+	minecartClass162Tail("ItemRollingStock", "class_162_tail_icon", 1),
 	minecartClass34("ItemRollingStock", "class_34_icon", 4),
 	minecartTanker_UK("ItemRollingStock", "Tanker_UK_icon", 1),
 	minecartMetalTram("ItemRollingStock", "Metal_Tram_icon", 2),
@@ -702,6 +703,8 @@ public enum ItemIDs {
 	minecartClass378Middle("ItemRollingStock", "Class_378_Middle_Icon", 2),
 	minecartClass378Tail("ItemRollingStock", "Class_378_Tail_Icon", 2),
 	minecartJacknail("ItemRollingStock", "0-8-0_box_tank_icon", 5),
+	minecartMRcompound("ItemRollingStock", "Icon_midland_compound", 4),
+	minecartMRcompoundTender("ItemRollingStock", "Icon_midland_compound_tender", 2),
 
 
 	//signalSpanish("ItemsignalSpanish","signalSpanish", 1),

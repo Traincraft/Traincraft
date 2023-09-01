@@ -687,6 +687,7 @@ item.tc:minecartACFGNRPO_30.name=ACFGNRPO 30
 item.tc:minecartClass162Engine.name=Class 462 Engine
 item.tc:minecartClass162CoachB.name=Class 462 Coach B
 item.tc:minecartClass162CoachA.name=Class 462 Coach A
+item.tc:minecartClass162Tail.name=Class 462 Tail
 item.tc:minecartClass34.name=Class 34
 item.tc:minecartTanker_UK.name=Tanker UK
 item.tc:minecartMetalTram.name=Metal Tram
@@ -755,6 +756,8 @@ item.tc:minecartClass378Front.name=Class 378 Front
 item.tc:minecartClass378Middle.name=Class 378 Middle
 item.tc:minecartClass378Tail.name=Class 378 Tail
 item.tc:minecartJacknail.name=MW class 88bte
+item.tc:minecartMRcompound.name=Midland Compound
+item.tc:minecartMRcompoundTender=Midland Compound Tender
 
 
 <!-- ## Achievements ## -->
@@ -1292,6 +1295,7 @@ entity.tc.FGV_4300_Tail.name=FGV 4300 Tail
 entity.tc.Class162Engine.name=Class 462 Engine
 entity.tc.Class162CoachA.name=Class 462 Coach A
 entity.tc.Class162CoachB.name=Class 462 Coach B
+entity.tc.Class162Tail.name=Class 462 Tail
 entity.tc.Class34.name=Class 34
 entity.tc.TankerUK.name=Tanker UK
 entity.tc.MetalTram.name=Metal Tram
@@ -1361,6 +1365,8 @@ entity.tc.Class378Middle.name=Class 378 Middle
 entity.tc.Class378Tail.name=Class 378 Tail
 entity.tc.Jacknail.name=MW class 88bte
 entity.tc.CD754.name=CD754
+entity.tc.MRCompound.name=Midland Compound
+entity.tc.MRCompoundTender.name=Midland Compound Tender
 
 
 description.villager.profession.tc.station_chief=Station Master
