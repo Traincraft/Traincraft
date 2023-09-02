@@ -758,6 +758,8 @@ item.tc:minecartClass378Tail.name=Class 378 Tail
 item.tc:minecartJacknail.name=MW class 88bte
 item.tc:minecartMRcompound.name=Midland Compound
 item.tc:minecartMRcompoundTender=Midland Compound Tender
+item.tc:minecartClass142Front.name=Class 142 Front
+item.tc:minecartClass142Tail.name=Class 142 Tail
 
 
 <!-- ## Achievements ## -->
@@ -1367,6 +1369,8 @@ entity.tc.Jacknail.name=MW class 88bte
 entity.tc.CD754.name=CD754
 entity.tc.MRCompound.name=Midland Compound
 entity.tc.MRCompoundTender.name=Midland Compound Tender
+entity.tc.Class142Front.name=Class 142 Front
+entity.tc.Class142Tail.name=Class 142 Tail
 
 
 description.villager.profession.tc.station_chief=Station Master

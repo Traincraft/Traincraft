@@ -705,6 +705,8 @@ public enum ItemIDs {
 	minecartJacknail("ItemRollingStock", "0-8-0_box_tank_icon", 5),
 	minecartMRcompound("ItemRollingStock", "Icon_midland_compound", 4),
 	minecartMRcompoundTender("ItemRollingStock", "Icon_midland_compound_tender", 2),
+	minecartClass142Front("ItemRollingStock", "Class_142_Icon", 4),
+	minecartClass142Tail("ItemRollingStock", "Class_142_Tail_Icon", 2),
 
 
 	//signalSpanish("ItemsignalSpanish","signalSpanish", 1),

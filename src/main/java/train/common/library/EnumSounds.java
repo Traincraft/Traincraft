@@ -159,6 +159,7 @@ public enum EnumSounds {
 	DuewagGT6ERLoco(EntityElectricDuewagGT6ERLoco.class, "tram_bell", 1F, "vl10_idle", 0.6F, 50, "vl10_idle", 0.6F, 50, false),
 	J50loco(EntityLocoSteamJ50.class, "a4_whistle", 1.25f, "steam_run", 0.5f, 25, "adler_run", 1f, 40, true),
 	SentinelY3(EntityLocoSteamSentinelY3.class, "adler_whistle", 1f, "steam_run", 0.75f, 10,"steam_run", 0.25f, 20, true),
+	Class142Front(EntityLocoDieselClass142.class, "british_two_tone", 2f, "FM_38D_6_Notch8", 0.75f, 10,"chme3_idle", 0.5f, 20, false),
 	Class143Front(EntityLocoDieselClass143.class, "british_two_tone", 2f, "FM_38D_6_Notch8", 0.75f, 10,"chme3_idle", 0.5f, 20, false),
 	Jacknail(EntitylocoSteamJacknail.class, "american_steam_horn", 1.5f, "steam_run", 0.6f, 25, "adler_run", 0.5f, 17, true),
 	MRcompound(EntitylocoSteamMRCompound.class, "steam_horn", 0.6F, "steam_run", 0.4F, 20, "steam_run", 0.4F, 20, true),
