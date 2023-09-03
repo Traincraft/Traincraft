@@ -13,13 +13,13 @@ import train.common.api.LiquidManager;
 import train.common.library.EnumTrains;
 import train.common.library.GuiIDs;
 
-public class EntityLocoDieselClass142 extends DieselTrain {
-    public EntityLocoDieselClass142(World world) {
+public class EntityLocoDieselBagnall extends DieselTrain {
+    public EntityLocoDieselBagnall(World world) {
         super(world, EnumTrains.Class142Front.getTankCapacity(), LiquidManager.dieselFilter());
         initLoco();
 
     }
-    public EntityLocoDieselClass142(World world, double d, double d1, double d2){
+    public EntityLocoDieselBagnall(World world, double d, double d1, double d2){
         this(world);
         setPosition(d, d1 + yOffset, d2);
         motionX = 0.0D;
@@ -39,8 +39,8 @@ public class EntityLocoDieselClass142 extends DieselTrain {
     public void updateRiderPosition() {
         if (riddenByEntity == null) {return;}
         double pitchRads = this.anglePitchClient * Math.PI / 180.0D;
-        double distance = 2.84;
-        double yOffset = -0.12;
+        double distance = 0;
+        double yOffset = 0.45;
         float rotationCos1 = (float) Math.cos(Math.toRadians(this.renderYaw + 90));
         float rotationSin1 = (float) Math.sin(Math.toRadians((this.renderYaw + 90)));
         if(side.isServer()){
@@ -121,7 +121,7 @@ public class EntityLocoDieselClass142 extends DieselTrain {
     }
 
     @Override
-    public float getOptimalDistance(EntityMinecart cart) { return 0.84F;
+    public float getOptimalDistance(EntityMinecart cart) { return 0.8F;
     }
 
     @Override
@@ -131,7 +131,7 @@ public class EntityLocoDieselClass142 extends DieselTrain {
 
     @Override
     public String getInventoryName() {
-        return "Class 142 Front";
+        return "Bagnall Shunter";
     }
 
     @Override

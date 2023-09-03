@@ -222,6 +222,7 @@ public class RecipeHandler {
 		//Gravel
 		GameRegistry.addShapelessRecipe(new ItemStack(BlockIDs.oreTC.block, 4,3), Blocks.gravel, Blocks.gravel,  Items.clay_ball);
 		GameRegistry.addShapelessRecipe(new ItemStack(BlockIDs.oreTC.block, 16, 3), Blocks.gravel,Blocks.gravel,Blocks.gravel,Blocks.gravel,Blocks.gravel,Blocks.gravel,Blocks.gravel,Blocks.gravel,Blocks.clay);
+		GameRegistry.addShapelessRecipe(new ItemStack(BlockIDs.highSpeedBallast.block, 16),Items.quartz,Blocks.gravel,Blocks.gravel,Blocks.gravel,Blocks.gravel,Blocks.gravel,Blocks.gravel,Blocks.gravel, Blocks.clay);
 		GameRegistry.addShapelessRecipe(new ItemStack(BlockIDs.dirtyBallast.block, 16),Blocks.gravel,Blocks.gravel,Blocks.gravel,Blocks.gravel,Blocks.gravel,Blocks.gravel,Blocks.gravel,Blocks.gravel, Blocks.dirt);
 		GameRegistry.addShapelessRecipe(new ItemStack(BlockIDs.dirtierBallast.block, 16), new ItemStack(BlockIDs.dirtyBallast.block,1 ), new ItemStack(BlockIDs.dirtyBallast.block,1 ),new ItemStack(BlockIDs.dirtyBallast.block,1 ),new ItemStack(BlockIDs.dirtyBallast.block,1 ),new ItemStack(BlockIDs.dirtyBallast.block,1 ),new ItemStack(BlockIDs.dirtyBallast.block,1 ),new ItemStack(BlockIDs.dirtyBallast.block,1 ),new ItemStack(BlockIDs.dirtyBallast.block,1 ), Blocks.dirt);
 

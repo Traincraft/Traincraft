@@ -1,4 +1,4 @@
-package train.common.blocks.blockSwitch;
+package train.common.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;

@@ -707,6 +707,7 @@ public enum ItemIDs {
 	minecartMRcompoundTender("ItemRollingStock", "Icon_midland_compound_tender", 2),
 	minecartClass142Front("ItemRollingStock", "Class_142_Icon", 4),
 	minecartClass142Tail("ItemRollingStock", "Class_142_Tail_Icon", 2),
+	minecartBagnall("ItemRollingStock", "Bagnall_Icon", 4),
 
 
 	//signalSpanish("ItemsignalSpanish","signalSpanish", 1),

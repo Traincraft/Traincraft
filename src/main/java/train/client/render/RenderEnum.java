@@ -1361,8 +1361,9 @@ public enum RenderEnum {
 	Class378Front( EntityElectricClass378Front.class, new ModelClass378Front(),"Class_378_", true, new float[] {-1.9F, 0.2F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
 	Class378Middle( EntityPassengerClass378Middle.class, new ModelClass378Middle(),"Class_378_Middle_", true, new float[] {0F, 0.2F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
 	Class378Tail( EntityPassengerClass378Tail.class, new ModelClass378Front(),"Class_378_", true, new float[] {0F, 0.2F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
-	Class142Front( EntityLocoDieselClass142.class, new ModelClass142(),"Class_142_", true, new float[] {-1.8F, 0.2F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, new ArrayList<double[]>() {{}}, "", null, 0, false),
+	Class142Front( EntityLocoDieselClass142.class, new ModelClass142(),"Class_142_", true, new float[] {-1.8F, 0.2F, 0F},  new float[] { 0F, 180F, 180F },null, "smoke", 2, new ArrayList<double[]>() {{}}, "", null, 0, false),
 	Class142Tail( EntityPassengerClass142Tail.class, new ModelClass142(),"Class_142_", true, new float[] {-0.53F, 0.2F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
+	Bagnall( EntityLocoDieselBagnall.class, new ModelBagnall(),"Bagnall_Shunter_0-4-0_", true, new float[] {-0.85F, 0.18F, 0F},  new float[] { 0F, 180F, 180F },null, "smoke", 2, new ArrayList<double[]>() {{}}, "", null, 0, false),
 
 	;
 

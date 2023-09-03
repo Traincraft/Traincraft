@@ -81,6 +81,7 @@ tile.tc:snowGravel.name=Snowy Gravel
 tile.tc:asphalt.name=Asphalt Block
 tile.tc:asphaltSlab.name=Asphalt Slab
 tile.tc:asphaltStairs.name=Asphalt Stairs
+tile.tc:highSpeedBallast.name=High Speed Ballast
 tile.tc:signalSpanish.name=Spanish Signal
 tile.tc:kSignal.name=Ks Signal
 
@@ -760,6 +761,7 @@ item.tc:minecartMRcompound.name=Midland Compound
 item.tc:minecartMRcompoundTender=Midland Compound Tender
 item.tc:minecartClass142Front.name=Class 142 Front
 item.tc:minecartClass142Tail.name=Class 142 Tail
+item.tc:minecartBagnall.name=Bagnall Shunter
 
 
 <!-- ## Achievements ## -->
@@ -1371,6 +1373,7 @@ entity.tc.MRCompound.name=Midland Compound
 entity.tc.MRCompoundTender.name=Midland Compound Tender
 entity.tc.Class142Front.name=Class 142 Front
 entity.tc.Class142Tail.name=Class 142 Tail
+entity.tc.Bagnall.name=Bagnall Shunter
 
 
 description.villager.profession.tc.station_chief=Station Master
