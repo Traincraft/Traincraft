@@ -68,7 +68,16 @@ import static train.common.core.util.TraincraftUtil.isRailBlockAt;
 public class EntityRollingStock extends AbstractTrains implements ILinkableCart {
 	public int fuelTrain;
 	protected static final int[][][] matrix = {
-			{ { 0, 0, -1 }, { 0, 0, 1 } }, { { -1, 0, 0 }, { 1, 0, 0 } }, { { -1, -1, 0 }, { 1, 0, 0 } }, { { -1, 0, 0 }, { 1, -1, 0 } }, { { 0, 0, -1 }, { 0, -1, 1 } }, { { 0, -1, -1 }, { 0, 0, 1 } }, { { 0, 0, 1 }, { 1, 0, 0 } }, { { 0, 0, 1 }, { -1, 0, 0 } }, { { 0, 0, -1 }, { -1, 0, 0 } }, { { 0, 0, -1 }, { 1, 0, 0 } } };
+			{ { 0, 0,-1}, { 0, 0, 1} },
+			{ {-1, 0, 0}, { 1, 0, 0} },
+			{ {-1,-1, 0}, { 1, 0, 0} },
+			{ {-1, 0, 0}, { 1,-1, 0} },
+			{ { 0, 0,-1}, { 0,-1, 1} },
+			{ { 0,-1,-1}, { 0, 0, 1} },
+			{ { 0, 0, 1}, { 1, 0, 0} },
+			{ { 0, 0, 1}, {-1, 0, 0} },
+			{ { 0, 0,-1}, {-1, 0, 0} },
+			{ { 0, 0,-1}, { 1, 0, 0} } };
 
 	protected EntityPlayer playerEntity;
 
@@ -985,23 +994,23 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			 double d10 = ai[1][2] - ai[0][2];
 			 double d11 = Math.sqrt(d9 * d9 + d10 * d10);
 			 if (motionX * d9 + motionZ * d10 < 0.0D) {
-			 d9 = -d9;
-			 d10 = -d10;
+			 	d9 = -d9;
+			 	d10 = -d10;
 			 }
 			 double d13 = Math.sqrt(motionX * motionX + motionZ * motionZ);
 			 motionX = (d13 * d9) / d11;
 			 motionZ = (d13 * d10) / d11;
 			 if (flag1 && !flag && shouldDoRailFunctions()) {
-			 if (Math.sqrt(motionX * motionX + motionZ * motionZ) < 0.029999999999999999D) {
-			 motionX = 0.0D;
-			 motionY = 0.0D;
-			 motionZ = 0.0D;
-			 }
-			 else {
-			 motionX *= 0.5D;
-			 motionY *= 0.0D;
-			 motionZ *= 0.5D;
-			 }
+				 if (Math.sqrt(motionX * motionX + motionZ * motionZ) < 0.029999999999999999D) {
+					 motionX = 0.0D;
+					 motionY = 0.0D;
+					 motionZ = 0.0D;
+				 }
+				 else {
+					 motionX *= 0.5D;
+					 motionY *= 0.0D;
+					 motionZ *= 0.5D;
+				 }
 			 }
 			 double d17 = 0.0D;
 			 double d18 = i + 0.5D + ai[0][0] * 0.5D;
@@ -1011,19 +1020,19 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			 d9 = d20 - d18;
 			 d10 = d21 - d19;
 			 if (d9 == 0.0D) {
-			 posX = i + 0.5D;
-			 d17 = posZ - k;
+				 posX = i + 0.5D;
+				 d17 = posZ - k;
 			 }
 			 else if (d10 == 0.0D) {
-			 posZ = k + 0.5D;
-			 d17 = posX - i;
+				 posZ = k + 0.5D;
+				 d17 = posX - i;
 			 }
 			 else {
-			 double d22 = posX - d18;
-			 double d24 = posZ - d19;
-			 d17 = (d22 * d9 + d24 * d10) * 2D;
-			 //double derailSpeed = 0;//0.46;
-
+				 double d22 = posX - d18;
+				 double d24 = posZ - d19;
+				 d17 = (d22 * d9 + d24 * d10) * 2D;
+				 //double derailSpeed = 0;//0.46;
+			 }
 			 if(bogieLoco != null) {
 				 if (!bogieLoco.isOnRail()) {
 					 derailSpeed = 0;
@@ -1058,7 +1067,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			 }
 			 }
 			
-			 }
+
 		 	posX = d18 + d9 * d17;
 		 	posZ = d19 + d10 * d17;
 			setPosition(posX, posY + yOffset + 0.35, posZ);

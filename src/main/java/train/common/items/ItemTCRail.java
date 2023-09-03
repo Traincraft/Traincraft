@@ -19,10 +19,8 @@ import train.common.library.BlockIDs;
 import train.common.library.ItemIDs;
 import train.common.tile.TileTCRail;
 import train.common.tile.TileTCRailGag;
-import tv.twitch.chat.Chat;
 
 import javax.annotation.Nullable;
-import javax.sound.midi.Track;
 import java.util.List;
 
 public class ItemTCRail extends ItemPart {
@@ -35,9 +33,7 @@ public class ItemTCRail extends ItemPart {
 	private String typeVariantDiagonal = TrackTypes.SMALL_DIAGONAL_STRAIGHT.getLabel();
 	private String typeVariant90Turn;
 	private String typeVariantCrossing;
-	private String typeVariantSTurn;
 	private Item idVariantSwitch;
-	private Item idVariantSTurn;
 	TrackTypes tempType;
 
 	public enum TrackTypes {
@@ -552,23 +548,23 @@ public class ItemTCRail extends ItemPart {
 
 		TileTCRailGag[] tileGag = new TileTCRailGag[posX.length - 1];
 
-		/** check if first straight rail can be placed */
+		/* check if first straight rail can be placed */
 		if (putDownEnterTrack && !canPlaceTrack(player, world, x, y + 1, z)) {
 			return false;
 		}
 
-		/** check if Gag rails can be placed */
+		/* check if Gag rails can be placed */
 		for (int gag = 0; gag < posX.length; gag++) {
 			if (!canPlaceTrack(player, world, posX[gag], y + 1, posZ[gag])) {
 				return false;
 			}
 		}
-		/** Check last block */
+		/* Check last block */
 		if (putDownExitTrack && !canPlaceTrack(player, world, posExitX, y + 1, posExitZ)) {
 			return false;
 		}
 		if (putDownEnterTrack) {
-			/** first rail of the turn is a 1 block straight */
+			/* first rail of the turn is a 1 block straight */
 			placeTrack(world,x, y + 1, z, BlockIDs.tcRail.block, l);
 			TileTCRail tcRailStart = (TileTCRail) world.getTileEntity(x, y + 1, z);
 			tcRailStart.setType(typeVariantStraight);
@@ -579,7 +575,7 @@ public class ItemTCRail extends ItemPart {
 			tcRailStart.linkedZ = posZ[0];
 		}
 
-		/** the turn starts with this rail */
+		/* the turn starts with this rail */
 		placeTrack(world,posX[0], y + 1, posZ[0], BlockIDs.tcRail.block, l);
 		TileTCRail tcRail = (TileTCRail) world.getTileEntity(posX[0], y + 1, posZ[0]);
 		tcRail.setFacing(l);
@@ -590,14 +586,14 @@ public class ItemTCRail extends ItemPart {
 		tcRail.setType(type);
 		tcRail.idDrop = idDrop;
 
-		/** Gag rails containing reference to first turn rail */
+		/* Gag rails containing reference to first turn rail */
 		for (int gag = 1; gag < posX.length; gag++) {
 			placeTrack(world,posX[gag], y + 1, posZ[gag], BlockIDs.tcRailGag.block, 0);
 			tileGag[gag - 1] = (TileTCRailGag) world.getTileEntity(posX[gag], y + 1, posZ[gag]);
 		}
 
 		if (putDownExitTrack) {
-			/** Last rail is a 1 block straight */
+			/* Last rail is a 1 block straight */
 			placeTrack(world,posExitX, y + 1, posExitZ, BlockIDs.tcRail.block, exitFacing);
 			TileTCRail tcRailEnd = (TileTCRail) world.getTileEntity(posExitX, y + 1, posExitZ);
 			tcRailEnd.setFacing(exitFacing);

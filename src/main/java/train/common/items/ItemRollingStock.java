@@ -301,7 +301,6 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 				// -90  = 6 = EAST
 				// -45  = 7 = SOUTH-EAST
 
-				player.addChatMessage(new ChatComponentText("dir: "+ dir + " meta: " + meta));
 
 				if (dir == 0) {
 
@@ -330,7 +329,6 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 						}
 					}
 					if (rollingStock instanceof Locomotive || rollingStock instanceof ISecondBogie) {
-						player.addChatMessage(new ChatComponentText("test"));
 						if ((meta == 2 || meta == 0) && (world.getBlock(i, j, k + 1) == BlockIDs.tcRail.block || world.getBlock(i, j, k + 1) == BlockIDs.tcRailGag.block || BlockRailBase.func_150051_a(world.getBlock(i, j, k + 1))) && (world.getBlock(i, j, k + 2) == BlockIDs.tcRail.block || world.getBlock(i, j, k + 2) == BlockIDs.tcRailGag.block || BlockRailBase.func_150051_a(world.getBlock(i, j, k + 2)))) {
 							rollingStock.serverRealRotation = 90;
 						} else if ((meta == 6 || meta == 4) && (world.getBlock(i - 1, j, k + 1) == BlockIDs.tcRail.block || world.getBlock(i - 1, j, k + 1) == BlockIDs.tcRailGag.block || BlockRailBase.func_150051_a(world.getBlock(i - 1, j, k + 1))) && (world.getBlock(i - 2, j, k + 2) == BlockIDs.tcRail.block || world.getBlock(i - 2, j, k + 2) == BlockIDs.tcRailGag.block || BlockRailBase.func_150051_a(world.getBlock(i - 2, j, k + 2)))) {
@@ -633,9 +631,7 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 					}
 				}
 
-					// System.out.println("ServerRealRotation: " + rollingStock.serverRealRotation + "
-					// RotationYaw: "
-					// + rollingStock.rotationYaw);
+
 
 					rollingStock.trainType = ((ItemRollingStock) itemstack.getItem()).getTrainType();
 					rollingStock.trainName = (itemstack.getItem()).getItemStackDisplayName(itemstack);

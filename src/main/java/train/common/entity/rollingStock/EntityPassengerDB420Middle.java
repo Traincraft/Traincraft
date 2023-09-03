@@ -6,8 +6,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import train.common.api.EntityRollingStock;
 import train.common.api.IPassenger;
+import train.common.api.ISecondBogie;
 
-public class EntityPassengerDB420Middle extends EntityRollingStock implements IPassenger {
+public class EntityPassengerDB420Middle extends EntityRollingStock implements IPassenger, ISecondBogie {
     public EntityPassengerDB420Middle(World world) {
         super(world);
     }
