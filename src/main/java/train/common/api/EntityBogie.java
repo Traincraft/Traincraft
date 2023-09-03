@@ -538,7 +538,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 	public void onUpdate(){
 		this.setCurrentCartSpeedCapOnRail(1.8F);
 		this.setMaxSpeedAirLateral(1.8F);
-
+		super.onUpdate();
 		this.prevPosX = this.posX;
 		this.prevPosY = this.posY;
 		this.prevPosZ = this.posZ;
