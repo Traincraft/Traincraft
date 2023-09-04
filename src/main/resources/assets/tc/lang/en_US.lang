@@ -758,10 +758,13 @@ item.tc:minecartClass378Middle.name=Class 378 Middle
 item.tc:minecartClass378Tail.name=Class 378 Tail
 item.tc:minecartJacknail.name=MW class 88bte
 item.tc:minecartMRcompound.name=Midland Compound
-item.tc:minecartMRcompoundTender=Midland Compound Tender
+item.tc:minecartMRcompoundTender.name=Midland Compound Tender
 item.tc:minecartClass142Front.name=Class 142 Front
 item.tc:minecartClass142Tail.name=Class 142 Tail
 item.tc:minecartBagnall.name=Bagnall Shunter
+item.tc:minecartClass389Front.name=Class 389 Front
+item.tc:minecartClass389Middle.name=Class 389 Middle
+item.tc:minecartClass389Tail.name=Class 389 Tail
 
 
 <!-- ## Achievements ## -->
@@ -1374,6 +1377,9 @@ entity.tc.MRCompoundTender.name=Midland Compound Tender
 entity.tc.Class142Front.name=Class 142 Front
 entity.tc.Class142Tail.name=Class 142 Tail
 entity.tc.Bagnall.name=Bagnall Shunter
+entity.tc.Class389Front.name=Class 389 Front
+entity.tc.Class389Middle.name=Class 389 Middle
+entity.tc.Class389Tail.name=Class 389 Tail
 
 
 description.villager.profession.tc.station_chief=Station Master
