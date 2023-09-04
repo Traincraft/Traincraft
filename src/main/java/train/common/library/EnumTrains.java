@@ -580,6 +580,9 @@ public enum EnumTrains {
 	Class142Front("Class142Front", EntityLocoDieselClass142.class, ItemIDs.minecartClass142Front.item, "diesel", 225, 121, 0, 5, 0, 100, 0.9, 0.9, 7500,TraincraftUtil.getBytesFromColors(new String[] {"Purple", "Cyan", "Blue", "LightBlue", "LightGrey", "Red", "Yellow", "Orange"}), 18, -2.5,"Pack: B.I.P."),
 	Class142Tail("Class142Tail", EntityPassengerClass142Tail.class, ItemIDs.minecartClass142Tail.item, "passenger", 0, 0, 3, 0, 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[]{"Purple", "Cyan", "Blue", "LightBlue", "LightGrey", "Red", "Yellow", "Orange"}), 0, 0, "Pack: B.I.P." ),
 	Bagnall("Bagnall", EntityLocoDieselBagnall.class, ItemIDs.minecartBagnall.item, "diesel", 90, 100, 0, 5, 0, 100, 0.9, 0.9, 7500,TraincraftUtil.getBytesFromColors(new String[] {"Blue", "Red", "Yellow"}), 18, -2,"Pack: B.I.P."),
+	Class389Front("Class389Front", EntityElectricClass389Front.class, ItemIDs.minecartClass389Front.item, "electric", 2250, 178, 0,60, 0, 100, 0.7, 0.7, 1000, TraincraftUtil.getBytesFromColors(new String[] {"Orange", "White"}), 18, -4.35,"Pack: B.I.P."),
+	Class389Middle("Class389Middle", EntityPassengerClass389Middle.class, ItemIDs.minecartClass389Middle.item, "passenger", 0, 0, 3.5, 0, 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[]{"Orange", "Brown", "White", "LightGrey"}), 0, 0, "Pack: B.I.P." ),
+	Class389Tail("Class389Tail", EntityPassengerClass389Tail.class, ItemIDs.minecartClass389Tail.item, "passenger", 0, 0, 3.5, 0, 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[]{"Orange", "White"}), 0, 0, "Pack: B.I.P." ),
 	;
 
 //String trainType,int MHP,int maxSpeed, double mass, int fuelConsumption, int waterConsumption, int heatingTime, double accelerationRate, double brakeRate, int tankCapacity, String[] colors,

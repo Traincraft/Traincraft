@@ -748,11 +748,11 @@ public enum RenderEnum {
 	}, 2, true),
 	locoMRcompound(EntitylocoSteamMRCompound.class, new ModelMidlandcompound(), "LMS_4p_", true, new float[] {-2f, 0.1f, 0 }, new float[] {0, 180, 180}, null, "largesmoke", 2, new ArrayList<double[]>() {
 		{
-			add(new double[] { 2.5D, 1.5D, 0D });
+			add(new double[] { 3.5D, 1.5D, 0D });
 		}
 	}, "explode", new ArrayList<double[]>() {
 		{
-			add(new double[] { 2.5D, 0.05D, 0.65D });
+			add(new double[] { 3.5D, 0.05D, 0.65D });
 		}
 	}, 2, true),
 
@@ -1364,6 +1364,9 @@ public enum RenderEnum {
 	Class142Front( EntityLocoDieselClass142.class, new ModelClass142(),"Class_142_", true, new float[] {-1.8F, 0.2F, 0F},  new float[] { 0F, 180F, 180F },null, "smoke", 2, new ArrayList<double[]>() {{}}, "", null, 0, false),
 	Class142Tail( EntityPassengerClass142Tail.class, new ModelClass142(),"Class_142_", true, new float[] {-0.53F, 0.2F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
 	Bagnall( EntityLocoDieselBagnall.class, new ModelBagnall(),"Bagnall_Shunter_0-4-0_", true, new float[] {-0.85F, 0.18F, 0F},  new float[] { 0F, 180F, 180F },null, "smoke", 2, new ArrayList<double[]>() {{}}, "", null, 0, false),
+	Class389Front( EntityElectricClass389Front.class, new ModelClass389Front(),"Class_389_", true, new float[] {-2.4F, 0F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
+	Class389Middle( EntityPassengerClass389Middle.class, new ModelClass389Middle(),"Class_389_Middle_", true, new float[] {-0.31F, 0F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
+	Class389Tail( EntityPassengerClass389Tail.class, new ModelClass389Front(),"Class_389_", true, new float[] {-0.31F, 0F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
 
 	;
 
