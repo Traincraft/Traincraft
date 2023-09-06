@@ -765,6 +765,9 @@ item.tc:minecartBagnall.name=Bagnall Shunter
 item.tc:minecartClass389Front.name=Class 389 Front
 item.tc:minecartClass389Middle.name=Class 389 Middle
 item.tc:minecartClass389Tail.name=Class 389 Tail
+item.tc:minecartClass442DTS.name=Class 442 DTS
+item.tc:minecartClass442TS.name=Class 442 TS
+item.tc:minecartClass442MBLS.name=Class 442 MBLS
 
 
 <!-- ## Achievements ## -->
@@ -1380,6 +1383,9 @@ entity.tc.Bagnall.name=Bagnall Shunter
 entity.tc.Class389Front.name=Class 389 Front
 entity.tc.Class389Middle.name=Class 389 Middle
 entity.tc.Class389Tail.name=Class 389 Tail
+entity.tc.Class442DTS.name=Class 442 DTS
+entity.tc.Class442TS.name=Class 442 TS
+entity.tc.Class442MBLS.name=Class 442 MBLS
 
 
 description.villager.profession.tc.station_chief=Station Master

@@ -1367,6 +1367,9 @@ public enum RenderEnum {
 	Class389Front( EntityElectricClass389Front.class, new ModelClass389Front(),"Class_389_", true, new float[] {-2.4F, 0F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
 	Class389Middle( EntityPassengerClass389Middle.class, new ModelClass389Middle(),"Class_389_Middle_", true, new float[] {-0.31F, 0F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
 	Class389Tail( EntityPassengerClass389Tail.class, new ModelClass389Front(),"Class_389_", true, new float[] {-0.31F, 0F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
+	Class442DTS( EntityElectricClass442DTS.class, new ModelClass442DTS(),"class_442_DTS_", true, new float[] {-2F, 0F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
+	Class442TS( EntityPassengerClass442TS.class, new ModelClass442TS(),"class_442_TS_", true, new float[] {0.15F, 0F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
+	Class442MBLS( EntityPassengerClass442MBLS.class, new ModelClass442MBLS(),"class_442_MBLS_", true, new float[] {0.15F, 0F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
 
 	;
 
