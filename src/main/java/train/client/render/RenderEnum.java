@@ -746,7 +746,7 @@ public enum RenderEnum {
 			add(new double[] { 2D, -0.4D, 0D });
 		}
 	}, 2, true),
-	locoMRcompound(EntitylocoSteamMRCompound.class, new ModelMidlandcompound(), "LMS_4p_", true, new float[] {-2f, 0.1f, 0 }, new float[] {0, 180, 180}, null, "largesmoke", 2, new ArrayList<double[]>() {
+	locoMRcompound(EntitylocoSteamMRCompound.class, new ModelMidlandcompound(), "LMS_4p_", true, new float[] {-1.95f, 0.1f, 0 }, new float[] {0, 180, 180}, null, "largesmoke", 2, new ArrayList<double[]>() {
 		{
 			add(new double[] { 3.5D, 1.5D, 0D });
 		}
