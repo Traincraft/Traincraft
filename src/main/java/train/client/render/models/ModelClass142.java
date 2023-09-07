@@ -9,6 +9,9 @@
 
 package train.client.render.models;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.entity.Entity;
+import org.lwjgl.opengl.GL11;
 import tmt.ModelConverter;
 import tmt.ModelRendererTurbo;
 
@@ -38,23 +41,23 @@ public class ModelClass142 extends ModelConverter //Same as Filename
 		bodyModel[2] = new ModelRendererTurbo(this, 41, 1, textureX, textureY); // Box 2
 		bodyModel[3] = new ModelRendererTurbo(this, 73, 1, textureX, textureY); // Box 3
 		bodyModel[4] = new ModelRendererTurbo(this, 1, 1, textureX, textureY); // Box 79
-		bodyModel[5] = new ModelRendererTurbo(this, 25, 1, textureX, textureY); // Lamp
-		bodyModel[6] = new ModelRendererTurbo(this, 33, 1, textureX, textureY); // Lamp
-		bodyModel[7] = new ModelRendererTurbo(this, 89, 1, textureX, textureY); // Lamp
-		bodyModel[8] = new ModelRendererTurbo(this, 97, 1, textureX, textureY); // Lamp
-		bodyModel[9] = new ModelRendererTurbo(this, 105, 1, textureX, textureY); // Lamp
-		bodyModel[10] = new ModelRendererTurbo(this, 113, 1, textureX, textureY); // Lamp
-		bodyModel[11] = new ModelRendererTurbo(this, 121, 1, textureX, textureY); // Lamp
-		bodyModel[12] = new ModelRendererTurbo(this, 129, 1, textureX, textureY); // Lamp
+		bodyModel[5] = new ModelRendererTurbo(this, 25, 1, textureX, textureY, "lamp"); // Lamp
+		bodyModel[6] = new ModelRendererTurbo(this, 33, 1, textureX, textureY, "lamp"); // Lamp
+		bodyModel[7] = new ModelRendererTurbo(this, 89, 1, textureX, textureY, "lamp"); // Lamp
+		bodyModel[8] = new ModelRendererTurbo(this, 97, 1, textureX, textureY, "lamp"); // Lamp
+		bodyModel[9] = new ModelRendererTurbo(this, 105, 1, textureX, textureY, "lamp"); // Lamp
+		bodyModel[10] = new ModelRendererTurbo(this, 113, 1, textureX, textureY, "lamp"); // Lamp
+		bodyModel[11] = new ModelRendererTurbo(this, 121, 1, textureX, textureY, "lamp"); // Lamp
+		bodyModel[12] = new ModelRendererTurbo(this, 129, 1, textureX, textureY, "lamp"); // Lamp
 		bodyModel[13] = new ModelRendererTurbo(this, 137, 1, textureX, textureY); // Box 21
-		bodyModel[14] = new ModelRendererTurbo(this, 145, 1, textureX, textureY); // Lamp
-		bodyModel[15] = new ModelRendererTurbo(this, 153, 1, textureX, textureY); // Lamp
-		bodyModel[16] = new ModelRendererTurbo(this, 161, 1, textureX, textureY); // Lamp
-		bodyModel[17] = new ModelRendererTurbo(this, 169, 1, textureX, textureY); // Lamp
-		bodyModel[18] = new ModelRendererTurbo(this, 177, 1, textureX, textureY); // Lamp
-		bodyModel[19] = new ModelRendererTurbo(this, 185, 1, textureX, textureY); // Lamp
-		bodyModel[20] = new ModelRendererTurbo(this, 193, 1, textureX, textureY); // Lamp
-		bodyModel[21] = new ModelRendererTurbo(this, 201, 1, textureX, textureY); // Lamp
+		bodyModel[14] = new ModelRendererTurbo(this, 145, 1, textureX, textureY, "lamp"); // Lamp
+		bodyModel[15] = new ModelRendererTurbo(this, 153, 1, textureX, textureY, "lamp"); // Lamp
+		bodyModel[16] = new ModelRendererTurbo(this, 161, 1, textureX, textureY, "lamp"); // Lamp
+		bodyModel[17] = new ModelRendererTurbo(this, 169, 1, textureX, textureY, "lamp"); // Lamp
+		bodyModel[18] = new ModelRendererTurbo(this, 177, 1, textureX, textureY, "lamp"); // Lamp
+		bodyModel[19] = new ModelRendererTurbo(this, 185, 1, textureX, textureY, "lamp"); // Lamp
+		bodyModel[20] = new ModelRendererTurbo(this, 193, 1, textureX, textureY, "lamp"); // Lamp
+		bodyModel[21] = new ModelRendererTurbo(this, 201, 1, textureX, textureY, "lamp"); // Lamp
 		bodyModel[22] = new ModelRendererTurbo(this, 209, 1, textureX, textureY); // Box 30
 		bodyModel[23] = new ModelRendererTurbo(this, 209, 1, textureX, textureY); // Box 32
 		bodyModel[24] = new ModelRendererTurbo(this, 217, 1, textureX, textureY); // Box 25
@@ -904,12 +907,21 @@ public class ModelClass142 extends ModelConverter //Same as Filename
 		bodyModel[216].addShapeBox(0F, 0F, 0F, 10, 1, 1, 0F,0F, 0F, 0.4F, 0F, 0F, 0.4F, 0F, 0F, -0.8F, 0F, 0F, -0.8F, 0F, -0.5F, 0.4F, 0F, -0.5F, 0.4F, 0F, -0.5F, -0.78F, 0F, -0.5F, -0.78F); // Box 95
 		bodyModel[216].setRotationPoint(29F, -16F, 9.8F);
 	}
+	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
 
-	public ArrayList<double[]> getSmokePosition() {
-		return new ArrayList<double[]>() {
-			{
-				add(new double[]{-0.8, 1.2D, 0.4});
+		for (int i = 0; i < 217; i++) {
+			if (bodyModel[i].boxName != null && bodyModel[i].boxName.contains("lamp")) {
+				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
+				bodyModel[i].render(f5);
+				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
+			} else if (bodyModel[i].boxName != null && bodyModel[i].boxName.contains("cull")) {
+				GL11.glDisable(GL11.GL_CULL_FACE);
+				bodyModel[i].render(f5);
+				GL11.glEnable(GL11.GL_CULL_FACE);
+			} else {
+				bodyModel[i].render(f5);
 			}
-		};
+		}
 	}
+
 }

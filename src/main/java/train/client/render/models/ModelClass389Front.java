@@ -9,6 +9,9 @@
 
 package train.client.render.models;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.entity.Entity;
+import org.lwjgl.opengl.GL11;
 import tmt.ModelConverter;
 import tmt.ModelRendererTurbo;
 
@@ -196,10 +199,10 @@ public class ModelClass389Front extends ModelConverter //Same as Filename
 		bodyModel[162] = new ModelRendererTurbo(this, 225, 81, textureX, textureY); // Box 138
 		bodyModel[163] = new ModelRendererTurbo(this, 105, 97, textureX, textureY); // Box 138
 		bodyModel[164] = new ModelRendererTurbo(this, 169, 97, textureX, textureY); // Box 34
-		bodyModel[165] = new ModelRendererTurbo(this, 193, 97, textureX, textureY); // Lamp
-		bodyModel[166] = new ModelRendererTurbo(this, 425, 89, textureX, textureY); // Lamp
-		bodyModel[167] = new ModelRendererTurbo(this, 209, 97, textureX, textureY); // Lamp
-		bodyModel[168] = new ModelRendererTurbo(this, 169, 97, textureX, textureY); // Lamp
+		bodyModel[165] = new ModelRendererTurbo(this, 193, 97, textureX, textureY, "lamp"); // Lamp
+		bodyModel[166] = new ModelRendererTurbo(this, 425, 89, textureX, textureY, "lamp"); // Lamp
+		bodyModel[167] = new ModelRendererTurbo(this, 209, 97, textureX, textureY, "lamp"); // Lamp
+		bodyModel[168] = new ModelRendererTurbo(this, 169, 97, textureX, textureY, "lamp"); // Lamp
 		bodyModel[169] = new ModelRendererTurbo(this, 265, 97, textureX, textureY); // 162
 		bodyModel[170] = new ModelRendererTurbo(this, 89, 89, textureX, textureY); // 163
 		bodyModel[171] = new ModelRendererTurbo(this, 153, 89, textureX, textureY); // 164
@@ -208,12 +211,12 @@ public class ModelClass389Front extends ModelConverter //Same as Filename
 		bodyModel[174] = new ModelRendererTurbo(this, 281, 97, textureX, textureY); // 168
 		bodyModel[175] = new ModelRendererTurbo(this, 505, 89, textureX, textureY); // 169
 		bodyModel[176] = new ModelRendererTurbo(this, 305, 97, textureX, textureY); // 170
-		bodyModel[177] = new ModelRendererTurbo(this, 289, 97, textureX, textureY); // Lamp
-		bodyModel[178] = new ModelRendererTurbo(this, 313, 97, textureX, textureY); // Lamp
-		bodyModel[179] = new ModelRendererTurbo(this, 329, 97, textureX, textureY); // Lamp
-		bodyModel[180] = new ModelRendererTurbo(this, 361, 97, textureX, textureY); // Lamp
-		bodyModel[181] = new ModelRendererTurbo(this, 409, 97, textureX, textureY); // Lamp
-		bodyModel[182] = new ModelRendererTurbo(this, 433, 97, textureX, textureY); // Lamp
+		bodyModel[177] = new ModelRendererTurbo(this, 289, 97, textureX, textureY, "lamp"); // Lamp
+		bodyModel[178] = new ModelRendererTurbo(this, 313, 97, textureX, textureY, "lamp"); // Lamp
+		bodyModel[179] = new ModelRendererTurbo(this, 329, 97, textureX, textureY, "lamp"); // Lamp
+		bodyModel[180] = new ModelRendererTurbo(this, 361, 97, textureX, textureY, "lamp"); // Lamp
+		bodyModel[181] = new ModelRendererTurbo(this, 409, 97, textureX, textureY, "lamp"); // Lamp
+		bodyModel[182] = new ModelRendererTurbo(this, 433, 97, textureX, textureY, "lamp"); // Lamp
 		bodyModel[183] = new ModelRendererTurbo(this, 424, 96, textureX, textureY); // Box 138
 		bodyModel[184] = new ModelRendererTurbo(this, 32, 104, textureX, textureY); // Box 138
 		bodyModel[185] = new ModelRendererTurbo(this, 481, 97, textureX, textureY); // Box 34
@@ -1892,4 +1895,21 @@ public class ModelClass389Front extends ModelConverter //Same as Filename
 		bodyModel[464].addShapeBox(0F, 0F, 0F, 1, 3, 5, 0F,-0.2F, 0F, -0.4F, -0.2F, 0F, -0.4F, -0.2F, 0F, -2.3F, -0.2F, 0F, -2.3F, -0.2F, 0F, 0F, -0.2F, 0F, 0F, -0.2F, 0F, -1.9F, -0.2F, 0F, -1.9F); // Box 192
 		bodyModel[464].setRotationPoint(20F, -12F, 3F);
 	}
+	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
+
+		for (int i = 0; i < 465; i++) {
+			if (bodyModel[i].boxName != null && bodyModel[i].boxName.contains("lamp")) {
+				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
+				bodyModel[i].render(f5);
+				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
+			} else if (bodyModel[i].boxName != null && bodyModel[i].boxName.contains("cull")) {
+				GL11.glDisable(GL11.GL_CULL_FACE);
+				bodyModel[i].render(f5);
+				GL11.glEnable(GL11.GL_CULL_FACE);
+			} else {
+				bodyModel[i].render(f5);
+			}
+		}
+	}
+
 }
