@@ -7,13 +7,14 @@ import net.minecraft.world.World;
 import train.common.api.EntityRollingStock;
 import train.common.api.IPassenger;
 
-public class EntityPassengerClass416Tail extends EntityRollingStock implements IPassenger {
+public class EntityPassengerClass205tso extends EntityRollingStock implements IPassenger {
+    //public TiltingHandler tiltingHandler = new TiltingHandler(7);
 
-    public EntityPassengerClass416Tail(World world) {
+    public EntityPassengerClass205tso(World world) {
         super(world);
     }
 
-    public EntityPassengerClass416Tail(World world, double d, double d1, double d2){
+    public EntityPassengerClass205tso(World world, double d, double d1, double d2){
         this(world);
         setPosition(d, d1 + yOffset, d2);
         motionX = 0.0D;
@@ -27,8 +28,8 @@ public class EntityPassengerClass416Tail extends EntityRollingStock implements I
     @Override
     public void updateRiderPosition() {
         if(riddenByEntity!=null) {
-            riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset() + 0.0, posZ);
-        }//ew yucky rider position code, good thing it's a passenger car, so it does not matter! Wheeze.png
+            riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset() - 0.1, posZ);
+        }//ew yucky rider position code, good thing it's a passenger car, so it doesn't matter! Wheeze.png
     }
 
     @Override
@@ -73,6 +74,6 @@ public class EntityPassengerClass416Tail extends EntityRollingStock implements I
 
     @Override
     public float getOptimalDistance(EntityMinecart cart) {
-        return 2.8F;
+        return  2.75F;
     }
 }

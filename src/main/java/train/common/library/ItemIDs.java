@@ -714,7 +714,9 @@ public enum ItemIDs {
 	minecartClass442DTS("ItemRollingStock", "Class_442_DTS_Icon", 5),
 	minecartClass442TS("ItemRollingStock", "Class_442_TS_Icon", 2),
 	minecartClass442MBLS("ItemRollingStock", "Class_442_MBLS_Icon", 2),
-
+	minecartClass205loco("ItemRollingStock", "Class_205_engine_icon", 3),
+	minecartCLass205tso("ItemRollingStock", "Class_205_trailer_icon", 2),
+	minecartClass205tail("ItemRollingStock", "Class_205_tail_icon", 2),
 
 	//signalSpanish("ItemsignalSpanish","signalSpanish", 1),
 
