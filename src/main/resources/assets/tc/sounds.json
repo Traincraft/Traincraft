@@ -173,7 +173,8 @@
   "BritanniaMediumChuff": {"category": "master", "sounds" :  [{"name": "BritanniaMediumChuff", "stream": true}]},
   "StanierHooter": {"category": "master", "sounds" :  [{"name": "StanierHooter", "stream": true}]},
   "Class90Idle": {"category": "master", "sounds" :  [{"name": "Class90Idle", "stream": true}]},
-  "Class868790Thrash": {"category": "master", "sounds" :  [{"name": "Class868790Thrash", "stream": true}]}
-
-
+  "Class868790Thrash": {"category": "master", "sounds" :  [{"name": "Class868790Thrash", "stream": true}]},
+  "Class158Horn": {"category": "master", "sounds" :  [{"name": "Class158Horn", "stream": true}]},
+  "Class47Horn": {"category": "master", "sounds" :  [{"name": "Class47Horn", "stream": true}]},
+  "HSTHorn": {"category": "master", "sounds" :  [{"name": "HSTHorn", "stream": true}]}
 }

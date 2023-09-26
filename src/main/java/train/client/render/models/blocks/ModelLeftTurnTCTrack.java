@@ -57,7 +57,7 @@ public class ModelLeftTurnTCTrack extends ModelBase {
 		if (facing == 3) {
 			GL11.glRotatef(-90, 0, 1, 0);
 			if(type.equals("very_large") || type.equals("embedded_very_large"))
-				GL11.glTranslatef(-5.5f, 0.0f, 1.54f);
+				GL11.glTranslatef(-5.5f, 0.0f, 1.5f);
 			if(type.equals("large") || type.equals("embedded_large"))
 				GL11.glTranslatef(-10.0f, 0.0f, 2.0f);
 			if(type.equals("medium") || type.equals("embedded_medium"))
@@ -68,7 +68,7 @@ public class ModelLeftTurnTCTrack extends ModelBase {
 		if (facing == 1) {
 			GL11.glRotatef(90, 0, 1, 0);
 			if(type.equals("very_large") || type.equals("embedded_very_large"))
-				GL11.glTranslatef(4.5f, 0.0f, -0.455f);
+				GL11.glTranslatef(4.5f, 0.0f, -0.5f);
 			if(type.equals("large") || type.equals("embedded_large"))
 				GL11.glTranslatef(0.0f, 0.0f, 0.0f);
 			if(type.equals("medium") || type.equals("embedded_medium"))
@@ -78,7 +78,7 @@ public class ModelLeftTurnTCTrack extends ModelBase {
 		}
 		if(facing == 2){
 			if(type.equals("very_large") || type.equals("embedded_very_large"))
-				GL11.glTranslatef(-1.5f, 0.0f, -4.469f);
+				GL11.glTranslatef(-1.5f, 0.0f, -4.5f);
 			if(type.equals("large") || type.equals("embedded_large"))
 				GL11.glTranslatef(-6.0f, 0.0f, -4.0f);
 			if(type.equals("medium") || type.equals("embedded_medium"))
@@ -89,7 +89,7 @@ public class ModelLeftTurnTCTrack extends ModelBase {
 		if(facing == 0){
 			GL11.glRotatef(180, 0, 1, 0);
 			if(type.equals("very_large") || type.equals("embedded_very_large"))
-				GL11.glTranslatef(0.5f, 0.0f, 5.54f);
+				GL11.glTranslatef(0.5f, 0.0f, 5.5f);
 			if(type.equals("large") || type.equals("embedded_large"))
 				GL11.glTranslatef(-4.0f, 0.0f, 6.0f);
 			if(type.equals("medium") || type.equals("embedded_medium"))
