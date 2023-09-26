@@ -771,7 +771,10 @@ item.tc:minecartClass442MBLS.name=Class 442 MBLS
 item.tc:minecartClass205loco.name=Class 205 DMBSO
 item.tc:minecartCLass205tso.name=Class 205 TSO
 item.tc:minecartClass205tail.name=Class 205 DTCsoL
-
+item.tc:minecartM8DNF1Loco.name=M8D NF1 Loco
+item.tc:minecartM8DNF1Middlelong.name=M8D NF1 Middle (long)
+item.tc:minecartM8DNF1Middleshort.name=M8D NF1 Middle (short)
+item.tc:minecartM8DNF1Tail.name=M8D NF1 Tail
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
@@ -1392,7 +1395,10 @@ entity.tc.Class442MBLS.name=Class 442 MBLS
 entity.tc.Class205loco.name=Class 205 DMBSO
 entity.tc.Class205tso.name=Class 205 TSO
 entity.tc.Class205tail.name=Class 205 DTCsoL
-
+entity.tc.M8DNF1Loco.name=M8D NF1 Loco
+entity.tc.M8DNF1Middlelong.name=M8D NF1 Middle (long)
+entity.tc.M8DNF1Middleshort.name=M8D NF1 Middle (short)
+entity.tc.M8DNF1Tail.name=M8D NF1 Tail
 
 description.villager.profession.tc.station_chief=Station Master
 

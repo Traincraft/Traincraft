@@ -588,9 +588,11 @@ public enum EnumTrains {
 	Class442MBLS("Class442MBLS", EntityPassengerClass442MBLS.class, ItemIDs.minecartClass442MBLS.item, "passenger", 0, 0, 5.1,0 , 0, 0, 0,0,0,TraincraftUtil.getBytesFromColors(new String[] {"White", "Orange", "Red", "Yellow", "Blue"}),0,0, "Pack: B.I.P."),
 	Class205loco("Class205loco", EntityLocoDieselClass205loco.class, ItemIDs.minecartClass205loco.item, "diesel", 600, 121, 0, 55, 0, 100, 0.6, 0.7, 12000, TraincraftUtil.getBytesFromColors(new String[] {"Blue", "Cyan", "Green", "Grey", "LightBlue", "LightGrey", "Lime", "Orange", "Pink", "Red", "Yellow"}), 18, -4, "Pack: B.I.P."),
 	Class205tso("Class205tso", EntityPassengerClass205tso.class, ItemIDs.minecartCLass205tso.item, "passenger", 0, 0, 2, 0 , 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[] {"Blue", "Cyan", "Green", "Grey", "Lime", "Pink", "Red", "Yellow"}), 0, 0, "Pack: B.I.P."),
-	Class205Tail("Class205tail", EntityPassengerClass205tail.class, ItemIDs.minecartClass205tail.item, "passenger", 0, 0, 2, 0 , 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[] {"Blue", "Cyan", "Green", "Grey", "LightBlue", "LightGrey", "Lime", "Orange", "Pink", "Red", "Yellow"}), 0, 0, "Pack: B.I.P.")
-
-
+	Class205Tail("Class205tail", EntityPassengerClass205tail.class, ItemIDs.minecartClass205tail.item, "passenger", 0, 0, 2, 0 , 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[] {"Blue", "Cyan", "Green", "Grey", "LightBlue", "LightGrey", "Lime", "Orange", "Pink", "Red", "Yellow"}), 0, 0, "Pack: B.I.P."),
+	M8DNF1Loco("M8DNF1Loco", EntityElectricM8DNF1Loco.class, ItemIDs.minecartM8DNF1Loco.item, "electric", 250, 70, 0,20, 0, 100, 0.9, 0.4, 1000, TraincraftUtil.getBytesFromColors(new String[] {"Blue"}), 18, -1.95, "Pack: Trams In Motion"),
+	M8DNF1MiddleLong("M8DNF1Middle1", EntityPassengerM8DNF1MiddleLong.class, ItemIDs.minecartM8DNF1Middlelong.item, "passenger", 0, 0, 1,0, 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[] {"Blue"}), 18, 0, "Pack: Trams In Motion"),
+	M8DNF1MiddleShort("M8DNF1Middle2", EntityPassengerM8DNF1MiddleShort.class, ItemIDs.minecartM8DNF1Middleshort.item, "passenger", 0, 0, 1,0, 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[] {"Blue"}), 18, 0, "Pack: Trams In Motion"),
+	M8DNF1Tail("M8DNF1Tail", EntityPassengerM8DNF1Tail.class, ItemIDs.minecartM8DNF1Tail.item, "passenger", 0, 0, 1,0, 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[] {"Blue"}), 18, -1.95, "Pack: Trams In Motion"),
 	;
 
 //String trainType,int MHP,int maxSpeed, double mass, int fuelConsumption, int waterConsumption, int heatingTime, double accelerationRate, double brakeRate, int tankCapacity, String[] colors,

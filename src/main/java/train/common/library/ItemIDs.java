@@ -717,6 +717,10 @@ public enum ItemIDs {
 	minecartClass205loco("ItemRollingStock", "Class_205_engine_icon", 3),
 	minecartCLass205tso("ItemRollingStock", "Class_205_trailer_icon", 2),
 	minecartClass205tail("ItemRollingStock", "Class_205_tail_icon", 2),
+	minecartM8DNF1Loco("ItemRollingStock", "m8d_nf1_loco_icon", 2),
+	minecartM8DNF1Middlelong("ItemRollingStock", "m8d_nf1_middle_icon", 1),
+	minecartM8DNF1Middleshort("ItemRollingStock", "m8d_nf1_middle2_icon", 1),
+	minecartM8DNF1Tail("ItemRollingStock", "m8d_nf1_tail_icon", 2),
 
 	//signalSpanish("ItemsignalSpanish","signalSpanish", 1),
 
