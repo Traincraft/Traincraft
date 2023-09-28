@@ -1,6 +1,0 @@
-name: RW type 4
-type: steam
-mhp: 1000mhp
-max speed: 136
-inventory slots: 12
-water capacity: 8000mb

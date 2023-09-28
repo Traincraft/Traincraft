@@ -1371,7 +1371,7 @@ public enum RenderEnum {
 	Class442TS( EntityPassengerClass442TS.class, new ModelClass442TS(),"class_442_TS_", true, new float[] {0.15F, 0F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
 	Class442MBLS( EntityPassengerClass442MBLS.class, new ModelClass442MBLS(),"class_442_MBLS_", true, new float[] {0.15F, 0F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
 	Class205loco( EntityLocoDieselClass205loco.class, new ModelClass205(), "CLass_205_", true, new float[] {-2F, 0.15F, 0F}, new float[] {0F, 180F, 180F}, null, "smoke", 3, new ArrayList<double[]>() {{}}, "", null, 0, false),
-	Class205tso( EntityPassengerClass205tso.class, new ModelClass205tso(), "Class_205_", true, new float[] {-0.075f, 0.15f, 0f}, new float[] {0F, 180F, 180F}, null, "", 0,null, "", null, 0, false),
+	Class205tso( EntityPassengerClass205tso.class, new ModelClass205tso(), "Class_205_", true, new float[] {0f, 0.15f, 0f}, new float[] {0F, 180F, 180F}, null, "", 0,null, "", null, 0, false),
 	Class205tail( EntityPassengerClass205tail.class, new ModelClass205tail(), "Class_205_", true, new float[] {0f, 0.15f, 0f}, new float[] {0F, 180F, 180F}, null, "", 0,null, "", null, 0, false),
 	M8DNF1Loco(EntityElectricM8DNF1Loco.class, new ModelM8DNF1End(), "m8d_nf1_", true,new float[] {-0.65F, 0.2F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	M8DNF1Middlelong(EntityPassengerM8DNF1MiddleLong.class, new ModelM8DNF1Middle1(), "m8d_nf1_", true,new float[] {0F, 0.2F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
