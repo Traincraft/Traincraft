@@ -923,5 +923,11 @@ public class ModelClass142 extends ModelConverter //Same as Filename
 			}
 		}
 	}
-
+	public ArrayList<double[]> getSmokePosition() {
+		return new ArrayList<double[]>() {
+			{
+				add(new double[]{-0.8D, 1.28D, 0.45D});
+			}
+		};
+	}
 }

@@ -131,7 +131,7 @@ public enum EnumSounds {
 	ElectricRenfe450Motor(EntityLocoElectricRenfe450Motor.class, "446Horn", 0.8F, "vl10_idle", 0.6F, 50, "vl10_idle", 0.6F, 50, false),
 	SteamC11(EntityLocoSteamC11.class, "class62_horn", 0.6F, "steam_run", 0.4F, 20, "steam_run", 0.4F, 20, true),
 	SteamStarClass(EntityLocoSteamStarClass.class, "adler_whistle", 0.8F, "adler_run", 0.2F, 20, "adler_run", 0.2F, 20, true),
-	Class43(EntityLocoDieselClass43.class, "HSTHorn", 1.1F, "chme3_idle", 0.65F, 40, "chme3_idle", 0.65F, 40, false),
+	Class43(EntityLocoDieselClass43.class, "HSTHorn", 1.2F, "chme3_idle", 0.65F, 40, "chme3_idle", 0.65F, 40, false),
 	Class90(EntityElectricClass90.class, "mg_horn", 1F, "Class868790Thrash", 0.8F, 10, "Class90Idle", 0.6F, 50, false),
 	Class91(EntityElectricClass91.class, "mg_horn", 1F, "Class868790Thrash", 0.8F, 10, "Class90Idle", 0.6F, 50, false),
 	Class321(EntityElectricClass321.class, "mg_horn", 1F, "vl10_idle", 0.8F, 10, "vl10_idle", 0.6F, 50, false),

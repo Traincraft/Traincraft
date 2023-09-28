@@ -155,7 +155,7 @@ public enum RenderEnum {
 			add(new double[] { 1.25D, 1.15D, 0.0D });
 		}
 	}, "", null, 0, false),
-	locoCD754(EntityLocoDieselCD754.class, new ModelCD754(), "cd754_", true, new float[] { -2.2F, 0.05F, 0.0F }, new float[] { 180F, 0F, 0F }, new float[] { 0.8F, 0.8F, 0.8F }, "smoke", 5, new ArrayList<double[]>() {
+	locoCD754(EntityLocoDieselCD754.class, new ModelCD754(), "cd754_", true, new float[] { -2.2F, 0.2F, 0.0F }, new float[] { 180F, 0F, 0F }, new float[] { 1F, 1F, 1F }, "smoke", 5, new ArrayList<double[]>() {
 		{
 			add(new double[] { 1.25D, 1.15D, 0.0D });
 		}
@@ -196,7 +196,7 @@ public enum RenderEnum {
 		}
 	}, "", null, 0, false),
 
-	locoShunter(EntityLocoDieselShunter.class, new ModelShunter(), "shunter_", true, new float[] { -1.2F, -0.42F, 0.0F }, null, null, "smoke", 5, new ArrayList<double[]>() {
+	locoShunter(EntityLocoDieselShunter.class, new ModelShunter(), "shunter_", true, new float[] { -1.2F, -0.45F, 0.0F }, null, null, "smoke", 5, new ArrayList<double[]>() {
 		{
 			add(new double[] { 2.4D, 1.5D, -0.1D });
 			add(new double[] { 2.4D, 1.5D, 0.1D });
@@ -1178,7 +1178,7 @@ public enum RenderEnum {
 	GP38dash9W( EntityLocoDieselBapGP38dash9W.class,  new ModelGP38dash9W(), "GP38dash9W_Green", false,new float[] {-1.5F, 0.155F, 0F},  new float[] { 0F, 180F, 180F }, null, "smoke", 3,  new ArrayList<double[]>() {
 		{ }
 	}, "", null, 0, false),
-	class158motor(EntityLocoDieselClass158.class, new ModelClass158(), "Class_158_", true, new float[] { -1.9F, -0.45F, 0.0F },   new float[] { 0F, 180F, 180F }, null, "smoke", 2, new ArrayList<double[]>() {
+	class158motor(EntityLocoDieselClass158.class, new ModelClass158(), "Class_158_", true, new float[] { -1.85F, -0.45F, 0.0F },   new float[] { 0F, 180F, 180F }, null, "smoke", 2, new ArrayList<double[]>() {
 		{ }
 	}, "", null, 0, false),
 	class158car(EntityClass158Coach.class, new ModelClass158Middle(), "Class_158_", true, new float[] { 0.5F, -0.45F, 0.0F },   new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
