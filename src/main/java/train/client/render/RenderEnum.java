@@ -196,7 +196,7 @@ public enum RenderEnum {
 		}
 	}, "", null, 0, false),
 
-	locoShunter(EntityLocoDieselShunter.class, new ModelShunter(), "shunter_", true, new float[] { -1.2F, -0.45F, 0.0F }, null, null, "smoke", 5, new ArrayList<double[]>() {
+	locoShunter(EntityLocoDieselShunter.class, new ModelShunter(), "shunter_", true, new float[] { -1.2F, -0.451F, 0.0F }, null, null, "smoke", 5, new ArrayList<double[]>() {
 		{
 			add(new double[] { 2.4D, 1.5D, -0.1D });
 			add(new double[] { 2.4D, 1.5D, 0.1D });
