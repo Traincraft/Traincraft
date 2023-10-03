@@ -9,6 +9,9 @@
 
 package train.client.render.models;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.entity.Entity;
+import org.lwjgl.opengl.GL11;
 import tmt.ModelConverter;
 import tmt.ModelRendererTurbo;
 
@@ -128,7 +131,7 @@ public class ModelClass374Front extends ModelConverter //Same as Filename
 		bodyModel[94] = new ModelRendererTurbo(this, 121, 121, textureX, textureY); // Box 99
 		bodyModel[95] = new ModelRendererTurbo(this, 225, 121, textureX, textureY); // Box 97
 		bodyModel[96] = new ModelRendererTurbo(this, 1, 105, textureX, textureY); // Box 97
-		bodyModel[97] = new ModelRendererTurbo(this, 233, 121, textureX, textureY); // Box 97
+		bodyModel[97] = new ModelRendererTurbo(this, 233, 121, textureX, textureY, "Lamp"); // Lamp
 		bodyModel[98] = new ModelRendererTurbo(this, 393, 121, textureX, textureY); // Box 97
 		bodyModel[99] = new ModelRendererTurbo(this, 256, 120, textureX, textureY); // Box 127
 		bodyModel[100] = new ModelRendererTurbo(this, 417, 121, textureX, textureY); // Box 127
@@ -137,7 +140,7 @@ public class ModelClass374Front extends ModelConverter //Same as Filename
 		bodyModel[103] = new ModelRendererTurbo(this, 497, 121, textureX, textureY); // Box 97
 		bodyModel[104] = new ModelRendererTurbo(this, 481, 89, textureX, textureY); // Box 97
 		bodyModel[105] = new ModelRendererTurbo(this, 201, 121, textureX, textureY); // Box 97
-		bodyModel[106] = new ModelRendererTurbo(this, 105, 129, textureX, textureY); // Box 97
+		bodyModel[106] = new ModelRendererTurbo(this, 105, 129, textureX, textureY, "Lamp"); // Lamp
 		bodyModel[107] = new ModelRendererTurbo(this, 313, 129, textureX, textureY); // Box 97
 		bodyModel[108] = new ModelRendererTurbo(this, 129, 129, textureX, textureY); // Box 97
 		bodyModel[109] = new ModelRendererTurbo(this, 329, 129, textureX, textureY); // Box 97
@@ -775,7 +778,7 @@ public class ModelClass374Front extends ModelConverter //Same as Filename
 		bodyModel[96].addShapeBox(0F, 0F, 0F, 3, 3, 1, 0F,0F, -2.45F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -1F, 0F, -2.4F, -0.3F, 0F, 0.5F, 0F, 0F, -1.5F, 0F, 0F, -1.5F, -1F, 0F, 0.4F, -0.2F); // Box 97
 		bodyModel[96].setRotationPoint(-51F, -9F, -4.5F);
 
-		bodyModel[97].addShapeBox(0F, 0F, 0F, 5, 11, 7, 0F,-4.8F, -0.8F, 0F, -0.4F, -2F, 0F, -2F, -2.45F, -5F, -3.2F, -1.45F, -5F, -1F, -7F, -0.2F, -3.3F, -7F, -0.2F, -4F, -7F, -5F, 0F, -7F, -5F); // Box 97
+		bodyModel[97].addShapeBox(0F, 0F, 0F, 5, 11, 7, 0F,-4.8F, -0.8F, 0F, -0.4F, -2F, 0F, -2F, -2.45F, -5F, -3.2F, -1.45F, -5F, -1F, -7F, -0.2F, -3.3F, -7F, -0.2F, -4F, -7F, -5F, 0F, -7F, -5F); // Lamp
 		bodyModel[97].setRotationPoint(-57F, -6F, -6.5F);
 
 		bodyModel[98].addShapeBox(0F, 0F, 0F, 5, 3, 3, 0F,-5F, -1F, -0.95F, 0F, -1F, -1.7F, -1.4F, -1F, 0F, -3.8F, 0.2F, 0F, -1F, 0F, -1.5F, -4F, 0F, -2.5F, -4.3F, 0F, 0.2F, 0F, 0F, 0.2F); // Box 97
@@ -802,7 +805,7 @@ public class ModelClass374Front extends ModelConverter //Same as Filename
 		bodyModel[105].addShapeBox(0F, 0F, 0F, 2, 2, 2, 0F,-1.8F, -0.8F, 0F, -0.4F, -2F, 0F, -0.5F, -1.5F, 0F, -1.5F, -0.4F, 0F, -1.8F, -1.2F, 0F, -0.4F, 0F, 0F, -1.8F, 0.5F, 0F, -0.2F, -0.55F, 0F); // Box 97
 		bodyModel[105].setRotationPoint(-54F, -6F, -6.5F);
 
-		bodyModel[106].addShapeBox(0F, 0F, 0F, 5, 11, 7, 0F,-3.2F, -1.45F, 0F, -2F, -2.45F, 0F, -0.4F, -2F, -5F, -4.8F, -0.8F, -5F, 0F, -7F, 0F, -4F, -7F, 0F, -3.3F, -7F, -5.2F, -1F, -7F, -5.2F); // Box 97
+		bodyModel[106].addShapeBox(0F, 0F, 0F, 5, 11, 7, 0F,-3.2F, -1.45F, 0F, -2F, -2.45F, 0F, -0.4F, -2F, -5F, -4.8F, -0.8F, -5F, 0F, -7F, 0F, -4F, -7F, 0F, -3.3F, -7F, -5.2F, -1F, -7F, -5.2F); // Lamp
 		bodyModel[106].setRotationPoint(-57F, -6F, 4.5F);
 
 		bodyModel[107].addShapeBox(0F, 0F, 0F, 4, 5, 3, 0F,0F, -3.5F, 0F, 1F, -0.5F, 0F, 0F, -2F, 0F, 0F, -4.37F, -0.49F, 0F, -0.5F, 0F, 1F, -3.5F, 0F, 0F, -2F, 0F, 0F, 0.4F, -0.5F); // Box 97
@@ -1839,5 +1842,21 @@ public class ModelClass374Front extends ModelConverter //Same as Filename
 
 		bodyModel[451].addShapeBox(0F, 0F, 0F, 4, 1, 1, 0F,-0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.7F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, -0.7F, -0.5F, -0.5F); // Box 171
 		bodyModel[451].setRotationPoint(44F, -2F, -10F);
+	}
+	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
+
+		for (int i = 0; i < 452; i++) {
+			if (bodyModel[i].boxName != null && bodyModel[i].boxName.contains("Lamp")) {
+				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
+				bodyModel[i].render(f5);
+				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
+			} else if (bodyModel[i].boxName != null && bodyModel[i].boxName.contains("cull")) {
+				GL11.glDisable(GL11.GL_CULL_FACE);
+				bodyModel[i].render(f5);
+				GL11.glEnable(GL11.GL_CULL_FACE);
+			} else {
+				bodyModel[i].render(f5);
+			}
+		}
 	}
 }
