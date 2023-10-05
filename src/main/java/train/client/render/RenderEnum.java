@@ -155,7 +155,7 @@ public enum RenderEnum {
 			add(new double[] { 1.25D, 1.15D, 0.0D });
 		}
 	}, "", null, 0, false),
-	locoCD754(EntityLocoDieselCD754.class, new ModelCD754(), "cd754_", true, new float[] { -2.2F, 0.2F, 0.0F }, new float[] { 180F, 0F, 0F }, new float[] { 1F, 1F, 1F }, "smoke", 5, new ArrayList<double[]>() {
+	locoCD754(EntityLocoDieselCD754.class, new ModelCD754(), "cd754_", true, new float[] { -2.5F, 0.2F, 0.0F }, new float[] { 180F, 0F, 0F }, new float[] { 1F, 1F, 1F }, "smoke", 5, new ArrayList<double[]>() {
 		{
 			add(new double[] { 1.25D, 1.15D, 0.0D });
 		}
@@ -463,7 +463,7 @@ public enum RenderEnum {
 			add(new double[] { 2.9D, 0.05D, 0.65D });
 		}
 	}, 2, true),
-	locoUSATCUS(EntityLocoSteamUSATCUS.class, new ModelUSATCUS(), "USATCUS", false, new float[] { -2.0F, -0.25F, 0.8375F }, new float[] { 0, 180, 180 }, new float[]{1f,1f,1f}, "largesmoke", 3, new ArrayList<double[]>() {
+	locoUSATCUS(EntityLocoSteamUSATCUS.class, new ModelUSATCUS(), "USATCUS", false, new float[] { -2.0F, -0.2F, 0.8375F }, new float[] { 0, 180, 180 }, new float[]{1f,1f,1f}, "largesmoke", 3, new ArrayList<double[]>() {
 		{
 			add(new double[] { 2.5D, 1.2D, 0D });
 		}
@@ -472,7 +472,7 @@ public enum RenderEnum {
 			add(new double[] { 2.5D, -0.5D, 0.65D });
 		}
 	}, 2, true),
-	locoUSATCUK(EntityLocoSteamUSATCUK.class, new ModelUSATCUK(), "USATCUK", false, new float[] { -2.0F, -0.25F, 0.8375F }, new float[] { 0, 180, 180 }, new float[]{1f,1f,1f}, "largesmoke", 3, new ArrayList<double[]>() {
+	locoUSATCUK(EntityLocoSteamUSATCUK.class, new ModelUSATCUK(), "USATCUK", false, new float[] { -2.0F, -0.2F, 0.8375F }, new float[] { 0, 180, 180 }, new float[]{1f,1f,1f}, "largesmoke", 3, new ArrayList<double[]>() {
 		{
 			add(new double[] { 2.5D, 1.2D, 0D });
 		}
