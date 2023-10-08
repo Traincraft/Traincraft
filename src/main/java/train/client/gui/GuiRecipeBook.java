@@ -4,6 +4,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -25,8 +26,9 @@ import train.common.library.ItemIDs;
 import train.common.recipes.ShapedTrainRecipes;
 import train.common.recipes.ShapelessTrainRecipe;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @SideOnly(Side.CLIENT)
 public class GuiRecipeBook extends GuiScreen {
@@ -40,6 +42,8 @@ public class GuiRecipeBook extends GuiScreen {
 	public static int bookTotalPages = 2;
 	private int currPage;
 	private int currRecipe;
+	private int searchResultsPosition = 0;
+	List<Integer> resultIndexList = new ArrayList<>();
 	public ArrayList<String> leftPage = new ArrayList<String>();
 	public ArrayList<String> leftPageImage = new ArrayList<String>();
 	public ArrayList<ArrayList> leftPageItemStacks = new ArrayList<ArrayList>();
@@ -48,11 +52,16 @@ public class GuiRecipeBook extends GuiScreen {
 	public ArrayList<ArrayList> rightPageItemStacks = new ArrayList<ArrayList>();
 	private List recipeListWB =null;
 	private List<TierRecipe> recipeList=null;
+	private final TreeMap<String, ArrayList<Integer>> recipeIndexMap = new TreeMap<>();
 
 	private GuiButtonNextPage buttonRead;
 	private GuiButtonNextPage buttonNextPage;
 	private GuiButtonNextPage buttonPreviousPage;
 	private GuiButtonNextPage buttonBack;
+	private GuiButtonRecipeSearch buttonSearchPrevious;
+	private GuiButtonRecipeSearch buttonSearchNext;
+	private GuiButtonRecipeSearch buttonSearch;
+	private GuiTextField searchBar;
 	private RenderItem renderItem = new RenderItem();
 
 	public GuiRecipeBook(EntityPlayer par1EntityPlayer, ItemStack par2ItemStack) {
@@ -89,7 +98,7 @@ public class GuiRecipeBook extends GuiScreen {
 			}
 		});
 		addPage("World generation:\n\n By default, petrol and oil sands will be generated in the world. If you don't want them, open Traincraft.cfg and change the line ENABLE_ORE_SPAWN from true to false.\nOnly the new ores will generate, the old ones can be transformed into the new ones in a crafting table.", "", "left", new ArrayList<StackToDraw>() {
-			{ 
+			{
 				add(new StackToDraw(new ItemStack(BlockIDs.oreTC.block, 1, 1), 60, 160));
 				add(new StackToDraw(new ItemStack(BlockIDs.oreTC.block, 1, 2), 120, 160));
 			}
@@ -347,7 +356,7 @@ public class GuiRecipeBook extends GuiScreen {
 						add(new StackToDraw(new ItemStack(Items.skull, 1, 4), 170, 16));
 					}
 				});
-		
+
 		addPage("Advice:\nDue to the bounding box issues, carts have to be attached and PULLED. Don't try to push\n\nRailcraft pull system has been deactivated on Traincraft loco. Use TC's system. \n","","right",new ArrayList<StackToDraw>() {
 					{
 						add(new StackToDraw(new ItemStack(ItemIDs.minecartTankWagon_DB.item), 20, 16));
@@ -360,7 +369,7 @@ public class GuiRecipeBook extends GuiScreen {
 						add(new StackToDraw(new ItemStack(ItemIDs.minecartBR_E69.item), 140, 155));
 					}
 				});
-		
+
 		addPage("On the following pages you will find all the train workbench recipes and assembly table recipes.\nIt is however strongly suggested to try to discover the recipes by yourself...\n\nWe hope you will enjoy the mod!\n\nSpitfire4466 and MrBrutal", "", "left", new ArrayList<StackToDraw>() {
 			{
 				add(new StackToDraw(new ItemStack(BlockIDs.trainWorkbench.block), 20, 16));
@@ -376,6 +385,8 @@ public class GuiRecipeBook extends GuiScreen {
 		}
 		if (rightPage != null && recipeList != null && recipeListWB != null)
 			bookTotalPages = this.rightPage.size() + (recipeList.size() / 2) + (recipeListWB.size() / 2);
+		// Initialize recipe map for searching.
+		initializeRecipeSearchMap();
 	}
 
 	public class StackToDraw {
@@ -422,16 +433,26 @@ public class GuiRecipeBook extends GuiScreen {
 	public void initGui() {
 		this.buttonList.clear();
 
-		int var1 = (this.width) / 2;
-		int var2 = (this.height) / 2;
-		this.buttonList.add(this.buttonBack = new GuiButtonNextPage(4, var1 + 150, var2 + 80, 23, 13, true));
-		this.buttonList.add(this.buttonRead = new GuiButtonNextPage(3, var1 - 8, var2 + 98, 40, 20, true));
-		this.buttonList.add(this.buttonNextPage = new GuiButtonNextPage(1, var1 + 150, var2 + 80, 23, 13, true));
-		this.buttonList.add(this.buttonPreviousPage = new GuiButtonNextPage(2, var1 - 180, var2 + 80, 23, 13, false));
+		int halfWidth = (this.width) / 2;
+		int halfHeight = (this.height) / 2;
+		this.searchBar = new GuiTextField(fontRendererObj, halfWidth + 23, ((halfHeight - bookImageHeight / 2) - 9), 100, 10);
+		this.searchBar.setEnableBackgroundDrawing(false);
+		this.searchBar.setFocused(true);
+		this.searchBar.setCanLoseFocus(false);
+		this.searchBar.setMaxStringLength(25);
+		this.buttonList.add(this.buttonBack = new GuiButtonNextPage(4, halfWidth + 150, halfHeight + 80, 23, 13, true));
+		this.buttonList.add(this.buttonRead = new GuiButtonNextPage(3, halfWidth - 8, halfHeight + 98, 40, 20, true));
+		this.buttonList.add(this.buttonNextPage = new GuiButtonNextPage(1, halfWidth + 150, halfHeight + 80, 23, 13, true));
+		this.buttonList.add(this.buttonPreviousPage = new GuiButtonNextPage(2, halfWidth - 180, halfHeight + 80, 23, 13, false));
+		this.buttonList.add(this.buttonSearchPrevious = new GuiButtonRecipeSearch(5, halfWidth + 160, ((halfHeight - bookImageHeight / 2) - 10), 10, 10, GuiButtonRecipeSearch.Type.PREVIOUSRESULT));
+		this.buttonList.add(this.buttonSearchNext = new GuiButtonRecipeSearch(6, halfWidth + 170, ((halfHeight - bookImageHeight / 2) - 10), 10, 10,  GuiButtonRecipeSearch.Type.NEXTRESULT));
+		this.buttonList.add(this.buttonSearch = new GuiButtonRecipeSearch(7, halfWidth + 7, ((halfHeight - bookImageHeight / 2) - 10), 10, 10, GuiButtonRecipeSearch.Type.SEARCH));
 		this.updateButtons();
 	}
 
 	private void updateButtons() {
+		this.searchBar.setEnabled(true);
+		this.searchBar.setVisible(false);
 		this.buttonBack.visible = (this.currPage == bookTotalPages-1);
 		this.buttonBack.showButton = true;
 		this.buttonRead.visible = (this.currPage == 0);
@@ -440,6 +461,12 @@ public class GuiRecipeBook extends GuiScreen {
 		this.buttonNextPage.showButton = (this.currPage > 0 && this.currPage < bookTotalPages - 1);
 		this.buttonPreviousPage.visible = this.currPage > 0;
 		this.buttonPreviousPage.showButton = this.currPage > 0;
+		this.buttonSearchPrevious.visible = this.currPage > 0;
+		this.buttonSearchPrevious.showButton = this.currPage > 0;
+		this.buttonSearchNext.visible = this.currPage > 0;
+		this.buttonSearchNext.showButton = this.currPage > 0;
+		this.buttonSearch.visible = this.currPage > 0;
+		this.buttonSearch.showButton = this.currPage > 0;
 	}
 
 	/**
@@ -448,32 +475,55 @@ public class GuiRecipeBook extends GuiScreen {
 	@Override
 	protected void actionPerformed(GuiButton par1GuiButton) {
 		if (par1GuiButton.enabled) {
-			if (par1GuiButton.id == 1) {
-				if (this.currPage < bookTotalPages - 1) {
-					++this.currPage;
-					this.currRecipe += 2;
-				}
-			}
-			else if (par1GuiButton.id == 2) {
-				if (this.currPage > 0) {
-					--this.currPage;
-					this.currRecipe -= 2;
-				}
-			}
-			else if (par1GuiButton.id == 3) {
-				if (this.currPage == 0) {
-					++this.currPage;
-					this.currRecipe += 2;
-				}
-			}
-			else if (par1GuiButton.id == 4) {
-				if (this.currPage == bookTotalPages-1) {
-					this.currPage = 0;
-					this.currRecipe = 0;
-				}
+			switch (par1GuiButton.id) {
+				case 1:
+					if (this.currPage < bookTotalPages - 1) {
+						++this.currPage;
+						this.currRecipe += 2;
+					}
+					break;
+				case 2:
+					if (this.currPage > 0) {
+						--this.currPage;
+						this.currRecipe -= 2;
+					}
+					break;
+				case 3:
+					if (this.currPage == 0) {
+						++this.currPage;
+						this.currRecipe += 2;
+					}
+					break;
+				case 4:
+					if (this.currPage == bookTotalPages - 1) {
+						this.currPage = 0;
+						this.currRecipe = 0;
+					}
+					break;
+				case 5: // Previous search result.
+					if (searchResultsPosition - 1 >= 0) {
+						searchResultsPosition--;
+						runSearch();
+					}
+					break;
+				case 6: // Next search result.
+					if (searchResultsPosition < resultIndexList.size() - 1) {
+						searchResultsPosition++;
+						runSearch();
+					}
+					break;
+				case 7: // Search button (if hitting RETURN is too complicated for you).
+					runSearch();
+					break;
 			}
 			this.updateButtons();
 		}
+	}
+
+	@Override
+	public void mouseClicked(int x, int y, int par3) {
+		super.mouseClicked(x, y, par3);
+		searchBar.mouseClicked(x, y, par3);
 	}
 
 	/**
@@ -485,15 +535,20 @@ public class GuiRecipeBook extends GuiScreen {
 		int var9;
 		int var5 = (this.width) / 2;
 		int var6 = (this.height) / 2 - bookImageHeight / 2;
+		int SEARCH_BOX_X = var5;
+		int SEARCH_BOX_Y = var6 - 12;
+		int SEARCH_BOX_TEXT_MAX_WIDTH = 136;
 
 		if (this.currPage > 0) {
 			//GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 			mc.renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation,Info.bookPrefix + "bookright.png"));
 			this.drawTexturedModalRect(var5, var6, 0, 0, this.bookImageWidth, this.bookImageHeight + 20);
-			//GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+			mc.renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation,Info.bookPrefix + "searchbar.png"));
+			this.drawTexturedModalRect(SEARCH_BOX_X, SEARCH_BOX_Y, 0, 0, 192, 13);
 			mc.renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation,Info.bookPrefix + "bookleft.png"));
 			var5 -= this.bookImageWidth;
 			this.drawTexturedModalRect(var5, var6, 256 - this.bookImageWidth, 0, this.bookImageWidth, this.bookImageHeight);
+			this.searchBar.drawTextBox();
 		}
 		else {
 			mc.renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation,Info.bookPrefix + "bookcover.png"));
@@ -505,6 +560,7 @@ public class GuiRecipeBook extends GuiScreen {
 		var9 = this.fontRendererObj.getStringWidth(pageIndic);
 		if (this.currPage > 0) {
 			this.fontRendererObj.drawString(pageIndic, var5 - var9 + this.bookImageWidth - 44, var6 + 7, 0);
+			this.fontRendererObj.drawString(fontRendererObj.trimStringToWidth(searchBar.getText(), SEARCH_BOX_TEXT_MAX_WIDTH), SEARCH_BOX_X + 21, SEARCH_BOX_Y + 3, 0);
 		}
 		super.drawScreen(par1, par2, par3);
 
@@ -534,6 +590,7 @@ public class GuiRecipeBook extends GuiScreen {
 		if (this.currPage > rightPage.size() - 1) {
 			//System.out.println((rightPage.size()*2) -1);
 			int page = this.currRecipe - (rightPage.size() * 2) + 1;
+			// Drawing the non-train recipes...
 			if (!(page > recipeListWB.size() - 1)) {
 				drawWorkBenchBackground(recipeListWB, var5, var6, 0, var9, "right");
 				drawWorkBenchBackground(recipeListWB, var5, var6, 0, var9, "left");
@@ -541,6 +598,7 @@ public class GuiRecipeBook extends GuiScreen {
 				drawWorkBenchRecipe(recipeListWB, var5, var6, page - 1, var9, "right");
 				drawWorkBenchRecipe(recipeListWB, var5, var6, page, var9, "left");
 			}
+			// Drawing the train recipes...
 			else if ((page - recipeListWB.size()) >= 0 && (page - recipeListWB.size()) < recipeList.size() && recipeList.get(page - recipeListWB.size()) != null) {
 				drawAssemblyBackground(recipeList, var5 - 125, var6 - 33, page - recipeListWB.size(), var9, "right");
 				drawAssemblyBackground(recipeList, var5 - 50, var6 - 33, page - recipeListWB.size() - 1, var9, "left");
@@ -623,8 +681,9 @@ public class GuiRecipeBook extends GuiScreen {
 			renderItem.renderItemIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemList[8], var5 + 86 + offset, var6 + 103);
 		if (itemOutput != null && itemOutput.getItem() !=null)
 			renderItem.renderItemIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemOutput, var5 + 145 + offset, var6 + 85);
-		if (itemOutput != null && itemOutput.getItem() !=null)
-			this.fontRendererObj.drawString(itemOutput.getItem().getItemStackDisplayName(itemOutput), var5 + 20 + offset, var6 + 40, 0);
+		if (itemOutput != null && itemOutput.getItem() != null)
+			// Draw name of recipe. Highlight in green if it contains the search query.
+			this.fontRendererObj.drawString(itemOutput.getItem().getItemStackDisplayName(itemOutput), var5 + 20 + offset, var6 + 40, (!searchBar.getText().isEmpty() && itemOutput.getItem().getItemStackDisplayName(itemOutput).toLowerCase().contains(searchBar.getText().toLowerCase())) ? 0x21d12d : 0);
 		if (itemOutput != null)
 			this.fontRendererObj.drawString("Crafted in: Train Workbench", var5 + 20 + offset, var6 + 130, 0);
 		if (itemOutput != null) {
@@ -696,14 +755,17 @@ public class GuiRecipeBook extends GuiScreen {
 		String name = "";
 		if (output != null && output.getItem() instanceof ItemRollingStock)
 			name = output.getDisplayName();
+		// Handle highlighting of names based on search results.
+		boolean drawColorHighlightFlag = name.toLowerCase().contains(searchBar.getText().toLowerCase());
+		// Draw item names and tiers.
 		if (side.equals("left")) {
 			this.fontRendererObj.drawString("Tier: " + tier, var5 - var9 + this.bookImageWidth - 56, var6 + 40, 0);
-			this.fontRendererObj.drawString(name, var5 - var9 + this.bookImageWidth - 55, var6 + 56, 0xffffff);
+			this.fontRendererObj.drawString(fontRendererObj.trimStringToWidth(name, 150), var5 - var9 + this.bookImageWidth - 45, var6 + 56, (!searchBar.getText().isEmpty() && drawColorHighlightFlag) ? 0x21d12d : 0xffffff);
 		}
 		if (side.equals("right")) {
-			this.fontRendererObj.drawString(name, var5 - var9 + this.bookImageWidth + 215, var6 + 56, 0xffffff);
+			this.fontRendererObj.drawString(fontRendererObj.trimStringToWidth(name, 150), var5 - var9 + this.bookImageWidth + 225, var6 + 56, (!searchBar.getText().isEmpty() && drawColorHighlightFlag) ? 0x21d12d : 0xffffff);
 			this.fontRendererObj.drawString("Tier: " + tier, var5 - var9 + this.bookImageWidth + 338, var6 + 40, 0);
-		}			
+		}
 		GL11.glDisable(32826);
 	}
 
@@ -720,11 +782,162 @@ public class GuiRecipeBook extends GuiScreen {
 	public boolean doesGuiPauseGame() {
 		return false;
 	}
-	
+
+	/**
+	 * Handles key presses for the search bar.
+	 */
 	@Override
-	protected void keyTyped(char par1, int par2) {
-		if(par2 == 1 || par2 == this.mc.gameSettings.keyBindInventory.getKeyCode()) {
-			this.mc.thePlayer.closeScreen();
+	protected void keyTyped(char eventChar, int eventKey) {
+		if (eventKey == 1 || eventChar == '\u007F') { // If ESC or CTRL+Backspace...
+			if (searchBar.getText().isEmpty()) { // If search query is empty, exit.
+				this.mc.thePlayer.closeScreen();
+			} else { // If there is a search query, clear it.
+				searchBar.setText("");
+				resetSearch();
+			}
+		}
+		if (eventChar == '\r') { // If character is return...
+			if (!searchBar.getText().isEmpty()) {
+				if (Pattern.compile(":\\d+").matcher(searchBar.getText()).find()) {
+					int newPage = Integer.parseInt(searchBar.getText().substring(1)) - 1;
+					if (newPage > 0 && newPage < bookTotalPages) {
+						this.currPage = newPage;
+						this.currRecipe = this.currPage * 2;
+						searchBar.setText("");
+						resetSearch();
+					}
+					this.updateButtons();
+				} else {
+					runSearch();
+				}
+			}
+		} else { // If character is not a backspace...
+			this.searchBar.textboxKeyTyped(eventChar, eventKey);
+			resetSearch();
+		}
+	}
+
+	/**
+	 * @author 02skaplan
+	 * If search has not been completed, this method runs search with given searchQuery.
+	 * If search has been completed, this method advances the search page and increments searchResultsPosition.
+	 * This method also handles highlighting and darkening GUI search buttons.
+	 */
+	public void runSearch() {
+		if (resultIndexList.isEmpty()) { // If we need to search for the query...
+			for (Map.Entry<String, ArrayList<Integer>> mapEntry : recipeMapSearch(recipeIndexMap, searchBar.getText().toLowerCase()).entrySet()) {
+				for (int value : mapEntry.getValue()) {
+					if (!resultIndexList.contains(((value / 2) + rightPage.size())))
+						resultIndexList.add(((value / 2) + rightPage.size()));
+				}
+			}
+		}
+		if (!resultIndexList.isEmpty() && searchResultsPosition < resultIndexList.size()) { // If the search is complete, display and increment result.
+			if (searchResultsPosition == resultIndexList.size() - 1)
+				this.buttonSearchNext.setType(GuiButtonRecipeSearch.Type.NEXTRESULT, GuiButtonRecipeSearch.Texture.INACTIVE);
+			else
+				this.buttonSearchNext.setType(GuiButtonRecipeSearch.Type.NEXTRESULT, GuiButtonRecipeSearch.Texture.ACTIVE);
+			if (searchResultsPosition - 1 < 0)
+				this.buttonSearchPrevious.setType(GuiButtonRecipeSearch.Type.PREVIOUSRESULT, GuiButtonRecipeSearch.Texture.INACTIVE);
+			else
+				this.buttonSearchPrevious.setType(GuiButtonRecipeSearch.Type.PREVIOUSRESULT, GuiButtonRecipeSearch.Texture.ACTIVE);
+			this.currPage = resultIndexList.get(searchResultsPosition);
+			this.currRecipe = this.currPage * 2;
+			this.updateButtons();
+		}
+	}
+
+	/**
+	 * @author 02skaplan
+	 */
+	public void resetSearch() {
+		searchResultsPosition = 0;
+		resultIndexList = new ArrayList<>();
+		this.buttonSearchPrevious.setType(GuiButtonRecipeSearch.Type.PREVIOUSRESULT, GuiButtonRecipeSearch.Texture.INACTIVE);
+		this.buttonSearchNext.setType(GuiButtonRecipeSearch.Type.NEXTRESULT, GuiButtonRecipeSearch.Texture.INACTIVE);
+	}
+
+	public SortedMap<String, ArrayList<Integer>> recipeMapSearch(TreeMap<String, ArrayList<Integer>> fullMap, String searchQuery) {
+		// Thank you, Paŭlo Ebermann, for this TreeMap partial search algorithm!
+		if (!searchQuery.isEmpty()) {
+			char nextLetter  = (char) (searchQuery.charAt(searchQuery.length() - 1) + 1);
+			String end = searchQuery.substring(0, searchQuery.length() - 1) + nextLetter;
+			return fullMap.subMap(searchQuery, end);
+		}
+		return fullMap;
+	}
+
+	/**
+	 * @author 02skaplan
+	 * Initializes the recipe map used for searching through book. Loops through both sets of recipe lists
+	 * and adds each full name and each space-delimited term to the map using an ArrayList of ints to store result
+	 * pages for each term.
+	 */
+	private void initializeRecipeSearchMap() {
+		assert recipeListWB != null;
+		assert recipeList != null;
+		String name;
+		for (int i = 0; i < recipeListWB.size(); i++) {
+			name = ((ShapedTrainRecipes) recipeListWB.get(i)).getRecipeOutput().getDisplayName().toLowerCase();
+			addToRecipeSearchMap(name, i);
+		}
+		for (int i = 0; i < recipeList.size(); i++) {
+			name = recipeList.get(i).getOutput().getDisplayName().toLowerCase();
+			addToRecipeSearchMap(name, i + recipeListWB.size());
+		}
+	}
+
+	/**
+	 * @author 02skaplan
+	 * Adds a given name and asscociated terms to the recipe search map.
+	 * If term is more than one word long, this adds each space-delimited element to the map for easier searching.
+	 * If term is surrounded by [] or (), this removes the enclousure to allow for easier searching.
+	 * @param name Localized name of recipe to add to search map.
+	 * @param index Index of recipe within recipe book.
+	 */
+	private void addToRecipeSearchMap(String name, int index) {
+		String[] nameSplit;
+		ArrayList<Integer> indexList;
+		// Regex pattern to capture groups surrounded by [] or ().
+		Pattern removeEnclosurePattern = Pattern.compile("[\\[|\\(](.+)[\\)|\\]]");
+		Matcher matcher;
+
+		// Add raw name to map.
+		if (!recipeIndexMap.containsKey(name)) {
+			indexList = new ArrayList<>();
+			indexList.add(index);
+			recipeIndexMap.put(name, indexList);
+		}
+		// Add each part of split name to map.
+		nameSplit = name.split(" ");
+		for (String term : nameSplit) {
+			// If the term is surrounded by [] or (), remove before adding to make searching easier.
+			matcher = removeEnclosurePattern.matcher(term);
+			if (matcher.find()) {
+				if (recipeIndexMap.containsKey(matcher.group(1))) {
+					indexList = recipeIndexMap.get(matcher.group(1));
+					if (!indexList.contains(index)) {
+						indexList.add(index);
+						recipeIndexMap.put(matcher.group(1), indexList);
+					}
+				} else {
+					indexList = new ArrayList<>();
+					indexList.add(index);
+					recipeIndexMap.put(matcher.group(1), indexList);
+				}
+			}
+			// Add raw split name if not exists in map.
+			if (recipeIndexMap.containsKey(term)) {
+				indexList = recipeIndexMap.get(term);
+				if (!indexList.contains(index)) {
+					indexList.add(index);
+					recipeIndexMap.put(term, indexList);
+				}
+			} else {
+				indexList = new ArrayList<>();
+				indexList.add(index);
+				recipeIndexMap.put(term, indexList);
+			}
 		}
 	}
 }
