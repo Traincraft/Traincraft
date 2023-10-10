@@ -371,15 +371,16 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 			if (d9 == 0.0D) {
 				posX = i + 0.5D;
 				d17 = posZ - k;
-			} else if (d10 == 0.0D) {
+			}
+			else if (d10 == 0.0D) {
 				posZ = k + 0.5D;
 				d17 = posX - i;
-			} else {
+			}
+			else {
 				double d22 = posX - d18;
 				double d24 = posZ - d19;
 				d17 = (d22 * d9 + d24 * d10) * 2D;
 				//double derailSpeed = 0;//0.46;
-
 			}
 			posX = d18 + d9 * d17;
 			posZ = d19 + d10 * d17;
@@ -390,7 +391,8 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 			if (ai[0][1] != 0 && MathHelper.floor_double(posX) - i == ai[0][0] &&
 					MathHelper.floor_double(posZ) - k == ai[0][2]) {
 				setPosition(posX, posY + ai[0][1], posZ);
-			} else if (ai[1][1] != 0 && MathHelper.floor_double(posX) - i == ai[1][0] &&
+			}
+			else if (ai[1][1] != 0 && MathHelper.floor_double(posX) - i == ai[1][0] &&
 					MathHelper.floor_double(posZ) - k == ai[1][2]) {
 				setPosition(posX, posY + ai[1][1], posZ);
 			}
@@ -536,7 +538,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 	public void onUpdate(){
 		this.setCurrentCartSpeedCapOnRail(1.8F);
 		this.setMaxSpeedAirLateral(1.8F);
-
+		super.onUpdate();
 		this.prevPosX = this.posX;
 		this.prevPosY = this.posY;
 		this.prevPosZ = this.posZ;

@@ -119,7 +119,7 @@ public class EntityLocoElectricClass401 extends ElectricTrain {
 
     @Override
     public String getInventoryName() {
-        return "2-Bill Locomotive";
+        return "2-Bil Locomotive";
     }
 
     @Override
@@ -138,7 +138,7 @@ public class EntityLocoElectricClass401 extends ElectricTrain {
     }
     @Override
     public float getOptimalDistance(EntityMinecart cart) {
-        return 1.2F;
+        return 1.08F;
     }
 
     @Override

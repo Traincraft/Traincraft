@@ -65,6 +65,7 @@ public enum BlockIDs {
 	dirtyBallast(false,null),
 	dirtierBallast(false,null),
 	asphalt(false, null),
+	highSpeedBallast(false, null),
 	signalSpanish(false,null),//ItemsignalSpanish.class
 	kSignal(false,null),
 	metroMadridPole(false, null),

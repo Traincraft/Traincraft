@@ -1,5 +1,5 @@
 //This File was created with the Minecraft-SMP Modelling Toolbox 2.3.0.0
-// Copyright (C) 2022 Minecraft-SMP.de
+// Copyright (C) 2023 Minecraft-SMP.de
 // This file is for Flan's Flying Mod Version 4.0.x+
 
 // Model: 
@@ -9,7 +9,9 @@
 
 package train.client.render.models;
 
-
+import net.minecraft.client.Minecraft;
+import net.minecraft.entity.Entity;
+import org.lwjgl.opengl.GL11;
 import tmt.ModelConverter;
 import tmt.ModelRendererTurbo;
 
@@ -371,9 +373,9 @@ public class ModelClass390Front extends ModelConverter //Same as Filename
 		bodyModel[336] = new ModelRendererTurbo(this, 473, 177, textureX, textureY); // Box 1
 		bodyModel[337] = new ModelRendererTurbo(this, 257, 177, textureX, textureY); // Box 1
 		bodyModel[338] = new ModelRendererTurbo(this, 1, 153, textureX, textureY); // Box 1
-		bodyModel[339] = new ModelRendererTurbo(this, 17, 185, textureX, textureY); // Box 1
+		bodyModel[339] = new ModelRendererTurbo(this, 17, 185, textureX, textureY, "Lamp"); // Lamp
 		bodyModel[340] = new ModelRendererTurbo(this, 41, 185, textureX, textureY); // Box 1
-		bodyModel[341] = new ModelRendererTurbo(this, 129, 185, textureX, textureY); // Box 1
+		bodyModel[341] = new ModelRendererTurbo(this, 129, 185, textureX, textureY, "Lamp"); // Lamp
 		bodyModel[342] = new ModelRendererTurbo(this, 153, 185, textureX, textureY); // Box 1
 		bodyModel[343] = new ModelRendererTurbo(this, 169, 185, textureX, textureY); // Box 1
 		bodyModel[344] = new ModelRendererTurbo(this, 185, 185, textureX, textureY); // Box 1
@@ -1526,13 +1528,13 @@ public class ModelClass390Front extends ModelConverter //Same as Filename
 		bodyModel[338].addShapeBox(0F, 0F, 0F, 2, 2, 3, 0F,-1.5F, -0.2F, 0.5F, 0F, -0.2F, 0.5F, 0F, -1F, 0F, -1F, -1F, 0F, -0.5F, 0F, 0F, -0.7F, 0F, 0F, -1F, 0F, 0F, -0.5F, 0F, 0F); // Box 1
 		bodyModel[338].setRotationPoint(-56F, -5F, -5F);
 
-		bodyModel[339].addShapeBox(0F, 0F, 0F, 3, 6, 10, 0F,-4F, 0F, 0F, 2F, 0F, 0F, -1.35F, -2F, -5.25F, -1.05F, -2F, -5.25F, -2F, -3F, -0.5F, -0.2F, -3F, 0F, -1.7F, -3F, -5F, -0.5F, -3F, -5F); // Box 1
+		bodyModel[339].addShapeBox(0F, 0F, 0F, 3, 6, 10, 0F,-4F, 0F, 0F, 2F, 0F, 0F, -1.35F, -2F, -5.25F, -1.05F, -2F, -5.25F, -2F, -3F, -0.5F, -0.2F, -3F, 0F, -1.7F, -3F, -5F, -0.5F, -3F, -5F); // Lamp
 		bodyModel[339].setRotationPoint(-56F, -6F, -10F);
 
 		bodyModel[340].addShapeBox(0F, 0F, 0F, 3, 3, 5, 0F,-3.9F, 0F, -0.05F, 2F, 0F, -0.05F, -2F, -2.2F, -0.5F, -0.5F, -2.2F, -0.5F, -3F, -2F, 0F, 1F, -2F, 0F, -2.35F, 0F, -0.25F, -0.05F, 0F, -0.25F); // Box 1
 		bodyModel[340].setRotationPoint(-55F, -7F, -10F);
 
-		bodyModel[341].addShapeBox(0F, 0F, 0F, 3, 6, 10, 0F,-1.05F, -2F, -0.25F, -1.35F, -2F, -0.25F, 2F, 0F, -5F, -4F, 0F, -5F, -0.5F, -3F, 0F, -1.7F, -3F, 0F, -0.2F, -3F, -5F, -2F, -3F, -5.5F); // Box 1
+		bodyModel[341].addShapeBox(0F, 0F, 0F, 3, 6, 10, 0F,-1.05F, -2F, -0.25F, -1.35F, -2F, -0.25F, 2F, 0F, -5F, -4F, 0F, -5F, -0.5F, -3F, 0F, -1.7F, -3F, 0F, -0.2F, -3F, -5F, -2F, -3F, -5.5F); // Lamp
 		bodyModel[341].setRotationPoint(-56F, -6F, 5F);
 
 		bodyModel[342].addShapeBox(0F, 0F, 0F, 3, 3, 3, 0F,-3.775F, 0F, -0.1F, 1.95F, 0F, -0.1F, -1.45F, -2.35F, -0.25F, -0.825F, -2.35F, -0.25F, -2.9F, -2F, -0.05F, 1F, -2F, 0F, -1.45F, -0.65F, -0.25F, -0.825F, -0.65F, -0.25F); // Box 1
@@ -1936,5 +1938,21 @@ public class ModelClass390Front extends ModelConverter //Same as Filename
 
 		bodyModel[475].addShapeBox(0F, 0F, 0F, 3, 3, 1, 0F,-0.4F, -2.2F, 0F, -0.7F, -0.1F, 0F, -0.7F, -0.1F, -0.6F, -0.4F, -2.2F, -0.6F, -0.7F, -0.4F, 0F, -0.7F, -1.9F, 0F, -0.7F, -1.9F, -0.6F, -0.7F, -0.4F, -0.6F); // Box 122
 		bodyModel[475].setRotationPoint(-43F, 2F, 7F);
+	}
+	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
+
+		for (int i = 0; i < 476; i++) {
+			if (bodyModel[i].boxName != null && bodyModel[i].boxName.contains("Lamp")) {
+				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
+				bodyModel[i].render(f5);
+				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
+			} else if (bodyModel[i].boxName != null && bodyModel[i].boxName.contains("cull")) {
+				GL11.glDisable(GL11.GL_CULL_FACE);
+				bodyModel[i].render(f5);
+				GL11.glEnable(GL11.GL_CULL_FACE);
+			} else {
+				bodyModel[i].render(f5);
+			}
+		}
 	}
 }
