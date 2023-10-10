@@ -397,7 +397,7 @@ public enum RenderEnum {
 		}
 	}, 2, true),
 
-	locoJ50(EntityLocoSteamJ50.class, new ModelJ50(), "J50_", true, new float[] {-1.25f, 0.07f, 0 }, new float[] {0,180,180}, null, "largesmoke", 3, new ArrayList<double[]>() {
+	locoJ50(EntityLocoSteamJ50.class, new ModelJ50(), "J50_", true, new float[] {-1.25f, 0.15f, 0 }, new float[] {0,180,180}, null, "largesmoke", 3, new ArrayList<double[]>() {
 		{
 			add(new double[] { 2.7D, 1.5D, 0D });
 		}
@@ -1370,7 +1370,7 @@ public enum RenderEnum {
 	Class442DTS( EntityElectricClass442DTS.class, new ModelClass442DTS(),"class_442_DTS_", true, new float[] {-2F, 0F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
 	Class442TS( EntityPassengerClass442TS.class, new ModelClass442TS(),"class_442_TS_", true, new float[] {0.15F, 0F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
 	Class442MBLS( EntityPassengerClass442MBLS.class, new ModelClass442MBLS(),"class_442_MBLS_", true, new float[] {0.15F, 0F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
-	Class205loco( EntityLocoDieselClass205loco.class, new ModelClass205(), "CLass_205_", true, new float[] {-2F, 0.15F, 0F}, new float[] {0F, 180F, 180F}, null, "smoke", 3, new ArrayList<double[]>() {{}}, "", null, 0, false),
+	Class205loco( EntityLocoDieselClass205loco.class, new ModelClass205(), "Class_205_", true, new float[] {-2F, 0.15F, 0F}, new float[] {0F, 180F, 180F}, null, "smoke", 3, new ArrayList<double[]>() {{}}, "", null, 0, false),
 	Class205tso( EntityPassengerClass205tso.class, new ModelClass205tso(), "Class_205_", true, new float[] {0f, 0.15f, 0f}, new float[] {0F, 180F, 180F}, null, "", 0,null, "", null, 0, false),
 	Class205tail( EntityPassengerClass205tail.class, new ModelClass205tail(), "Class_205_", true, new float[] {0f, 0.15f, 0f}, new float[] {0F, 180F, 180F}, null, "", 0,null, "", null, 0, false),
 	M8DNF1Loco(EntityElectricM8DNF1Loco.class, new ModelM8DNF1End(), "m8d_nf1_", true,new float[] {-0.65F, 0.2F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
