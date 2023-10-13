@@ -963,7 +963,7 @@ public class ModelF7B extends ModelConverter //Same as Filename
 			theTrucc.render(entity, f, f1, f2, f3, f4, f5);
 			GL11.glPopMatrix();
 		} else if (entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 8) {
-			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/blombergb_2_Espee.png"));
+			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/blombergB_2_Espee.png"));
 			GL11.glPushMatrix();
 			GL11.glTranslated(-1.2, -0.01, 0);
 			theTrucc.render(entity, f, f1, f2, f3, f4, f5);
