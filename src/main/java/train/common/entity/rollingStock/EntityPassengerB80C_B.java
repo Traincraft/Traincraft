@@ -8,7 +8,7 @@ import train.common.api.EntityRollingStock;
 import train.common.api.IPassenger;
 import train.common.api.ISecondBogie;
 
-public class EntityPassengerB80C_B extends EntityRollingStock implements IPassenger {
+public class EntityPassengerB80C_B extends EntityRollingStock implements IPassenger, ISecondBogie{
     //public TiltingHandler tiltingHandler = new TiltingHandler(7);
 
     public EntityPassengerB80C_B(World world) {
