@@ -155,7 +155,7 @@ public enum RenderEnum {
 			add(new double[] { 1.25D, 1.15D, 0.0D });
 		}
 	}, "", null, 0, false),
-	locoCD754(EntityLocoDieselCD754.class, new ModelCD754(), "cd754_", true, new float[] { -2.2F, 0.05F, 0.0F }, new float[] { 180F, 0F, 0F }, new float[] { 0.8F, 0.8F, 0.8F }, "smoke", 5, new ArrayList<double[]>() {
+	locoCD754(EntityLocoDieselCD754.class, new ModelCD754(), "cd754_", true, new float[] { -2.5F, 0.2F, 0.0F }, new float[] { 180F, 0F, 0F }, new float[] { 1F, 1F, 1F }, "smoke", 5, new ArrayList<double[]>() {
 		{
 			add(new double[] { 1.25D, 1.15D, 0.0D });
 		}
@@ -196,7 +196,7 @@ public enum RenderEnum {
 		}
 	}, "", null, 0, false),
 
-	locoShunter(EntityLocoDieselShunter.class, new ModelShunter(), "shunter_", true, new float[] { -1.2F, -0.42F, 0.0F }, null, null, "smoke", 5, new ArrayList<double[]>() {
+	locoShunter(EntityLocoDieselShunter.class, new ModelShunter(), "shunter_", true, new float[] { -1.2F, -0.451F, 0.0F }, null, null, "smoke", 5, new ArrayList<double[]>() {
 		{
 			add(new double[] { 2.4D, 1.5D, -0.1D });
 			add(new double[] { 2.4D, 1.5D, 0.1D });
@@ -397,7 +397,7 @@ public enum RenderEnum {
 		}
 	}, 2, true),
 
-	locoJ50(EntityLocoSteamJ50.class, new ModelJ50(), "J50_", true, new float[] {-1.25f, 0.07f, 0 }, new float[] {0,180,180}, null, "largesmoke", 3, new ArrayList<double[]>() {
+	locoJ50(EntityLocoSteamJ50.class, new ModelJ50(), "J50_", true, new float[] {-1.25f, 0.15f, 0 }, new float[] {0,180,180}, null, "largesmoke", 3, new ArrayList<double[]>() {
 		{
 			add(new double[] { 2.7D, 1.5D, 0D });
 		}
@@ -463,7 +463,7 @@ public enum RenderEnum {
 			add(new double[] { 2.9D, 0.05D, 0.65D });
 		}
 	}, 2, true),
-	locoUSATCUS(EntityLocoSteamUSATCUS.class, new ModelUSATCUS(), "USATCUS", false, new float[] { -2.0F, -0.25F, 0.8375F }, new float[] { 0, 180, 180 }, new float[]{1f,1f,1f}, "largesmoke", 3, new ArrayList<double[]>() {
+	locoUSATCUS(EntityLocoSteamUSATCUS.class, new ModelUSATCUS(), "USATCUS", false, new float[] { -2.0F, -0.2F, 0.8375F }, new float[] { 0, 180, 180 }, new float[]{1f,1f,1f}, "largesmoke", 3, new ArrayList<double[]>() {
 		{
 			add(new double[] { 2.5D, 1.2D, 0D });
 		}
@@ -472,7 +472,7 @@ public enum RenderEnum {
 			add(new double[] { 2.5D, -0.5D, 0.65D });
 		}
 	}, 2, true),
-	locoUSATCUK(EntityLocoSteamUSATCUK.class, new ModelUSATCUK(), "USATCUK", false, new float[] { -2.0F, -0.25F, 0.8375F }, new float[] { 0, 180, 180 }, new float[]{1f,1f,1f}, "largesmoke", 3, new ArrayList<double[]>() {
+	locoUSATCUK(EntityLocoSteamUSATCUK.class, new ModelUSATCUK(), "USATCUK", false, new float[] { -2.0F, -0.2F, 0.8375F }, new float[] { 0, 180, 180 }, new float[]{1f,1f,1f}, "largesmoke", 3, new ArrayList<double[]>() {
 		{
 			add(new double[] { 2.5D, 1.2D, 0D });
 		}
@@ -746,7 +746,7 @@ public enum RenderEnum {
 			add(new double[] { 2D, -0.4D, 0D });
 		}
 	}, 2, true),
-	locoMRcompound(EntitylocoSteamMRCompound.class, new ModelMidlandcompound(), "LMS_4p_", true, new float[] {-2f, 0.1f, 0 }, new float[] {0, 180, 180}, null, "largesmoke", 2, new ArrayList<double[]>() {
+	locoMRcompound(EntitylocoSteamMRCompound.class, new ModelMidlandcompound(), "LMS_4p_", true, new float[] {-1.95f, 0.1f, 0 }, new float[] {0, 180, 180}, null, "largesmoke", 2, new ArrayList<double[]>() {
 		{
 			add(new double[] { 3.5D, 1.5D, 0D });
 		}
@@ -1178,7 +1178,7 @@ public enum RenderEnum {
 	GP38dash9W( EntityLocoDieselBapGP38dash9W.class,  new ModelGP38dash9W(), "GP38dash9W_Green", false,new float[] {-1.5F, 0.155F, 0F},  new float[] { 0F, 180F, 180F }, null, "smoke", 3,  new ArrayList<double[]>() {
 		{ }
 	}, "", null, 0, false),
-	class158motor(EntityLocoDieselClass158.class, new ModelClass158(), "Class_158_", true, new float[] { -1.9F, -0.45F, 0.0F },   new float[] { 0F, 180F, 180F }, null, "smoke", 2, new ArrayList<double[]>() {
+	class158motor(EntityLocoDieselClass158.class, new ModelClass158(), "Class_158_", true, new float[] { -1.85F, -0.45F, 0.0F },   new float[] { 0F, 180F, 180F }, null, "smoke", 2, new ArrayList<double[]>() {
 		{ }
 	}, "", null, 0, false),
 	class158car(EntityClass158Coach.class, new ModelClass158Middle(), "Class_158_", true, new float[] { 0.5F, -0.45F, 0.0F },   new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
@@ -1211,7 +1211,7 @@ public enum RenderEnum {
 	PSRPOPM(EntityFreightPSRPOPM.class, new ModelPSRPOPM(), "PSRPOPM_", true, new float[] { 0F, 0.15F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	PSRPO(EntityFreightPSRPO.class, new ModelPSRPO(), "PSRPO_", true, new float[] { 0F, 0.15F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	KVB_2300(EntityElectricKVB_2300.class, new ModelKVB_2300(), "kvb_2300_", true,new float[] {-1.25F, 0.15F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
-	KVB_2300_B( EntityPassengerKVB_2300_B.class, new ModelKVB_2300_B(),"kvb_2300_", true, new float[] {0F, 0.15F, 0F},  new float[] { 0F, 0F, 180F },null, "", 0, null, "", null, 0, false),
+	KVB_2300_B( EntityPassengerKVB_2300_B.class, new ModelKVB_2300_B(),"kvb_2300_", true, new float[] {-1.25F, 0.15F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
 	//tcce5 new stuff (its mixed around in the file tbh)
 	BR_MK2F_Coach( EntityPassengerBR_MK2F_Coach.class, new ModelBR_MK2F_Coach(), "BR_Mk2f_", true, new float[] {0.485F,0F,0F}, new float[] {0F, 180F, 180F}, null, "",0,null, "", null, 0, false),
 	BR_MK2F_BSO(EntityPassengerBR_MK2F_BSO.class, new ModelBR_MK2F_BSO(), "BR_Mk2f_BSO_", true, new float[] {0.485F,0F,0F}, new float[] {0F, 180F, 180F}, null, "", 0 , null, "", null, 0, false),
@@ -1309,7 +1309,7 @@ public enum RenderEnum {
 	MetalTramCoach(EntityPassengerMetalTramCoach.class, new ModelMetalTramCoach(), "Metal_Tram_", true, new float[]{ 0.0F, 0.18F, 0.0F}, new float[]{ 0.0F, 180F, 180F} , null, "", 0, null, "", null, 0 , false ),
 	HopperUK(EntityFreightHopperUK.class, new ModelHopper_UK(), "Hopper_UK_", true, new float[] {0F,0.1F,0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	B80C_A(EntityElectricB80C_A.class, new ModelB80C_A(), "B80C_", true,new float[] {-1.25F, 0.15F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
-	B80C_B( EntityPassengerB80C_B.class, new ModelB80C_B(),"B80C_", true, new float[] {0F, 0.15F, 0F},  new float[] { 0F, 0F, 180F },null, "", 0, null, "", null, 0, false),
+	B80C_B( EntityPassengerB80C_B.class, new ModelB80C_B(),"B80C_", true, new float[] {-1.25F, 0.15F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
 	WoodenTramCoach(EntityPassengerWoodenTramCoach.class, new ModelWoodenTramCoach(), "Wooden_Tram_Coach_", true, new float[]{ 0.0F, 0.18F, 0.0F}, new float[]{ 0.0F, 180F, 180F} , null, "", 0, null, "", null, 0 , false ),
 	MA100_Loco(EntityElectricMA100_Loco.class, new ModelMA100_Loco(), "MA100_", true,new float[] {-0.95F, 0.16F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	MA100_Tail(EntityPassengerMA100_Tail.class, new ModelMA100_Tail(), "MA100_",true,new float[] {0F, 0.16F, 0F},  new float[] { 0F, 0F, 180F }, null, "", 0, null, "", null, 0, false),
@@ -1331,8 +1331,8 @@ public enum RenderEnum {
 	DuewagGT6ZTail(EntityPassengerDuewagGT6ZRTail.class, new ModelDuewagGT6ZRTail(), "Duewag_GT6_", true,new float[] {-0.85F, 0.2F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	M8CLoco(EntityElectricM8CLoco.class, new ModelM8CLoco(), "M8C_", true,new float[] {-1F, 0.2F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	M8CTail(EntityPassengerM8CTail.class, new ModelM8CTail(), "M8C_", true,new float[] {-1F, 0.2F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
-	Class416Loco(EntityElectricClass416Loco.class, new ModelClass416Engine(), "Class_205_", true, new float[] {-1.745F, 0.17F, 0F}, new float[] {0F, 180F, 180F}, null, "", 0, null, "", null, 0, false),
-	Class416Tail(EntityPassengerClass416Tail.class, new ModelClass416Tail(), "Class_205_", true, new float[] {0.075F, 0.17F, 0F}, new float[] {0F, 0F, 180F}, null, "", 0, null, "", null, 0, false),
+	Class416Loco(EntityElectricClass416Loco.class, new ModelClass416Engine(), "Class_205_", true, new float[] {-2F, 0.15F, 0F}, new float[] {0F, 180F, 180F}, null, "", 0, null, "", null, 0, false),
+	Class416Tail(EntityPassengerClass416Tail.class, new ModelClass416Tail(), "Class_205_", true, new float[] {0f, 0.15f, 0f}, new float[] {0F, 0F, 180F}, null, "", 0, null, "", null, 0, false),
 	DB420Loco(EntityElectricDB420Loco.class, new ModelDB420End(), "db420_", true,new float[] {-1.5F, 0.16F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	DB420Middle(EntityPassengerDB420Middle.class, new ModelDB420Middle(), "db420_",true,new float[] {-1.3F, 0.16F, 0F},  new float[] { 0F, 0F, 180F }, null, "", 0, null, "", null, 0, false),
 	DB420Tail(EntityPassengerDB420Tail.class, new ModelDB420End(), "db420_",true,new float[] {-1.5F, 0.16F, 0F},  new float[] { 0F, 0F, 180F }, null, "", 0, null, "", null, 0, false),
@@ -1367,7 +1367,16 @@ public enum RenderEnum {
 	Class389Front( EntityElectricClass389Front.class, new ModelClass389Front(),"Class_389_", true, new float[] {-2.4F, 0F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
 	Class389Middle( EntityPassengerClass389Middle.class, new ModelClass389Middle(),"Class_389_Middle_", true, new float[] {-0.31F, 0F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
 	Class389Tail( EntityPassengerClass389Tail.class, new ModelClass389Front(),"Class_389_", true, new float[] {-0.31F, 0F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
-
+	Class442DTS( EntityElectricClass442DTS.class, new ModelClass442DTS(),"class_442_DTS_", true, new float[] {-2F, 0F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
+	Class442TS( EntityPassengerClass442TS.class, new ModelClass442TS(),"class_442_TS_", true, new float[] {0.15F, 0F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
+	Class442MBLS( EntityPassengerClass442MBLS.class, new ModelClass442MBLS(),"class_442_MBLS_", true, new float[] {0.15F, 0F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
+	Class205loco( EntityLocoDieselClass205loco.class, new ModelClass205(), "Class_205_", true, new float[] {-2F, 0.15F, 0F}, new float[] {0F, 180F, 180F}, null, "smoke", 3, new ArrayList<double[]>() {{}}, "", null, 0, false),
+	Class205tso( EntityPassengerClass205tso.class, new ModelClass205tso(), "Class_205_", true, new float[] {0f, 0.15f, 0f}, new float[] {0F, 180F, 180F}, null, "", 0,null, "", null, 0, false),
+	Class205tail( EntityPassengerClass205tail.class, new ModelClass205tail(), "Class_205_", true, new float[] {0f, 0.15f, 0f}, new float[] {0F, 180F, 180F}, null, "", 0,null, "", null, 0, false),
+	M8DNF1Loco(EntityElectricM8DNF1Loco.class, new ModelM8DNF1End(), "m8d_nf1_", true,new float[] {-0.65F, 0.2F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	M8DNF1Middlelong(EntityPassengerM8DNF1MiddleLong.class, new ModelM8DNF1Middle1(), "m8d_nf1_", true,new float[] {0F, 0.2F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	M8DNF1Middleshort(EntityPassengerM8DNF1MiddleShort.class, new ModelM8DNF1Middle2(), "m8d_nf1_", true,new float[] {0F, 0.2F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	M8DNF1Tail(EntityPassengerM8DNF1Tail.class, new ModelM8DNF1End(), "m8d_nf1_", true,new float[] {-0.65F, 0.2F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	;
 
 	private Class<? extends AbstractTrains> entityClass;

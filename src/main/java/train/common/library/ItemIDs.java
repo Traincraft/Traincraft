@@ -711,7 +711,16 @@ public enum ItemIDs {
 	minecartClass389Front("ItemRollingStock", "Class_389_Front_Icon", 5),
 	minecartClass389Middle("ItemRollingStock", "Class_389_Middle_Icon", 2),
 	minecartClass389Tail("ItemRollingStock", "Class_389_Tail_Icon", 2),
-
+	minecartClass442DTS("ItemRollingStock", "Class_442_DTS_Icon", 5),
+	minecartClass442TS("ItemRollingStock", "Class_442_TS_Icon", 2),
+	minecartClass442MBLS("ItemRollingStock", "Class_442_MBLS_Icon", 2),
+	minecartClass205loco("ItemRollingStock", "Class_205_engine_icon", 3),
+	minecartCLass205tso("ItemRollingStock", "Class_205_trailer_icon", 2),
+	minecartClass205tail("ItemRollingStock", "Class_205_tail_icon", 2),
+	minecartM8DNF1Loco("ItemRollingStock", "m8d_nf1_loco_icon", 2),
+	minecartM8DNF1Middlelong("ItemRollingStock", "m8d_nf1_middle_icon", 1),
+	minecartM8DNF1Middleshort("ItemRollingStock", "m8d_nf1_middle2_icon", 1),
+	minecartM8DNF1Tail("ItemRollingStock", "m8d_nf1_tail_icon", 2),
 
 	//signalSpanish("ItemsignalSpanish","signalSpanish", 1),
 

@@ -1,5 +1,5 @@
 //This File was created with the Minecraft-SMP Modelling Toolbox 2.3.0.0
-// Copyright (C) 2022 Minecraft-SMP.de
+// Copyright (C) 2023 Minecraft-SMP.de
 // This file is for Flan's Flying Mod Version 4.0.x+
 
 // Model: 
@@ -9,6 +9,9 @@
 
 package train.client.render.models; //Path where the model is located
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.entity.Entity;
+import org.lwjgl.opengl.GL11;
 import tmt.ModelConverter;
 import tmt.ModelRendererTurbo;
 
@@ -19,7 +22,7 @@ public class ModelBR_MK3_DVT extends ModelConverter //Same as Filename
 
 	public ModelBR_MK3_DVT() //Same as Filename
 	{
-		bodyModel = new ModelRendererTurbo[200];
+		bodyModel = new ModelRendererTurbo[202];
 
 		initbodyModel_1();
 
@@ -183,7 +186,7 @@ public class ModelBR_MK3_DVT extends ModelConverter //Same as Filename
 		bodyModel[149] = new ModelRendererTurbo(this, 1, 89, textureX, textureY); // 150
 		bodyModel[150] = new ModelRendererTurbo(this, 409, 81, textureX, textureY); // 151
 		bodyModel[151] = new ModelRendererTurbo(this, 289, 81, textureX, textureY); // 152
-		bodyModel[152] = new ModelRendererTurbo(this, 9, 89, textureX, textureY); // 153
+		bodyModel[152] = new ModelRendererTurbo(this, 34, 101, textureX, textureY); // 153
 		bodyModel[153] = new ModelRendererTurbo(this, 129, 89, textureX, textureY); // 154
 		bodyModel[154] = new ModelRendererTurbo(this, 129, 81, textureX, textureY); // 155
 		bodyModel[155] = new ModelRendererTurbo(this, 449, 81, textureX, textureY); // 156
@@ -231,6 +234,8 @@ public class ModelBR_MK3_DVT extends ModelConverter //Same as Filename
 		bodyModel[197] = new ModelRendererTurbo(this, 145, 81, textureX, textureY); // 192
 		bodyModel[198] = new ModelRendererTurbo(this, 489, 81, textureX, textureY); // 192
 		bodyModel[199] = new ModelRendererTurbo(this, 41, 89, textureX, textureY); // 192
+		bodyModel[200] = new ModelRendererTurbo(this, 22, 102, textureX, textureY, "Lamp"); // Lamp
+		bodyModel[201] = new ModelRendererTurbo(this, 9, 102, textureX, textureY, "Lamp"); // Lamp
 
 		bodyModel[0].addShapeBox(0F, 0F, 0F, 75, 1, 20, 0F,0F, 0F, 0.5F, 0F, 0F, 0.5F, 0F, 0F, 0.5F, 0F, 0F, 0.5F, 0F, -0.5F, 0.4F, 0F, -0.5F, 0.4F, 0F, -0.5F, 0.4F, 0F, -0.5F, 0.4F); // 01
 		bodyModel[0].setRotationPoint(-41F, 0F, -10F);
@@ -694,8 +699,8 @@ public class ModelBR_MK3_DVT extends ModelConverter //Same as Filename
 		bodyModel[151].addShapeBox(0F, 0F, 0F, 4, 4, 19, 0F,0F, 0F, -0.4F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.2F, 0F, 0F, -0.4F, 0F, 0F, -0.6F, 0F, 0F, -0.6F, 0F, 0F, -0.8F); // 152
 		bodyModel[151].setRotationPoint(-50F, -2F, -9F);
 
-		bodyModel[152].addBox(0F, 0F, 0F, 2, 2, 20, 0F); // 153
-		bodyModel[152].setRotationPoint(-52F, -6F, -10F);
+		bodyModel[152].addBox(0F, 0F, 0F, 2, 2, 6, 0F); // 153
+		bodyModel[152].setRotationPoint(-52F, -6F, -3F);
 
 		bodyModel[153].addShapeBox(0F, 0F, 0F, 6, 6, 20, 0F,-5F, -0.5F, 0.5F, 0F, -0.5F, 0.5F, 0F, -0.5F, 0.5F, -5F, -0.5F, 0.5F, 0F, 0F, 0F, 0F, 0F, 0.5F, 0F, 0F, 0.5F, 0F, 0F, 0F); // 154
 		bodyModel[153].setRotationPoint(-52F, -12F, -10F);
@@ -748,17 +753,17 @@ public class ModelBR_MK3_DVT extends ModelConverter //Same as Filename
 		bodyModel[169].addShapeBox(0F, 0F, 0F, 1, 2, 1, 0F,0.4F, 0F, -0.8F, -1F, 0F, -0.8F, -1F, 0F, 0.2F, 0.4F, 0F, 0.2F, 0.4F, 0F, -0.8F, -1F, 0F, -0.8F, -1F, 0F, 0.2F, 0.4F, 0F, 0.2F); // 170
 		bodyModel[169].setRotationPoint(-52F, 1F, -1F);
 
-		bodyModel[170].addBox(0F, 0F, 0F, 3, 1, 1, 0F); // 171
+		bodyModel[170].addShapeBox(0F, 0F, 0F, 3, 1, 1, 0F,0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0.5F, 0F, 0F, 0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0.5F, 0F, 0F); // 171
 		bodyModel[170].setRotationPoint(-53F, 0F, -8F);
 
-		bodyModel[171].addBox(0F, 0F, 0F, 3, 1, 1, 0F); // 172
+		bodyModel[171].addShapeBox(0F, 0F, 0F, 3, 1, 1, 0F,0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0.5F, 0F, 0F, 0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0.5F, 0F, 0F); // 172
 		bodyModel[171].setRotationPoint(-53F, 0F, 7F);
 
 		bodyModel[172].addShapeBox(0F, 0F, 0F, 1, 3, 3, 0F,-0.8F, 0.5F, 0F, 0F, 0.5F, 0F, 0F, 0.5F, 0F, -0.8F, 0.5F, 0F, -0.8F, -1.5F, 0F, 0F, -1.5F, 0F, 0F, -1.5F, 0F, -0.8F, -1.5F, 0F); // 173
-		bodyModel[172].setRotationPoint(-54F, 0F, -9F);
+		bodyModel[172].setRotationPoint(-54.5F, 0F, -9F);
 
 		bodyModel[173].addShapeBox(0F, 0F, 0F, 1, 3, 3, 0F,-0.8F, 0.5F, 0F, 0F, 0.5F, 0F, 0F, 0.5F, 0F, -0.8F, 0.5F, 0F, -0.8F, -1.5F, 0F, 0F, -1.5F, 0F, 0F, -1.5F, 0F, -0.8F, -1.5F, 0F); // 174
-		bodyModel[173].setRotationPoint(-54F, 0F, 6F);
+		bodyModel[173].setRotationPoint(-54.5F, 0F, 6F);
 
 		bodyModel[174].addShapeBox(0F, 0F, 0F, 1, 3, 1, 0F,-0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F); // 175
 		bodyModel[174].setRotationPoint(-51F, 0F, -4F);
@@ -837,5 +842,27 @@ public class ModelBR_MK3_DVT extends ModelConverter //Same as Filename
 
 		bodyModel[199].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F,-0.6F, 0F, -0.4F, -0.2F, 0F, -0.4F, -0.2F, 0F, -0.4F, -0.6F, 0F, -0.4F, -0.6F, 0F, -0.4F, -0.2F, 0F, -0.4F, -0.2F, 0F, -0.4F, -0.6F, 0F, -0.4F); // 192
 		bodyModel[199].setRotationPoint(-43F, -9F, 0F);
+
+		bodyModel[200].addBox(0F, 0F, 0F, 2, 2, 7, 0F); // Lamp
+		bodyModel[200].setRotationPoint(-52F, -6F, -10F);
+
+		bodyModel[201].addBox(0F, 0F, 0F, 2, 2, 7, 0F); // Lamp
+		bodyModel[201].setRotationPoint(-52F, -6F, 3F);
+	}
+	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
+
+		for (int i = 0; i < 202; i++) {
+			if (bodyModel[i].boxName != null && bodyModel[i].boxName.contains("Lamp")) {
+				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
+				bodyModel[i].render(f5);
+				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
+			} else if (bodyModel[i].boxName != null && bodyModel[i].boxName.contains("cull")) {
+				GL11.glDisable(GL11.GL_CULL_FACE);
+				bodyModel[i].render(f5);
+				GL11.glEnable(GL11.GL_CULL_FACE);
+			} else {
+				bodyModel[i].render(f5);
+			}
+		}
 	}
 }
