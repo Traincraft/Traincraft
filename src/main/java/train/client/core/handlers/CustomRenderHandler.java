@@ -495,7 +495,7 @@ public class CustomRenderHandler {
                 RenderTCRail.modelSmallStraight.render( variant, facing, 0, 0, 0, r, g, b, a );
                 RenderTCRail.modelSmallStraight.render( variant, facing, dx * out_1_0 + dx_1 * out_1_1, 0, dz * out_1_0 + dz_1 * out_1_1, r, g, b, a );
             }
-            if ( item.getTrackType() == ItemTCRail.TrackTypes.MEDIUM_45DEGREE_SWITCH || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_MEDIUM_45DEGREE_SWITCH )
+            else if ( item.getTrackType() == ItemTCRail.TrackTypes.MEDIUM_45DEGREE_SWITCH || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_MEDIUM_45DEGREE_SWITCH )
             {
 
             }
