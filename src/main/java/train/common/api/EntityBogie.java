@@ -310,7 +310,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 	private void updateOnTrack(int i, int j, int k, Block l) {
 
 		if (canUseRail() && BlockRailBase.func_150051_a(l)) {
-
+			super.onUpdate();
 			int i1 = ((BlockRailBase) l).getBasicRailMetadata(worldObj, this, i, j, k);
 			meta = i1;
 
@@ -536,7 +536,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 	Block l;
 	@Override
 	public void onUpdate(){
-		super.onUpdate();
+
 		this.setCurrentCartSpeedCapOnRail(1.8F);
 		this.setMaxSpeedAirLateral(1.8F);
 		this.prevPosX = this.posX;
@@ -576,6 +576,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 			updateOnTrack(i, j, k, l);
 
 		}
+
 
 		this.func_145775_I();
 		this.rotationPitch = 0.0F;
