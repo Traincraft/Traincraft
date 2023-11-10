@@ -536,13 +536,13 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 	Block l;
 	@Override
 	public void onUpdate(){
-		super.onUpdate();
+
 		this.setCurrentCartSpeedCapOnRail(1.8F);
 		this.setMaxSpeedAirLateral(1.8F);
 		this.prevPosX = this.posX;
 		this.prevPosY = this.posY;
 		this.prevPosZ = this.posZ;
-
+		super.onUpdate();
 		if (this.worldObj.isRemote) {
 			if (this.turnProgress > 0) {
 				double d6 = this.posX + (this.minecartX - this.posX) / this.turnProgress;
@@ -576,6 +576,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 			updateOnTrack(i, j, k, l);
 
 		}
+
 
 		this.func_145775_I();
 		this.rotationPitch = 0.0F;
