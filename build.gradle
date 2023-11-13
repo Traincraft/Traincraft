@@ -58,8 +58,9 @@ task packApi(type: Jar, dependsOn: "classes") {
     from (sourceSets.main.output) {
         excludes.addAll('**/*.info')
         excludes.addAll('assets/tc/textures/trains')
-        excludes.addAll('assets/tc/textures/items/trains')
+        excludes.addAll('assets/tc/textires/items/trains')
         excludes.addAll('assets/tc/sounds')
+        excludes.addAll('assets/tc/sounds.json')
     }
 }
 
