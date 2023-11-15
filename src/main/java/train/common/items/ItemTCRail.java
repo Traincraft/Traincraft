@@ -1273,7 +1273,7 @@ public class ItemTCRail extends ItemPart {
 							tcRailTurn.hasModel = false;
 						}
 
-						world.setBlockMetadataWithNotify(x + 1, y + 1, z - 3, l, 2);//to force client update
+						world.setBlockMetadataWithNotify(x + 1, y + 1, z - 2, l, 2);//to force client update
 						/** Switch rail 1 **/
 						putDownSingleRail(world, x, y + 1, z - 1, l, x + 4.25, y + 1, z, 3.75, tempType.getLabel(), true, x + 1, y + 1, z - 2, true, false);
 						/** Switch rail 2 **/
@@ -1293,7 +1293,7 @@ public class ItemTCRail extends ItemPart {
 							tcRailTurn.hasModel = false;
 						}
 
-						world.setBlockMetadataWithNotify(x - 1, y + 1, z + 3, l, 2);//to force client update
+						world.setBlockMetadataWithNotify(x - 1, y + 1, z + 2, l, 2);//to force client update
 						/** Switch rail 1 **/
 						putDownSingleRail(world, x, y + 1, z + 1, l, x - 3.25, y + 1, z + 1, 3.75, tempType.getLabel(), true, x - 1, y + 1, z + 2, true, false);
 						/** Switch rail 2 **/
@@ -1312,7 +1312,7 @@ public class ItemTCRail extends ItemPart {
 							tcRailTurn.hasModel = false;
 						}
 
-						world.setBlockMetadataWithNotify(x - 3, y + 1, z - 1, l, 2);//to force client update
+						world.setBlockMetadataWithNotify(x - 2, y + 1, z - 1, l, 2);//to force client update
 						/** Switch rail 1 **/
 						putDownSingleRail(world, x - 1, y + 1, z , l, x , y + 1, z - 3.25, 3.75, tempType.getLabel(), true, x - 2, y + 1, z - 1, true, false);
 						/** Switch rail 2 **/
@@ -1331,7 +1331,7 @@ public class ItemTCRail extends ItemPart {
 							tcRailTurn.hasModel = false;
 						}
 
-						world.setBlockMetadataWithNotify(x + 3, y + 1, z + 1, l, 2);//to force client update
+						world.setBlockMetadataWithNotify(x + 2, y + 1, z + 1, l, 2);//to force client update
 						/** Switch rail 1 **/
 						putDownSingleRail(world, x + 1, y + 1, z , l, x + 1 , y + 1, z + 4.25, 3.75, tempType.getLabel(), true, x + 2, y + 1, z + 1, true, false);
 						/** Switch rail 2 **/
@@ -1352,7 +1352,7 @@ public class ItemTCRail extends ItemPart {
 							tcRailTurn.hasModel = false;
 						}
 
-						world.setBlockMetadataWithNotify(x + 1, y + 1, z - 3, l, 2);//to force client update
+						world.setBlockMetadataWithNotify(x + 1, y + 1, z - 2, l, 2);//to force client update
 						/** Switch rail 1 **/
 						putDownSingleRail(world, x, y + 1, z - 1, l, x + 4.25, y + 1, z, 3.75, tempType.getLabel(), true, x + 1, y + 1, z - 2, true, false);
 						/** Switch rail 2 **/
@@ -1372,7 +1372,7 @@ public class ItemTCRail extends ItemPart {
 							tcRailTurn.hasModel = false;
 						}
 
-						world.setBlockMetadataWithNotify(x - 1, y + 1, z + 3, l, 2);//to force client update
+						world.setBlockMetadataWithNotify(x - 1, y + 1, z + 2, l, 2);//to force client update
 						/** Switch rail 1 **/
 						putDownSingleRail(world, x, y + 1, z + 1, l, x - 3.25, y + 1, z + 1, 3.75, tempType.getLabel(), true, x - 1, y + 1, z + 2, true, false);
 						/** Switch rail 2 **/
@@ -1391,7 +1391,7 @@ public class ItemTCRail extends ItemPart {
 							tcRailTurn.hasModel = false;
 						}
 
-						world.setBlockMetadataWithNotify(x - 3, y + 1, z - 1, l, 2);//to force client update
+						world.setBlockMetadataWithNotify(x - 2, y + 1, z - 1, l, 2);//to force client update
 						/** Switch rail 1 **/
 						putDownSingleRail(world, x - 1, y + 1, z, l, x, y + 1, z - 3.25, 3.75, tempType.getLabel(), true, x - 2, y + 1, z - 1, true, false);
 						/** Switch rail 2 **/
@@ -1410,7 +1410,7 @@ public class ItemTCRail extends ItemPart {
 							tcRailTurn.hasModel = false;
 						}
 
-						world.setBlockMetadataWithNotify(x + 3, y + 1, z + 1, l, 2);//to force client update
+						world.setBlockMetadataWithNotify(x + 2, y + 1, z + 1, l, 2);//to force client update
 						/** Switch rail 1 **/
 						putDownSingleRail(world, x + 1, y + 1, z, l, x + 1, y + 1, z + 4.25, 3.75, tempType.getLabel(), true, x + 2, y + 1, z + 1, true, false);
 						/** Switch rail 2 **/
@@ -1452,7 +1452,7 @@ public class ItemTCRail extends ItemPart {
 							tcRailTurn.hasModel = false;
 						}
 
-						world.setBlockMetadataWithNotify(x - 1, y + 1, z - 3, l, 2);//to force client update
+						world.setBlockMetadataWithNotify(x - 1, y + 1, z - 2, l, 2);//to force client update
 						/** Switch rail 1 **/
 						putDownSingleRail(world, x, y + 1, z - 1, l, x - 3.25, y + 1, z, 3.75, tempType.getLabel(), true, x - 1, y + 1, z - 2, true, false);
 						/** Switch rail 2 **/
@@ -1472,7 +1472,7 @@ public class ItemTCRail extends ItemPart {
 							tcRailTurn.hasModel = false;
 						}
 
-						world.setBlockMetadataWithNotify(x + 1, y + 1, z + 3, l, 2);//to force client update
+						world.setBlockMetadataWithNotify(x + 1, y + 1, z + 2, l, 2);//to force client update
 						/** Switch rail 1 **/
 						putDownSingleRail(world, x, y + 1, z + 1, l, x + 4.25, y + 1, z + 1, 3.75, tempType.getLabel(), true, x + 1, y + 1, z + 2, true, false);
 						/** Switch rail 2 **/
@@ -1491,7 +1491,7 @@ public class ItemTCRail extends ItemPart {
 							tcRailTurn.hasModel = false;
 						}
 
-						world.setBlockMetadataWithNotify(x - 3, y + 1, z + 1, l, 2);//to force client update
+						world.setBlockMetadataWithNotify(x - 2, y + 1, z + 1, l, 2);//to force client update
 						/** Switch rail 1 **/
 						putDownSingleRail(world, x - 1, y + 1, z, l, x, y + 1, z + 4.25, 3.75, tempType.getLabel(), true, x - 2, y + 1, z + 1, true, false);
 						/** Switch rail 2 **/
@@ -1510,7 +1510,7 @@ public class ItemTCRail extends ItemPart {
 							tcRailTurn.hasModel = false;
 						}
 
-						world.setBlockMetadataWithNotify(x + 3, y + 1, z + 1, l, 2);//to force client update
+						world.setBlockMetadataWithNotify(x + 2, y + 1, z + 1, l, 2);//to force client update
 						/** Switch rail 1 **/
 						putDownSingleRail(world, x + 1, y + 1, z, l, x + 1, y + 1, z - 3.25, 3.75, tempType.getLabel(), true, x + 2, y + 1, z - 1, true, false);
 						/** Switch rail 2 **/
@@ -1532,7 +1532,7 @@ public class ItemTCRail extends ItemPart {
 							tcRailTurn.hasModel = false;
 						}
 
-						world.setBlockMetadataWithNotify(x - 1, y + 1, z - 3, l, 2);//to force client update
+						world.setBlockMetadataWithNotify(x - 1, y + 1, z - 2, l, 2);//to force client update
 						/** Switch rail 1 **/
 						putDownSingleRail(world, x, y + 1, z - 1, l, x - 3.25, y + 1, z, 3.75, tempType.getLabel(), true, x - 1, y + 1, z - 2, true, false);
 						/** Switch rail 2 **/
@@ -1552,7 +1552,7 @@ public class ItemTCRail extends ItemPart {
 							tcRailTurn.hasModel = false;
 						}
 
-						world.setBlockMetadataWithNotify(x + 1, y + 1, z + 3, l, 2);//to force client update
+						world.setBlockMetadataWithNotify(x + 1, y + 1, z + 2, l, 2);//to force client update
 						/** Switch rail 1 **/
 						putDownSingleRail(world, x, y + 1, z + 1, l, x + 4.25, y + 1, z + 1, 3.75, tempType.getLabel(), true, x + 1, y + 1, z + 2, true, false);
 						/** Switch rail 2 **/
@@ -1571,7 +1571,7 @@ public class ItemTCRail extends ItemPart {
 							tcRailTurn.hasModel = false;
 						}
 
-						world.setBlockMetadataWithNotify(x - 3, y + 1, z + 1, l, 2);//to force client update
+						world.setBlockMetadataWithNotify(x - 2, y + 1, z + 1, l, 2);//to force client update
 						/** Switch rail 1 **/
 						putDownSingleRail(world, x - 1, y + 1, z , l, x , y + 1, z + 4.25, 3.75, tempType.getLabel(), true, x - 2, y + 1, z + 1, true, false);
 						/** Switch rail 2 **/
@@ -1590,7 +1590,7 @@ public class ItemTCRail extends ItemPart {
 							tcRailTurn.hasModel = false;
 						}
 
-						world.setBlockMetadataWithNotify(x + 3, y + 1, z + 1, l, 2);//to force client update
+						world.setBlockMetadataWithNotify(x + 2, y + 1, z + 1, l, 2);//to force client update
 						/** Switch rail 1 **/
 						putDownSingleRail(world, x + 1, y + 1, z , l, x + 1 , y + 1, z - 3.25, 3.75, tempType.getLabel(), true, x + 2, y + 1, z - 1, true, false);
 						/** Switch rail 2 **/
@@ -3810,25 +3810,25 @@ public class ItemTCRail extends ItemPart {
 		putDownSingleRail(world, x + xDisplace , y + 1,
 				z + zDisplace , l,
 				x + (xDisplace) , y + 1, z + zDisplace , 0,
-				typeVariantDiagonal, false,x , y + 1, z,
+				typeVariantStraight, false,x , y + 1, z,
 				false, false);
 		//B
 		putDownSingleRail(world, x - xDisplace , y + 1,
 				z - zDisplace , l,
 				x - (xDisplace) , y + 1, z - zDisplace , 0,
-				typeVariantDiagonal, false,x , y + 1, z,
+				typeVariantStraight, false,x , y + 1, z,
 				false, false);
 		//L
 		putDownSingleRail(world, x + xSideDisplace , y + 1,
 				z + zSideDisplace , facing,
 				x + (xSideDisplace) , y + 1, z + zSideDisplace , 0,
-				typeVariantDiagonal, false,x , y + 1, z,
+				typeVariantStraight, false,x , y + 1, z,
 				false, false);
 		//R
 		putDownSingleRail(world, x - xSideDisplace , y + 1,
 				z - zSideDisplace , facing,
 				x - (xSideDisplace) , y + 1, z - zSideDisplace , 0,
-				typeVariantDiagonal, false,x , y + 1, z,
+				typeVariantStraight, false,x , y + 1, z,
 				false, false);
 
 

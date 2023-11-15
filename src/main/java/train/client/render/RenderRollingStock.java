@@ -20,6 +20,8 @@ import train.common.library.Info;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Random;
+import train.common.Traincraft;
+import train.common.api.TrainRenderRecord;
 
 @SideOnly(Side.CLIENT)
 public class RenderRollingStock extends Render {
@@ -219,137 +221,126 @@ public class RenderRollingStock extends Render {
 			angle = Math.copySign(angle, cart.getRollingDirection());
 			GL11.glRotatef(angle, 1.0F, 0.0F, 0.0F);
 		}
-		for (RenderEnum renders : RenderEnum.values()) {
-			if (renders.getEntityClass() != null && renders.getEntityClass().equals(cart.getClass())) {
-				//loadTexture(getTextureFile(renders.getTexture(), renders.getIsMultiTextured(), cart));
+		TrainRenderRecord render = Traincraft.instance.traincraftRegistry.getTrainRenderRecord(cart.getClass());
+		if (render != null) {
+			//loadTexture(getTextureFile(renders.getTexture(), renders.getIsMultiTextured(), cart));
 
-				try {
-					if (renders.getModel().getClass().getDeclaredMethod("getTrans") != null) {
-						Method theTransMethod = renders.getModel().getClass().getDeclaredMethod("getTrans");
-						float[] theTrans = (float[]) theTransMethod.invoke(renders.getModel().getClass().newInstance());
-						if (theTrans != null) {
-							GL11.glTranslatef(theTrans[0], theTrans[1], theTrans[2]);
-						}
-
+			try {
+				if (render.getModel().getClass().getDeclaredMethod("getTrans") != null) {
+					Method theTransMethod = render.getModel().getClass().getDeclaredMethod("getTrans");
+					float[] theTrans = (float[]) theTransMethod.invoke(render.getModel().getClass().newInstance());
+					if (theTrans != null) {
+						GL11.glTranslatef(theTrans[0], theTrans[1], theTrans[2]);
 					}
-				} catch (InstantiationException e) {
-					e.printStackTrace();
-				} catch (Exception e){
-					if (renders.getTrans() != null) {
-						GL11.glTranslatef(renders.getTrans()[0], renders.getTrans()[1], renders.getTrans()[2]);
+
+				}
+			} catch (InstantiationException e) {
+				e.printStackTrace();
+			} catch (Exception e){
+				if (render.getTrans() != null) {
+					GL11.glTranslatef(render.getTrans()[0], render.getTrans()[1], render.getTrans()[2]);
+				}
+			}
+
+
+            /*if (renders.getTrans() != null) {
+                GL11.glTranslatef(renders.getTrans()[0], renders.getTrans()[1], renders.getTrans()[2]);
+            }*/
+
+			try {
+				if (render.getModel().getClass().getDeclaredMethod("getRotate") != null) {
+					Method theTransMethod = render.getModel().getClass().getDeclaredMethod("getRotate");
+					float[] theRotate = (float[]) theTransMethod.invoke(render.getModel().getClass().newInstance());
+					if (theRotate != null) {
+						GL11.glRotatef(theRotate[0], 1.0F, 0.0F, 0.0F);
+						GL11.glRotatef(theRotate[1], 0.0F, 1.0F, 0.0F);
+						GL11.glRotatef(theRotate[2], 0.0F, 0.0F, 1.0F);
+					}
+
+				}
+			} catch (InstantiationException e) {
+				e.printStackTrace();
+			} catch (Exception e) {
+				if (render.getRotate() != null) {
+					GL11.glRotatef(render.getRotate()[0], 1.0F, 0.0F, 0.0F);
+					GL11.glRotatef(render.getRotate()[1], 0.0F, 1.0F, 0.0F);
+					GL11.glRotatef(render.getRotate()[2], 0.0F, 0.0F, 1.0F);
+				}
+			}
+
+            /*if (renders.getRotate() != null) {
+                GL11.glRotatef(renders.getRotate()[0], 1.0F, 0.0F, 0.0F);
+                GL11.glRotatef(renders.getRotate()[1], 0.0F, 1.0F, 0.0F);
+                GL11.glRotatef(renders.getRotate()[2], 0.0F, 0.0F, 1.0F);
+            }*/
+
+			try {
+				if (render.getModel().getClass().getDeclaredMethod("getScale") != null) {
+					Method theScaleMethod = render.getModel().getClass().getDeclaredMethod("getScale");
+					float[] theRotate = (float[]) theScaleMethod.invoke(render.getModel().getClass().newInstance());
+					if (theRotate != null) {
+						GL11.glScalef(theRotate[0], theRotate[1], theRotate[2]);
 					}
 				}
+			} catch (InstantiationException e) {
+				e.printStackTrace();
+			} catch (Exception e) {
+				if (render.getScale() != null) {
+					GL11.glScalef(render.getScale()[0], render.getScale()[1], render.getScale()[2]);
+				}
+
+			}
 
 
-				/*if (renders.getTrans() != null) {
-					GL11.glTranslatef(renders.getTrans()[0], renders.getTrans()[1], renders.getTrans()[2]);
-				}*/
+            /*if (renders.getScale() != null) {
+                GL11.glScalef(renders.getScale()[0], renders.getScale()[1], renders.getScale()[2]);
+            }*/
 
+
+
+			GL11.glEnable(GL11.GL_LIGHTING);
+			int skyLight = cart.worldObj.getLightBrightnessForSkyBlocks(i, j, k, 0);
+			OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit,  skyLight % 65536,
+					skyLight / 65536f);
+
+
+			render.getModel().render(cart, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
+
+			//GL11.glEnable(GL11.GL_LIGHTING);
+
+			if (render.hasSmoke()) {
+				ArrayList<double[]> smokePosition = new ArrayList<double[]>();
 				try {
-					if (renders.getModel().getClass().getDeclaredMethod("getRotate") != null) {
-						Method theTransMethod = renders.getModel().getClass().getDeclaredMethod("getRotate");
-						float[] theRotate = (float[]) theTransMethod.invoke(renders.getModel().getClass().newInstance());
-						if (theRotate != null) {
-							GL11.glRotatef(theRotate[0], 1.0F, 0.0F, 0.0F);
-							GL11.glRotatef(theRotate[1], 0.0F, 1.0F, 0.0F);
-							GL11.glRotatef(theRotate[2], 0.0F, 0.0F, 1.0F);
+					if (render.getModel().getClass().getDeclaredMethod("getSmokePosition") != null) {
+						Method theScaleMethod = render.getModel().getClass().getDeclaredMethod("getSmokePosition");
+						ArrayList<double[]> thePos = (ArrayList<double[]>) theScaleMethod.invoke(render.getModel().getClass().newInstance());
+						if (thePos != null) {
+							smokePosition = thePos;
 						}
-
 					}
-				} catch (InstantiationException e) {
-					e.printStackTrace();
 				} catch (Exception e) {
-					if (renders.getRotate() != null) {
-						GL11.glRotatef(renders.getRotate()[0], 1.0F, 0.0F, 0.0F);
-						GL11.glRotatef(renders.getRotate()[1], 0.0F, 1.0F, 0.0F);
-						GL11.glRotatef(renders.getRotate()[2], 0.0F, 0.0F, 1.0F);
-					}
+
+					smokePosition = render.getSmokeFX();
 				}
 
-				/*if (renders.getRotate() != null) {
-					GL11.glRotatef(renders.getRotate()[0], 1.0F, 0.0F, 0.0F);
-					GL11.glRotatef(renders.getRotate()[1], 0.0F, 1.0F, 0.0F);
-					GL11.glRotatef(renders.getRotate()[2], 0.0F, 0.0F, 1.0F);
-				}*/
-
-				try {
-					if (renders.getModel().getClass().getDeclaredMethod("getScale") != null) {
-						Method theScaleMethod = renders.getModel().getClass().getDeclaredMethod("getScale");
-						float[] theRotate = (float[]) theScaleMethod.invoke(renders.getModel().getClass().newInstance());
-						if (theRotate != null) {
-							GL11.glScalef(theRotate[0], theRotate[1], theRotate[2]);
-						}
-					}
-				} catch (InstantiationException e) {
-					e.printStackTrace();
-				} catch (Exception e) {
-					if (renders.getScale() != null) {
-						GL11.glScalef(renders.getScale()[0], renders.getScale()[1], renders.getScale()[2]);
-					}
-
+				if (cart.bogieLoco != null) {// || cart.bogieUtility[0]!=null){
+					renderSmokeFX(cart, 90 + cart.rotationYawClientReal, (float) cart.anglePitchClient, render.getSmokeType(), smokePosition, render.getSmokeIterations(), time, render.hasSmokeOnSlopes());
 				}
-
-
-				/*if (renders.getScale() != null) {
-					GL11.glScalef(renders.getScale()[0], renders.getScale()[1], renders.getScale()[2]);
-				}*/
-
-
-
-				GL11.glEnable(GL11.GL_LIGHTING);
-				int skyLight = cart.worldObj.getLightBrightnessForSkyBlocks(i, j, k, 0);
-				OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit,  skyLight % 65536,
-						skyLight / 65536f);
-
-
-				renders.getModel().render(cart, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
-
-				//GL11.glEnable(GL11.GL_LIGHTING);
-
-				if (renders.hasSmoke()) {
-					ArrayList<double[]> smokePosition = new ArrayList<double[]>();
-					try {
-						if (renders.getModel().getClass().getDeclaredMethod("getSmokePosition") != null) {
-							Method theScaleMethod = renders.getModel().getClass().getDeclaredMethod("getSmokePosition");
-							ArrayList<double[]> thePos = (ArrayList<double[]>) theScaleMethod.invoke(renders.getModel().getClass().newInstance());
-							if (thePos != null) {
-								smokePosition = thePos;
-							}
-						}
-					} catch (Exception e) {
-
-						smokePosition = renders.getSmokeFX();
-					}
-
-					if (cart.bogieLoco != null) {// || cart.bogieUtility[0]!=null){
-						renderSmokeFX(cart, 90 + cart.rotationYawClientReal, (float) cart.anglePitchClient, renders.getSmokeType(), smokePosition, renders.getSmokeIterations(), time, renders.hasSmokeOnSlopes());
-					}
-					else {
-						renderSmokeFX(cart, (yaw), pitch, renders.getSmokeType(), smokePosition, renders.getSmokeIterations(), time, renders.hasSmokeOnSlopes());
-					}
+				else {
+					renderSmokeFX(cart, (yaw), pitch, render.getSmokeType(), smokePosition, render.getSmokeIterations(), time, render.hasSmokeOnSlopes());
 				}
-				if (renders.hasExplosion()) {
-					if (cart.bogieLoco != null) {// || cart.bogieUtility[0]!=null){
-						renderExplosionFX(cart, 90 + cart.rotationYawClientReal, (float) cart.anglePitchClient, renders.getExplosionType(), renders.getExplosionFX(), renders.getExplosionFXIterations(), renders.hasSmokeOnSlopes());
-					}
-					else {
-						renderExplosionFX(cart, yaw, pitch, renders.getExplosionType(), renders.getExplosionFX(), renders.getExplosionFXIterations(), renders.hasSmokeOnSlopes());
-					}
+			}
+			if (render.hasExplosion()) {
+				if (cart.bogieLoco != null) {// || cart.bogieUtility[0]!=null){
+					renderExplosionFX(cart, 90 + cart.rotationYawClientReal, (float) cart.anglePitchClient, render.getExplosionType(), render.getExplosionFX(), render.getExplosionFXIterations(), render.hasSmokeOnSlopes());
 				}
-
-				break;
+				else {
+					renderExplosionFX(cart, yaw, pitch, render.getExplosionType(), render.getExplosionFX(), render.getExplosionFXIterations(), render.hasSmokeOnSlopes());
+				}
 			}
 		}
 
 		GL11.glPopMatrix();
-	}
-
-	private static ResourceLocation getResourceFile(String texture, boolean multiTexture, EntityRollingStock cart) {
-		if (multiTexture) {
-			return new ResourceLocation(Info.resourceLocation, Info.trainsPrefix + texture + cart.getColorAsString() + ".png");
-		} else {
-			return new ResourceLocation(Info.resourceLocation, Info.trainsPrefix + texture + ".png");
-		}
 	}
 
 	private static void renderSmokeFX(EntityRollingStock cart, float yaw, float pitch, String smokeType, ArrayList<double[]> smokeFX, int smokeIterations, float time, boolean hasSmokeOnSlopes) {
@@ -454,8 +445,9 @@ public class RenderRollingStock extends Render {
 	}
 
 	public static ResourceLocation getTexture(Entity entity) {
-		for (RenderEnum renders : RenderEnum.values()) {
-			if (renders.getEntityClass() != null && renders.getEntityClass().equals(entity.getClass())) { return getResourceFile(renders.getTexture(), renders.getIsMultiTextured(), (EntityRollingStock) entity); }
+		TrainRenderRecord render = Traincraft.instance.traincraftRegistry.getTrainRenderRecord(entity.getClass());
+		if (render != null) {
+			return render.getTextureFile(((EntityRollingStock) entity).getColorAsString());
 		}
 		return null;
 	}

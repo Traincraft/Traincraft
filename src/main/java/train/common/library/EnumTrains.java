@@ -4,12 +4,13 @@ import net.minecraft.item.Item;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 import train.common.api.AbstractTrains;
+import train.common.api.TrainRecord;
 import train.common.core.util.TraincraftUtil;
 import train.common.entity.rollingStock.*;
 
 import java.lang.reflect.InvocationTargetException;
 
-public enum EnumTrains {
+public enum EnumTrains implements TrainRecord {
 
 	/**
 	 * Passengers
@@ -718,100 +719,104 @@ public enum EnumTrains {
 		this.additionnalTooltip=additionnalTooltip;
 		this.cargoCapacity = cargoCapacity;
 	}
-	
+
+
+	@Override
+	public String getName(){
+		return this.name();
+	}
+
+	@Override
 	public String getInternalName(){
 		return this.internalName;
 	}
-	
+
+	@Override
 	public Item getItem(){
 		return this.item;
 	}
 
+	@Override
 	public String getTrainType(){
 		return this.trainType;
 	}
-	
+
+	@Override
 	public int getMHP(){
 		return this.MHP;
 	}
-	
+
+	@Override
 	public int getMaxSpeed(){
 		return this.maxSpeed;
 	}
-	
+
+	@Override
 	public double getMass(){
 		return this.mass;
 	}
-	
+
+	@Override
 	public int getFuelConsumption(){
 		return this.fuelConsumption;
 	}
-	
+
+	@Override
 	public int getWaterConsumption(){
 		return this.waterConsumption;
 	}
-	
+
+	@Override
 	public int getHeatingTime(){
 		return this.heatingTime;
 	}
-	
+
+	@Override
 	public double getAccelerationRate(){
 		return this.accelerationRate;
 	}
-	
+
+	@Override
 	public double getBrakeRate(){
 		return this.brakeRate;
 	}
-	
+
+	@Override
 	public int getTankCapacity(){
 		return this.tankCapacity;
 	}
-	
+
+	@Override
 	public int[] getColors(){
 		return this.colors;
 	}
-	
+
+	@Override
 	public double getBogieLocoPosition(){
 		return this.bogieLocoPosition;
 	}
 
-	
+
+	@Override
 	public Class getEntityClass() {
 		return this.entityClass;
 	}
-	
+
+	@Override
 	public int getGuiRenderScale(){
 		return this.guiRenderScale;
 	}
-	
+
+	@Override
 	public String getAdditionnalTooltip(){
 		return this.additionnalTooltip;
 	}
-	
+
+	@Override
 	public int getCargoCapacity(){
 		return cargoCapacity;
 	}
-	
-	public static EnumTrains getCurrentTrain(Item item){
-		if(item==null)return null;
-		for (EnumTrains trains : EnumTrains.values()) {
-			if(trains!=null && trains.getItem()!=null && trains.getItem() == item){
-				return trains;
-			}
-		}
-		return null;	
-	}
-	
-	public static AbstractTrains getEntityWithItem(Item item, World world, double x, double y, double z){
-		if(item==null)return null;
-		for (EnumTrains trains : EnumTrains.values()) {
-			if(trains!=null && trains.getItem()!=null && trains.getItem() == item){
-				return trains.getEntity(world, x, y, z);
-			}
-		}
-		return null;
-	}
-	
+	@Override
 	public AbstractTrains getEntity(World world){
 		try {
 			return (AbstractTrains) entityClass.getConstructor(World.class).newInstance(world);
@@ -830,7 +835,7 @@ public enum EnumTrains {
 		}
 		return null;
 	}
-	
+	@Override
 	public AbstractTrains getEntity(World world, double x, double y, double z){
 		try {
 			if(world.isRemote){

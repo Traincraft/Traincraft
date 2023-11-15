@@ -6,6 +6,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import train.common.api.EntityRollingStock;
 import train.common.api.IPassenger;
+import train.common.api.ISecondBogie;
 
 public class EntityPassengerM8DNF1MiddleShort extends EntityRollingStock implements IPassenger {
     //public TiltingHandler tiltingHandler = new TiltingHandler(7);

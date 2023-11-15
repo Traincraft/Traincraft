@@ -1,8 +1,10 @@
 package train.common.library;
 
+import train.common.api.TrainSoundRecord;
 import train.common.entity.rollingStock.*;
+import train.common.library.Info;
 
-public enum EnumSounds {
+public enum EnumSounds implements TrainSoundRecord {
 
 	locoCherepanov(EntityLocoSteamCherepanov.class, "steam_horn", 0.6F, "steam_run", 0.2F, 20, "steam_run", 0.2F, 20, true),
 	locoHeavySteam(EntityLocoSteamHeavy.class, "hancock_3chime", 0.8F, "steam_run", 0.2F, 20, "steam_run", 0.2F, 20, true),
@@ -283,7 +285,7 @@ public enum EnumSounds {
 
 	/**
 	 * Defines the sounds for the locomotives Many locomotives have the same sound for run and idle
-	 * 
+	 *
 	 * @param entityClass
 	 * @param horn
 	 * @param hornVolume
@@ -308,42 +310,55 @@ public enum EnumSounds {
 		this.soundChangeWithSpeed = soundChangeWithSpeed;
 	}
 
+	@Override
 	public Class getEntityClass() {
 		return entityClass;
 	}
 
+	@Override
 	public String getHornString() {
-		return horn;
+		if (horn == null || horn.isEmpty()) return horn;
+		return Info.resourceLocation + ":" + horn;
 	}
 
+	@Override
 	public String getRunString() {
-		return run;
+		if (run == null || run.isEmpty()) return run;
+		return Info.resourceLocation + ":" + run;
 	}
 
+	@Override
 	public String getIdleString() {
-		return idle;
+		if (idle == null || idle.isEmpty()) return idle;
+		return Info.resourceLocation + ":" + idle;
 	}
 
+	@Override
 	public Float getHornVolume() {
 		return hornVolume;
 	}
 
+	@Override
 	public Float getRunVolume() {
 		return runVolume;
 	}
 
+	@Override
 	public Float getIdleVolume() {
 		return idleVolume;
 	}
 
+	@Override
 	public int getRunSoundLenght() {
 		return runSoundLenght;
 	}
 
+	@Override
 	public int getIdleSoundLenght() {
 		return idleSoundLenght;
 	}
 
+	@Override
 	public boolean getSoundChangeWithSpeed() {
 		return soundChangeWithSpeed;
 	}

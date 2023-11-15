@@ -511,6 +511,8 @@ public class RecipeHandler {
 		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailMediumParallelSwitch.item, 1), "M S", "MRR", "MR ", Character.valueOf('S'), ItemIDs.tcRailSmallStraight.item, Character.valueOf('M'), ItemIDs.tcRailMediumStraight.item, Character.valueOf('R'),  ItemIDs.tcRailMediumTurn.item );
 		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailTwoWaysCrossing.item, 1), " S ", "SSS", " S ", Character.valueOf('S'), ItemIDs.tcRailSmallStraight.item );
 
+		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailMedium45DegreeSwitch.item, 1), "S D", "ST ", "S  ", Character.valueOf('S'), ItemIDs.tcRailSmallStraight.item, Character.valueOf('D'), ItemIDs.tcRailSmallDiagonalStraight.item, Character.valueOf('T'), ItemIDs.tcRailMedium45DegreeTurn.item);
+
 		/**Embedded Versions*/
 		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailEmbeddedSmallStraight.item, 16), "I I", "B B", "I I", Character.valueOf('I'), Items.iron_ingot, Character.valueOf('B'), ItemIDs.bolt.item);
 		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailEmbeddedMediumStraight.item, 1), "S  ", "S  ", "S  ", Character.valueOf('S'), ItemIDs.tcRailEmbeddedSmallStraight.item );
@@ -532,7 +534,7 @@ public class RecipeHandler {
 		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailEmbeddedLargeParallelCurve.item, 1), " S ", "SS ", "S  ", Character.valueOf('S'), ItemIDs.tcRailEmbeddedMediumParallelCurve.item);
 
 		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailEmbeddedTwoWaysCrossing.item, 1), " S ", "SSS", " S ", Character.valueOf('S'), ItemIDs.tcRailEmbeddedSmallStraight.item );
-
+		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailEmbeddedMedium45DegreeSwitch.item, 1), "S D", "ST ", "S  ", Character.valueOf('S'), ItemIDs.tcRailEmbeddedSmallStraight.item, Character.valueOf('D'), ItemIDs.tcRailEmbeddedSmallDiagonalStraight.item, Character.valueOf('T'), ItemIDs.tcRailEmbeddedMedium45DegreeTurn.item);
 		// Bridge Pillar
 		TrainCraftingManager.instance.addRecipe(new ItemStack(BlockIDs.bridgePillar.block, 8),
 				 "SSS", "SLS", "SSS", Character.valueOf('S'), Items.stick, Character.valueOf('L'), Blocks.log );

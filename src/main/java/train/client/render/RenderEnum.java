@@ -7,8 +7,13 @@ import train.common.api.EntityRollingStock;
 import train.common.entity.rollingStock.*;
 
 import java.util.ArrayList;
+import train.common.api.TrainRenderRecord;
+import train.common.library.Info;
+import net.minecraft.util.ResourceLocation;
 
-public enum RenderEnum {
+import java.util.ArrayList;
+
+public enum RenderEnum implements TrainRenderRecord {
 
 	/** Passengers */
 	passengerCartBlue(EntityPassengerBlue.class, new ModelPassenger6(), "passenger_", true, new float[] { 0.0F, -0.47F, 0.0F }, null, null, "", 0, null, "", null, 0, false),
@@ -1425,11 +1430,12 @@ public enum RenderEnum {
 		this.explosionFXIterations = explosionFXIterations;
 		this.hasSmokeOnSlopes = hasSmokeOnSlopes;
 	}
-
+	@Override
 	public Class<? extends AbstractTrains> getEntityClass() {
 		return entityClass;
 	}
 
+	@Override
 	public ModelBase getModel() {
 		return model;
 	}
@@ -1438,55 +1444,73 @@ public enum RenderEnum {
 		return multiTexture;
 	}
 
+	@Override
 	public boolean hasSmoke() {
 		return smokeType.length() > 0;
 	}
 
+	@Override
 	public boolean hasSmokeOnSlopes() {
 		return hasSmokeOnSlopes;
 	}
 
+	@Override
 	public String getSmokeType() {
 		return smokeType;
 	}
 
+	@Override
 	public ArrayList<double[]> getSmokeFX() {
 		return smokeFX;
 	}
 
+	@Override
 	public String getExplosionType() {
 		return explosionType;
 	}
 
+	@Override
 	public boolean hasExplosion() {
 		return explosionType.length() > 0;
 	}
 
+	@Override
 	public ArrayList<double[]> getExplosionFX() {
 		return explosionFX;
 	}
 
+	@Override
 	public float[] getTrans() {
 		return trans;
 	}
 
+	@Override
 	public float[] getRotate() {
 		return rotate;
 	}
 
+	@Override
 	public float[] getScale() {
 		return scale;
 	}
 
-	public String getTexture() {
-		return texture;
+	@Override
+	public ResourceLocation getTextureFile(String colorString) {
+		if (multiTexture) {
+			return new ResourceLocation(Info.resourceLocation, Info.trainsPrefix + texture + colorString + ".png");
+		} else {
+			return new ResourceLocation(Info.resourceLocation, Info.trainsPrefix + texture + ".png");
+		}
 	}
 
+	@Override
 	public int getSmokeIterations() {
 		return smokeIterations;
 	}
 
+	@Override
 	public int getExplosionFXIterations() {
 		return explosionFXIterations;
 	}
 }
+

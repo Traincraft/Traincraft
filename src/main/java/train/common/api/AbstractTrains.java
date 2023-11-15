@@ -28,7 +28,6 @@ import train.common.core.handlers.TrainHandler;
 import train.common.items.ItemChunkLoaderActivator;
 import train.common.items.ItemRollingStock;
 import train.common.items.ItemWrench;
-import train.common.library.EnumTrains;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,7 +60,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 	/**
 	 * A reference to EnumTrains containing all spec for this specific train
 	 */
-	protected EnumTrains trainSpec;
+	protected TrainRecord trainSpec;
 
 	/**
 	 * The name of the train based on the item name
@@ -172,20 +171,17 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 				break;
 			}
 		}*/
-		for (EnumTrains trains : EnumTrains.values()) {
-			if (trains.getEntityClass().equals(this.getClass())) {
-				this.setDefaultMass(trains.getMass());
-				trainSpec = trains;
-				if (trains.getColors() != null) {
-					for (int i = 0; i < trains.getColors().length; i++) {
-						this.acceptedColors.add((trains.getColors()[i]));
-					}
+		TrainRecord trainRecord = Traincraft.instance.traincraftRegistry.getTrainRecord(this.getClass());
+		if (trainRecord != null) {
+			this.setDefaultMass(trainRecord.getMass());
+			trainSpec = trainRecord;
+			if (trainRecord.getColors() != null) {
+				for (int i = 0; i < trainRecord.getColors().length; i++) {
+					this.acceptedColors.add((trainRecord.getColors()[i]));
 				}
-				this.setSize(0.98f, 1.98f);
-				this.setMinecartName(trainSpec.name());
-
-				break;
 			}
+			this.setSize(0.98f, 1.98f);
+			this.setMinecartName(trainSpec.getName());
 		}
 	}
 
@@ -362,9 +358,10 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		this.getEntityData().setInteger("color", color);
 	}*/
 	public void setColor(int color) {
-		if (EnumTrains.getCurrentTrain(getCartItem().getItem()).getColors()!=null){
-			if (color==-1 || !ArrayUtils.contains(EnumTrains.getCurrentTrain(getCartItem().getItem()).getColors(),(byte)color)) {
-				color = (EnumTrains.getCurrentTrain(getCartItem().getItem()).getColors()[0]);
+		TrainRecord trainRecord = Traincraft.instance.traincraftRegistry.findTrainRecordByItem(getCartItem().getItem());
+		if (trainRecord != null && trainRecord.getColors() != null){
+			if (color==-1 || !ArrayUtils.contains(trainRecord.getColors(),(byte)color)) {
+				color = (trainRecord.getColors()[0]);
 			}
 		}
 		dataWatcher.updateObject(12, color);
@@ -469,147 +466,147 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 
 	public static String getColorAsString(int i) {
 		switch (i) {
-		case 0:
-			return "Black";
-		case 1:
-			return "Red";
-		case 2:
-			return "Green";
-		case 3:
-			return "Brown";
-		case 4:
-			return "Blue";
-		case 5:
-			return "Purple";
-		case 6:
-			return "Cyan";
-		case 7:
-			return "LightGrey";
-		case 8:
-			return "Grey";
-		case 13:
-			return "Magenta";
-		case 10:
-			return "Lime";
-		case 11:
-			return "Yellow";
-		case 12:
-			return "LightBlue";
-		case 9:
-			return "Pink";
-		case 14:
-			return "Orange";
-		case 15:
-			return "White";
-		case 16:
-			return "Skin16";
-		case 17:
-			return "Skin17";
-		case 18:
-			return "Skin18";
-		case 19:
-			return "Skin19";
-		case 20:
-			return "Skin20";
-		case 21:
-			return "Skin21";
-		case 22:
-			return "Skin22";
-		case 23:
-			return "Skin23";
-		case 24:
-			return "Skin24";
-		case 25:
-			return "Skin25";
-		case 26:
-			return "Skin26";
-		case 27:
-			return "Skin27";
-		case 28:
-			return "Skin28";
-		case 29:
-			return "Skin29";
-		case 30:
-			return "Skin30";
-		case 100:
-			return "Empty";
-		case 101:
-			return "Full";
-		default:
-			return "" + i;
+			case 0:
+				return "Black";
+			case 1:
+				return "Red";
+			case 2:
+				return "Green";
+			case 3:
+				return "Brown";
+			case 4:
+				return "Blue";
+			case 5:
+				return "Purple";
+			case 6:
+				return "Cyan";
+			case 7:
+				return "LightGrey";
+			case 8:
+				return "Grey";
+			case 13:
+				return "Magenta";
+			case 10:
+				return "Lime";
+			case 11:
+				return "Yellow";
+			case 12:
+				return "LightBlue";
+			case 9:
+				return "Pink";
+			case 14:
+				return "Orange";
+			case 15:
+				return "White";
+			case 16:
+				return "Skin16";
+			case 17:
+				return "Skin17";
+			case 18:
+				return "Skin18";
+			case 19:
+				return "Skin19";
+			case 20:
+				return "Skin20";
+			case 21:
+				return "Skin21";
+			case 22:
+				return "Skin22";
+			case 23:
+				return "Skin23";
+			case 24:
+				return "Skin24";
+			case 25:
+				return "Skin25";
+			case 26:
+				return "Skin26";
+			case 27:
+				return "Skin27";
+			case 28:
+				return "Skin28";
+			case 29:
+				return "Skin29";
+			case 30:
+				return "Skin30";
+			case 100:
+				return "Empty";
+			case 101:
+				return "Full";
+			default:
+				return "" + i;
 		}
 	}
 
 	public String getColorAsString() {
 		switch (getColor()) {
-		case 0:
-			return "Black";
-		case 1:
-			return "Red";
-		case 2:
-			return "Green";
-		case 3:
-			return "Brown";
-		case 4:
-			return "Blue";
-		case 5:
-			return "Purple";
-		case 6:
-			return "Cyan";
-		case 7:
-			return "LightGrey";
-		case 8:
-			return "Grey";
-		case 13:
-			return "Magenta";
-		case 10:
-			return "Lime";
-		case 11:
-			return "Yellow";
-		case 12:
-			return "LightBlue";
-		case 9:
-			return "Pink";
-		case 14:
-			return "Orange";
-		case 15:
-			return "White";
-		case 16:
-			return "Skin16";
-		case 17:
-			return "Skin17";
-		case 18:
-			return "Skin18";
-		case 19:
-			return "Skin19";
-		case 20:
-			return "Skin20";
-		case 21:
-			return "Skin21";
-		case 22:
-			return "Skin22";
-		case 23:
-			return "Skin23";
-		case 24:
-			return "Skin24";
-		case 25:
-			return "Skin25";
-		case 26:
-			return "Skin26";
-		case 27:
-			return "Skin27";
-		case 28:
-			return "Skin28";
-		case 29:
-			return "Skin29";
-		case 30:
-			return "Skin30";
-		case 100:
-			return "Empty";
-		case 101:
-			return "Full";
-		default:
-			return "" + getColor();
+			case 0:
+				return "Black";
+			case 1:
+				return "Red";
+			case 2:
+				return "Green";
+			case 3:
+				return "Brown";
+			case 4:
+				return "Blue";
+			case 5:
+				return "Purple";
+			case 6:
+				return "Cyan";
+			case 7:
+				return "LightGrey";
+			case 8:
+				return "Grey";
+			case 13:
+				return "Magenta";
+			case 10:
+				return "Lime";
+			case 11:
+				return "Yellow";
+			case 12:
+				return "LightBlue";
+			case 9:
+				return "Pink";
+			case 14:
+				return "Orange";
+			case 15:
+				return "White";
+			case 16:
+				return "Skin16";
+			case 17:
+				return "Skin17";
+			case 18:
+				return "Skin18";
+			case 19:
+				return "Skin19";
+			case 20:
+				return "Skin20";
+			case 21:
+				return "Skin21";
+			case 22:
+				return "Skin22";
+			case 23:
+				return "Skin23";
+			case 24:
+				return "Skin24";
+			case 25:
+				return "Skin25";
+			case 26:
+				return "Skin26";
+			case 27:
+				return "Skin27";
+			case 28:
+				return "Skin28";
+			case 29:
+				return "Skin29";
+			case 30:
+				return "Skin30";
+			case 100:
+				return "Empty";
+			case 101:
+				return "Full";
+			default:
+				return "" + getColor();
 		}
 	}
 
