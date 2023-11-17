@@ -49,6 +49,25 @@ minecraft {
     replace "@VERSION1@", config.modVersion.toString()
 }
 
+task packApi(type: Jar, dependsOn: "classes") {
+    // Jar will always be updated
+    outputs.upToDateWhen {false}
+    // Set the jar's base name
+    baseName = "Traincraft"
+
+    from (sourceSets.main.output) {
+        excludes.addAll('**/*.info')
+        excludes.addAll('assets/tc/textures/trains')
+        excludes.addAll('assets/tc/textires/items/trains')
+        excludes.addAll('assets/tc/sounds')
+        excludes.addAll('assets/tc/sounds.json')
+    }
+}
+
+
+
+
+
 repositories {
 	maven {
 		name "gt"

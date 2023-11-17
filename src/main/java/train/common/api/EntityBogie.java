@@ -310,7 +310,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 	private void updateOnTrack(int i, int j, int k, Block l) {
 
 		if (canUseRail() && BlockRailBase.func_150051_a(l)) {
-
+			super.onUpdate();
 			int i1 = ((BlockRailBase) l).getBasicRailMetadata(worldObj, this, i, j, k);
 			meta = i1;
 
