@@ -1722,13 +1722,13 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 
 		}
 
-		if (itemstack != null && itemstack.getItem() instanceof ItemWrench && this instanceof Locomotive
-				&& entityplayer.isSneaking() && !worldObj.isRemote) {
+		if (itemstack != null && itemstack.getItem() instanceof ItemWrench && this instanceof Locomotive && entityplayer.isSneaking() && !worldObj.isRemote) {
 			destination = "";
 			entityplayer.addChatMessage(new ChatComponentText("Destination reset"));
 			return true;
 		}
-		if (MinecraftForge.EVENT_BUS.post(new MinecartInteractEvent(this, entityplayer))) { return true; }
+		if (MinecraftForge.EVENT_BUS.post(new MinecartInteractEvent(this, entityplayer))) {
+			entityplayer.addChatMessage(new ChatComponentText("test")); }
 		if (itemstack != null && itemstack.hasTagCompound() && getTicketDestination(itemstack) != null && getTicketDestination(itemstack).length() > 0) {
 			this.setDestination(itemstack);
 			/**
@@ -1772,7 +1772,9 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 				entityplayer.addChatMessage(new ChatComponentText("No other colors available"));
 			}
 		}
-		else if ((trainsOnClick.onClickWithStake(this, itemstack, playerEntity, worldObj))) { return true; }
+		if ((trainsOnClick.onClickWithStake(this, itemstack, playerEntity, worldObj))) {
+			entityplayer.addChatMessage(new ChatComponentText("test"));
+			return true; }
 
 		if (itemstack != null && itemstack.getItem() instanceof ItemPaintbrushThing && entityplayer.isSneaking()) {
 			if (this.acceptedColors != null && this.acceptedColors.size() > 0) {
