@@ -542,7 +542,6 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		this.prevPosX = this.posX;
 		this.prevPosY = this.posY;
 		this.prevPosZ = this.posZ;
-		super.onUpdate();
 		if (this.worldObj.isRemote) {
 			if (this.turnProgress > 0) {
 				double d6 = this.posX + (this.minecartX - this.posX) / this.turnProgress;
