@@ -1251,12 +1251,12 @@ public class ItemTCRail extends ItemPart {
 				switch (tempType) {
 					case MEDIUM_RIGHT_45DEGREE_SWITCH:
 						typeVariantStraight = TrackTypes.SMALL_STRAIGHT.getLabel();
-						typeVariant90Turn = TrackTypes.MEDIUM_RIGHT_45DEGREE_TURN.getLabel();
+						typeVariant90Turn = TrackTypes.MEDIUM_RIGHT_TURN.getLabel();
 						idVariantSwitch = ItemIDs.tcRailMedium45DegreeSwitch.item;
 						break;
 					case EMBEDDED_MEDIUM_RIGHT_45DEGREE_SWITCH:
 						typeVariantStraight = TrackTypes.EMBEDDED_SMALL_STRAIGHT.getLabel();
-						typeVariant90Turn = TrackTypes.EMBEDDED_MEDIUM_RIGHT_45DEGREE_TURN.getLabel();
+						typeVariant90Turn = TrackTypes.EMBEDDED_MEDIUM_RIGHT_TURN.getLabel();
 						idVariantSwitch = ItemIDs.tcRailEmbeddedMedium45DegreeSwitch.item;
 						break;
 				}
@@ -1431,12 +1431,12 @@ public class ItemTCRail extends ItemPart {
 				switch (tempType) {
 					case MEDIUM_LEFT_45DEGREE_SWITCH:
 						typeVariantStraight = TrackTypes.SMALL_STRAIGHT.getLabel();
-						typeVariant90Turn = TrackTypes.MEDIUM_LEFT_45DEGREE_TURN.getLabel();
+						typeVariant90Turn = TrackTypes.MEDIUM_LEFT_TURN.getLabel();
 						idVariantSwitch = ItemIDs.tcRailMedium45DegreeSwitch.item;
 						break;
 					case EMBEDDED_MEDIUM_LEFT_45DEGREE_SWITCH:
 						typeVariantStraight = TrackTypes.EMBEDDED_SMALL_STRAIGHT.getLabel();
-						typeVariant90Turn = TrackTypes.EMBEDDED_MEDIUM_LEFT_45DEGREE_TURN.getLabel();
+						typeVariant90Turn = TrackTypes.EMBEDDED_MEDIUM_LEFT_TURN.getLabel();
 						idVariantSwitch = ItemIDs.tcRailEmbeddedMedium45DegreeSwitch.item;
 						break;
 				}

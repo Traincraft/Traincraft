@@ -310,10 +310,10 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 	private void updateOnTrack(int i, int j, int k, Block l) {
 
 		if (canUseRail() && BlockRailBase.func_150051_a(l)) {
-			super.onUpdate();
-			int i1 = ((BlockRailBase) l).getBasicRailMetadata(worldObj, this, i, j, k);
-			meta = i1;
 
+			int i1 = ((BlockRailBase) l).getBasicRailMetadata(worldObj, this, i, j, k);
+			super.onUpdate();
+			meta = i1;
 			posY = j;
 			flag = false;
 			flag1 = l == Blocks.golden_rail;
@@ -542,7 +542,6 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		this.prevPosX = this.posX;
 		this.prevPosY = this.posY;
 		this.prevPosZ = this.posZ;
-
 		if (this.worldObj.isRemote) {
 			if (this.turnProgress > 0) {
 				double d6 = this.posX + (this.minecartX - this.posX) / this.turnProgress;
