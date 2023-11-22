@@ -608,7 +608,7 @@ public class ModelSW8 extends ModelConverter //Same as Filename
 			}
 
 		}
-		if (entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 16546455) {
+		if (entity instanceof AbstractTrains && AbstractTrains.getColorFromString(((AbstractTrains) entity).getColor()) == 16546455) {
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/typeA_Black_Brown.png"));//this code is here for other truck colors once i get around to it
 			GL11.glPushMatrix();
 			GL11.glTranslated(-0.6, 0.0, 0);
@@ -619,7 +619,7 @@ public class ModelSW8 extends ModelConverter //Same as Filename
 			theTrucks.render(entity, f, f1, f2, f3, f4, f5);
 			GL11.glPopMatrix();
 
-		} else if (entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 4546) {
+		} else if (entity instanceof AbstractTrains && AbstractTrains.getColorFromString(((AbstractTrains) entity).getColor()) == 4546) {
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/typeA_Black.png"));//this code is here for other truck colors once i get around to it
 			GL11.glPushMatrix();
 			GL11.glTranslated(-0.6F ,0.0F,0F);

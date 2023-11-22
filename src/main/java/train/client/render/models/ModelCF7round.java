@@ -2181,11 +2181,11 @@ public class ModelCF7round extends ModelConverter //Same as Filename
 				bodyModel[i].render(f5);
 			}
 		}
-		if (entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 11||entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 5
-				||entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 17||entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 19
-				||entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 21||entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 22
-				||entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 20||entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 6
-				||entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 24234
+		if (entity instanceof AbstractTrains && AbstractTrains.getColorFromString(((AbstractTrains) entity).getColor()) == 11||entity instanceof AbstractTrains && AbstractTrains.getColorFromString(((AbstractTrains) entity).getColor()) == 5
+				||entity instanceof AbstractTrains && AbstractTrains.getColorFromString(((AbstractTrains) entity).getColor()) == 17||entity instanceof AbstractTrains && AbstractTrains.getColorFromString(((AbstractTrains) entity).getColor()) == 19
+				||entity instanceof AbstractTrains && AbstractTrains.getColorFromString(((AbstractTrains) entity).getColor()) == 21||entity instanceof AbstractTrains && AbstractTrains.getColorFromString(((AbstractTrains) entity).getColor()) == 22
+				||entity instanceof AbstractTrains && AbstractTrains.getColorFromString(((AbstractTrains) entity).getColor()) == 20||entity instanceof AbstractTrains && AbstractTrains.getColorFromString(((AbstractTrains) entity).getColor()) == 6
+				||entity instanceof AbstractTrains && AbstractTrains.getColorFromString(((AbstractTrains) entity).getColor()) == 24234
 		) {
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/blombergB_Grey.png"));
 			GL11.glPushMatrix();
@@ -2195,7 +2195,7 @@ public class ModelCF7round extends ModelConverter //Same as Filename
 			GL11.glTranslated(2.55, 0, 0);
 			theBlomb.render(entity, f, f1, f2, f3, f4, f5);
 			GL11.glPopMatrix();
-		} else if (entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 23||entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 7) {
+		} else if (entity instanceof AbstractTrains && AbstractTrains.getColorFromString(((AbstractTrains) entity).getColor()) == 23||entity instanceof AbstractTrains && AbstractTrains.getColorFromString(((AbstractTrains) entity).getColor()) == 7) {
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/blombergB_DarkerGrey.png"));
 			GL11.glPushMatrix();
 			GL11.glTranslated(-1.28, 0.17, 0);
@@ -2204,7 +2204,7 @@ public class ModelCF7round extends ModelConverter //Same as Filename
 			GL11.glTranslated(2.55, 0, 0);
 			theBlomb.render(entity, f, f1, f2, f3, f4, f5);
 			GL11.glPopMatrix();
-		} else if (entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 1340) {
+		} else if (entity instanceof AbstractTrains && AbstractTrains.getColorFromString(((AbstractTrains) entity).getColor()) == 1340) {
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/blombergB_spooki_up_trash.png"));
 			GL11.glPushMatrix();
 			GL11.glTranslated(-1.28, 0.17, 0);
@@ -2213,7 +2213,7 @@ public class ModelCF7round extends ModelConverter //Same as Filename
 			GL11.glTranslated(2.55, 0, 0);
 			theBlomb.render(entity, f, f1, f2, f3, f4, f5);
 			GL11.glPopMatrix();
-		} else if (entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 7324||entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 15) {
+		} else if (entity instanceof AbstractTrains && AbstractTrains.getColorFromString(((AbstractTrains) entity).getColor()) == 7324||entity instanceof AbstractTrains && AbstractTrains.getColorFromString(((AbstractTrains) entity).getColor()) == 15) {
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/typeb_Black.png"));
 			GL11.glPushMatrix();
 			GL11.glTranslated(-1.3, 0.325, 0);

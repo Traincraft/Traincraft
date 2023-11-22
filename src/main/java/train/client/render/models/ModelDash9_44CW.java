@@ -743,7 +743,7 @@ public class ModelDash9_44CW extends ModelConverter //Same as my ass
 			}
 		}
 
-		if (entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 7) {
+		if (entity instanceof AbstractTrains && AbstractTrains.getColorFromString(((AbstractTrains) entity).getColor()) == 7) {
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/newgevotruck_LightGrey.png")); //supposed to be LightGrey, is black for testing
 			GL11.glPushMatrix();
 			GL11.glTranslatef(-1.8F, 0.0F, 0F);
@@ -758,7 +758,7 @@ public class ModelDash9_44CW extends ModelConverter //Same as my ass
 			GL11.glPushMatrix();
 			theCabbo1.render(entity, f, f1, f2, f3, f4, f5);
 			GL11.glPopMatrix();
-		} else if (entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 8) {
+		} else if (entity instanceof AbstractTrains && AbstractTrains.getColorFromString(((AbstractTrains) entity).getColor()) == 8) {
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/newgevotruck_Black.png"));
 			GL11.glPushMatrix();
 			GL11.glTranslatef(-1.8F, 0.0F, 0F);
@@ -773,7 +773,7 @@ public class ModelDash9_44CW extends ModelConverter //Same as my ass
 			GL11.glPushMatrix();
 			theCabbo2.render(entity, f, f1, f2, f3, f4, f5);
 			GL11.glPopMatrix();
-		} else if (entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 2) {
+		} else if (entity instanceof AbstractTrains && AbstractTrains.getColorFromString(((AbstractTrains) entity).getColor()) == 2) {
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/newgevotruck_Black.png"));
 			GL11.glPushMatrix();
 			GL11.glTranslatef(-1.8F, 0.0F, 0F);

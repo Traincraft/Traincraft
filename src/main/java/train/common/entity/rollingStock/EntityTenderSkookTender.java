@@ -20,7 +20,7 @@ public class EntityTenderSkookTender extends Tender implements IInventory {
     public int numFreightSlots;
 
     public EntityTenderSkookTender(World world) {
-        super(world, FluidRegistry.WATER, 0, EnumTrains.SkookTender.getTankCapacity(), LiquidManager.WATER_FILTER);
+        super(world, FluidRegistry.WATER, 0, LiquidManager.WATER_FILTER);
         initFreightTender();
     }
 

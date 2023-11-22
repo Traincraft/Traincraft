@@ -990,7 +990,7 @@ public class ModelES44 extends ModelConverter //Same as Filename
 			}
 		}
 
-		if(entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor()==14345){
+		if(entity instanceof AbstractTrains && AbstractTrains.getColorFromString(((AbstractTrains) entity).getColor())==14345){
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/gevotruck_Grey.png")); //i love the smell of pointless code in the morning
 			GL11.glPushMatrix();
 			GL11.glTranslatef(-1.85F ,0.4F,0F);
@@ -1002,7 +1002,7 @@ public class ModelES44 extends ModelConverter //Same as Filename
 			GL11.glTranslated(1.9F,0.4F,0);
 			theTrucks2.render(entity,f,f1,f2,f3,f4,f5);
 			GL11.glPopMatrix();
-		} else if (entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 14){
+		} else if (entity instanceof AbstractTrains && AbstractTrains.getColorFromString(((AbstractTrains) entity).getColor()) == 14){
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/newgevotruck_LightGrey.png"));
 			GL11.glPushMatrix();
 			GL11.glTranslatef(-1.8F ,-0.0F,0F);

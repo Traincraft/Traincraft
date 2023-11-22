@@ -1481,7 +1481,7 @@ public class ModelC415S extends ModelConverter //Same as Filename
                 bodyModel[i].render(f5);
             }
         }
-        if (entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 135461 || entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 7234 || entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 8546 || entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 5546) {
+        if (entity instanceof AbstractTrains && AbstractTrains.getColorFromString(((AbstractTrains) entity).getColor()) == 135461 || entity instanceof AbstractTrains && AbstractTrains.getColorFromString(((AbstractTrains) entity).getColor()) == 7234 || entity instanceof AbstractTrains && AbstractTrains.getColorFromString(((AbstractTrains) entity).getColor()) == 8546 || entity instanceof AbstractTrains && AbstractTrains.getColorFromString(((AbstractTrains) entity).getColor()) == 5546) {
             Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/TypeB_2_Silver.png"));
             GL11.glPushMatrix();
             GL11.glTranslated(-1.2, -0.06, 0);
@@ -1490,7 +1490,7 @@ public class ModelC415S extends ModelConverter //Same as Filename
             GL11.glTranslated(2.35, 0, 0);
             typeB2.render(entity, f, f1, f2, f3, f4, f5);
             GL11.glPopMatrix();
-        } else if (entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 3 || entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 2 || entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 11) {
+        } else if (entity instanceof AbstractTrains && AbstractTrains.getColorFromString(((AbstractTrains) entity).getColor()) == 3 || entity instanceof AbstractTrains && AbstractTrains.getColorFromString(((AbstractTrains) entity).getColor()) == 2 || entity instanceof AbstractTrains && AbstractTrains.getColorFromString(((AbstractTrains) entity).getColor()) == 11) {
             Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/HiAd_Black.png"));
             GL11.glPushMatrix();
             GL11.glTranslated(-1.2, 0.0, 0);
@@ -1499,7 +1499,7 @@ public class ModelC415S extends ModelConverter //Same as Filename
             GL11.glTranslated(2.33, 0, 0);
             hiAd.render(entity, f, f1, f2, f3, f4, f5);
             GL11.glPopMatrix();
-        } else if (entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 13244 || entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 145) {
+        } else if (entity instanceof AbstractTrains && AbstractTrains.getColorFromString(((AbstractTrains) entity).getColor()) == 13244 || entity instanceof AbstractTrains && AbstractTrains.getColorFromString(((AbstractTrains) entity).getColor()) == 145) {
             Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/HiAd_Silver.png"));
             GL11.glPushMatrix();
             GL11.glTranslated(-1.2, 0.0, 0);

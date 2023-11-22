@@ -22,7 +22,7 @@ public class EntityFreightBR_Mk1_TPO_Stowage extends Freight implements IInvento
 
     public void initFreightCart() {
         numFreightSlots = 36;
-        if(trainSpec!=null)freightInventorySize = trainSpec.getCargoCapacity();
+        freightInventorySize = getSpec().getCargoCapacity();
         cargoItems = new ItemStack[freightInventorySize];
     }
 

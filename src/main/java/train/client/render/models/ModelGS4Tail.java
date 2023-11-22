@@ -672,7 +672,7 @@ public class ModelGS4Tail extends ModelBase
 		{
 			gs4tailModel[i].render(f5);
 		}
-		if(entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor()==2){
+		if(entity instanceof AbstractTrains && AbstractTrains.getColorFromString(((AbstractTrains) entity).getColor())==2){
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/GS4_bogie_Red.png"));
 		} else {
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/GS4_bogie.png"));

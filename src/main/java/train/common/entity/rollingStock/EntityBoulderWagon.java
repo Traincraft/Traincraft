@@ -34,7 +34,7 @@ public class EntityBoulderWagon extends Freight implements IInventory  {
 
     public void initFreightCart() {
         numFreightSlots = 1;
-        freightInventorySize = trainSpec.getCargoCapacity();
+        freightInventorySize = getSpec().getCargoCapacity();
         cargoItems = new ItemStack[freightInventorySize];
     }
     @Override

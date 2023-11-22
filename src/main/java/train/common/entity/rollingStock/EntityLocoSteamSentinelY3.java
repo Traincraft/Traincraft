@@ -15,7 +15,7 @@ import train.common.library.GuiIDs;
 
 public class EntityLocoSteamSentinelY3 extends SteamTrain {
     public EntityLocoSteamSentinelY3(World world) {
-        super(world, EnumTrains.SentinelY3.getTankCapacity(), LiquidManager.WATER_FILTER);
+        super(world, LiquidManager.WATER_FILTER);
         initLocoSteam();
     }
 

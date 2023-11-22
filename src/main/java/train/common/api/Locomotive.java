@@ -241,14 +241,14 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
      * @return double
      */
     public float getMaxSpeed() {
-        if (trainSpec != null) {
+        if (getSpec() != null) {
             if (currentMassPulled > 1) {
-                float power = (float) currentMassPulled / (((float) trainSpec.getMHP())*0.37f);
+                float power = (float) currentMassPulled / (((float) getSpec().getMHP())*0.37f);
                 if (power > 1) {
-                    return trainSpec.getMaxSpeed() / (power);
+                    return getSpec().getMaxSpeed() / (power);
                 }
             }
-            return trainSpec.getMaxSpeed();
+            return getSpec().getMaxSpeed();
         }
         return 50;
     }
@@ -270,8 +270,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 
     @Override
     public int getOverheatTime() {
-        if (trainSpec != null) { return trainSpec.getHeatingTime(); }
-        return 0;
+        return getSpec().getHeatingTime();
     }
 
     @Override
@@ -305,8 +304,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
      */
     public int setFuelConsumption(int c) {
         if (c != 0) { return fuelRate = c; }
-        if (trainSpec != null) { return fuelRate = trainSpec.getFuelConsumption(); }
-        return 0;
+        return fuelRate = getSpec().getFuelConsumption();
 
     }
 
@@ -316,7 +314,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
      * @return int
      */
     public int getFuelConsumption() {
-        return fuelRate==0?trainSpec.getFuelConsumption():fuelRate;
+        return fuelRate==0?getSpec().getFuelConsumption():fuelRate;
     }
 
     /**
@@ -325,8 +323,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
      * @see HandleMaxAttachedCarts for calculations
      */
     public int getPower() {
-        if (trainSpec != null) { return trainSpec.getMHP(); }
-        return 0;
+        return getSpec().getMHP();
     }
 
     /**
@@ -339,8 +336,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
             return accelerate = rate;
         }
         else {
-            if (trainSpec != null) { return accelerate = trainSpec.getAccelerationRate(); }
-            return 0.45;
+             return accelerate = getSpec().getAccelerationRate();
         }
     }
 
@@ -354,8 +350,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
             return brake = rate;
         }
         else {
-            if (trainSpec != null) { return brake = trainSpec.getBrakeRate(); }
-            return 0.98;
+            return brake = getSpec().getBrakeRate();
         }
     }
 

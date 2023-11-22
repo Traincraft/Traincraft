@@ -16,7 +16,7 @@ import train.common.library.GuiIDs;
 
 public class EntityLocoSteamGarrattFront extends SteamTrain {
 	public EntityLocoSteamGarrattFront(World world) {
-		super(world, EnumTrains.spookyGarrattFront.getTankCapacity(), LiquidManager.WATER_FILTER);
+		super(world, LiquidManager.WATER_FILTER);
 		initLocoSteam();
 	}
 

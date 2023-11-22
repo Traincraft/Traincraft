@@ -40,11 +40,11 @@ public class ModelC62Locomotive extends ModelConverter //Same as Filename
 	@Override
 	public void render(Entity entity, float f0, float f1, float f2, float f3, float f4, float scale){
 		super.render(entity, f0, f1, f2, f3, f4, scale);
-		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation,Info.trainsPrefix +"c62_front_"+((EntityRollingStock)entity).getColorAsString() + ".png"));
+		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation,Info.trainsPrefix +"c62_front_"+((EntityRollingStock)entity).getColor() + ".png"));
 		GL11.glPushMatrix();
 		GL11.glTranslatef(-5.75f,-0.15f,0);
 		frontBogie.render();
-		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation,Info.trainsPrefix +"c62_back_"+((EntityRollingStock)entity).getColorAsString() + ".png"));
+		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation,Info.trainsPrefix +"c62_back_"+((EntityRollingStock)entity).getColor() + ".png"));
 		GL11.glTranslatef(5.75f,0.15f,0);
 		rearBogie.render();
 		GL11.glPopMatrix();

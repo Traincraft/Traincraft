@@ -21,7 +21,7 @@ public class EntityFreightBamboo extends Freight implements IInventory {
 	}
 
 	public void initFreightCart() {
-		if(trainSpec!=null)freightInventorySize = trainSpec.getCargoCapacity();
+		freightInventorySize = getSpec().getCargoCapacity();
 		cargoItems = new ItemStack[freightInventorySize];
 	}
 

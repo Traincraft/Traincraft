@@ -16,7 +16,7 @@ public class EntityFreightBapDOT11111000 extends LiquidTank {
     public int freightInventorySize;
 
     public EntityFreightBapDOT11111000(World world) {
-        super(world, EnumTrains.BapDOT11111000.getTankCapacity());
+        super(world);
         initFreightWater();
     }
 

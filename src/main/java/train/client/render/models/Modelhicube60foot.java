@@ -623,7 +623,7 @@ public class Modelhicube60foot extends ModelConverter //Same as Filename
 				bodyModel[i].render(f5);
 			}
 
-		if(entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor()==9){
+		if(entity instanceof AbstractTrains && AbstractTrains.getColorFromString(((AbstractTrains) entity).getColor())==9){
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/70Ton_Greyish.png"));
 		} else {
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/70Ton_Black.png"));

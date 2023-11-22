@@ -21,7 +21,7 @@ public class EntityTenderOnion extends Tender implements IInventory {
 	EntityPlayer playerEntity;
 
 	public EntityTenderOnion(World world) {
-		super(world, FluidRegistry.WATER, 0, EnumTrains.OnionTender.getTankCapacity(), LiquidManager.WATER_FILTER);
+		super(world, FluidRegistry.WATER, 0, LiquidManager.WATER_FILTER);
 		initFreightTender();
 	}
 

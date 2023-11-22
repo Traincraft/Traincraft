@@ -24,7 +24,7 @@ public class EntityBulkheadFlatCart extends Freight implements IInventory {
 	
 	public void initBulkheadFlat() {
 		numFreightSlots = 9;
-		if(trainSpec!=null)freightInventorySize = trainSpec.getCargoCapacity();
+		freightInventorySize = getSpec().getCargoCapacity();
 		cargoItems = new ItemStack[freightInventorySize];
 	}
 

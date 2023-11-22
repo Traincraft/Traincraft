@@ -21,7 +21,7 @@ public class EntityTenderShay3Truck extends Tender implements IInventory {
 	EntityPlayer playerEntity;
 
 	public EntityTenderShay3Truck(World world) {
-		super(world, FluidRegistry.WATER, 0, EnumTrains.Shay3TruckTender.getTankCapacity(), LiquidManager.WATER_FILTER);
+		super(world, FluidRegistry.WATER, 0, LiquidManager.WATER_FILTER);
 		initFreightTender();
 	}
 

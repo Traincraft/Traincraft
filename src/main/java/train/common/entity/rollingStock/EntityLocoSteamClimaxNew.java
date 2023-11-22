@@ -15,7 +15,7 @@ import train.common.library.GuiIDs;
 
 public class EntityLocoSteamClimaxNew extends SteamTrain {
 	public EntityLocoSteamClimaxNew(World world) {
-		super(world, EnumTrains.locoSteamClimax2.getTankCapacity(), LiquidManager.WATER_FILTER);
+		super(world, LiquidManager.WATER_FILTER);
 		initLocoSteam();
 	}
 

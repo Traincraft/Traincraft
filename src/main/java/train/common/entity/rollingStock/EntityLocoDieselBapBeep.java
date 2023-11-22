@@ -15,7 +15,7 @@ import train.common.library.GuiIDs;
 
 public class EntityLocoDieselBapBeep extends DieselTrain {
     public EntityLocoDieselBapBeep(World world) {
-        super(world, EnumTrains.Beep.getTankCapacity(), LiquidManager.dieselFilter());
+        super(world, LiquidManager.dieselFilter());
         initLoco();
     }
     public EntityLocoDieselBapBeep(World world, double d, double d1, double d2) {

@@ -1006,10 +1006,10 @@ public class ModelSD70Mac extends ModelConverter //Same as Filename
 				bodyModel[i].render(f5);
 			}
 		}
-		if (entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 1||entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 4
-				||entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 7||entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 14) {
+		if (entity instanceof AbstractTrains && AbstractTrains.getColorFromString(((AbstractTrains) entity).getColor()) == 1||entity instanceof AbstractTrains && AbstractTrains.getColorFromString(((AbstractTrains) entity).getColor()) == 4
+				||entity instanceof AbstractTrains && AbstractTrains.getColorFromString(((AbstractTrains) entity).getColor()) == 7||entity instanceof AbstractTrains && AbstractTrains.getColorFromString(((AbstractTrains) entity).getColor()) == 14) {
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/htsctruck_LightGrey.png"));
-		} /*else if (entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 4) {
+		} /*else if (entity instanceof AbstractTrains && AbstractTrains.getColorFromStringAbstractTrains.getColorFromString(((AbstractTrains) entity).getColor())) == 4) {
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/flexicoil_c2h_Grey.png"));
 		} */else {
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/htsctruck_Black.png"));

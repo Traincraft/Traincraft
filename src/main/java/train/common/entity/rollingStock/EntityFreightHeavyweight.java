@@ -23,7 +23,7 @@ public class EntityFreightHeavyweight extends Freight implements IInventory {
 
 	public void initFreightCart() {
 		numFreightSlots = 9;
-		freightInventorySize = trainSpec.getCargoCapacity();
+		freightInventorySize = getSpec().getCargoCapacity();
 		cargoItems = new ItemStack[freightInventorySize];
 	}
 

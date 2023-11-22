@@ -18,6 +18,7 @@ import tmt.ModelRendererTurbo;
 import tmt.Tessellator;
 import train.client.render.models.loads.ModelBigLog;
 import train.client.render.models.loads.ModelMixedLogs;
+import train.common.api.AbstractTrains;
 import train.common.api.Freight;
 import train.common.library.Info;
 
@@ -310,7 +311,7 @@ public class ModelSkeletonLogCar extends ModelConverter //Same as Filename
 					GL11.glPopMatrix();
 				}*/
 		}
-		if(freight.getColor() == 5465469){
+		if(AbstractTrains.getColorFromString(freight.getColor()) == 5465469){
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/70Ton_Greyish.png"));
 		} else {
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/FrictionTruck_Greyish.png"));

@@ -24,7 +24,7 @@ public class EntityFreightCenterbeam_Wood_1 extends Freight implements IInventor
 
 	public void initFreightCart() {
 		numFreightSlots = 9;
-		if(trainSpec!=null)freightInventorySize = trainSpec.getCargoCapacity();
+		freightInventorySize = getSpec().getCargoCapacity();
 		cargoItems = new ItemStack[freightInventorySize];
 	}
 

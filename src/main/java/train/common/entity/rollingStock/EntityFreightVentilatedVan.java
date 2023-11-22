@@ -22,7 +22,7 @@ public class EntityFreightVentilatedVan extends Freight implements IInventory {
 
     public void initFreightCart() {
         numFreightSlots = 63;
-        if(trainSpec!=null)freightInventorySize = trainSpec.getCargoCapacity();
+        freightInventorySize = getSpec().getCargoCapacity();
         cargoItems = new ItemStack[freightInventorySize];
     }
 

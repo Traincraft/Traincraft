@@ -837,7 +837,7 @@ public class ModelGE44Ton extends ModelConverter //Same as Filename
 		}
 
 
-		if(entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor()==5465){
+		if(entity instanceof AbstractTrains && AbstractTrains.getColorFromString(((AbstractTrains) entity).getColor())==5465){
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/tonnertruck_black_roller"));
 		} else {
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/tonnertruck_black_friction.png"));

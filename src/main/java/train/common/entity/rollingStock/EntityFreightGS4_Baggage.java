@@ -23,7 +23,7 @@ public class EntityFreightGS4_Baggage extends Freight implements IInventory {
 
 	public void initFreightCart() {
 		numFreightSlots = 9;
-		if(trainSpec!=null)freightInventorySize = trainSpec.getCargoCapacity();
+		freightInventorySize = getSpec().getCargoCapacity();
 		cargoItems = new ItemStack[freightInventorySize];
 	}
 

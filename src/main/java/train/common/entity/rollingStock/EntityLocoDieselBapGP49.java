@@ -24,7 +24,7 @@ import java.util.Random;
 
 public class EntityLocoDieselBapGP49 extends DieselTrain {
     public EntityLocoDieselBapGP49(World world) {
-        super(world, EnumTrains.GP49.getTankCapacity(), LiquidManager.dieselFilter());
+        super(world, LiquidManager.dieselFilter());
         initLoco();
 
     }

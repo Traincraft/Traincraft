@@ -20,7 +20,7 @@ public class EntityTenderCoranationClass extends Tender implements IInventory {
 	public int numFreightSlots;
 
 	public EntityTenderCoranationClass(World world) {
-		super(world, FluidRegistry.WATER, 0, EnumTrains.tenderBR01.getTankCapacity(), LiquidManager.WATER_FILTER);
+		super(world, FluidRegistry.WATER, 0, LiquidManager.WATER_FILTER);
 		initFreightTender();
 	}
 

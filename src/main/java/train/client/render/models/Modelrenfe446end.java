@@ -1667,7 +1667,7 @@ public class Modelrenfe446end extends ModelConverter //Same as Filename
 		}
 
 
-		if(entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor()==3455){
+		if(entity instanceof AbstractTrains && AbstractTrains.getColorFromString(((AbstractTrains) entity).getColor())==3455){
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/446_bogie.png"));
 		} else {
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/446_bogie.png"));

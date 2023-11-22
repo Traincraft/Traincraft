@@ -15,7 +15,7 @@ import train.common.library.GuiIDs;
 
 public class EntityLocoSteamVBShay2 extends SteamTrain {
 	public EntityLocoSteamVBShay2(World world) {
-		super(world, EnumTrains.VBShay.getTankCapacity(), LiquidManager.WATER_FILTER);
+		super(world, LiquidManager.WATER_FILTER);
 		initLocoSteam();
 	}
 

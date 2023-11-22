@@ -117,11 +117,11 @@ public class GuiCrafterTier extends GuiTraincraft {
 				if(renderEntity!=null && !Item.itemRegistry.getNameForObject(currentKnownItem).equals(Item.itemRegistry.getNameForObject(previousItem))){
 					previousItem = currentKnownItem;
 				}
-				if(train.getColors()!=null){
+				if(train.getLiveries().size()!=0){
 					if(color < 0)color = 0;
 					if(ticksInGui % 400 == 0)color++;
-					if(color>train.getColors().length-1)color=0;
-					if(renderEntity!=null)renderEntity.setColor((train.getColors()[color]));
+					if(color>train.getColors().size()-1)color=0;
+					if(renderEntity!=null)renderEntity.setColor(train.getLiveries().get(color));
 				}
 				GL11.glScalef(-train.getGuiRenderScale(), train.getGuiRenderScale(), train.getGuiRenderScale());
 				GL11.glRotatef(180, 0, 0, 1);

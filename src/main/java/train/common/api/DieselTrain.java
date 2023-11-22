@@ -22,27 +22,27 @@ public abstract class DieselTrain extends Locomotive implements IFluidHandler {
 	private int update = 8;
 	private StandardTank theTank;
 
-	public DieselTrain(World world, int capacity) {
-		this(capacity, world, null, null);
+	public DieselTrain(World world) {
+		this(world, null, null);
 	}
 
-	public DieselTrain(World world, int capacity, FluidStack filter) {
-		this(capacity, world, filter, null);
+	public DieselTrain(World world, FluidStack filter) {
+		this(world, filter, null);
 	}
 
-	public DieselTrain(World world, int capacity, FluidStack[] multiFilter) {
-		this(capacity, world, null, multiFilter);
+	public DieselTrain(World world, FluidStack[] multiFilter) {
+		this(world, null, multiFilter);
 	}
 
-	private DieselTrain(int capacity, World world, FluidStack filter, FluidStack[] multiFilter) {
+	private DieselTrain(World world, FluidStack filter, FluidStack[] multiFilter) {
 		super(world);
-		this.maxTank = capacity;
+		this.maxTank = getSpec().getTankCapacity();
 		if (filter == null && multiFilter == null) {
-			this.theTank = LiquidManager.getInstance().new StandardTank(capacity);
+			this.theTank = LiquidManager.getInstance().new StandardTank(maxTank);
 		}if (filter != null) {
-			this.theTank = LiquidManager.getInstance().new FilteredTank(capacity, filter);
+			this.theTank = LiquidManager.getInstance().new FilteredTank(maxTank, filter);
 		}if (multiFilter != null) {
-			this.theTank = LiquidManager.getInstance().new FilteredTank(capacity, multiFilter);
+			this.theTank = LiquidManager.getInstance().new FilteredTank(maxTank, multiFilter);
 		}
 		dataWatcher.addObject(4, 0);
 		numCargoSlots = 3;

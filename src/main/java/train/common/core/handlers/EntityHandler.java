@@ -13,6 +13,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import train.common.Traincraft;
 import train.common.api.EntityBogie;
+import train.common.api.TrainRecord;
 import train.common.core.EntityIds;
 import train.common.entity.zeppelin.EntityZeppelinOneBalloon;
 import train.common.entity.zeppelin.EntityZeppelinTwoBalloons;
@@ -24,7 +25,7 @@ public class EntityHandler {
 		EntityRegistry.registerModEntity(EntityBogie.class, "Entity Front Bogie", EntityIds.LOCOMOTIVE_BOGIE, Traincraft.instance, 512, 1, true);//front bogie
 		EntityRegistry.registerModEntity(EntityZeppelinOneBalloon.class, "zeppelin big", EntityIds.ZEPPELIN_BIG, Traincraft.instance, 512, 1, true);//zepplin big
 		int trainID= 32;
-		for(EnumTrains trains : EnumTrains.values()){
+		for(TrainRecord trains : EnumTrains.trains()){
 			EntityRegistry.registerModEntity(trains.getEntityClass(), trains.getInternalName(), trainID, Traincraft.instance, 512, 1, true);
 			trainID++;
 			if(trainID== 112 || trainID==51){
