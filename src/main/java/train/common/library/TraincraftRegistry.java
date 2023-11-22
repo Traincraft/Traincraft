@@ -24,7 +24,7 @@ public class TraincraftRegistry {
     }
 
     public void init() {
-        for (EnumTrains train : EnumTrains.values()) {
+        for (TrainRecord train : EnumTrains.trains()) {
             TraincraftRegistry.this.registerTrainRecord(train);
         }
 
@@ -77,9 +77,18 @@ public class TraincraftRegistry {
 
     public void registerTrainRenderRecord(TrainRenderRecord record) {
         trainRenderRecords.put(record.getEntityClass(), record);
+        addLivery(train.common.entity.rollingStock.EntityBoxCartUS.class, "burple");
     }
 
     public void registerTrainSoundRecord(TrainSoundRecord sound) {
         trainSoundRecords.add(sound);
+    }
+
+    public void addLivery(Class<?> entityClass, String name){
+        for (TrainRecord record : trainRecords) {
+            if (entityClass.equals(record.getEntityClass())) {
+                record.skins.add(name);
+            }
+        }
     }
 }

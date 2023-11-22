@@ -606,10 +606,10 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 	@Override
 	public void onUpdate() {
 
-		if (addedToChunk && !this.hasSpawnedBogie && this.trainSpec.getBogieLocoPosition() != 0) {
+		if (addedToChunk && !this.hasSpawnedBogie && this.getSpec().getBogieLocoPosition() != 0) {
 
 				if (bogieLoco == null) {
-					this.bogieShift = this.trainSpec.getBogieLocoPosition();
+					this.bogieShift = this.getSpec().getBogieLocoPosition();
 					this.bogieLoco = new EntityBogie(worldObj,
 							(posX - Math.cos(this.serverRealRotation * TraincraftUtil.radian) * this.bogieShift),
 							posY + ((Math.tan(this.renderPitch * TraincraftUtil.radian) * -this.bogieShift) + getMountedYOffset()-0.1d),
@@ -1747,10 +1747,10 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		 * itemstack size
 		 */
 		if (itemstack != null && itemstack.getItem() instanceof ItemDye) {
-			if (this.acceptedColors != null && this.acceptedColors.size() > 0) {
-				for (int i = 0; i < this.acceptedColors.size(); i++) {
-					if (itemstack.getItemDamage() == this.acceptedColors.get(i)) {
-						this.setColor(itemstack.getItemDamage());
+			if (this.getSpec().getLiveries().size() > 0) {
+				for (int i = 0; i < this.getSpec().getLiveries().size(); i++) {
+					if (itemstack.getItemDamage() == getColorFromString(this.getSpec().getLiveries().get(i))) {
+						this.setColor(this.getSpec().getLiveries().get(i));
 						itemstack.stackSize--;
 
 						//if (!worldObj.isRemote)PacketHandler.sendPacketToClients(PacketHandler.sendStatsToServer(10,this.uniqueID,trainName ,trainType, this.trainOwner, this.getColorAsString(itemstack.getItemDamage()), (int)posX, (int)posY, (int)posZ),this.worldObj, (int)posX,(int)posY,(int)posZ, 12.0D);
@@ -1760,15 +1760,15 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 				}
 				if (worldObj.isRemote && ConfigHandler.SHOW_POSSIBLE_COLORS) {
 					String concatColors = ": ";
-					for (int t = 0; t < this.acceptedColors.size(); t++) {
-						concatColors = concatColors.concat(getColorAsString(this.acceptedColors.get(t)) + ", ");
+					for (int t = 0; t < this.getSpec().getLiveries().size(); t++) {
+						concatColors = concatColors.concat(this.getSpec().getLiveries().get(t) + ", ");
 					}
 					entityplayer.addChatMessage(new ChatComponentText("Possible colors" + concatColors));
 					entityplayer.addChatMessage(new ChatComponentText("To paint, click me with the right dye"));
 					return true;
 				}
 			}
-			else if (this.acceptedColors != null && this.acceptedColors.size() == 0) {
+			else if (this.getSpec().getLiveries() != null || this.getSpec().getLiveries().size() == 0) {
 				entityplayer.addChatMessage(new ChatComponentText("No other colors available"));
 			}
 		}
@@ -1777,18 +1777,18 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			return true; }
 
 		if (itemstack != null && itemstack.getItem() instanceof ItemPaintbrushThing && entityplayer.isSneaking()) {
-			if (this.acceptedColors != null && this.acceptedColors.size() > 0) {
-				if (scrollPosition > this.acceptedColors.size() - 1) {
-					this.setColor(acceptedColors.get(0));
+			if (this.getSpec().getLiveries().size() > 0) {
+				if (scrollPosition > this.getSpec().getLiveries().size() - 1) {
+					this.setColor(getSpec().getLiveries().get(0));
 					scrollPosition = 0;
 				} else {
-					this.setColor(acceptedColors.get(scrollPosition));
+					this.setColor(getSpec().getLiveries().get(scrollPosition));
 					scrollPosition++;
 
 				}
 			}
 
-			if (this.acceptedColors != null && this.acceptedColors.size() == 0) {
+			if (this.getSpec().getLiveries().size() == 0) {
 				entityplayer.addChatMessage(new ChatComponentText("There are no other colors available."));
 			}
 			return true;

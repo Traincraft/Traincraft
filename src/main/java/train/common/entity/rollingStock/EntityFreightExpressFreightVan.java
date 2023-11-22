@@ -22,7 +22,7 @@ public class EntityFreightExpressFreightVan extends Freight implements IInventor
 
     public void initFreightCart() {
         numFreightSlots = 36;
-        if(trainSpec!=null)freightInventorySize = trainSpec.getCargoCapacity();
+        freightInventorySize = getSpec().getCargoCapacity();
         cargoItems = new ItemStack[freightInventorySize];
     }
 

@@ -34,7 +34,7 @@ public class EntityFreightBapOWO60Verticube extends Freight implements IInventor
 
     public void initFreightCart() {
         numFreightSlots = 6;
-        freightInventorySize = trainSpec.getCargoCapacity();
+        freightInventorySize = getSpec().getCargoCapacity();
         cargoItems = new ItemStack[freightInventorySize];
     }
     @Override

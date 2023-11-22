@@ -62,88 +62,6 @@ public class LinkHandler {
 			}
 	}
 
-	/**
-	 * testing if the attached cart on link1 still exist
-	 * 
-	 * @param entityOne
-	 * @param lis
-	 */
-	private void doesLink1StillExist(Entity entityOne, List lis) {
-		boolean link1Missing = false;
-		boolean link2Missing = false;
-		
-		for (int j1 = 0; j1 < lis.size(); j1++) {
-			Entity entity = (Entity) lis.get(j1);
-			/**
-			 * Check if the entity with the registered ID still exist
-			 */
-			if (entity instanceof AbstractTrains && (((AbstractTrains) entity).getUniqueTrainID() == ((AbstractTrains) entityOne).Link1)) {
-				link1Missing = false;
-			}
-			else{
-				link1Missing = true;
-			}
-			if (entity instanceof AbstractTrains && (((AbstractTrains) entity).getUniqueTrainID() == ((AbstractTrains) entityOne).Link2)) {
-				link2Missing = false;
-			}else{
-				link2Missing = true;
-			}
-
-		}
-		((AbstractTrains)entityOne).clearLinkTimer++;
-		if(((AbstractTrains)entityOne).clearLinkTimer<20)return;
-		((AbstractTrains)entityOne).clearLinkTimer=0;
-		//System.out.println("link1Missing "+link1Missing+" link2Missing "+link2Missing);
-		
-		if(link1Missing && ((AbstractTrains) entityOne).Link1!=0 && ((AbstractTrains) entityOne).Link1!=-1){
-			TraincraftUtil.println("clear 1   "+((AbstractTrains) entityOne).Link1+"  "+entityOne);
-			freeLink1(entityOne);
-		}
-		if(link2Missing && ((AbstractTrains) entityOne).Link2!=0 && ((AbstractTrains) entityOne).Link2!=-1){
-			TraincraftUtil.println("clear 2   "+((AbstractTrains) entityOne).Link2+"  "+entityOne);
-			freeLink2(entityOne);
-		}
-		/*if (((AbstractTrains) entityOne).Link1 != 0)
-			freeLink1(entityOne);
-		/**
-		 * When links are reseted with Draft gear, it's set to -1 so freeLink() is called
-		 */
-		/*if (((AbstractTrains) entityOne).Link1 == -1)
-			freeLink1(entityOne);*/
-
-	}
-
-	/**
-	 * testing if the attached cart on link2 still exist
-	 * 
-	 * @param entityOne
-	 * @param lis
-	 */
-	private void doesLink2StillExist(Entity entityOne, List lis) {
-		for (int j1 = 0; j1 < lis.size(); j1++) {
-			Entity entity = (Entity) lis.get(j1);
-			/**
-			 * Check if the entity with the registered ID still exist
-			 */
-			if (entity instanceof AbstractTrains && (((AbstractTrains) entity).getUniqueTrainID() == ((AbstractTrains) entityOne).Link2)) {
-
-				return;
-			}
-		}
-		((AbstractTrains)entityOne).clearLinkTimer++;
-		if(((AbstractTrains)entityOne).clearLinkTimer<60)return;
-		((AbstractTrains)entityOne).clearLinkTimer=0;
-		TraincraftUtil.println("clear 1   "+((AbstractTrains) entityOne).Link1+"  "+entityOne);
-		//System.out.println("clear 2"+entityOne);
-		
-		if (((AbstractTrains) entityOne).Link2 != 0)
-			freeLink2(entityOne);
-		/**
-		 * When links are reseted with Draft gear, it's set to -1 so freeLink() is called
-		 */
-		if (((AbstractTrains) entityOne).Link2 == -1)
-			freeLink2(entityOne);
-	}
 
 	/**
 	 * obvious
@@ -172,29 +90,6 @@ public class LinkHandler {
 			((EntityRollingStock) entity).RollingStock.clear();
 			// System.out.println("free link2 "+entity);
 		}
-	}
-
-	/**
-	 * First it resets linkageNumber then it checks the links if link1 exist then linkageNumber++ else linkageNumber-- (only if linkageNumber is higher than 0) Same for link2
-	 * 
-	 * @param entity
-	 */
-	private void addLinkNumber(Entity entity) {
-		((EntityRollingStock) entity).linkageNumber = 0;
-
-		if (((AbstractTrains) entity).Link1 != 0) {
-			((EntityRollingStock) entity).linkageNumber++;
-		}
-		else if (((EntityRollingStock) entity).linkageNumber > 0) {
-			((EntityRollingStock) entity).linkageNumber--;
-		}
-		if (((AbstractTrains) entity).Link2 != 0) {
-			((EntityRollingStock) entity).linkageNumber++;
-		}
-		else if (((EntityRollingStock) entity).linkageNumber > 0) {
-			((EntityRollingStock) entity).linkageNumber--;
-		}
-
 	}
 
 
@@ -407,11 +302,6 @@ public class LinkHandler {
 			boolean adj1 = canCartBeAdjustedBy(cart1, cart2);
 			boolean adj2 = canCartBeAdjustedBy(cart2, cart1);
 
-
-			double distancesX[] = new double[4];
-			double distancesZ[] = new double[4];
-			double euclidian[] = new double[4];
-
 			double d=0;
 			double d1=0;
 			double vecX=0;
@@ -420,6 +310,10 @@ public class LinkHandler {
 
 
 			if(cart1.bogieLoco!=null || cart2.bogieLoco!=null){
+				double distancesX[] = new double[4];
+				double distancesZ[] = new double[4];
+				double euclidian[] = new double[4];
+
 				if(cart1.bogieLoco!=null && cart2.bogieLoco==null){
 					distancesX[0] = cart1.posX - cart2.posX ;
 					distancesZ[0] = cart1.posZ - cart2.posZ ;
@@ -488,15 +382,13 @@ public class LinkHandler {
 
 			double d2 = MathHelper.sqrt_double((d * d) + (d1 * d1));
 			if(d2>20){
-				//System.out.println("distance too big "+ cart1 +" "+cart2);
 				if(cart1.worldObj!=null){
 					EntityPlayer player = cart1.worldObj.getClosestPlayer(cart1.posX, cart1.posY, cart1.posZ, 300);
 					if(player!=null){
 						player.addChatMessage(new ChatComponentText(String.format("[TRAINCRAFT] The rolling stock at %d %d %d had a problem loading and has lost its link. Attached cart was too far away", (int)cart1.posX, (int)cart1.posY, (int)cart1.posZ)));
 					}
 				}
-				
-				//if(cart1.cartLinked1!=null && cart1.cartLinked1.un)
+
 				if(linkIndex==1){
 					this.freeLink1(cart1);
 					this.freeLink1(cart2);
@@ -545,10 +437,7 @@ public class LinkHandler {
 		}
 	}
 
-	private double limitForce(double force) {
+	private static double limitForce(double force) {
 		return Math.copySign(Math.abs(Math.min(Math.abs(force), 14.0D)), force);
-	}
-	private double limitForce(double force, double max) {
-		return Math.copySign(Math.abs(Math.min(Math.abs(force), max)),  force);
 	}
 }

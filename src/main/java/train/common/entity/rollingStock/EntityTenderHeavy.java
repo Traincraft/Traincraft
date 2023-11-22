@@ -18,7 +18,7 @@ import train.common.library.GuiIDs;
 public class EntityTenderHeavy extends Tender implements IInventory {
 	public int freightInventorySize;
 	public EntityTenderHeavy(World world) {
-		super(world, FluidRegistry.WATER, 0, EnumTrains.tenderHeavy.getTankCapacity(), LiquidManager.WATER_FILTER);
+		super(world, FluidRegistry.WATER, 0, LiquidManager.WATER_FILTER);
 		initFreightTender();
 	}
 

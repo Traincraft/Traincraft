@@ -34,7 +34,7 @@ public class EntityFreightBapVersaLongi extends Freight implements IInventory {
 
     public void initFreightCart() {
         numFreightSlots = 4;
-        freightInventorySize = trainSpec.getCargoCapacity();
+        freightInventorySize = getSpec().getCargoCapacity();
         cargoItems = new ItemStack[freightInventorySize];
     }
     @Override

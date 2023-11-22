@@ -1268,7 +1268,7 @@ public class ModelHBC1C extends ModelConverter //Same as Filename
 				bodyModel[i].render(f5);
 			}
 		}
-		if (entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 14|| entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 15 ||entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 7){
+		if (entity instanceof AbstractTrains && AbstractTrains.getColorFromString(((AbstractTrains) entity).getColor()) == 14|| entity instanceof AbstractTrains && AbstractTrains.getColorFromString(((AbstractTrains) entity).getColor()) == 15 ||entity instanceof AbstractTrains && AbstractTrains.getColorFromString(((AbstractTrains) entity).getColor()) == 7){
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/swing-motion_caboose_Truck_Silver.png"));
 			GL11.glPushMatrix();
 			GL11.glTranslated(-1.055, 0, 0);

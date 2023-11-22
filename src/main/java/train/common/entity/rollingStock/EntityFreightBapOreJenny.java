@@ -34,7 +34,7 @@ public class EntityFreightBapOreJenny extends Freight implements IInventory  {
 
     public void initFreightCart() {
         numFreightSlots = 3;
-        freightInventorySize = trainSpec.getCargoCapacity();
+        freightInventorySize = getSpec().getCargoCapacity();
         cargoItems = new ItemStack[freightInventorySize];
     }
     @Override

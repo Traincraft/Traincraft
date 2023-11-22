@@ -16,7 +16,7 @@ public class EntityTankWagonThreeDome extends LiquidTank {
 	public int freightInventorySize;
 
 	public EntityTankWagonThreeDome(World world) {
-		super(world, EnumTrains.tankThreeDome.getTankCapacity());
+		super(world);
 		initFreightWater();
 	}
 

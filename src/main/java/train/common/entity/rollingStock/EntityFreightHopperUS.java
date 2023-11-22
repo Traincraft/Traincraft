@@ -24,7 +24,7 @@ public class EntityFreightHopperUS extends Freight implements IInventory {
 
 	public void initFreightGrain() {
 		numFreightSlots = 9;
-		if(trainSpec!=null)freightInventorySize = trainSpec.getCargoCapacity();
+		freightInventorySize = getSpec().getCargoCapacity();
 		cargoItems = new ItemStack[freightInventorySize];
 	}
 

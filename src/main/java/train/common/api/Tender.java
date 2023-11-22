@@ -27,21 +27,21 @@ public abstract class Tender extends Freight implements IFluidHandler {
 	 * @param quantity
 	 * @param capacity
 	 */
-	public Tender(World world, Fluid fluid, int quantity, int capacity) {
-		this(new FluidStack(fluid, quantity), capacity, world, null);
+	public Tender(World world, Fluid fluid, int quantity) {
+		this(new FluidStack(fluid, quantity), world, null);
 	}
 
-	public Tender(World world, Fluid fluid, int quantity, int capacity, FluidStack filter) {
-		this(new FluidStack(fluid, quantity), capacity, world, filter);
+	public Tender(World world, Fluid fluid, int quantity, FluidStack filter) {
+		this(new FluidStack(fluid, quantity), world, filter);
 	}
 
-	private Tender(FluidStack fluid, int capacity, World world, FluidStack filter) {
+	private Tender(FluidStack fluid, World world, FluidStack filter) {
 		super(world);
-		this.maxTank = capacity;
+		this.maxTank = getSpec().getTankCapacity();
 		if (filter == null)
-			this.theTank = LiquidManager.getInstance().new StandardTank(capacity);
+			this.theTank = LiquidManager.getInstance().new StandardTank(maxTank);
 		if (filter != null)
-			this.theTank = LiquidManager.getInstance().new FilteredTank(capacity, filter);
+			this.theTank = LiquidManager.getInstance().new FilteredTank(maxTank, filter);
 		tankArray[0] = theTank;
 		dataWatcher.addObject(4, 0);
 		this.dataWatcher.addObject(23, 0);

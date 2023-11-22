@@ -2375,7 +2375,7 @@ package train.client.render.models;
 		}
 
 
-		if(entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor()==8){
+		if(entity instanceof AbstractTrains && AbstractTrains.getColorFromString(((AbstractTrains) entity).getColor())==8){
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/SM42_bogies.png"));
 		} else {
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/SM42_bogies.png"));

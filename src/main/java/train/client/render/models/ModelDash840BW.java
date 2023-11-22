@@ -1222,7 +1222,7 @@ public class ModelDash840BW extends ModelConverter //Same as Filename
 				bodyModel[i].render(f5);
 			}
 		}
-		if (entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 14321){
+		if (entity instanceof AbstractTrains && AbstractTrains.getColorFromString(((AbstractTrains) entity).getColor()) == 14321){
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/fb2_up.png"));
 			GL11.glPushMatrix();
 			GL11.glTranslated(-1.65, 0.33, 0);
@@ -1231,7 +1231,7 @@ public class ModelDash840BW extends ModelConverter //Same as Filename
 			GL11.glTranslated(3.27, 0, 0);
 			theTrucks2.render(entity, f, f1, f2, f3, f4, f5);
 			GL11.glPopMatrix();
-		} else if (entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 1){
+		} else if (entity instanceof AbstractTrains && AbstractTrains.getColorFromString(((AbstractTrains) entity).getColor()) == 1){
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/fb2_Grey.png"));
 			GL11.glPushMatrix();
 			GL11.glTranslated(-1.65, 0.33, 0);

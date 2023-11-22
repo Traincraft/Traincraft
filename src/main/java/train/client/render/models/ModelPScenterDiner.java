@@ -2277,9 +2277,9 @@ public class ModelPScenterDiner extends ModelConverter //Same as Filename
 				bodyModel[i].render(f5);
 			}
 		}
-		if(entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor()==1324544){
+		if(entity instanceof AbstractTrains && AbstractTrains.getColorFromString(((AbstractTrains) entity).getColor())==1324544){
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/41-N-11_truck_silver.png"));
-		} else if (entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 13242) {
+		} else if (entity instanceof AbstractTrains && AbstractTrains.getColorFromString(((AbstractTrains) entity).getColor()) == 13242) {
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/BAP_41-N-11_truck_NKP_blue.png"));
 		}else {
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/41-N-11_truck_black.png"));

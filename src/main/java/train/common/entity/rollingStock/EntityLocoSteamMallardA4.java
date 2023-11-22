@@ -15,7 +15,7 @@ import train.common.library.GuiIDs;
 
 public class EntityLocoSteamMallardA4 extends SteamTrain {
 	public EntityLocoSteamMallardA4(World world) {
-		super(world, EnumTrains.locoSteamA4.getTankCapacity(), LiquidManager.WATER_FILTER);
+		super(world, LiquidManager.WATER_FILTER);
 		initLocoSteam();
 	}
 

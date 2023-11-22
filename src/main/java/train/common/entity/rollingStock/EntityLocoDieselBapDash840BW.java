@@ -15,7 +15,7 @@ import train.common.library.GuiIDs;
 
 public class EntityLocoDieselBapDash840BW extends DieselTrain {
     public EntityLocoDieselBapDash840BW(World world) {
-        super(world, EnumTrains.Dash840BW.getTankCapacity(), LiquidManager.dieselFilter());
+        super(world, LiquidManager.dieselFilter());
         initLoco();
 
     }

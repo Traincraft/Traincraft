@@ -1929,7 +1929,7 @@ public class ModelRSD15 extends ModelConverter //Same as Filename
 				bodyModel[i].render(f5);
 			}
 		}
-		if (entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 14321){
+		if (entity instanceof AbstractTrains && AbstractTrains.getColorFromString(((AbstractTrains) entity).getColor()) == 14321){
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/trimount1_Black.png"));//1 brake cylinder vs 2
 			GL11.glPushMatrix();
 			GL11.glTranslated(-1.52, 0.0, 0);

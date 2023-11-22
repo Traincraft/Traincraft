@@ -994,7 +994,7 @@ public class ModelDRGW01400Caboose extends ModelConverter //Same as Filename
 				bodyModel[i].render(f5);
 			}
 		}
-		if (entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 14234|| entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 12345 ||entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 2347){
+		if (entity instanceof AbstractTrains && AbstractTrains.getColorFromString(((AbstractTrains) entity).getColor()) == 14234|| entity instanceof AbstractTrains && AbstractTrains.getColorFromString(((AbstractTrains) entity).getColor()) == 12345 ||entity instanceof AbstractTrains && AbstractTrains.getColorFromString(((AbstractTrains) entity).getColor()) == 2347){
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/swing-motion_caboose_Truck_Silver.png"));
 			GL11.glPushMatrix();
 			GL11.glTranslated(-1.055, 0, 0);

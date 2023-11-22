@@ -20,7 +20,7 @@ public class EntityTenderPETender extends Tender implements IInventory {
 	public int numFreightSlots;
 
 	public EntityTenderPETender(World world) {
-		super(world, FluidRegistry.WATER, 0, EnumTrains.tenderPETender.getTankCapacity(), LiquidManager.WATER_FILTER);
+		super(world, FluidRegistry.WATER, 0, LiquidManager.WATER_FILTER);
 		initFreightTender();
 	}
 

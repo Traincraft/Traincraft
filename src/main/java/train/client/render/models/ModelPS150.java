@@ -246,7 +246,7 @@ public class ModelPS150 extends ModelConverter //Same as Filename
 		GL11.glTranslated(2.875,0,0.03);
 		bogie.render(entity,f,f1,f2,f3,f4,f5);
 		GL11.glPopMatrix();*/
-		if(entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor()==10){
+		if(entity instanceof AbstractTrains && AbstractTrains.getColorFromString(((AbstractTrains) entity).getColor())==10){
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/70Ton_Greyish.png"));
 		} else {
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/70Ton_Black.png"));

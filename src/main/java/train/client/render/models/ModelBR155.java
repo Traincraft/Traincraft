@@ -939,7 +939,7 @@ public class ModelBR155 extends ModelConverter //Same as Filename
 		}
 
 
-		if(entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor()==5465){
+		if(entity instanceof AbstractTrains && AbstractTrains.getColorFromString(((AbstractTrains) entity).getColor())==5465){
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/BR155_bogies_noised.png"));
 		} else {
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/BR155_bogies_noised.png"));

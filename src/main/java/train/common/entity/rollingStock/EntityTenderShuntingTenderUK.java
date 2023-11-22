@@ -21,7 +21,7 @@ public class EntityTenderShuntingTenderUK extends Tender implements IInventory {
 	EntityPlayer playerEntity;
 
 	public EntityTenderShuntingTenderUK(World world) {
-		super(world, FluidRegistry.WATER, 0, EnumTrains.tenderSmall.getTankCapacity(), LiquidManager.WATER_FILTER);
+		super(world, FluidRegistry.WATER, 0, LiquidManager.WATER_FILTER);
 		initFreightTender();
 	}
 

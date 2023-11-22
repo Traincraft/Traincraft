@@ -131,47 +131,22 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 	}
 
 	public String getTrainType() {
-		TrainRecord train = Traincraft.instance.traincraftRegistry.findTrainRecordByItem(this);
-		if (train != null) {
-			return train.getTrainType();
-		}
-		return "";
+		return Traincraft.instance.traincraftRegistry.findTrainRecordByItem(this).getTrainType();
 	}
 	public double getMass() {
-		for(EnumTrains trains : EnumTrains.values()){
-			if(trains.getItem() == this){
-				return trains.getMass();
-			}
-		}
-		return 0;
+		return Traincraft.instance.traincraftRegistry.findTrainRecordByItem(this).getMass();
 	}
 	public int getMaxSpeed() {
-		TrainRecord train = Traincraft.instance.traincraftRegistry.findTrainRecordByItem(this);
-		if (train != null) {
-			return train.getMaxSpeed();
-		}
-		return 0;
+		return Traincraft.instance.traincraftRegistry.findTrainRecordByItem(this).getMaxSpeed();
 	}
 	public int getMHP() {
-		TrainRecord train = Traincraft.instance.traincraftRegistry.findTrainRecordByItem(this);
-		if (train != null) {
-			return train.getMHP();
-		}
-		return 0;
+		return Traincraft.instance.traincraftRegistry.findTrainRecordByItem(this).getMHP();
 	}
 	public String getAdditionnalInfo() {
-		TrainRecord train = Traincraft.instance.traincraftRegistry.findTrainRecordByItem(this);
-		if (train != null) {
-			return train.getAdditionnalTooltip();
-		}
-		return null;
+		return Traincraft.instance.traincraftRegistry.findTrainRecordByItem(this).getAdditionnalTooltip();
 	}
 	public int getCargoCapacity() {
-		TrainRecord train = Traincraft.instance.traincraftRegistry.findTrainRecordByItem(this);
-		if (train != null) {
-			return train.getCargoCapacity();
-		}
-		return 0;
+		return Traincraft.instance.traincraftRegistry.findTrainRecordByItem(this).getCargoCapacity();
 	}
 	public String getTrainName() {
 		return trainName;
@@ -266,10 +241,10 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 		TrainRecord train = Traincraft.instance.traincraftRegistry.findTrainRecordByItem(itemstack.getItem());
 		if (train != null) {
 			rollingStock = (EntityRollingStock) train.getEntity(world, i + 0.5F, j + 0.2F, k + 0.5F);
-			if (train.getColors() != null) {
+			if (train.getLiveries().size()>0) {
 				if (rollingStock != null) {
 					//rollingStock.setColor(AbstractTrains.getColorFromString(train.getColors()[0]));
-					rollingStock.setColor((train.getColors()[0]));
+					rollingStock.setColor((train.getLiveries().get(0)));
 				}
 			}
 		}
@@ -660,13 +635,12 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 					if (player == null)
 						rollingStock.setInformation(((ItemRollingStock) itemstack.getItem()).getTrainType(), "", trainCreator, (itemstack.getItem()).getItemStackDisplayName(itemstack), uniID);
 
-					if (ConfigHandler.SHOW_POSSIBLE_COLORS && rollingStock.acceptedColors != null && rollingStock.acceptedColors.size() > 0) {
+					if (ConfigHandler.SHOW_POSSIBLE_COLORS && rollingStock.getSpec().getLiveries().size()>0) {
 						String concatColors = ": ";
-						for (int t = 0; t < rollingStock.acceptedColors.size(); t++) {
-							if (!AbstractTrains.getColorAsString(rollingStock.acceptedColors.get(t)).equals("Empty")
-									&& !AbstractTrains.getColorAsString(rollingStock.acceptedColors.get(t)).equals("Full"))
-								concatColors = concatColors
-										.concat(AbstractTrains.getColorAsString(rollingStock.acceptedColors.get(t)) + ", ");
+						for (int t = 0; t < rollingStock.getSpec().getLiveries().size(); t++) {
+							if (!rollingStock.getSpec().getLiveries().get(t).equals("Empty")
+									&& !rollingStock.getSpec().getLiveries().get(t).equals("Full"))
+								concatColors+=rollingStock.getSpec().getLiveries().get(t)+", ";
 						}
 						if (concatColors.length() > 4) {
 							if (player != null) {
@@ -685,7 +659,7 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 	}
 
 
-	public static ItemStack setPersistentData(@Nullable ItemStack oldStack, @Nullable AbstractTrains train, @Nullable Integer trainID, @Nullable String player, @Nullable String creator, int color) {
+	public static ItemStack setPersistentData(@Nullable ItemStack oldStack, @Nullable AbstractTrains train, @Nullable Integer trainID, @Nullable String player, @Nullable String creator, String color) {
 
 		ItemStack stack = oldStack;
 
@@ -706,9 +680,7 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 				if(player!=null && player.length()>1) {
 					tag.setString("theOwner", player);
 				}
-				if(color >0) {
-					tag.setInteger("trainColor",color);
-				}
+				tag.setString("trainColor",color);
 			} else {
 				tag.setString("trainCreator", creator!=null && creator.length()>1?creator:"Creative");
 			}

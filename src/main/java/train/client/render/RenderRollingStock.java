@@ -447,7 +447,7 @@ public class RenderRollingStock extends Render {
 	public static ResourceLocation getTexture(Entity entity) {
 		TrainRenderRecord render = Traincraft.instance.traincraftRegistry.getTrainRenderRecord(entity.getClass());
 		if (render != null) {
-			return render.getTextureFile(((EntityRollingStock) entity).getColorAsString());
+			return render.getTextureFile(((EntityRollingStock) entity).getColor());
 		}
 		return null;
 	}

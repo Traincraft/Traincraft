@@ -16,7 +16,7 @@ public class EntityTankWagon_DB extends LiquidTank {
 	public int freightInventorySize;
 
 	public EntityTankWagon_DB(World world) {
-		super(world, EnumTrains.tankWagon_DB.getTankCapacity());
+		super(world);
 		initFreightWater();
 	}
 

@@ -15,7 +15,7 @@ import train.common.library.GuiIDs;
 
 public class EntityLocoSteamSkook extends SteamTrain {
     public EntityLocoSteamSkook(World world) {
-        super(world, EnumTrains.Skook.getTankCapacity(), LiquidManager.WATER_FILTER);
+        super(world, LiquidManager.WATER_FILTER);
         initLocoSteam();
     }
 

@@ -15,7 +15,7 @@ import train.common.library.GuiIDs;
 
 public class EntitylocoSteamMRCompound extends SteamTrain {
     public EntitylocoSteamMRCompound(World world) {
-        super(world, EnumTrains.J50loco.getTankCapacity(), LiquidManager.WATER_FILTER);
+        super(world, LiquidManager.WATER_FILTER);
         initLocoSteam();
     }
 

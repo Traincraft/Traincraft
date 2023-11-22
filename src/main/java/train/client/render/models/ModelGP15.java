@@ -595,7 +595,7 @@ public class ModelGP15 extends ModelConverter //Same as Filename
 		}
 
 
-		if(entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor()==14651){
+		if(entity instanceof AbstractTrains && AbstractTrains.getColorFromString(((AbstractTrains) entity).getColor())==14651){
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/classic_blomberg_b_black.png"));
 		} else {
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/classic_blomberg_b_harbor_grey.png"));

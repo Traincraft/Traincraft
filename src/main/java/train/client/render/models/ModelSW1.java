@@ -885,7 +885,7 @@ public class ModelSW1 extends ModelConverter //Same as Filename
             }
 
         }
-        if (entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 15) {
+        if (entity instanceof AbstractTrains && AbstractTrains.getColorFromString(((AbstractTrains) entity).getColor()) == 15) {
             Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/blunttruck_Brown.png"));
             GL11.glPushMatrix();
             GL11.glTranslated(-0.9, 0.25, 0);
@@ -896,7 +896,7 @@ public class ModelSW1 extends ModelConverter //Same as Filename
             theTrucks2.render(entity, f, f1, f2, f3, f4, f5);
             GL11.glPopMatrix();
 
-        } else if (entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 4) { //this is for the emd demo skin to have silver trucks eventually
+        } else if (entity instanceof AbstractTrains && AbstractTrains.getColorFromString(((AbstractTrains) entity).getColor()) == 4) { //this is for the emd demo skin to have silver trucks eventually
             Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/typeA_Silver.png"));// replace with grey eventually
 			GL11.glPushMatrix();
 			GL11.glTranslated(-1.0F ,0.0F,0F);

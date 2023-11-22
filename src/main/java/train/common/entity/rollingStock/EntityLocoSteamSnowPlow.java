@@ -24,7 +24,7 @@ import java.util.Random;
 
 public class EntityLocoSteamSnowPlow extends SteamTrain {
 	public EntityLocoSteamSnowPlow(World world) {
-		super(world, EnumTrains.locoSteamSnowPlow.getTankCapacity(), LiquidManager.WATER_FILTER);
+		super(world, LiquidManager.WATER_FILTER);
 		initLocoSteam();
 	}
 

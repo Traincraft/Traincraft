@@ -15,7 +15,7 @@ import train.common.library.GuiIDs;
 
 public class EntityLocoOnion extends SteamTrain {
 	public EntityLocoOnion(World world) {
-		super(world, EnumTrains.Onion.getTankCapacity(), LiquidManager.WATER_FILTER);
+		super(world, LiquidManager.WATER_FILTER);
 		initLocoSteam();
 	}
 

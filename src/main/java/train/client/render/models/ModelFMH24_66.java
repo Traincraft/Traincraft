@@ -2906,7 +2906,7 @@ public class ModelFMH24_66 extends ModelConverter //Same as Filename
 				bodyModel[i].render(f5);
 			}
 		}
-		if (entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 8){
+		if (entity instanceof AbstractTrains && AbstractTrains.getColorFromString(((AbstractTrains) entity).getColor()) == 8){
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/FM_trimount_SP_Grey.png"));
 			GL11.glPushMatrix();
 			GL11.glRotatef(180, 0, 1, 0);
@@ -2919,7 +2919,7 @@ public class ModelFMH24_66 extends ModelConverter //Same as Filename
 			GL11.glPopMatrix();
 
 		}
-		else if (entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 1){
+		else if (entity instanceof AbstractTrains && AbstractTrains.getColorFromString(((AbstractTrains) entity).getColor()) == 1){
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/FM_trimount_Silver.png"));
 			GL11.glPushMatrix();
 			GL11.glRotatef(180, 0, 1, 0);

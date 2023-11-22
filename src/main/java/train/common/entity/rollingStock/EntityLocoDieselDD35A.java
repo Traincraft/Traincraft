@@ -15,7 +15,7 @@ import train.common.library.GuiIDs;
 
 public class EntityLocoDieselDD35A extends DieselTrain {
 	public EntityLocoDieselDD35A(World world) {
-		super(world, EnumTrains.locoDieselDD35A.getTankCapacity(), LiquidManager.dieselFilter());
+		super(world, LiquidManager.dieselFilter());
 		initLoco();
 	}
 
