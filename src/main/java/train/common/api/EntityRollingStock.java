@@ -54,12 +54,10 @@ import train.common.items.ItemTCRail;
 import train.common.items.ItemTCRail.TrackTypes;
 import train.common.items.ItemWrench;
 import train.common.library.BlockIDs;
-import train.common.library.EnumTrains;
 import train.common.tile.TileTCRail;
 import train.common.tile.TileTCRailGag;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static train.common.core.util.TraincraftUtil.degrees;
@@ -1929,17 +1927,20 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 				if ((par1Entity instanceof AbstractTrains && d2 <= ((AbstractTrains) par1Entity).getLinkageDistance((EntityMinecart) par1Entity) * 0.7 && d2 >= 9.999999747378752E-5D) || (par1Entity instanceof EntityBogie && ((EntityBogie) par1Entity).entityMainTrain != null && d2 <= ((EntityBogie) par1Entity).entityMainTrain.getLinkageDistance((EntityMinecart) par1Entity) * 0.7 && d2 >= 9.999999747378752E-5D) || (!(par1Entity instanceof AbstractTrains) && d2 >= 9.999999747378752E-5D))// >= 9.999999747378752E-5D)
 				{
 					d2 = MathHelper.sqrt_double(d2);
+					double d2Clone = d2;
 					if (d0 != 0) {
 						d0 /= d2;
 					} else {
 						d2=0;
 					}
 					if (d1 != 0) {
-						d1 /= d2;
+						d1 /= d2Clone;
 					} else {
-						d2=0;
+						d2Clone = 0;
 					}
-
+					if (d2 != d2Clone && d2 != 0) {
+						d2 = d2Clone;
+					}
 					if (d2 > 1.0D) {
 						d2 = 1.0D;
 					}
