@@ -7,19 +7,28 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.Fluid;
 
 public class FluidRenderHelper {
-	private static final ResourceLocation BLOCK_TEXTURE = TextureMap.locationBlocksTexture;
-	public static IIcon getFluidTexture(Fluid fluid, boolean flowing) {
-		if (fluid == null) {
-			return null;
-		}
-		IIcon icon = flowing ? fluid.getFlowingIcon() : fluid.getStillIcon();
-		if (icon == null) {
-			icon = ((TextureMap) Minecraft.getMinecraft().getTextureManager().getTexture(TextureMap.locationBlocksTexture)).getTextureExtry("missingno");
-		}
-		return icon;
-	}
+    private static final ResourceLocation BLOCK_TEXTURE = TextureMap.locationBlocksTexture;
 
-	public static ResourceLocation getFluidSheet(Fluid liquid) {
-		return BLOCK_TEXTURE;
-	}
+    public static IIcon getFluidTexture(Fluid fluid, boolean flowing) {
+        if (fluid == null) {
+            return null;
+        }
+
+        IIcon icon = flowing ? fluid.getFlowingIcon() : fluid.getStillIcon();
+
+        if (icon == null) {
+            icon = ((TextureMap) Minecraft.getMinecraft().getTextureManager().getTexture(TextureMap.locationBlocksTexture)).getTextureExtry("missingno");
+        }
+
+        return icon;
+    }
+
+    /**
+     * Returns the sheet the fluid texture is on.
+     * @param liquid The fluid
+     * @return Resource Location of the sheet
+     */
+    public static ResourceLocation getFluidSheet(Fluid liquid) {
+        return BLOCK_TEXTURE;
+    }
 }
