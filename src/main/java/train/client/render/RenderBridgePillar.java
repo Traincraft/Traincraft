@@ -9,16 +9,16 @@ import train.client.render.models.blocks.ModelBridgePillar;
 import train.common.library.Info;
 
 public class RenderBridgePillar extends TileEntitySpecialRenderer {
-	static final ModelBridgePillar modelBridgePillar = new ModelBridgePillar();
-	static final ResourceLocation texture = new ResourceLocation(Info.modID,Info.modelTexPrefix + "bridgePillar.png");
-	static Integer GLID = null;
+    static final ModelBridgePillar modelBridgePillar = new ModelBridgePillar();
+    static final ResourceLocation texture = new ResourceLocation(Info.modID, Info.modelTexPrefix + "bridgePillar.png");
+    static Integer GLID = null;
 
-	@Override
-	public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float tick) {
-		Tessellator.bindTexture(texture);
-		GL11.glPushMatrix();
-		GL11.glTranslated(x+0.5,y,z+0.5);
-		GL11.glRotatef(180f,180f,1f,0f);
+    @Override
+    public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float tick) {
+        Tessellator.bindTexture(texture);
+        GL11.glPushMatrix();
+        GL11.glTranslated(x + 0.5, y, z + 0.5);
+        GL11.glRotatef(180f, 180f, 1f, 0f);
 		/*
 		if(GLID==null || !GL11.glIsList(GLID)) {
 			GLID = GLAllocation.generateDisplayLists(1);
@@ -31,7 +31,7 @@ public class RenderBridgePillar extends TileEntitySpecialRenderer {
 
 		 */
 
-		modelBridgePillar.render();
-		GL11.glPopMatrix();
-	}
+        modelBridgePillar.render();
+        GL11.glPopMatrix();
+    }
 }

@@ -12,13 +12,13 @@ public class PacketUpdateTrainID implements IMessage {
     public int entityID;
     public String trainID;
 
-    public PacketUpdateTrainID() {}
+    public PacketUpdateTrainID() {
+    }
 
     public PacketUpdateTrainID(Integer entityID, String trainID) {
         this.entityID = entityID;
         this.trainID = trainID;
     }
-
 
     @Override
     public void fromBytes(ByteBuf buf) {
@@ -33,10 +33,8 @@ public class PacketUpdateTrainID implements IMessage {
     }
 
     public static class Handler implements IMessageHandler<PacketUpdateTrainID, IMessage> {
-
         @Override
         public IMessage onMessage(PacketUpdateTrainID message, MessageContext context) {
-
             Entity TrainEntity = context.getServerHandler().playerEntity.worldObj.getEntityByID(message.entityID);
             if (TrainEntity instanceof Locomotive) {
                 ((Locomotive) TrainEntity).trainID = message.trainID;

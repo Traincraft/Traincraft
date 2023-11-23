@@ -15,7 +15,7 @@ import train.client.render.models.blocks.ModelEmbeddedStopper;
 import train.common.library.Info;
 
 public class ItemRenderEmbeddedStopper implements IItemRenderer {
-    private static final ResourceLocation texture = new ResourceLocation(Info.resourceLocation,Info.modelTexPrefix + "embedded_buffer.png");
+    private static final ResourceLocation texture = new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "embedded_buffer.png");
     private static final ModelEmbeddedStopper embeddedStopper = new ModelEmbeddedStopper(1F);
 
     public ItemRenderEmbeddedStopper() {

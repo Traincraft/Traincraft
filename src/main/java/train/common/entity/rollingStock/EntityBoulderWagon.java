@@ -12,15 +12,16 @@ import train.common.Traincraft;
 import train.common.api.Freight;
 import train.common.library.GuiIDs;
 
-public class EntityBoulderWagon extends Freight implements IInventory  {
+public class EntityBoulderWagon extends Freight implements IInventory {
     public int freightInventorySize;
     public int numFreightSlots;
+
     public EntityBoulderWagon(World world) {
         super(world);
         initFreightCart();
     }
 
-    public EntityBoulderWagon(World world, double d, double d1, double d2){
+    public EntityBoulderWagon(World world, double d, double d1, double d2) {
         this(world);
         setPosition(d, d1 + yOffset, d2);
         motionX = 0.0D;
@@ -37,6 +38,7 @@ public class EntityBoulderWagon extends Freight implements IInventory  {
         freightInventorySize = getSpec().getCargoCapacity();
         cargoItems = new ItemStack[freightInventorySize];
     }
+
     @Override
     public void setDead() {
         super.setDead();
@@ -47,6 +49,7 @@ public class EntityBoulderWagon extends Freight implements IInventory  {
     protected void writeEntityToNBT(NBTTagCompound nbttagcompound) {
         super.writeEntityToNBT(nbttagcompound);
         NBTTagList nbttaglist = new NBTTagList();
+
         for (int i = 0; i < cargoItems.length; i++) {
             if (cargoItems[i] != null) {
                 NBTTagCompound nbttagcompound1 = new NBTTagCompound();
@@ -68,7 +71,7 @@ public class EntityBoulderWagon extends Freight implements IInventory  {
         for (int i = 0; i < nbttaglist.tagCount(); i++) {
             NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
             int j = nbttagcompound1.getByte("Slot") & 0xff;
-            if (j >= 0 && j < cargoItems.length) {
+            if (j < cargoItems.length) {
                 cargoItems[j] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
             }
         }
@@ -86,15 +89,10 @@ public class EntityBoulderWagon extends Freight implements IInventory  {
 
     @Override
     public boolean interactFirst(EntityPlayer entityplayer) {
-        if ((super.interactFirst(entityplayer))) {
+        if (super.interactFirst(entityplayer)) {
             return false;
         }
         entityplayer.openGui(Traincraft.instance, GuiIDs.FREIGHT, worldObj, this.getEntityId(), -1, (int) this.posZ);
-        return true;
-    }
-
-    @Override
-    public boolean isStorageCart() {
         return true;
     }
 
@@ -106,10 +104,5 @@ public class EntityBoulderWagon extends Freight implements IInventory  {
     @Override
     public int getInventoryStackLimit() {
         return 1;
-    }
-
-    @Override
-    public boolean isItemValidForSlot(int i, ItemStack itemstack) {
-        return true;
     }
 }

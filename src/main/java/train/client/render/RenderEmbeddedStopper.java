@@ -18,7 +18,7 @@ import train.common.tile.TileEmbeddedStopper;
 public class RenderEmbeddedStopper extends TileEntitySpecialRenderer {
 
     private static final ModelEmbeddedStopper modelEmbeddedStopper = new ModelEmbeddedStopper(1.0F / 16.0F);
-    private static final ResourceLocation texture = new ResourceLocation(Info.resourceLocation,Info.modelTexPrefix + "buffer.png");
+    private static final ResourceLocation texture = new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "buffer.png");
 
     public RenderEmbeddedStopper() {
     }

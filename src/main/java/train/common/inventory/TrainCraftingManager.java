@@ -20,14 +20,14 @@ public class TrainCraftingManager {
 	public static final TrainCraftingManager instance = new TrainCraftingManager();
 
 	/** A list of all the recipes added */
-	private List recipes = new ArrayList();
+	private final List<ITCRecipe> recipes = new ArrayList<>();
 	
-	private final ArrayList<ShapedTrainRecipes> shapedRecipes = new ArrayList<ShapedTrainRecipes>();
+	private final ArrayList<ShapedTrainRecipes> shapedRecipes = new ArrayList<>();
 
 	/** Recipes for openHearthFurnace */
-	private final HashMap<Integer, ArrayList<Integer>> hearthFurnaceMap = new HashMap();
-	private final ArrayList<OpenHearthFurnaceRecipe> hearthFurnaceRecipes = new ArrayList<OpenHearthFurnaceRecipe>();
-	private final HashMap<Integer, Float> hearthFurnaceXpMap = new HashMap();
+	private final HashMap<Integer, ArrayList<Integer>> hearthFurnaceMap = new HashMap<>();
+	private final ArrayList<OpenHearthFurnaceRecipe> hearthFurnaceRecipes = new ArrayList<>();
+	private final HashMap<Integer, Float> hearthFurnaceXpMap = new HashMap<>();
 	
 	public static final TrainCraftingManager getInstance() {
 		return instance;
@@ -163,7 +163,7 @@ public class TrainCraftingManager {
 	/**
 	 * returns the List<> of all recipes
 	 */
-	public List getRecipeList() {
+	public List<ITCRecipe> getRecipeList() {
 		return this.recipes;
 	}
 	

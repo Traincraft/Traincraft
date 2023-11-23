@@ -74,7 +74,7 @@ public class EntityBoxCartPRR extends Freight implements IInventory {
 		for (int i = 0; i < nbttaglist.tagCount(); i++) {
 			NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
 			int j = nbttagcompound1.getByte("Slot") & 0xff;
-			if (j >= 0 && j < cargoItems.length) {
+			if (j < cargoItems.length) {
 				cargoItems[j] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
 			}
 		}
@@ -92,30 +92,15 @@ public class EntityBoxCartPRR extends Freight implements IInventory {
 
 	@Override
 	public boolean interactFirst(EntityPlayer entityplayer) {
-		if ((super.interactFirst(entityplayer))) {
+		if (super.interactFirst(entityplayer)) {
 			return false;
 		}
 		entityplayer.openGui(Traincraft.instance, GuiIDs.FREIGHT, worldObj, this.getEntityId(), -1, (int) this.posZ);
 		return true;
 	}
 
-	@Override
-	public boolean isStorageCart() {
-		return true;
-	}
-
-	@Override
+    @Override
 	public float getOptimalDistance(EntityMinecart cart) {
 		return 3.05F;
-	}
-
-	@Override
-	public int getInventoryStackLimit() {
-		return 64;
-	}
-
-	@Override
-	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
-		return true;
 	}
 }

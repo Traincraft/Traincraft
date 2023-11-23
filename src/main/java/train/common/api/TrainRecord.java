@@ -2,10 +2,10 @@ package train.common.api;
 
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
-import scala.actors.threadpool.Arrays;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public abstract class TrainRecord {
@@ -38,11 +38,11 @@ public abstract class TrainRecord {
 
     public abstract int getTankCapacity();
 
-    public abstract List getColors();
+    public abstract List<String> getColors();
 
-    public List<String> getLiveries(){
-        if(skins.size()==0 && getColors()!=null){
-            skins=getColors();
+    public List<String> getLiveries() {
+        if (skins.isEmpty() && getColors() != null) {
+            skins = getColors();
         }
         return skins;
     }
@@ -62,21 +62,19 @@ public abstract class TrainRecord {
     public abstract AbstractTrains getEntity(World world, double x, double y, double z);
 
 
-
-
-    public static TrainRecord makeEntry(String entryName, String internalName, Class entityClass, Item item, String trainType, int MHP, int maxSpeed, double mass, int fuelConsumption, int waterConsumption, int heatingTime, double accelerationRate, double brakeRate, int tankCapacity, String[] colors, int guiRenderScale, double bogieLocoPosition){
-        return makeEntry(entryName, internalName, entityClass, item, trainType, MHP, maxSpeed, mass, fuelConsumption, waterConsumption, heatingTime, accelerationRate, brakeRate, tankCapacity,0, colors, guiRenderScale, bogieLocoPosition, "");
+    public static TrainRecord makeEntry(String entryName, String internalName, Class entityClass, Item item, String trainType, int MHP, int maxSpeed, double mass, int fuelConsumption, int waterConsumption, int heatingTime, double accelerationRate, double brakeRate, int tankCapacity, String[] colors, int guiRenderScale, double bogieLocoPosition) {
+        return makeEntry(entryName, internalName, entityClass, item, trainType, MHP, maxSpeed, mass, fuelConsumption, waterConsumption, heatingTime, accelerationRate, brakeRate, tankCapacity, 0, colors, guiRenderScale, bogieLocoPosition, "");
     }
 
-    public static TrainRecord makeEntry(String entryName, String internalName, Class entityClass, Item item, String trainType, int MHP, int maxSpeed, double mass, int fuelConsumption, int waterConsumption, int heatingTime, double accelerationRate, double brakeRate, int tankCapacity, String[] colors, int guiRenderScale, double bogieLocoPositions, String additionnalTooltip){
-        return makeEntry(entryName, internalName, entityClass, item, trainType, MHP, maxSpeed, mass, fuelConsumption, waterConsumption, heatingTime, accelerationRate, brakeRate, tankCapacity,0, colors, guiRenderScale, bogieLocoPositions, additionnalTooltip);
+    public static TrainRecord makeEntry(String entryName, String internalName, Class entityClass, Item item, String trainType, int MHP, int maxSpeed, double mass, int fuelConsumption, int waterConsumption, int heatingTime, double accelerationRate, double brakeRate, int tankCapacity, String[] colors, int guiRenderScale, double bogieLocoPositions, String additionnalTooltip) {
+        return makeEntry(entryName, internalName, entityClass, item, trainType, MHP, maxSpeed, mass, fuelConsumption, waterConsumption, heatingTime, accelerationRate, brakeRate, tankCapacity, 0, colors, guiRenderScale, bogieLocoPositions, additionnalTooltip);
     }
 
-    public static TrainRecord makeEntry(String entryName, String internalName,Class entityClass, Item item, String trainType, double mass, String[] colors, int guiRenderScale, int cargoCapacity, String additionnalTooltip){
-        return makeEntry(entryName, internalName, entityClass, item, trainType, 0, 0, mass, 0, 0, 0, 0, 0, 0,cargoCapacity, colors, guiRenderScale, 0, additionnalTooltip);
+    public static TrainRecord makeEntry(String entryName, String internalName, Class entityClass, Item item, String trainType, double mass, String[] colors, int guiRenderScale, int cargoCapacity, String additionnalTooltip) {
+        return makeEntry(entryName, internalName, entityClass, item, trainType, 0, 0, mass, 0, 0, 0, 0, 0, 0, cargoCapacity, colors, guiRenderScale, 0, additionnalTooltip);
     }
 
-    public static TrainRecord makeEntry(final String entryName, final String internalName, final Class entityClass, final Item item, final String trainType, final int MHP, final int maxSpeed, final double mass, final int fuelConsumption, final int waterConsumption, final int heatingTime, final double accelerationRate, final double brakeRate, final int tankCapacity, final int cargoCapacity, final String[] colors, final int guiRenderScale, final double bogieLocoPositions, final String additionnalTooltip){
+    public static TrainRecord makeEntry(final String entryName, final String internalName, final Class entityClass, final Item item, final String trainType, final int MHP, final int maxSpeed, final double mass, final int fuelConsumption, final int waterConsumption, final int heatingTime, final double accelerationRate, final double brakeRate, final int tankCapacity, final int cargoCapacity, final String[] colors, final int guiRenderScale, final double bogieLocoPositions, final String additionnalTooltip) {
         return new TrainRecord() {
             @Override
             public String getName() {
@@ -145,7 +143,7 @@ public abstract class TrainRecord {
 
             @Override
             public List<String> getColors() {
-                if(colors==null){
+                if (colors == null) {
                     return new ArrayList<>();
                 } else {
                     return Arrays.asList(colors);
@@ -181,17 +179,8 @@ public abstract class TrainRecord {
             public AbstractTrains getEntity(World world) {
                 try {
                     return (AbstractTrains) entityClass.getConstructor(World.class).newInstance(world);
-                } catch (IllegalArgumentException e) {
-                    e.printStackTrace();
-                } catch (SecurityException e) {
-                    e.printStackTrace();
-                } catch (InstantiationException e) {
-                    e.printStackTrace();
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                } catch (InvocationTargetException e) {
-                    e.printStackTrace();
-                } catch (NoSuchMethodException e) {
+                } catch (IllegalArgumentException | NoSuchMethodException | SecurityException | InstantiationException |
+                         IllegalAccessException | InvocationTargetException e) {
                     e.printStackTrace();
                 }
                 return null;
@@ -200,22 +189,13 @@ public abstract class TrainRecord {
             @Override
             public AbstractTrains getEntity(World world, double x, double y, double z) {
                 try {
-                    if(world.isRemote){
+                    if (world.isRemote) {
                         entityClass.getConstructor(World.class).newInstance(world);
                     } else {
                         return (AbstractTrains) entityClass.getConstructor(World.class, double.class, double.class, double.class).newInstance(world, x, y, z);
                     }
-                } catch (IllegalArgumentException e) {
-                    e.printStackTrace();
-                } catch (SecurityException e) {
-                    e.printStackTrace();
-                } catch (InstantiationException e) {
-                    e.printStackTrace();
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                } catch (InvocationTargetException e) {
-                    e.printStackTrace();
-                } catch (NoSuchMethodException e) {
+                } catch (IllegalArgumentException | SecurityException | InstantiationException |
+                         IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
                     e.printStackTrace();
                 }
                 return null;

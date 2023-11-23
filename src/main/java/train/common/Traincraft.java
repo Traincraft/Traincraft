@@ -237,4 +237,8 @@ public class Traincraft {
     public static boolean hasNotEnoughItems() {
         return Loader.isModLoaded("NotEnoughItems");
     }
+
+    public static boolean hasRailcraft() {
+        return Loader.isModLoaded("Railcraft");
+    }
 }

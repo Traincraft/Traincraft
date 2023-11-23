@@ -7,12 +7,12 @@ import train.client.render.models.blocks.ModelWindMillWheel;
 import train.common.tile.TileWindMill;
 
 public class RenderWindMill extends TileEntitySpecialRenderer {
-	private static final ModelWindMill modelWindMill = new ModelWindMill();
-	private static final ModelWindMillWheel modelWindMillWheel = new ModelWindMillWheel();
+    private static final ModelWindMill modelWindMill = new ModelWindMill();
+    private static final ModelWindMillWheel modelWindMillWheel = new ModelWindMillWheel();
 
-	@Override
-	public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float tick) {
-		modelWindMill.render((TileWindMill) tileEntity, x, y, z);
-		modelWindMillWheel.render((TileWindMill) tileEntity, x, y, z);
-	}
+    @Override
+    public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float tick) {
+        modelWindMill.render((TileWindMill) tileEntity, x, y, z);
+        modelWindMillWheel.render((TileWindMill) tileEntity, x, y, z);
+    }
 }

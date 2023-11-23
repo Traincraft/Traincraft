@@ -18,7 +18,7 @@ import train.common.tile.TileAmericanStopper;
 public class RenderAmericanStopper extends TileEntitySpecialRenderer {
 
     private static final ModelAmericanStopper modelAmericanStopper = new ModelAmericanStopper(1.0F / 16.0F);
-    private static final ResourceLocation texture = new ResourceLocation(Info.resourceLocation,Info.modelTexPrefix + "buffer.png");
+    private static final ResourceLocation texture = new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "buffer.png");
 
     public RenderAmericanStopper() {
     }

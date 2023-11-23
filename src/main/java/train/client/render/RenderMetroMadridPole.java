@@ -19,7 +19,7 @@ import train.common.tile.TileMetroMadridPole;
 public class RenderMetroMadridPole extends TileEntitySpecialRenderer {
 
     private static final ModelMetroMadridOHW modelMetroMadridOHW = new ModelMetroMadridOHW();
-    private static final ResourceLocation texture = new ResourceLocation(Info.resourceLocation,Info.modelTexPrefix + "MetroMadridPole.png");
+    private static final ResourceLocation texture = new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "MetroMadridPole.png");
 
     public RenderMetroMadridPole() {
     }
