@@ -27,7 +27,7 @@ public class RenderGeneratorDiesel extends TileEntitySpecialRenderer {
         GL11.glPushMatrix();
 
         GL11.glTranslated(x, y, z);
-        tmt.Tessellator.bindTexture(texture);
+        fexcraft.tmt.slim.Tessellator.bindTexture(texture);
 
         //System.out.println(((TileStopper) var1).getFacing());
         GL11.glTranslatef(0.5F, 0.0F, 0.5F);

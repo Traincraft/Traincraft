@@ -489,7 +489,7 @@ public class ModelLocoDieselIC4_DSB_FH extends ModelBase
 		GL11.glTranslated(0,-1.4f,-2.6);
 		GL11.glScaled(0.7,0.9,1);
 		super.render(entity, f, f1, f2, f3, f4, f5);
-		setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+		//setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 		Left1.render(f5);
 		Left2.render(f5);
 		Left3.render(f5);

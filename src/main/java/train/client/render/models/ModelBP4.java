@@ -1005,6 +1005,7 @@ public class ModelBP4 extends ModelConverter
 
 		GL11.glTranslatef(3.1f,0f,0);
 		bogie.render(entity, f, f1, f2, f3, f4, f5);
+		GL11.glScalef(1f,1f,1f);
 		GL11.glPopMatrix();
 	}
 

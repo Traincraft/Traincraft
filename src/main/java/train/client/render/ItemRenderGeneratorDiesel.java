@@ -58,7 +58,7 @@ public class ItemRenderGeneratorDiesel implements IItemRenderer {
     }
 
     private void renderGenerator(float f, float g, float h) {
-        tmt.Tessellator.bindTexture(texture);
+        fexcraft.tmt.slim.Tessellator.bindTexture(texture);
         GL11.glPushMatrix();
         GL11.glTranslatef(f, g, h);
         GL11.glScalef(0.7F, 0.7F, 0.7F);
