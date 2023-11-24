@@ -1,5 +1,6 @@
 package train.common.api;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
 
@@ -49,7 +50,7 @@ public abstract class TrainRecord {
 
     public abstract double getBogieLocoPosition();
 
-    public abstract Class getEntityClass();
+    public abstract Class<Entity> getEntityClass();
 
     public abstract int getGuiRenderScale();
 
@@ -156,7 +157,7 @@ public abstract class TrainRecord {
             }
 
             @Override
-            public Class getEntityClass() {
+            public Class<Entity> getEntityClass() {
                 return entityClass;
             }
 
@@ -202,5 +203,4 @@ public abstract class TrainRecord {
             }
         };
     }
-
 }
