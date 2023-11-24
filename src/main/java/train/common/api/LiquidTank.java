@@ -12,6 +12,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
 import train.common.adminbook.ServerLogger;
 import train.common.entity.rollingStock.EntityTankLava;
+import train.common.library.ItemIDs;
 
 import javax.annotation.Nullable;
 
@@ -22,20 +23,18 @@ public class LiquidTank extends EntityRollingStock implements IFluidHandler, ISi
     private FluidTank theTank;
     public TileEntity[] blocksToCheck;
 
-    /**
-     *
-     * @param world
-     * @param fluid
-     * @param quantity
-     * @param capacity
-     */
-    public LiquidTank(World world, Fluid fluid, int quantity) {
-        this(new FluidStack(fluid, quantity), world);
-    }
-
-    public LiquidTank(World world) {
-        this(null, world);
-    }
+	/**
+	 * 
+	 * @param world
+	 * @param fluid
+	 * @param quantity
+	 */
+	public LiquidTank(World world, Fluid fluid, int quantity) {
+			this(new FluidStack(fluid, quantity), world);
+	}
+	public LiquidTank(World world) {
+		this(null, world);
+	}
 
     private LiquidTank(@Nullable FluidStack liquid, World world) {
         super(world);
@@ -141,29 +140,29 @@ public class LiquidTank extends EntityRollingStock implements IFluidHandler, ISi
         this.update += 1;
         if (this.update % 8 == 0 && itemstack != null) {
             ItemStack emptyItem = itemstack.getItem().getContainerItem(itemstack);
-            if (cargoItems[1] == null) {
-                if (theTank.getFluidAmount() == 0) {
+            if (cargoItems[1] == null) {// If the output slot is empty...
+                if (theTank.getFluidAmount() == 0) {// Adding the first fluid to the tank...
                     for (Fluid fluid : FluidRegistry.getRegisteredFluids().values()) {
                         if (LiquidManager.getInstance().containsFluid(itemstack,
                                 FluidRegistry.getFluidStack(FluidRegistry.getFluidName(fluid), 0))) {
                             if (fluid.getTemperature() < 1000) {
-                                if (!(this instanceof EntityTankLava)) {
+                                if (!(this instanceof EntityTankLava)) {// Input fluid from itemstack (not lava or molten liquids).
                                     result = LiquidManager.getInstance().processContainer(this, 0, this, itemstack);
                                     break;
                                 }
                             } else {
-                                if (this instanceof EntityTankLava) {
+                                if (this instanceof EntityTankLava) {// Input fluid from itemstack (lava or molten liquids).
                                     result = LiquidManager.getInstance().processContainer(this, 0, this, itemstack);
                                     break;
                                 }
                             }
                         }
                     }
-                } else {
+                } else {// Output fluid into itemstack...
                     result = LiquidManager.getInstance().processContainer(this, 0, this, itemstack);
                 }
-            } else if (emptyItem != null) {
-                if (emptyItem.getItem() == cargoItems[1].getItem()) {
+            } else if (emptyItem != null) {// Adding or removing fluid to or from the tank (if the tank already has something in it).
+                if (emptyItem.getItem() == cargoItems[1].getItem()|| emptyItem.getItem().equals(ItemIDs.emptyCanister.item) && cargoItems[1].getItem().equals(ItemIDs.diesel.item)) {
                     if (cargoItems[1].stackSize + 1 <= cargoItems[1].getMaxStackSize()) {
                         result = LiquidManager.getInstance().processContainer(this, 0, this, itemstack);
                     }
