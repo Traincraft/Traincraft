@@ -113,6 +113,7 @@ public class Traincraft {
         configDirectory = event.getModConfigurationDirectory();
         ConfigHandler.init(new File(event.getModConfigurationDirectory(), Info.modName + ".cfg"));
 
+        proxy.configDirectory = event.getModConfigurationDirectory().getAbsolutePath();
         /* Register the KeyBinding Handler */
         proxy.registerKeyBindingHandler();
 

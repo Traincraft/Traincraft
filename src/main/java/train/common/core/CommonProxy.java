@@ -44,8 +44,14 @@ public class CommonProxy implements IGuiHandler {
 	public static List<MP3Player> playerList = new ArrayList<MP3Player>();
 	public static boolean debug = false;
 
+	public static String configDirectory = "";
+
 	public void throwAlphaException() {
 		throw new IllegalStateException("You're trying to use a Traincraft alpha-version past its expiry date. Download a release-build at https://minecraft.curseforge.com/projects/traincraft.");
+	}
+
+	public boolean isClient(){
+		return true;
 	}
 
 	public void setKeyBinding(String name, int value) {}
