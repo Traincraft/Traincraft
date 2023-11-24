@@ -12,8 +12,8 @@ package train.client.render.models;//This File was created with the Minecraft-SM
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import org.lwjgl.opengl.GL11;
-import tmt.ModelConverter;
-import tmt.ModelRendererTurbo;
+import fexcraft.tmt.slim.ModelConverter;
+import fexcraft.tmt.slim.ModelRendererTurbo;
 import train.common.api.Locomotive;
 
 public class ModelMetroMadrid2000Loco extends ModelConverter //Same as Filename

@@ -3,7 +3,7 @@ package train.client.render.models;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import org.lwjgl.opengl.GL11;
-import tmt.ModelBase;
+import fexcraft.tmt.slim.ModelBase;
 import train.client.render.CustomModelRenderer;
 import train.common.api.LiquidTank;
 

@@ -56,7 +56,7 @@ public class ItemRenderAmericanStopper implements IItemRenderer {
     }
 
     private void renderAmericanStopper(float f, float g, float h, float rotation) {
-        tmt.Tessellator.bindTexture(texture);
+        fexcraft.tmt.slim.Tessellator.bindTexture(texture);
         GL11.glPushMatrix(); //start
         GL11.glTranslatef(f, g, h); //size
         GL11.glRotatef(rotation, f, g, h);

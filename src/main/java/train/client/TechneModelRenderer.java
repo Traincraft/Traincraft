@@ -1,10 +1,10 @@
 package train.client;
 
 
-import tmt.ModelBase;
-import tmt.ModelRendererTurbo;
-import tmt.TexturedPolygon;
-import tmt.TexturedVertex;
+import fexcraft.tmt.slim.ModelBase;
+import fexcraft.tmt.slim.ModelRendererTurbo;
+import fexcraft.tmt.slim.TexturedPolygon;
+import fexcraft.tmt.slim.TexturedVertex;
 
 /**
  * <h2>Techne model render</h2>
@@ -64,13 +64,13 @@ public class TechneModelRenderer extends ModelRendererTurbo {
         faces[4] = generateFaces(new TexturedVertex[]{PositionTransformVertex1, PositionTransformVertex, PositionTransformVertex3, PositionTransformVertex2}, textureOffsetX + k, textureOffsetY + k, textureOffsetX + k + i, textureOffsetY + k + j, textureWidth, textureHeight);
         faces[5] = generateFaces(new TexturedVertex[]{PositionTransformVertex4, PositionTransformVertex5, PositionTransformVertex6, PositionTransformVertex7}, textureOffsetX + k + i + k, textureOffsetY + k, textureOffsetX + k + i + k + i, textureOffsetY + k + j, textureWidth, textureHeight);
 
-        textureGroup.get("0").poly.clear();
+        /*textureGroup.get("0").poly.clear();
         textureGroup.get("0").addPoly(faces[0]);
         textureGroup.get("0").addPoly(faces[1]);
         textureGroup.get("0").addPoly(faces[2]);
         textureGroup.get("0").addPoly(faces[3]);
         textureGroup.get("0").addPoly(faces[4]);
-        textureGroup.get("0").addPoly(faces[5]);
+        textureGroup.get("0").addPoly(faces[5]);*/
         return this;
     }
 

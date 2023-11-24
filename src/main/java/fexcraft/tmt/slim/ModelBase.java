@@ -35,6 +35,8 @@ public class ModelBase extends ArrayList<ModelRendererTurbo> {
 	public static boolean disableCache=false;
 	public static boolean EnableAnimations=false;
 
+	public int textureWidth=512, textureHeight=512;
+
 	public void render(){
 		if(init){
 		    initAllParts();

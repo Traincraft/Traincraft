@@ -29,7 +29,7 @@ private IModelCustom ring;
 		//GL11.glEnable(GL11.GL_LIGHTING);
 		GL11.glPushMatrix();
 		GL11.glColor4f(1, 1, 1, 1);
-		tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "ring.png"));
+		fexcraft.tmt.slim.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "ring.png"));
 		render();
 		GL11.glPopMatrix();
 	}

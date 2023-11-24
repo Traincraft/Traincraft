@@ -1,11 +1,8 @@
 package train.client.render;
 
 
+import fexcraft.tmt.slim.*;
 import org.lwjgl.opengl.GL11;
-import tmt.ModelBase;
-import tmt.ModelRendererTurbo;
-import tmt.TexturedPolygon;
-import tmt.TexturedVertex;
 
 import java.util.ArrayList;
 

@@ -11,8 +11,8 @@ package train.client.render.models;
 
 
 import net.minecraft.entity.Entity;
-import tmt.ModelConverter;
-import tmt.ModelRendererTurbo;
+import fexcraft.tmt.slim.ModelConverter;
+import fexcraft.tmt.slim.ModelRendererTurbo;
 
 
 public class ModelAmfleet extends ModelConverter //Same as Filename

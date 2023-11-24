@@ -8,7 +8,7 @@
 package train.client.render.models.blocks;
 
 import org.lwjgl.opengl.GL11;
-import tmt.ModelBase;
+import fexcraft.tmt.slim.ModelBase;
 import train.client.render.CustomModelRenderer;
 
 public class ModelGeneratorDiesel extends ModelBase {

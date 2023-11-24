@@ -10,8 +10,8 @@
 package train.client.render.models; //Path where the model is located
 
 
-import tmt.ModelConverter;
-import tmt.ModelRendererTurbo;
+import fexcraft.tmt.slim.ModelConverter;
+import fexcraft.tmt.slim.ModelRendererTurbo;
 
 public class ModelBR_Black_5_Tender extends ModelConverter //Same as Filename
 {

@@ -74,6 +74,15 @@ public class ModelRendererTurbo {
         textureWidth = textureU;
         textureHeight = textureV;
     }
+    public ModelRendererTurbo(ModelBase modelbase, int textureX, int textureY){
+        mirror = false;
+        showModel = true;
+        faces = new ArrayList<>();
+        boxName = "";
+        textureOffsetX = textureX;
+        textureOffsetY = textureY;
+        textureWidth = 0;
+        textureHeight = 0;}
 
     public ModelRendererTurbo(ModelBase modelbase, String s){this(s);}
     public ModelRendererTurbo(TurboList modelbase, String s){this(s);}
@@ -1241,6 +1250,12 @@ public class ModelRendererTurbo {
     public ModelRendererTurbo setTextureOffset(int x, int y){
         textureOffsetX = x;
         textureOffsetY = y;
+        return this;
+    }
+
+    public ModelRendererTurbo setTextureSize(int x, int y){
+        textureWidth = x;
+        textureHeight = y;
         return this;
     }
 

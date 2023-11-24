@@ -1,6 +1,6 @@
 package train.client.render;
 
-import tmt.ModelBase;
+import fexcraft.tmt.slim.ModelBase;
 import train.client.render.models.*;
 import train.common.api.AbstractTrains;
 import train.common.api.EntityRollingStock;

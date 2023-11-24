@@ -7,9 +7,9 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
-import tmt.ModelConverter;
-import tmt.ModelRendererTurbo;
-import tmt.Tessellator;
+import fexcraft.tmt.slim.ModelConverter;
+import fexcraft.tmt.slim.ModelRendererTurbo;
+import fexcraft.tmt.slim.Tessellator;
 import train.common.library.Info;
 
 /** This file was exported via the (Default) FlansMod Exporter of<br>
@@ -2673,7 +2673,7 @@ public class SM42 extends ModelConverter {
 		bodyModel[618].setRotationPoint(11.75f, 2.0f, -9.0f);
 
 		bodyModel[619] = new ModelRendererTurbo(this, 501, 173, textureX, textureY);
-		bodyModel[619].flip = true;
+		bodyModel[619].mirror = true;
 		bodyModel[619].addCylinder(0, 0, 0, 2, 16, 10, 1.1875f, 1.1875f, 1);
 		bodyModel[619].setRotationPoint(1.1875f, 4.375f, -8.0f);
 
@@ -2738,22 +2738,22 @@ public class SM42 extends ModelConverter {
 		bodyModel[634].setRotationPoint(6.75f, 6.0f, -9.0f);
 
 		bodyModel[635] = new ModelRendererTurbo(this, 84, 27, textureX, textureY);
-		bodyModel[635].flip = true;
+		bodyModel[635].mirror = true;
 		bodyModel[635].addCylinder(0, 0, 0, 2, 1, 10, 1.1875f, 1.0625f, 1);
 		bodyModel[635].setRotationPoint(1.1875f, 4.375f, -9.0f);
 
 		bodyModel[636] = new ModelRendererTurbo(this, 75, 27, textureX, textureY);
-		bodyModel[636].flip = true;
+		bodyModel[636].mirror = true;
 		bodyModel[636].addCylinder(0, 0, 0, 2, 1, 10, 1.0625f, 0.625f, 1);
 		bodyModel[636].setRotationPoint(1.1875f, 4.375f, -9.75f);
 
 		bodyModel[637] = new ModelRendererTurbo(this, 66, 27, textureX, textureY);
-		bodyModel[637].flip = true;
+		bodyModel[637].mirror = true;
 		bodyModel[637].addCylinder(0, 0, 0, 2, 1, 10, 1.0625f, 1.1875f, 1);
 		bodyModel[637].setRotationPoint(1.1875f, 4.375f, 7.75f);
 
 		bodyModel[638] = new ModelRendererTurbo(this, 234, 13, textureX, textureY);
-		bodyModel[638].flip = true;
+		bodyModel[638].mirror = true;
 		bodyModel[638].addCylinder(0, 0, 0, 2, 1, 10, 0.625f, 1.0625f, 1);
 		bodyModel[638].setRotationPoint(1.1875f, 4.375f, 8.0f);
 

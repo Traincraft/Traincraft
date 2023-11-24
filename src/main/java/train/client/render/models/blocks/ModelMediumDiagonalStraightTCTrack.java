@@ -45,8 +45,8 @@ public class ModelMediumDiagonalStraightTCTrack extends ModelBase {
         // Bind the texture, so that OpenGL properly textures our block.
 
         if (type.contains("embedded"))
-            tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_embedded.png"));
-        else tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
+            fexcraft.tmt.slim.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_embedded.png"));
+        else fexcraft.tmt.slim.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
 
         if (facing == 4) {
             GL11.glTranslatef(1f,0,0f);

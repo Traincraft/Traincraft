@@ -4,7 +4,7 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
-import tmt.Tessellator;
+import fexcraft.tmt.slim.Tessellator;
 import train.client.render.models.blocks.ModelBridgePillar;
 import train.common.library.Info;
 

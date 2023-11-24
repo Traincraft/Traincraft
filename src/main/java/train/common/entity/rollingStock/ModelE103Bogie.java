@@ -9,8 +9,8 @@
 
 package train.common.entity.rollingStock; //Path where the model is located
 
-import tmt.ModelConverter;
-import tmt.ModelRendererTurbo;
+import fexcraft.tmt.slim.ModelConverter;
+import fexcraft.tmt.slim.ModelRendererTurbo;
 
 public class ModelE103Bogie extends ModelConverter //Same as Filename
 {
