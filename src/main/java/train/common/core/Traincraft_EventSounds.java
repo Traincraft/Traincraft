@@ -2,7 +2,7 @@ package train.common.core;
 
 public class Traincraft_EventSounds {
 
-	//TODO audio has moved to JSON support only
+    //TODO audio has moved to JSON support only
 	/*
 	@SubscribeEvent
 	public void onSound(SoundLoadEvent event) {

@@ -2,9 +2,9 @@ package train.common.core.interfaces;
 
 public interface IPlugin {
 
-	public abstract boolean isAvailable();
+	boolean isAvailable();
 
-	public abstract void initialize();
+	void initialize();
 
 	//public HashMap<String, ItemStack> getItems();
 }

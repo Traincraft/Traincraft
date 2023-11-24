@@ -15,7 +15,7 @@ import train.client.render.models.blocks.ModelAmericanStopper;
 import train.common.library.Info;
 
 public class ItemRenderAmericanStopper implements IItemRenderer {
-    private static final ResourceLocation texture = new ResourceLocation(Info.resourceLocation,Info.modelTexPrefix + "buffer.png");
+    private static final ResourceLocation texture = new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "buffer.png");
     private static final ModelAmericanStopper americanStopper = new ModelAmericanStopper(1F);
 
     public ItemRenderAmericanStopper() {

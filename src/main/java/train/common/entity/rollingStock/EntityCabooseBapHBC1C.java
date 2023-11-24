@@ -12,7 +12,7 @@ public class EntityCabooseBapHBC1C extends EntityRollingStock implements IPassen
         super(world);
     }
 
-    public EntityCabooseBapHBC1C(World world, double d, double d1, double d2){
+    public EntityCabooseBapHBC1C(World world, double d, double d1, double d2) {
         this(world);
         setPosition(d, d1 + yOffset, d2);
         motionX = 0.0D;
@@ -25,7 +25,7 @@ public class EntityCabooseBapHBC1C extends EntityRollingStock implements IPassen
 
     @Override
     public void updateRiderPosition() {
-        if(riddenByEntity!=null) {
+        if (riddenByEntity != null) {
             riddenByEntity.setPosition(posX + 0.0f, posY + getMountedYOffset() + riddenByEntity.getYOffset() + -0.1, posZ + 0.0);
         }
     }
@@ -39,18 +39,21 @@ public class EntityCabooseBapHBC1C extends EntityRollingStock implements IPassen
     @Override
     public boolean interactFirst(EntityPlayer entityplayer) {
         playerEntity = entityplayer;
-        if ((super.interactFirst(entityplayer))) {
+        if (super.interactFirst(entityplayer)) {
             return false;
         }
+
         if (!worldObj.isRemote) {
             ItemStack itemstack = entityplayer.inventory.getCurrentItem();
-            if(lockThisCart(itemstack, entityplayer))return true;
+            if (lockThisCart(itemstack, entityplayer)) {
+                return true;
+            }
+
             if (riddenByEntity != null && (riddenByEntity instanceof EntityPlayer) && riddenByEntity != entityplayer) {
                 return true;
             }
-            if (!worldObj.isRemote) {
-                entityplayer.mountEntity(this);
-            }
+
+            entityplayer.mountEntity(this);
         }
         return true;
     }

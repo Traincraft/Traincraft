@@ -9,37 +9,35 @@ import train.common.api.Locomotive;
 
 public class PacketSetLocoTurnedOn implements IMessage {
 
-    /** The key that was pressed. */
+    /**
+     * The key that was pressed.
+     */
     Boolean LocoOn;
-    public PacketSetLocoTurnedOn() {}
+
+    public PacketSetLocoTurnedOn() {
+    }
 
     public PacketSetLocoTurnedOn(Boolean LocoOn) {
-
         this.LocoOn = LocoOn;
     }
 
     @Override
     public void fromBytes(ByteBuf bbuf) {
-
         this.LocoOn = bbuf.readBoolean();
     }
 
     @Override
     public void toBytes(ByteBuf bbuf) {
-
         bbuf.writeBoolean(this.LocoOn);
     }
 
     public static class Handler implements IMessageHandler<PacketSetLocoTurnedOn, IMessage> {
-
         @Override
         public IMessage onMessage(PacketSetLocoTurnedOn message, MessageContext context) {
-
             Entity TrainEntity = context.getServerHandler().playerEntity.ridingEntity;
 
-			/* "instanceof" is null-safe, but we check to avoid four unnecessary instanceof checks for when the value is null anyways. */
+            /* "instanceof" is null-safe, but we check to avoid four unnecessary instanceof checks for when the value is null anyways. */
             if (TrainEntity != null) {
-
                 if (TrainEntity instanceof Locomotive) {
                     ((Locomotive) TrainEntity).setLocoTurnedOnFromPacket(message.LocoOn);
                 }

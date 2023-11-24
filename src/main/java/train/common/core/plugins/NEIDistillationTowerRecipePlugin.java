@@ -28,220 +28,195 @@ import java.util.TreeSet;
 import static codechicken.lib.gui.GuiDraw.changeTexture;
 import static codechicken.lib.gui.GuiDraw.drawTexturedModalRect;
 
-public class NEIDistillationTowerRecipePlugin extends FurnaceRecipeHandler{
-	public class SmeltingPair extends CachedRecipe
-    {
-        public SmeltingPair(ItemStack ingred, ItemStack result)
-        {
+public class NEIDistillationTowerRecipePlugin extends FurnaceRecipeHandler {
+    public class SmeltingPair extends CachedRecipe {
+        public SmeltingPair(ItemStack ingred, ItemStack result) {
             ingred.stackSize = 1;
             this.ingred = new PositionedStack(ingred, 51, 13);
             this.result = null;//new PositionedStack(result, 118, 29);
         }
+
         @Override
-        public PositionedStack getIngredient()
-        {
-            int cycle = cycleticks *(1/48);
-            if(ingred.item.getItemDamage() == -1)
-            {
+        public PositionedStack getIngredient() {
+            int cycle = cycleticks * (1 / 48);
+            if (ingred.item.getItemDamage() == -1) {
                 PositionedStack stack = ingred.copy();
                 int maxDamage = 0;
-                do
-                {
+                do {
                     maxDamage++;
                     stack.item.setItemDamage(maxDamage);
-                }
-                while(stack.item != null);
-                
+                } while (stack.item != null);
+
                 stack.item.setItemDamage(cycle % maxDamage);
                 return stack;
             }
             return ingred;
         }
+
         @Override
-        public PositionedStack getResult()
-        {
+        public PositionedStack getResult() {
             return result;
         }
+
         @Override
-        public PositionedStack getOtherStack() 
-        {
-            return afuelsDistil.get((cycleticks*(1/48)) % afuelsDistil.size()).stack;
+        public PositionedStack getOtherStack() {
+            return afuelsDistil.get((cycleticks * (1 / 48)) % afuelsDistil.size()).stack;
         }
+
         /**
          * Return extra items that are not directly involved in the ingredient->result relationship. Eg fuels.
          * Use this if you have more than one other stack
+         *
          * @return A list of positioned items.
          */
         @Override
-        public List<PositionedStack> getOtherStacks()
-        {
+        public List<PositionedStack> getOtherStacks() {
             ArrayList<PositionedStack> stacks = new ArrayList<PositionedStack>();
-            PositionedStack stack = afuelsDistil.get((cycleticks*(1/48)) % afuelsDistil.size()).stack;
-            PositionedStack stackPlastic = new PositionedStack(new ItemStack(ItemIDs.rawPlastic.item,1,-1), 111, 56);
-            if(stack != null)
-                stacks.add(stack);
-            if(stackPlastic != null)
-                stacks.add(stackPlastic);
-            
+            PositionedStack stack = afuelsDistil.get((cycleticks * (1 / 48)) % afuelsDistil.size()).stack;
+            PositionedStack stackPlastic = new PositionedStack(new ItemStack(ItemIDs.rawPlastic.item, 1, -1), 111, 56);
+            if (stack != null) stacks.add(stack);
+            stacks.add(stackPlastic);
+
             return stacks;
         }
-        
+
         PositionedStack ingred;
         PositionedStack result;
     }
-	@Override
-    public void loadTransferRects()
-    {
+
+    @Override
+    public void loadTransferRects() {
         transferRects.add(new RecipeTransferRect(new Rectangle(74, 23, 24, 41), "tc distillation tower"));
     }
-    
+
     @Override
-    public Class<? extends GuiContainer> getGuiClass()
-    {
+    public Class<? extends GuiContainer> getGuiClass() {
         return GuiDistil.class;
     }
-    
+
     @Override
-    public String getRecipeName()
-    {
+    public String getRecipeName() {
         return "Distillation tower";
     }
 
     @Override
-    public void loadCraftingRecipes(String outputId, Object... results)
-    {
-        if(outputId.equals("tc distillation tower") && getClass() == NEIDistillationTowerRecipePlugin.class)//don't want subclasses getting a hold of this
+    public void loadCraftingRecipes(String outputId, Object... results) {
+        if (outputId.equals("tc distillation tower") && getClass() == NEIDistillationTowerRecipePlugin.class)//don't want subclasses getting a hold of this
         {
-			HashMap<Item, ItemStack> recipes = (HashMap<Item, ItemStack>) DistilRecipes.smelting().getSmeltingList();
+            HashMap<Item, ItemStack> recipes = (HashMap<Item, ItemStack>) DistilRecipes.smelting().getSmeltingList();
 
-			for (Entry<Item, ItemStack> recipe : recipes.entrySet())
-            {
+            for (Entry<Item, ItemStack> recipe : recipes.entrySet()) {
                 ItemStack item = recipe.getValue();
-				ItemStack ingredient = new ItemStack((recipe.getKey()), 1, -1);
-            	if(ingredient!=null && ingredient.getItem() instanceof ItemBlockOreTC){
-            		ingredient.setItemDamage(1);
-            		arecipes.add(new SmeltingPair(ingredient, item));
-            		ingredient.setItemDamage(2);
-            		arecipes.add(new SmeltingPair(ingredient, item));
-            	}else{
-            		arecipes.add(new SmeltingPair(ingredient, item));
-            	}
+                ItemStack ingredient = new ItemStack((recipe.getKey()), 1, -1);
+                if (ingredient.getItem() instanceof ItemBlockOreTC) {
+                    ingredient.setItemDamage(1);
+                    arecipes.add(new SmeltingPair(ingredient, item));
+                    ingredient.setItemDamage(2);
+                    arecipes.add(new SmeltingPair(ingredient, item));
+                } else {
+                    arecipes.add(new SmeltingPair(ingredient, item));
+                }
             }
-      
-        }
-        else
-        {
+
+        } else {
             super.loadCraftingRecipes(outputId, results);
         }
     }
-    
-    @Override
-    public void loadCraftingRecipes(ItemStack result)
-    {
-		HashMap<Item, ItemStack> recipes = (HashMap<Item, ItemStack>) DistilRecipes.smelting().getSmeltingList();
 
-		for (Entry<Item, ItemStack> recipe : recipes.entrySet())
-        {
+    @Override
+    public void loadCraftingRecipes(ItemStack result) {
+        HashMap<Item, ItemStack> recipes = (HashMap<Item, ItemStack>) DistilRecipes.smelting().getSmeltingList();
+
+        for (Entry<Item, ItemStack> recipe : recipes.entrySet()) {
             ItemStack item = recipe.getValue();
-            if(NEIServerUtils.areStacksSameType(item, result))
-            {
-				ItemStack ingredient = new ItemStack((recipe.getKey()), 1, -1);
-            	if(ingredient!=null && ingredient.getItem() instanceof ItemBlockOreTC){
-            		ingredient.setItemDamage(1);
-            		arecipes.add(new SmeltingPair(ingredient, item));
-            		ingredient.setItemDamage(2);
-            		arecipes.add(new SmeltingPair(ingredient, item));
-            	}else{
-            		arecipes.add(new SmeltingPair(ingredient, item));
-            	}
+            if (NEIServerUtils.areStacksSameType(item, result)) {
+                ItemStack ingredient = new ItemStack((recipe.getKey()), 1, -1);
+                if (ingredient.getItem() instanceof ItemBlockOreTC) {
+                    ingredient.setItemDamage(1);
+                    arecipes.add(new SmeltingPair(ingredient, item));
+                    ingredient.setItemDamage(2);
+                    arecipes.add(new SmeltingPair(ingredient, item));
+                } else {
+                    arecipes.add(new SmeltingPair(ingredient, item));
+                }
             }
         }
-        
+
     }
 
     @Override
-    public void loadUsageRecipes(String inputId, Object... ingredients)
-    {
-        if(inputId.equals("fuel") && getClass() == NEIDistillationTowerRecipePlugin.class)//don't want subclasses getting a hold of this
-        {
+    public void loadUsageRecipes(String inputId, Object... ingredients) {
+        // Don't want subclasses getting a hold of this
+        if (inputId.equals("fuel") && getClass() == NEIDistillationTowerRecipePlugin.class){
             loadCraftingRecipes("tc distillation tower");
-        }
-        else
-        {
+        } else {
             super.loadUsageRecipes(inputId, ingredients);
         }
     }
-    
+
     @Override
-    public void loadUsageRecipes(ItemStack ingredient)
-    {
-		HashMap<Item, ItemStack> recipes = (HashMap<Item, ItemStack>) DistilRecipes.smelting().getSmeltingList();
-        
-		for (Entry<Item, ItemStack> recipe : recipes.entrySet())
-        {
+    public void loadUsageRecipes(ItemStack ingredient) {
+        HashMap<Item, ItemStack> recipes = (HashMap<Item, ItemStack>) DistilRecipes.smelting().getSmeltingList();
+
+        for (Entry<Item, ItemStack> recipe : recipes.entrySet()) {
             ItemStack item = recipe.getValue();
-			if (ingredient.getItem() == recipe.getKey())
-            {
-            	if(ingredient!=null && ingredient.getItem() instanceof ItemBlockOreTC){
-            		ingredient.setItemDamage(1);
-            		arecipes.add(new SmeltingPair(ingredient, item));
-            		ingredient.setItemDamage(2);
-            		arecipes.add(new SmeltingPair(ingredient, item));
-            	}else{
-            		arecipes.add(new SmeltingPair(ingredient, item));
-            	}
+            if (ingredient.getItem() == recipe.getKey()) {
+                if (ingredient.getItem() instanceof ItemBlockOreTC) {
+                    ingredient.setItemDamage(1);
+                    arecipes.add(new SmeltingPair(ingredient, item));
+                    ingredient.setItemDamage(2);
+                    arecipes.add(new SmeltingPair(ingredient, item));
+                } else {
+                    arecipes.add(new SmeltingPair(ingredient, item));
+                }
             }
         }
-       
+
     }
-    
+
     @Override
-    public String getGuiTexture()
-    {
+    public String getGuiTexture() {
         return "tc:textures/gui/gui_distillation_tower2.png";
     }
 
     @Override
-    public void drawExtras(int recipe)
-    {
+    public void drawExtras(int recipe) {
         drawProgressBar(51, 32, 176, 0, 14, 14, 48, 7);
         drawProgressBar(74, 30, 176, 14, 31, 41, 48, 0);
-        if(recipe==5){//TODO this is very bad
-        	drawProgressBar(140, 2, 197, 57, 18, 52, 70, 3);
-        }else{
-        	drawProgressBar(140, 2, 177, 57, 18, 52, 70, 3);
+        if (recipe == 5) {//TODO this is very bad
+            drawProgressBar(140, 2, 197, 57, 18, 52, 70, 3);
+        } else {
+            drawProgressBar(140, 2, 177, 57, 18, 52, 70, 3);
         }
     }
-    
-    public void drawBackground(int recipe)
-    {
+
+    public void drawBackground(int recipe) {
         GL11.glColor4f(1, 1, 1, 1);
         changeTexture(getGuiTexture());
         drawTexturedModalRect(0, 0, 5, 4, 166, 75);
     }
-    
+
     @Override
-    public String getOverlayIdentifier()
-    {
+    public String getOverlayIdentifier() {
         return "tc distillation tower";
     }
+
     @Override
-	public int recipiesPerPage()
-	{
-		return 1;
-	}
+    public int recipiesPerPage() {
+        return 1;
+    }
+
     public static ArrayList<FuelPairDistil> afuelsDistil;
     public static TreeSet<Integer> efuelsDistil;
+
     @Override
-    public TemplateRecipeHandler newInstance()
-    {
-        if(afuelsDistil == null)
-            findFuelsDistil();
+    public TemplateRecipeHandler newInstance() {
+        if (afuelsDistil == null) findFuelsDistil();
         return super.newInstance();
     }
-    private static void removeFuelsDistil()
-    {
-        efuelsDistil = new TreeSet<Integer>();
+
+    private static void removeFuelsDistil() {
+        efuelsDistil = new TreeSet<>();
         efuelsDistil.add(Block.getIdFromBlock(Blocks.brown_mushroom));
         efuelsDistil.add(Block.getIdFromBlock(Blocks.red_mushroom));
         efuelsDistil.add(Block.getIdFromBlock(Blocks.standing_sign));
@@ -249,32 +224,27 @@ public class NEIDistillationTowerRecipePlugin extends FurnaceRecipeHandler{
         efuelsDistil.add(Block.getIdFromBlock(Blocks.wooden_door));
         efuelsDistil.add(Block.getIdFromBlock(Blocks.trapped_chest));
     }
-    
-    private static void findFuelsDistil()
-    {        
-        afuelsDistil = new ArrayList<FuelPairDistil>();
-        for(ItemStack item : ItemList.items)
-        {
-            if(!efuelsDistil.contains(Item.getIdFromItem(item.getItem())))
-            {
+
+    private static void findFuelsDistil() {
+        afuelsDistil = new ArrayList<>();
+        for (ItemStack item : ItemList.items) {
+            if (!efuelsDistil.contains(Item.getIdFromItem(item.getItem()))) {
                 int burnTime = TileEntityFurnace.getItemBurnTime(item);
-                if(burnTime > 0)
-                    afuelsDistil.add(new FuelPairDistil(item.copy(), burnTime));
+                if (burnTime > 0) afuelsDistil.add(new FuelPairDistil(item.copy(), burnTime));
             }
         }
     }
-    static
-    {
+
+    static {
         removeFuelsDistil();
     }
-    public static class FuelPairDistil
-    {
-        public FuelPairDistil(ItemStack ingred, int burnTime)
-        {
+
+    public static class FuelPairDistil {
+        public FuelPairDistil(ItemStack ingred, int burnTime) {
             this.stack = new PositionedStack(ingred, 51, 49, false);
             this.burnTime = burnTime;
         }
-        
+
         public PositionedStack stack;
         public int burnTime;
     }

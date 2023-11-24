@@ -9,38 +9,36 @@ import train.common.api.AbstractTrains;
 
 public class PacketSetTrainLockedToClient implements IMessage {
 
-	boolean	bool;
-	int		entityID;
-    public PacketSetTrainLockedToClient(){}
+    boolean bool;
+    int entityID;
 
-	public PacketSetTrainLockedToClient(boolean bool, int trainEntity) {
+    public PacketSetTrainLockedToClient() {
+    }
+
+    public PacketSetTrainLockedToClient(boolean bool, int trainEntity) {
         this.bool = bool;
-		this.entityID = trainEntity;
+        this.entityID = trainEntity;
     }
 
     @Override
     public void fromBytes(ByteBuf bbuf) {
         this.bool = bbuf.readBoolean();
-		this.entityID = bbuf.readInt();
+        this.entityID = bbuf.readInt();
     }
 
     @Override
     public void toBytes(ByteBuf bbuf) {
         bbuf.writeBoolean(this.bool);
-		bbuf.writeInt(this.entityID);
+        bbuf.writeInt(this.entityID);
     }
 
     public static class Handler implements IMessageHandler<PacketSetTrainLockedToClient, IMessage> {
-
         @Override
         public IMessage onMessage(PacketSetTrainLockedToClient message, MessageContext context) {
-
-			Entity TrainEntity = context.getServerHandler().playerEntity.worldObj.getEntityByID(message.entityID);
+            Entity TrainEntity = context.getServerHandler().playerEntity.worldObj.getEntityByID(message.entityID);
 
             if (TrainEntity instanceof AbstractTrains) {
-
-				((AbstractTrains) TrainEntity).setTrainLockedFromPacket(message.bool);
-
+                ((AbstractTrains) TrainEntity).setTrainLockedFromPacket(message.bool);
             }
 
             return null;

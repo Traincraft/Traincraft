@@ -29,24 +29,24 @@ public class ServerLogger {
      */
 
     //run this on server side when inventory opens or player mounts, maybe other common but not constant events.
-    public static void writeWagonToFolder(EntityRollingStock wagon){
+    public static void writeWagonToFolder(EntityRollingStock wagon) {
         try {
             //make a stringbuilder to build the filename, faster than string+string+string+string etc. MUCH faster.
             StringBuilder sb = new StringBuilder();
             sb.append(Traincraft.configDirectory.getAbsolutePath());
             sb.append("/traincraft/");
-            if (!new File(sb.toString()).exists()){
+            if (!new File(sb.toString()).exists()) {
                 new File(sb.toString()).mkdir();
             }
-            if(wagon.getOwner() != null && wagon.getOwner().getName()!=null && !wagon.getOwner().getName().equals("")){
+            if (wagon.getOwner() != null && wagon.getOwner().getName() != null && !wagon.getOwner().getName().isEmpty()) {
                 sb.append(wagon.getOwner().getName().toLowerCase());
-            } else if (wagon.getTrainOwner() !=null && !wagon.getTrainOwner().equals("")){
+            } else if (wagon.getTrainOwner() != null && !wagon.getTrainOwner().isEmpty()) {
                 sb.append(wagon.getTrainOwner().toLowerCase());
             } else {
                 sb.append("unknown_player");
             }
             sb.append("/");
-            if (!new File(sb.toString()).exists()){
+            if (!new File(sb.toString()).exists()) {
                 new File(sb.toString()).mkdir();
             }
             sb.append(wagon.getCartItem().getItem().delegate.name().replace(":", "~").toLowerCase());
@@ -77,7 +77,7 @@ public class ServerLogger {
                     }
                 }
                 if (wagon instanceof LiquidTank) {
-                    for (FluidTankInfo tank : ((LiquidTank)wagon).getTankInfo(ForgeDirection.UNKNOWN)) {
+                    for (FluidTankInfo tank : ((LiquidTank) wagon).getTankInfo(ForgeDirection.UNKNOWN)) {
                         addFluidXML(sb, tank.fluid);
                     }
                 }
@@ -86,24 +86,26 @@ public class ServerLogger {
             sb.append("\n</xmlRoot>");//seemingly unnecessary new line added to the end, linux needs this sometimes.
             fileoutputstream.write(sb.toString().getBytes());
             fileoutputstream.close();
-        } catch (Exception e){
+        } catch (Exception e) {
             //apparently we don't have permission, so, nevermind.
 
         }
     }
 
     //run this on attack entity event if the entity dies
-    public static void deleteWagon(EntityRollingStock wagon){
+    public static void deleteWagon(EntityRollingStock wagon) {
         StringBuilder sb = new StringBuilder();
         sb.append(Traincraft.configDirectory.getAbsolutePath());
         sb.append("/traincraft/");
-        if(wagon.getOwner() != null && wagon.getOwner().getName()!=null && !wagon.getOwner().getName().equals("")){
+
+        if (wagon.getOwner() != null && wagon.getOwner().getName() != null && !wagon.getOwner().getName().isEmpty()) {
             sb.append(wagon.getOwner().getName().toLowerCase());
-        } else if (wagon.getTrainOwner() !=null && !wagon.getTrainOwner().equals("")){
+        } else if (wagon.getTrainOwner() != null && !wagon.getTrainOwner().isEmpty()) {
             sb.append(wagon.getTrainOwner().toLowerCase());
         } else {
-         sb.append("unknown_player");
+            sb.append("unknown_player");
         }
+
         sb.append("/");
         sb.append(wagon.getCartItem().getItem().delegate.name().replace(":", "~").toLowerCase());
         sb.append("_");
@@ -114,15 +116,16 @@ public class ServerLogger {
             if (f.exists() && !f.isDirectory()) {
                 f.delete();
             }
-        } catch (Exception e){}//if it fails there was nothing to delete, so same result
+        } catch (Exception ignored) {
+        }//if it fails there was nothing to delete, so same result
     }
 
 
-
-    private static void addItemXML(StringBuilder string, ItemStack item){
-        if (item == null || item.getItem() == null || item.stackSize<=0){
+    private static void addItemXML(StringBuilder string, ItemStack item) {
+        if (item == null || item.getItem() == null || item.stackSize <= 0) {
             return;
         }
+
         string.append("        <ItemStack>\n            <ID>");
         string.append(Item.getIdFromItem(item.getItem()));
         string.append("</ID>\n            <delegate>");
@@ -134,15 +137,15 @@ public class ServerLogger {
         string.append("</StackSize>\n        </ItemStack>\n");
     }
 
-    private static void addFluidXML(StringBuilder string, FluidStack item){
-        if (item == null || item.getFluid() == null || item.amount<=0){
+    private static void addFluidXML(StringBuilder string, FluidStack item) {
+        if (item == null || item.getFluid() == null || item.amount <= 0) {
             return;
         }
 
-        int fill=1000;
-        while(fill < item.amount) {
-         addItemXML(string, FluidContainerRegistry.fillFluidContainer(item, new ItemStack(Items.bucket)));
-         fill +=1000;
+        int fill = 1000;
+        while (fill < item.amount) {
+            addItemXML(string, FluidContainerRegistry.fillFluidContainer(item, new ItemStack(Items.bucket)));
+            fill += 1000;
         }
     }
 
@@ -156,47 +159,44 @@ public class ServerLogger {
      */
 
     //parses the document for itemstacks
-    public static List<ItemStack> getItems(String doc){
+    public static List<ItemStack> getItems(String doc) {
         try {
-            ArrayList<ItemStack> itemStacks = new ArrayList<ItemStack>();
-            itemStacks.add(new ItemStack(GameData.getItemRegistry().getObject(doc.substring(doc.indexOf("<delegate>")+10, doc.indexOf("</delegate>")))));
+            ArrayList<ItemStack> itemStacks = new ArrayList<>();
+            itemStacks.add(new ItemStack(GameData.getItemRegistry().getObject(doc.substring(doc.indexOf("<delegate>") + 10, doc.indexOf("</delegate>")))));
 
-            List<String> stacks = new ArrayList<String>();
-            while (doc.contains("<ItemStack>")){
-                stacks.add(doc.substring(doc.indexOf("<ItemStack>")+11, doc.indexOf("</ItemStack>")));
-                doc = doc.substring(doc.indexOf("</ItemStack>")+12);
+            List<String> stacks = new ArrayList<>();
+            while (doc.contains("<ItemStack>")) {
+                stacks.add(doc.substring(doc.indexOf("<ItemStack>") + 11, doc.indexOf("</ItemStack>")));
+                doc = doc.substring(doc.indexOf("</ItemStack>") + 12);
             }
 
-
-            for (String s : stacks){
+            for (String s : stacks) {
                 ItemStack stack = parseItemFromXML(s);
-                if (stack != null){
+                if (stack != null) {
                     itemStacks.add(stack);
                 }
             }
             return itemStacks;
-
-        } catch (Exception e){
-            return new ArrayList<ItemStack>();
+        } catch (Exception e) {
+            return new ArrayList<>();
         }
     }
 
     //parses the individual item
-    public static ItemStack parseItemFromXML(String doc){
+    public static ItemStack parseItemFromXML(String doc) {
         try {
             ItemStack stack = new ItemStack(
-                    GameData.getItemRegistry().getObject(doc.substring(doc.indexOf("<delegate>")+10, doc.indexOf("</delegate>"))),//get item by delegate name since it's static
-                    Integer.parseInt(doc.substring(doc.indexOf("<StackSize>")+11, doc.indexOf("</StackSize>")))//we always get strings so gotta parse.
+                    GameData.getItemRegistry().getObject(doc.substring(doc.indexOf("<delegate>") + 10, doc.indexOf("</delegate>"))),//get item by delegate name since it's static
+                    Integer.parseInt(doc.substring(doc.indexOf("<StackSize>") + 11, doc.indexOf("</StackSize>")))//we always get strings so gotta parse.
             );
 
-            stack.setItemDamage(Integer.parseInt(doc.substring(doc.indexOf("<meta>")+6, doc.indexOf("</meta>"))));
+            stack.setItemDamage(Integer.parseInt(doc.substring(doc.indexOf("<meta>") + 6, doc.indexOf("</meta>"))));
 
             return stack;
-        } catch (Exception e){
+        } catch (Exception e) {
             return null;
         }
     }
-
 
 
 }
