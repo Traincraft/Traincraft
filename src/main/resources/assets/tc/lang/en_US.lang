@@ -137,52 +137,54 @@ item.tc:recipeBook.name=Traincraft guide
 item.tc:adminBook.name=Traincraft Admin Book
 
 
-item.tc:tcRailSmallStraight.name=Small Straight
-item.tc:tcRailMediumStraight.name=Medium Straight
-item.tc:tcRailLongStraight.name=Long Straight
-item.tc:tcRailVeryLongStraight.name=Very Long Straight
+item.tc:tcRailSmallStraight.name=Straight (1x1)
+item.tc:tcRailMediumStraight.name=Straight (1x3)
+item.tc:tcRailLongStraight.name=Straight (1x6)
+item.tc:tcRailVeryLongStraight.name=Straight (1x12)
 
-item.tc:tcRailEmbeddedSmallStraight.name=Embedded Small Straight
-item.tc:tcRailEmbeddedMediumStraight.name=Embedded Medium Straight
-item.tc:tcRailEmbeddedLongStraight.name=Embedded Long Straight
-item.tc:tcRailEmbeddedVeryLongStraight.name=Embedded Very Long Straight
+item.tc:tcRailEmbeddedSmallStraight.name=Embedded Straight (1x1)
+item.tc:tcRailEmbeddedMediumStraight.name=Embedded Straight (1x3)
+item.tc:tcRailEmbeddedLongStraight.name=Embedded Straight (1x6)
+item.tc:tcRailEmbeddedVeryLongStraight.name=Embedded Straight (1x12)
 
-item.tc:tcRailSmallDiagonalStraight.name=Small Diagonal Straight
-item.tc:tcRailMediumDiagonalStraight.name=Medium Diagonal Straight
-item.tc:tcRailLongDiagonalStraight.name=Long Diagonal Straight
-item.tc:tcRailVeryLongDiagonalStraight.name=Very Long Diagonal Straight
+item.tc:tcRailSmallDiagonalStraight.name=Diagonal Straight (1x1)
+item.tc:tcRailMediumDiagonalStraight.name=Diagonal Straight (1x3)
+item.tc:tcRailLongDiagonalStraight.name=Diagonal Straight (1x6)
+item.tc:tcRailVeryLongDiagonalStraight.name=Diagonal Straight (1x12)
 
-item.tc:tcRailEmbeddedSmallDiagonalStraight.name=Embedded Small Diagonal Straight
-item.tc:tcRailEmbeddedMediumDiagonalStraight.name=Embedded Medium Diagonal Straight
-item.tc:tcRailEmbeddedLongDiagonalStraight.name=Embedded Long Diagonal Straight
-item.tc:tcRailEmbeddedVeryLongDiagonalStraight.name=Embedded Very Long Diagonal Straight
+item.tc:tcRailEmbeddedSmallDiagonalStraight.name=Embedded Diagonal Straight (1x1)
+item.tc:tcRailEmbeddedMediumDiagonalStraight.name=Embedded Diagonal Straight (1x3)
+item.tc:tcRailEmbeddedLongDiagonalStraight.name=Embedded Diagonal Straight (1x6)
+item.tc:tcRailEmbeddedVeryLongDiagonalStraight.name=Embedded Diagonal Straight (1x12)
 
-item.tc:tcRailMediumTurn.name=Medium Turn
-item.tc:tcRailLargeTurn.name=Large Turn
-item.tc:tcRailVeryLargeTurn.name=Very Large Turn
-item.tc:tcRailSuperLargeTurn.name=Super Large Turn
+item.tc:tcRailMediumTurn.name=Turn (3x3)
+item.tc:tcRailLargeTurn.name=Turn (5x5)
+item.tc:tcRailVeryLargeTurn.name=Turn (10x10)
+item.tc:tcRailSuperLargeTurn.name=Turn (16x16)
+item.tc:tcRail32X32Turn.name=Turn (32x32)
 
-item.tc:tcRailEmbeddedMediumTurn.name=Embedded Medium Turn
-item.tc:tcRailEmbeddedLargeTurn.name=Embedded Large Turn
-item.tc:tcRailEmbeddedVeryLargeTurn.name=Embedded Very Large Turn
-item.tc:tcRailEmbeddedSuperLargeTurn.name=Embedded Super Large Turn
+item.tc:tcRailEmbeddedMediumTurn.name=Embedded Turn (3x3)
+item.tc:tcRailEmbeddedLargeTurn.name=Embedded Turn (5x5)
+item.tc:tcRailEmbeddedVeryLargeTurn.name=Embedded Turn (10x10)
+item.tc:tcRailEmbeddedSuperLargeTurn.name=Embedded Turn (16x16)
+item.tc:tcRailEmbedded32X32Turn.name=Embedded Turn (32x32)
 
-item.tc:tcRailMedium45DegreeTurn.name=Medium 45 Degree turn
-item.tc:tcRailLarge45DegreeTurn.name=Large 45 Degree turn
-item.tc:tcRailVeryLarge45DegreeTurn.name=Very Large 45 Degree turn
-item.tc:tcRailSuperLarge45DegreeTurn.name=Super Large 45 Degree turn
+item.tc:tcRailMedium45DegreeTurn.name=45 Degree Turn (3x4)
+item.tc:tcRailLarge45DegreeTurn.name=45 Degree Turn (3x6)
+item.tc:tcRailVeryLarge45DegreeTurn.name=45 Degree Turn (4x8)
+item.tc:tcRailSuperLarge45DegreeTurn.name=45 Degree Turn (5x11)
 
-item.tc:tcRailEmbeddedMedium45DegreeTurn.name=Embedded Medium 45 Degree turn
-item.tc:tcRailEmbeddedLarge45DegreeTurn.name=Embedded Large 45 Degree turn
-item.tc:tcRailEmbeddedVeryLarge45DegreeTurn.name=Embedded Very Large 45 Degree turn
-item.tc:tcRailEmbeddedSuperLarge45DegreeTurn.name=Embedded Super Large 45 Degree turn
+item.tc:tcRailEmbeddedMedium45DegreeTurn.name=Embedded 45 Degree Turn (3x4)
+item.tc:tcRailEmbeddedLarge45DegreeTurn.name=Embedded 45 Degree Turn (3x6)
+item.tc:tcRailEmbeddedVeryLarge45DegreeTurn.name=Embedded 45 Degree Turn (4x8)
+item.tc:tcRailEmbeddedSuperLarge45DegreeTurn.name=Embedded 45 Degree Turn (5x11)
 
-item.tc:tcRailSmallParallelCurve.name=Small Parallel Curve
-item.tc:tcRailMediumParallelCurve.name=Medium Parallel Curve
-item.tc:tcRailLargeParallelCurve.name=Large Parallel Curve
-item.tc:tcRailEmbeddedSmallParallelCurve.name=Embedded Small Parallel Curve
-item.tc:tcRailEmbeddedMediumParallelCurve.name=Embedded Medium Parallel Curve
-item.tc:tcRailEmbeddedLargeParallelCurve.name=Embedded Large Parallel Curve
+item.tc:tcRailSmallParallelCurve.name=Parallel Curve (2x8)
+item.tc:tcRailMediumParallelCurve.name=Parallel Curve (3x12)
+item.tc:tcRailLargeParallelCurve.name=Parallel Curve (4x16)
+item.tc:tcRailEmbeddedSmallParallelCurve.name=Embedded Parallel Curve (2x8)
+item.tc:tcRailEmbeddedMediumParallelCurve.name=Embedded Parallel Curve (3x12)
+item.tc:tcRailEmbeddedLargeParallelCurve.name=Embedded Parallel Curve (4x16)
 
 item.tc:tcRailTwoWaysCrossing.name=Two Ways Crossing
 item.tc:tcRailDiamondCrossing.name=Diamond Crossing
@@ -200,46 +202,45 @@ item.tc:tcRailSmallRoadCrossing.name=RailRoad Crossing (Black Asphalt)
 item.tc:tcRailSmallRoadCrossing1.name=RailRoad Crossing (Clean Asphalt)
 item.tc:tcRailSmallRoadCrossing2.name=RailRoad Crossing (light Gray Asphalt)
 
-item.tc:tcRailSlopeWood.name=Slope Track (Wood)
-item.tc:tcRailSlopeGravel.name=Slope Track (Gravel)
-item.tc:tcRailSlopeBallast.name=Slope Track (Ballast)
-item.tc:tcRailSlopeSnowGravel.name=Slope Track (Snowy Gravel)
-item.tc:tcRailSlopeDynamic.name=Slope Track (Dynamic)
+item.tc:tcRailSlopeWood.name=Slope Track (Wood, 1x6)
+item.tc:tcRailSlopeGravel.name=Slope Track (Gravel, 1x6)
+item.tc:tcRailSlopeBallast.name=Slope Track (Ballast, 1x6)
+item.tc:tcRailSlopeSnowGravel.name=Slope Track (Snowy Gravel, 1x6)
+item.tc:tcRailSlopeDynamic.name=Slope Track (Dynamic, 1x6)
 
-item.tc:tcRailLargeSlopeWood.name=Large Slope Track (Wood)
-item.tc:tcRailLargeSlopeGravel.name=Large Slope Track (Gravel)
-item.tc:tcRailLargeSlopeBallast.name=Large Slope Track (Ballast)
-item.tc:tcRailLargeSlopeSnowGravel.name=Large Slope Track (Snowy Gravel)
-item.tc:tcRailLargeSlopeDynamic.name=Large Slope Track (Dynamic)
+item.tc:tcRailLargeSlopeWood.name=Slope Track (Wood, 1x12)
+item.tc:tcRailLargeSlopeGravel.name=Slope Track (Gravel, 1x12)
+item.tc:tcRailLargeSlopeBallast.name=Slope Track (Ballast, 1x12)
+item.tc:tcRailLargeSlopeSnowGravel.name=Slope Track (Snowy Gravel, 1x12)
+item.tc:tcRailLargeSlopeDynamic.name=Slope Track (Dynamic, 1x12)
 
-item.tc:tcRailVeryLargeSlopeWood.name=Very Large Slope Track (Wood)
-item.tc:tcRailVeryLargeSlopeGravel.name=Very Large Slope Track (Gravel)
-item.tc:tcRailVeryLargeSlopeBallast.name=Very Large Slope Track (Ballast)
-item.tc:tcRailVeryLargeSlopeSnowGravel.name=Very Large Slope Track (Snowy Gravel)
-item.tc:tcRailVeryLargeSlopeDynamic.name=Very Large Slope Track (Dynamic)
+item.tc:tcRailVeryLargeSlopeWood.name=Slope Track (Wood, 1x18)
+item.tc:tcRailVeryLargeSlopeGravel.name=Slope Track (Gravel, 1x18)
+item.tc:tcRailVeryLargeSlopeBallast.name=Slope Track (Ballast, 1x18)
+item.tc:tcRailVeryLargeSlopeSnowGravel.name=Slope Track (Snowy Gravel, 1x18)
+item.tc:tcRailVeryLargeSlopeDynamic.name=Slope Track (Dynamic, 1x18)
 
-item.tc:tcRailEmbeddedSlopeDynamic.name=Embedded Slope Track (Dynamic)
-item.tc:tcRailEmbeddedLargeSlopeDynamic.name=Embedded Large Slope Track (Dynamic)
-item.tc:tcRailEmbeddedVeryLargeSlopeDynamic.name=Embedded Very Large Slope Track (Dynamic)
+item.tc:tcRailEmbeddedSlopeDynamic.name=Embedded Slope Track (Dynamic, 1x6)
+item.tc:tcRailEmbeddedLargeSlopeDynamic.name=Embedded Large Slope Track (Dynamic, 1x12)
+item.tc:tcRailEmbeddedVeryLargeSlopeDynamic.name=Embedded Very Large Slope Track (Dynamic, 1x18)
 
-item.tc:tcRailLargeCurvedSlopeDynamic.name=Large Curved Slope (Dynamic)
-item.tc:tcRailVeryLargeCurvedSlopeDynamic.name=Very Large Curved Slope (Dynamic)
-item.tc:tcRailSuperLargeCurvedSlopeDynamic.name=Super Large Curved Slope (Dynamic)
+item.tc:tcRailLargeCurvedSlopeDynamic.name=Curved Slope (Dynamic, 5x5)
+item.tc:tcRailVeryLargeCurvedSlopeDynamic.name=Curved Slope (Dynamic, 9x9)
+item.tc:tcRailSuperLargeCurvedSlopeDynamic.name=Curved Slope (Dynamic, 16x16)
 
-item.tc:tcRailEmbeddedLargeCurvedSlopeDynamic.name=Embedded Large Curved Slope (Dynamic)
-item.tc:tcRailEmbeddedVeryLargeCurvedSlopeDynamic.name=Embedded Very Large Curved Slope (Dynamic)
-item.tc:tcRailEmbeddedSuperLargeCurvedSlopeDynamic.name=Embedded Super Large Curved Slope (Dynamic)
+item.tc:tcRailEmbeddedLargeCurvedSlopeDynamic.name=Embedded Curved Slope (Dynamic, 5x5)
+item.tc:tcRailEmbeddedVeryLargeCurvedSlopeDynamic.name=Embedded Curved Slope (Dynamic, 9x9)
+item.tc:tcRailEmbeddedSuperLargeCurvedSlopeDynamic.name=Embedded Curved Slope (Dynamic, 16x16)
 
-item.tc:tcRailMediumSwitch.name=Medium 90 Degrees Switch
-item.tc:tcRailLargeSwitch.name=Large 90 Degrees Switch
-item.tc:tcRailMediumParallelSwitch.name=Parallel Switch
-item.tc:tcRailMedium45DegreeSwitch.name=Medium 45 Degree Switch
+item.tc:tcRailMediumSwitch.name=90 Degrees Switch (4x4)
+item.tc:tcRailLargeSwitch.name=90 Degrees Switch (6x6)
+item.tc:tcRailMediumParallelSwitch.name=Parallel Switch (4x11)
+item.tc:tcRailMedium45DegreeSwitch.name=45 Degree Switch (3x5)
 
-item.tc:tcRailEmbeddedMediumSwitch.name= Embedded Medium 90 Degrees Switch
-item.tc:tcRailEmbeddedLargeSwitch.name=Embedded Large 90 Degrees Switch
-item.tc:tcRailEmbeddedMediumParallelSwitch.name=Embedded Parallel Switch
-item.tc:tcRailEmbeddedMedium45DegreeSwitch.name=Embedded Medium 45 Degree Switch
-
+item.tc:tcRailEmbeddedMediumSwitch.name=Embedded 90 Degrees Switch (4x4)
+item.tc:tcRailEmbeddedLargeSwitch.name=Embedded 90 Degrees Switch (6x6)
+item.tc:tcRailEmbeddedMediumParallelSwitch.name=Embedded Parallel Switch (4x11)
+item.tc:tcRailEmbeddedMedium45DegreeSwitch.name=Embedded 45 Degree Switch (3x5)
 
 item.tc:minecartWork.name=Work Train
 item.tc:minecartTender.name=Small Tender

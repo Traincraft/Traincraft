@@ -144,9 +144,9 @@ public class ItemTCRail extends ItemPart {
         LARGE_SLOPE_SNOW_GRAVEL("LARGE_SLOPE_SNOW_GRAVEL", SLOPE, ItemIDs.tcRailLargeSlopeSnowGravel, "1x12"),
         VERY_LARGE_SLOPE_SNOW_GRAVEL("VERY_LARGE_SLOPE_SNOW_GRAVEL", SLOPE, ItemIDs.tcRailVeryLargeSlopeSnowGravel, "1x18"),
 
-        SLOPE_DYNAMIC("SLOPE_DYNAMIC", SLOPE, ItemIDs.tcRailSlopeDynamic, "1x6 " + EnumChatFormatting.YELLOW + "Grabs texture from block " + EnumChatFormatting.DARK_PURPLE + "-TheDoctor1138"),
-        LARGE_SLOPE_DYNAMIC("LARGE_SLOPE_DYNAMIC", SLOPE, ItemIDs.tcRailLargeSlopeDynamic, "1x12 " + EnumChatFormatting.YELLOW + "Grabs texture from block " + EnumChatFormatting.DARK_PURPLE + "-TheDoctor1138"),
-        VERY_LARGE_SLOPE_DYNAMIC("VERY_LARGE_SLOPE_DYNAMIC", SLOPE, ItemIDs.tcRailVeryLargeSlopeDynamic, "1x18 " + EnumChatFormatting.YELLOW + "Grabs texture from block " + EnumChatFormatting.DARK_PURPLE + "-TheDoctor1138"),
+        SLOPE_DYNAMIC("SLOPE_DYNAMIC", SLOPE, ItemIDs.tcRailSlopeDynamic, "1x6"),
+        LARGE_SLOPE_DYNAMIC("LARGE_SLOPE_DYNAMIC", SLOPE, ItemIDs.tcRailLargeSlopeDynamic, "1x12" ),
+        VERY_LARGE_SLOPE_DYNAMIC("VERY_LARGE_SLOPE_DYNAMIC", SLOPE, ItemIDs.tcRailVeryLargeSlopeDynamic, "1x18"),
 
         LARGE_CURVED_SLOPE_DYNAMIC("LARGE_CURVED_SLOPE_DYNAMIC", CURVED_SLOPE, ItemIDs.tcRailLargeCurvedSlopeDynamic, "5x5"),
         LARGE_RIGHT_CURVED_SLOPE_DYNAMIC("LARGE_RIGHT_CURVED_SLOPE_DYNAMIC", CURVED_SLOPE, ItemIDs.tcRailLargeCurvedSlopeDynamic, "xxx"),
@@ -248,9 +248,9 @@ public class ItemTCRail extends ItemPart {
         EMBEDDED_MEDIUM_RIGHT_45DEGREE_SWITCH("EMBEDDED_MEDIUM_RIGHT_45DEGREE_SWITCH", SWITCH, ItemIDs.tcRailEmbeddedMedium45DegreeSwitch, ""),
         EMBEDDED_MEDIUM_LEFT_45DEGREE_SWITCH("EMBEDDED_MEDIUM_LEFT_45DEGREE_SWITCH", SWITCH, ItemIDs.tcRailEmbeddedMedium45DegreeSwitch, ""),
 
-        EMBEDDED_SLOPE_DYNAMIC("EMBEDDED_SLOPE_DYNAMIC", SLOPE, ItemIDs.tcRailEmbeddedSlopeDynamic, "1x6 " + EnumChatFormatting.YELLOW + "Grabs texture from block " + EnumChatFormatting.DARK_PURPLE + "-TheDoctor1138"),
-        EMBEDDED_LARGE_SLOPE_DYNAMIC("EMBEDDED_LARGE_SLOPE_DYNAMIC", SLOPE, ItemIDs.tcRailEmbeddedLargeSlopeDynamic, "1x12 " + EnumChatFormatting.YELLOW + "Grabs texture from block " + EnumChatFormatting.DARK_PURPLE + "-TheDoctor1138"),
-        EMBEDDED_VERY_LARGE_SLOPE_DYNAMIC("EMBEDDED_VERY_LARGE_SLOPE_DYNAMIC", SLOPE, ItemIDs.tcRailEmbeddedVeryLargeSlopeDynamic, "1x18 " + EnumChatFormatting.YELLOW + "Grabs texture from block " + EnumChatFormatting.DARK_PURPLE + "-TheDoctor1138"),
+        EMBEDDED_SLOPE_DYNAMIC("EMBEDDED_SLOPE_DYNAMIC", SLOPE, ItemIDs.tcRailEmbeddedSlopeDynamic, "1x6"),
+        EMBEDDED_LARGE_SLOPE_DYNAMIC("EMBEDDED_LARGE_SLOPE_DYNAMIC", SLOPE, ItemIDs.tcRailEmbeddedLargeSlopeDynamic, "1x12"),
+        EMBEDDED_VERY_LARGE_SLOPE_DYNAMIC("EMBEDDED_VERY_LARGE_SLOPE_DYNAMIC", SLOPE, ItemIDs.tcRailEmbeddedVeryLargeSlopeDynamic, "1x18"),
 
         EMBEDDED_LARGE_CURVED_SLOPE_DYNAMIC("EMBEDDED_LARGE_CURVED_SLOPE_DYNAMIC", CURVED_SLOPE, ItemIDs.tcRailEmbeddedLargeCurvedSlopeDynamic, "5x5"),
         EMBEDDED_LARGE_RIGHT_CURVED_SLOPE_DYNAMIC("EMBEDDED_LARGE_RIGHT_CURVED_SLOPE_DYNAMIC", CURVED_SLOPE, ItemIDs.tcRailEmbeddedLargeCurvedSlopeDynamic, "xxx"),
@@ -2930,391 +2930,52 @@ public class ItemTCRail extends ItemPart {
     }
 
     private boolean straight(EntityPlayer player, World world, int x, int y, int z, int l, TrackTypes type) {
-        /** check if first rail can be placed */
-        if (!canPlaceTrack(player, world, x, y + 1, z)) {
-            return false;
+
+        int trackLength = 0; // Initialise tracklength for medium.
+        int dx = 0;
+        int dz = 0;
+
+        //Adjust tracklength based on track type.
+        if (type == TrackTypes.LONG_STRAIGHT || type == TrackTypes.EMBEDDED_LONG_STRAIGHT) trackLength = 3;
+        if (type == TrackTypes.VERY_LONG_STRAIGHT || type == TrackTypes.EMBEDDED_VERY_LONG_STRAIGHT) trackLength = 9;
+
+        //Initialise arrays of Rails and Gags, based on tracklength.
+        TileTCRail[] tileRail = new TileTCRail[(trackLength / 3) + 1];
+        TileTCRailGag[] tileGag = new TileTCRailGag[(2*(trackLength / 3)) + 2];
+
+        //determine direction for placement
+        if (l == 0) dz = 1;
+        if (l == 1) dx = -1;
+        if (l == 2) dz = -1;
+        if (l == 3) dx = 1;
+
+        //Check placement
+
+        for (int i = 0; i <= trackLength ; i += 3){
+            if (!canPlaceTrack(player,world, x + (trackLength * dx), y + 1, z + (trackLength * dz))
+                    || !canPlaceTrack(player,world, x + (trackLength * dx) + (dx), y + 1, z + (trackLength * dz) + dz)
+                    || !canPlaceTrack(player,world, x + (trackLength * dx) + (dx * 2), y + 1, z + (trackLength * dz) + (dz) * 2)) return false;
+        }
+        //places track
+        for (int i = 0; i <= trackLength ; i += 3){
+            placeTrack(world, x + (i * dx), y + 1, z + (i * dz), BlockIDs.tcRail.block, l);
+            tileRail[i / 3] = (TileTCRail) world.getTileEntity(x + (i * dx), y + 1, z + (i * dz));
+            tileRail[i / 3].setType(type.getLabel());
+            tileRail[i / 3].setFacing(l);
+            tileRail[i / 3].idDrop = this.type.getItem().item;
+            if (i / 3 != 0){
+                tileRail[i / 3].isLinkedToRail = true;
+                tileRail[i / 3].linkedX = x + dx;
+                tileRail[i / 3].linkedY = y + 1;
+                tileRail[i / 3].linkedZ = z + dz;
+            }
+            for (int j = 1; j < 3; j++){
+                placeTrack(world, x + (i * dx) + (j * dx ), y + 1,z + (i * dz) + (j * dz ), BlockIDs.tcRailGag.block, l );
+                tileGag[(i - (i/3))+ j - 1] = (TileTCRailGag) world.getTileEntity(x + (i * dx) + (j * dx ), y + 1,z + (i * dz) + (j * dz ));
+            }
         }
 
-        TileTCRailGag[] tileGag = new TileTCRailGag[2]; /** makes it so only 2 gags are placed */
-        if (type == TrackTypes.LONG_STRAIGHT || type == TrackTypes.EMBEDDED_LONG_STRAIGHT) {
-            tileGag = new TileTCRailGag[4];
-        }
-
-        if (type == TrackTypes.VERY_LONG_STRAIGHT || type == TrackTypes.EMBEDDED_VERY_LONG_STRAIGHT) {
-            tileGag = new TileTCRailGag[8];
-        }
-        if (l == 2) {
-
-            if (!canPlaceTrack(player, world, x, y + 1, z - 1) || !canPlaceTrack(player, world, x, y + 1, z - 2)) {
-                return false;
-            }
-            if (type == TrackTypes.LONG_STRAIGHT || type == TrackTypes.EMBEDDED_LONG_STRAIGHT) {
-                if (!canPlaceTrack(player, world, x, y + 1, z - 3) || !canPlaceTrack(player, world, x, y + 1, z - 4)
-                        || !canPlaceTrack(player, world, x, y + 1, z - 5)) {
-                    return false;
-                }
-            }
-            if (type == TrackTypes.VERY_LONG_STRAIGHT || type == TrackTypes.EMBEDDED_VERY_LONG_STRAIGHT) {
-                if (!canPlaceTrack(player, world, x, y + 1, z - 3) || !canPlaceTrack(player, world, x, y + 1, z - 4)
-                        || !canPlaceTrack(player, world, x, y + 1, z - 5) || !canPlaceTrack(player, world, x, y + 1, z - 6) || !canPlaceTrack(player, world, x, y + 1, z - 7) || !canPlaceTrack(player, world, x, y + 1, z - 8) ||
-                        !canPlaceTrack(player, world, x, y + 1, z - 9) || !canPlaceTrack(player, world, x, y + 1, z - 10) || !canPlaceTrack(player, world, x, y + 1, z - 11)) {
-                    return false;
-                }
-            }
-            placeTrack(world, x, y + 1, z, BlockIDs.tcRail.block, l);
-            TileTCRail tcRail = (TileTCRail) world.getTileEntity(x, y + 1, z);
-            tcRail.setFacing(l);
-            tcRail.setType(type.getLabel());
-
-            placeTrack(world, x, y + 1, z - 1, BlockIDs.tcRailGag.block, l);
-            tileGag[0] = (TileTCRailGag) world.getTileEntity(x, y + 1, z - 1);
-
-            placeTrack(world, x, y + 1, z - 2, BlockIDs.tcRailGag.block, l);
-            tileGag[1] = (TileTCRailGag) world.getTileEntity(x, y + 1, z - 2);
-
-            if (type == TrackTypes.LONG_STRAIGHT || type == TrackTypes.EMBEDDED_LONG_STRAIGHT) {
-                tcRail.idDrop = this.type.getItem().item;
-            } else {
-                tcRail.idDrop = this.type.getItem().item;
-            }
-
-            if (type == TrackTypes.LONG_STRAIGHT || type == TrackTypes.EMBEDDED_LONG_STRAIGHT || type == TrackTypes.VERY_LONG_STRAIGHT || type == TrackTypes.EMBEDDED_VERY_LONG_STRAIGHT) {
-                placeTrack(world, x, y + 1, z - 3, BlockIDs.tcRail.block, l);
-                TileTCRail tcRail2 = (TileTCRail) world.getTileEntity(x, y + 1, z - 3);
-                tcRail2.setFacing(l);
-                tcRail2.setType(type.getLabel());
-                tcRail2.isLinkedToRail = true;
-                tcRail2.linkedX = x;
-                tcRail2.linkedY = y + 1;
-                tcRail2.linkedZ = z - 1;
-
-                placeTrack(world, x, y + 1, z - 4, BlockIDs.tcRailGag.block, l);
-                tileGag[2] = (TileTCRailGag) world.getTileEntity(x, y + 1, z - 4);
-
-                placeTrack(world, x, y + 1, z - 5, BlockIDs.tcRailGag.block, l);
-                tileGag[3] = (TileTCRailGag) world.getTileEntity(x, y + 1, z - 5);
-
-                if (type == TrackTypes.VERY_LONG_STRAIGHT || type == TrackTypes.EMBEDDED_VERY_LONG_STRAIGHT) {
-                    tcRail.idDrop = this.type.getItem().item;
-                } else {
-                    tcRail.idDrop = this.type.getItem().item;
-                }
-            }
-            if (type == TrackTypes.VERY_LONG_STRAIGHT || type == TrackTypes.EMBEDDED_VERY_LONG_STRAIGHT) {
-
-                placeTrack(world, x, y + 1, z - 6, BlockIDs.tcRail.block, l);
-                TileTCRail tcRail3 = (TileTCRail) world.getTileEntity(x, y + 1, z - 6);
-                tcRail3.setFacing(l);
-                tcRail3.setType(type.getLabel());
-                tcRail3.isLinkedToRail = true;
-                tcRail3.linkedX = x;
-                tcRail3.linkedY = y + 1;
-                tcRail3.linkedZ = z - 1;
-
-                placeTrack(world, x, y + 1, z - 7, BlockIDs.tcRailGag.block, l);
-                tileGag[4] = (TileTCRailGag) world.getTileEntity(x, y + 1, z - 7);
-
-                placeTrack(world, x, y + 1, z - 8, BlockIDs.tcRailGag.block, l);
-                tileGag[5] = (TileTCRailGag) world.getTileEntity(x, y + 1, z - 8);
-
-                placeTrack(world, x, y + 1, z - 9, BlockIDs.tcRail.block, l);
-                TileTCRail tcRail4 = (TileTCRail) world.getTileEntity(x, y + 1, z - 9);
-                tcRail4.setFacing(l);
-                tcRail4.setType(type.getLabel());
-                tcRail4.isLinkedToRail = true;
-                tcRail4.linkedX = x;
-                tcRail4.linkedY = y + 1;
-                tcRail4.linkedZ = z - 1;
-
-                placeTrack(world, x, y + 1, z - 10, BlockIDs.tcRailGag.block, l);
-                tileGag[6] = (TileTCRailGag) world.getTileEntity(x, y + 1, z - 10);
-
-					tempType = TrackTypes.SMALL_LEFT_PARALLEL_CURVE;
-                placeTrack(world, x, y + 1, z - 11, BlockIDs.tcRailGag.block, l);
-                tileGag[7] = (TileTCRailGag) world.getTileEntity(x, y + 1, z - 11);
-
-
-            }
-
-        }
-        if (l == 0) {
-            if (!canPlaceTrack(player, world, x, y + 1, z + 1) || !canPlaceTrack(player, world, x, y + 1, z + 2)) {
-                return false;
-            }
-            if (type == TrackTypes.LONG_STRAIGHT || type == TrackTypes.EMBEDDED_LONG_STRAIGHT) {
-                if (!canPlaceTrack(player, world, x, y + 1, z + 3) || !canPlaceTrack(player, world, x, y + 1, z + 4)
-                        || !canPlaceTrack(player, world, x, y + 1, z + 5)) {
-                    return false;
-                }
-            }
-            if (type == TrackTypes.VERY_LONG_STRAIGHT || type == TrackTypes.EMBEDDED_VERY_LONG_STRAIGHT) {
-                if (!canPlaceTrack(player, world, x, y + 1, z + 3) || !canPlaceTrack(player, world, x, y + 1, z + 4)
-                        || !canPlaceTrack(player, world, x, y + 1, z + 5) || !canPlaceTrack(player, world, x, y + 1, z + 6) || !canPlaceTrack(player, world, x, y + 1, z + 7) ||
-                        !canPlaceTrack(player, world, x, y + 1, z + 8) || !canPlaceTrack(player, world, x, y + 1, z + 9) || !canPlaceTrack(player, world, x, y + 1, z + 10) || !canPlaceTrack(player, world, x, y + 1, z + 11)) {
-                    return false;
-                }
-            }
-            placeTrack(world, x, y + 1, z, BlockIDs.tcRail.block, l);
-            TileTCRail tcRail = (TileTCRail) world.getTileEntity(x, y + 1, z);
-            tcRail.setFacing(l);
-            tcRail.setType(type.getLabel());
-
-            placeTrack(world, x, y + 1, z + 1, BlockIDs.tcRailGag.block, l);
-            tileGag[0] = (TileTCRailGag) world.getTileEntity(x, y + 1, z + 1);
-
-            placeTrack(world, x, y + 1, z + 2, BlockIDs.tcRailGag.block, l);
-            tileGag[1] = (TileTCRailGag) world.getTileEntity(x, y + 1, z + 2);
-
-            if (type == TrackTypes.LONG_STRAIGHT || type == TrackTypes.EMBEDDED_LONG_STRAIGHT) {
-                tcRail.idDrop = this.type.getItem().item;
-            } else {
-                tcRail.idDrop = this.type.getItem().item;
-            }
-
-            if (type == TrackTypes.LONG_STRAIGHT || type == TrackTypes.EMBEDDED_LONG_STRAIGHT
-                    || type == TrackTypes.VERY_LONG_STRAIGHT || type == TrackTypes.EMBEDDED_VERY_LONG_STRAIGHT) {
-                placeTrack(world, x, y + 1, z + 3, BlockIDs.tcRail.block, l);
-                TileTCRail tcRail2 = (TileTCRail) world.getTileEntity(x, y + 1, z + 3);
-                tcRail2.setFacing(l);
-                tcRail2.setType(type.getLabel());
-                tcRail2.isLinkedToRail = true;
-                tcRail2.linkedX = x;
-                tcRail2.linkedY = y + 1;
-                tcRail2.linkedZ = z + 1;
-
-                placeTrack(world, x, y + 1, z + 4, BlockIDs.tcRailGag.block, l);
-                tileGag[2] = (TileTCRailGag) world.getTileEntity(x, y + 1, z + 4);
-
-                placeTrack(world, x, y + 1, z + 5, BlockIDs.tcRailGag.block, l);
-                tileGag[3] = (TileTCRailGag) world.getTileEntity(x, y + 1, z + 5);
-
-                if (type == TrackTypes.VERY_LONG_STRAIGHT || type == TrackTypes.EMBEDDED_VERY_LONG_STRAIGHT) {
-                    tcRail.idDrop = this.type.getItem().item;
-                } else {
-                    tcRail.idDrop = this.type.getItem().item;
-                }
-            }
-            if (type == TrackTypes.VERY_LONG_STRAIGHT || type == TrackTypes.EMBEDDED_VERY_LONG_STRAIGHT) {
-
-                placeTrack(world, x, y + 1, z + 6, BlockIDs.tcRail.block, l);
-                TileTCRail tcRail3 = (TileTCRail) world.getTileEntity(x, y + 1, z + 6);
-                tcRail3.setFacing(l);
-                tcRail3.setType(type.getLabel());
-                tcRail3.isLinkedToRail = true;
-                tcRail3.linkedX = x;
-                tcRail3.linkedY = y + 1;
-                tcRail3.linkedZ = z + 1;
-
-                placeTrack(world, x, y + 1, z + 7, BlockIDs.tcRailGag.block, l);
-                tileGag[4] = (TileTCRailGag) world.getTileEntity(x, y + 1, z + 7);
-
-                placeTrack(world, x, y + 1, z + 8, BlockIDs.tcRailGag.block, l);
-                tileGag[5] = (TileTCRailGag) world.getTileEntity(x, y + 1, z + 8);
-
-                placeTrack(world, x, y + 1, z + 9, BlockIDs.tcRail.block, l);
-                TileTCRail tcRail4 = (TileTCRail) world.getTileEntity(x, y + 1, z + 9);
-                tcRail4.setFacing(l);
-                tcRail4.setType(type.getLabel());
-                tcRail4.isLinkedToRail = true;
-                tcRail4.linkedX = x;
-                tcRail4.linkedY = y + 1;
-                tcRail4.linkedZ = z + 1;
-
-                placeTrack(world, x, y + 1, z + 10, BlockIDs.tcRailGag.block, l);
-                tileGag[6] = (TileTCRailGag) world.getTileEntity(x, y + 1, z + 10);
-
-                placeTrack(world, x, y + 1, z + 11, BlockIDs.tcRailGag.block, l);
-                tileGag[7] = (TileTCRailGag) world.getTileEntity(x, y + 1, z + 11);
-
-
-            }
-
-        }
-        if (l == 1) {
-            if (!canPlaceTrack(player, world, x - 1, y + 1, z) || !canPlaceTrack(player, world, x - 2, y + 1, z)) {
-                return false;
-            }
-            if (type == TrackTypes.LONG_STRAIGHT || type == TrackTypes.EMBEDDED_LONG_STRAIGHT) {
-                if (!canPlaceTrack(player, world, x - 3, y + 1, z) || !canPlaceTrack(player, world, x - 4, y + 1, z)
-                        || !canPlaceTrack(player, world, x - 5, y + 1, z)) {
-                    return false;
-                }
-            }
-            if (type == TrackTypes.VERY_LONG_STRAIGHT || type == TrackTypes.EMBEDDED_VERY_LONG_STRAIGHT) {
-                if (!canPlaceTrack(player, world, x - 3, y + 1, z) || !canPlaceTrack(player, world, x - 4, y + 1, z)
-                        || !canPlaceTrack(player, world, x - 5, y + 1, z) || !canPlaceTrack(player, world, x - 6, y + 1, z) || !canPlaceTrack(player, world, x - 7, y + 1, z) ||
-                        !canPlaceTrack(player, world, x - 8, y + 1, z) || !canPlaceTrack(player, world, x - 9, y + 1, z) || !canPlaceTrack(player, world, x - 10, y + 1, z) || !canPlaceTrack(player, world, x - 11, y + 1, z)) {
-                    return false;
-                }
-            }
-            placeTrack(world, x, y + 1, z, BlockIDs.tcRail.block, l);
-            TileTCRail tcRail = (TileTCRail) world.getTileEntity(x, y + 1, z);
-            tcRail.setFacing(l);
-            tcRail.setType(type.getLabel());
-
-            placeTrack(world, x - 1, y + 1, z, BlockIDs.tcRailGag.block, l);
-            tileGag[0] = (TileTCRailGag) world.getTileEntity(x - 1, y + 1, z);
-
-            placeTrack(world, x - 2, y + 1, z, BlockIDs.tcRailGag.block, l);
-            tileGag[1] = (TileTCRailGag) world.getTileEntity(x - 2, y + 1, z);
-
-            if (type == TrackTypes.LONG_STRAIGHT || type == TrackTypes.EMBEDDED_LONG_STRAIGHT) {
-                tcRail.idDrop = this.type.getItem().item;
-            } else {
-                tcRail.idDrop = this.type.getItem().item;
-            }
-
-            if (type == TrackTypes.LONG_STRAIGHT || type == TrackTypes.EMBEDDED_LONG_STRAIGHT
-                    || type == TrackTypes.VERY_LONG_STRAIGHT || type == TrackTypes.EMBEDDED_VERY_LONG_STRAIGHT) {
-                placeTrack(world, x - 3, y + 1, z, BlockIDs.tcRail.block, l);
-                TileTCRail tcRail2 = (TileTCRail) world.getTileEntity(x - 3, y + 1, z);
-                tcRail2.setFacing(l);
-                tcRail2.setType(type.getLabel());
-                tcRail2.isLinkedToRail = true;
-                tcRail2.linkedX = x - 1;
-                tcRail2.linkedY = y + 1;
-                tcRail2.linkedZ = z;
-
-                placeTrack(world, x - 4, y + 1, z, BlockIDs.tcRailGag.block, l);
-                tileGag[2] = (TileTCRailGag) world.getTileEntity(x - 4, y + 1, z);
-
-                placeTrack(world, x - 5, y + 1, z, BlockIDs.tcRailGag.block, l);
-                tileGag[3] = (TileTCRailGag) world.getTileEntity(x - 5, y + 1, z);
-
-                if (type == TrackTypes.VERY_LONG_STRAIGHT || type == TrackTypes.EMBEDDED_VERY_LONG_STRAIGHT) {
-                    tcRail.idDrop = this.type.getItem().item;
-                } else {
-                    tcRail.idDrop = this.type.getItem().item;
-                }
-            }
-            if (type == TrackTypes.VERY_LONG_STRAIGHT || type == TrackTypes.EMBEDDED_VERY_LONG_STRAIGHT) {
-
-                placeTrack(world, x - 6, y + 1, z, BlockIDs.tcRail.block, l);
-                TileTCRail tcRail3 = (TileTCRail) world.getTileEntity(x - 6, y + 1, z);
-                tcRail3.setType(type.getLabel());
-                tcRail3.isLinkedToRail = true;
-                tcRail3.linkedX = x - 1;
-                tcRail3.linkedY = y + 1;
-                tcRail3.linkedZ = z;
-
-                placeTrack(world, x - 7, y + 1, z, BlockIDs.tcRailGag.block, l);
-                tileGag[4] = (TileTCRailGag) world.getTileEntity(x - 7, y + 1, z);
-
-                placeTrack(world, x - 8, y + 1, z, BlockIDs.tcRailGag.block, l);
-                tileGag[5] = (TileTCRailGag) world.getTileEntity(x - 8, y + 1, z);
-
-                placeTrack(world, x - 9, y + 1, z, BlockIDs.tcRail.block, l);
-                TileTCRail tcRail4 = (TileTCRail) world.getTileEntity(x - 9, y + 1, z);
-                tcRail4.setFacing(l);
-                tcRail4.setType(type.getLabel());
-                tcRail4.isLinkedToRail = true;
-                tcRail4.linkedX = x - 1;
-                tcRail4.linkedY = y + 1;
-                tcRail4.linkedZ = z;
-
-                placeTrack(world, x - 10, y + 1, z, BlockIDs.tcRailGag.block, l);
-                tileGag[6] = (TileTCRailGag) world.getTileEntity(x - 10, y + 1, z);
-
-                placeTrack(world, x - 11, y + 1, z, BlockIDs.tcRailGag.block, l);
-                tileGag[7] = (TileTCRailGag) world.getTileEntity(x - 11, y + 1, z);
-
-
-            }
-
-        }
-        if (l == 3) {
-            if (!canPlaceTrack(player, world, x + 1, y + 1, z) || !canPlaceTrack(player, world, x + 2, y + 1, z)) {
-                return false;
-            }
-            if (type == TrackTypes.LONG_STRAIGHT || type == TrackTypes.EMBEDDED_LONG_STRAIGHT) {
-                if (!canPlaceTrack(player, world, x + 3, y + 1, z) || !canPlaceTrack(player, world, x + 4, y + 1, z)
-                        || !canPlaceTrack(player, world, x + 5, y + 1, z)) {
-                    return false;
-                }
-            }
-            if (type == TrackTypes.VERY_LONG_STRAIGHT || type == TrackTypes.EMBEDDED_VERY_LONG_STRAIGHT) {
-                if (!canPlaceTrack(player, world, x + 3, y + 1, z) || !canPlaceTrack(player, world, x + 4, y + 1, z)
-                        || !canPlaceTrack(player, world, x + 5, y + 1, z) || !canPlaceTrack(player, world, x + 6, y + 1, z) || !canPlaceTrack(player, world, x + 7, y + 1, z) ||
-                        !canPlaceTrack(player, world, x + 8, y + 1, z) || !canPlaceTrack(player, world, x + 9, y + 1, z) || !canPlaceTrack(player, world, x + 10, y + 1, z) || !canPlaceTrack(player, world, x + 11, y + 1, z)) {
-                    return false;
-                }
-            }
-            placeTrack(world, x, y + 1, z, BlockIDs.tcRail.block, l);
-            TileTCRail tcRail = (TileTCRail) world.getTileEntity(x, y + 1, z);
-            tcRail.setFacing(l);
-            tcRail.setType(type.getLabel());
-
-            placeTrack(world, x + 1, y + 1, z, BlockIDs.tcRailGag.block, l);
-            tileGag[0] = (TileTCRailGag) world.getTileEntity(x + 1, y + 1, z);
-
-            placeTrack(world, x + 2, y + 1, z, BlockIDs.tcRailGag.block, l);
-            tileGag[1] = (TileTCRailGag) world.getTileEntity(x + 2, y + 1, z);
-
-            if (type == TrackTypes.LONG_STRAIGHT || type == TrackTypes.EMBEDDED_LONG_STRAIGHT) {
-                tcRail.idDrop = this.type.getItem().item;
-            } else {
-                tcRail.idDrop = this.type.getItem().item;
-            }
-
-            if (type == TrackTypes.LONG_STRAIGHT || type == TrackTypes.EMBEDDED_LONG_STRAIGHT
-                    || type == TrackTypes.VERY_LONG_STRAIGHT || type == TrackTypes.EMBEDDED_VERY_LONG_STRAIGHT) {
-                placeTrack(world, x + 3, y + 1, z, BlockIDs.tcRail.block, l);
-                TileTCRail tcRail2 = (TileTCRail) world.getTileEntity(x + 3, y + 1, z);
-                tcRail2.setFacing(l);
-                tcRail2.setType(type.getLabel());
-                tcRail2.isLinkedToRail = true;
-                tcRail2.linkedX = x + 1;
-                tcRail2.linkedY = y + 1;
-                tcRail2.linkedZ = z;
-
-                placeTrack(world, x + 4, y + 1, z, BlockIDs.tcRailGag.block, l);
-                tileGag[2] = (TileTCRailGag) world.getTileEntity(x + 4, y + 1, z);
-
-                placeTrack(world, x + 5, y + 1, z, BlockIDs.tcRailGag.block, l);
-                tileGag[3] = (TileTCRailGag) world.getTileEntity(x + 5, y + 1, z);
-
-                if (type == TrackTypes.VERY_LONG_STRAIGHT || type == TrackTypes.EMBEDDED_VERY_LONG_STRAIGHT) {
-                    tcRail.idDrop = this.type.getItem().item;
-                } else {
-                    tcRail.idDrop = this.type.getItem().item;
-                }
-            }
-            if (type == TrackTypes.VERY_LONG_STRAIGHT || type == TrackTypes.EMBEDDED_VERY_LONG_STRAIGHT) {
-
-                placeTrack(world, x + 6, y + 1, z, BlockIDs.tcRail.block, l);
-                TileTCRail tcRail3 = (TileTCRail) world.getTileEntity(x + 6, y + 1, z);
-                tcRail3.setFacing(l);
-                tcRail3.setType(type.getLabel());
-                tcRail3.isLinkedToRail = true;
-                tcRail3.linkedX = x + 1;
-                tcRail3.linkedY = y + 1;
-                tcRail3.linkedZ = z;
-
-                placeTrack(world, x + 7, y + 1, z, BlockIDs.tcRailGag.block, l);
-                tileGag[4] = (TileTCRailGag) world.getTileEntity(x + 7, y + 1, z);
-
-                placeTrack(world, x + 8, y + 1, z, BlockIDs.tcRailGag.block, l);
-                tileGag[5] = (TileTCRailGag) world.getTileEntity(x + 8, y + 1, z);
-
-                placeTrack(world, x + 9, y + 1, z, BlockIDs.tcRail.block, l);
-                TileTCRail tcRail4 = (TileTCRail) world.getTileEntity(x + 9, y + 1, z);
-                tcRail4.setFacing(l);
-                tcRail4.setType(type.getLabel());
-                tcRail4.isLinkedToRail = true;
-                tcRail4.linkedX = x + 1;
-                tcRail4.linkedY = y + 1;
-                tcRail4.linkedZ = z;
-
-                placeTrack(world, x + 10, y + 1, z, BlockIDs.tcRailGag.block, l);
-                tileGag[6] = (TileTCRailGag) world.getTileEntity(x + 10, y + 1, z);
-
-                placeTrack(world, x + 11, y + 1, z, BlockIDs.tcRailGag.block, l);
-                tileGag[7] = (TileTCRailGag) world.getTileEntity(x + 11, y + 1, z);
-
-
-            }
-
-        }
+        //gives Gag rails the TileTCRail as their origin
         for (TileTCRailGag tileTCRailGag : tileGag) {
             if (player != null && tileTCRailGag == null) {
                 player.addChatMessage(new ChatComponentText("There was a problem when placing the track. Possibly too many tracks around"));
@@ -3325,6 +2986,9 @@ public class ItemTCRail extends ItemPart {
             tileTCRailGag.originZ = z;
             tileTCRailGag.type = TrackTypes.MEDIUM_STRAIGHT.getLabel();
         }
+
+
+
         return true;
     }
 
