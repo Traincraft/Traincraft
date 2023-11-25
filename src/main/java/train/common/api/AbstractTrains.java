@@ -355,7 +355,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
             if (color == -1 || !trainRecord.getLiveries().contains(getColorAsString(color))) {
                 color = 0;
             }
-            entity_data.stringMap.put("color", trainRecord.getLiveries().get(color));
+            entity_data.putString("color", trainRecord.getLiveries().get(color));
         }
         dataWatcher.updateObject(12, entity_data.toXMLString());
         this.getEntityData().setString("xml", entity_data.toXMLString());
@@ -364,12 +364,12 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
     public void setColor(String color) {
         TrainRecord trainRecord = Traincraft.instance.traincraftRegistry.findTrainRecordByItem(getCartItem().getItem());
         if (trainRecord != null && trainRecord.getLiveries() != null) {
-            if (color.equals("-1") || trainRecord.getLiveries().contains(color)) {
+            if (color.equals("-1") || !trainRecord.getLiveries().contains(color)) {
                 color = (trainRecord.getLiveries().get(0));
             }
         }
 
-        entity_data.stringMap.put("color", color);
+        entity_data.putString("color", color);
         dataWatcher.updateObject(12, entity_data.toXMLString());
         this.getEntityData().setString("xml", entity_data.toXMLString());
     }
