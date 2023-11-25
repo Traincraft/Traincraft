@@ -872,6 +872,23 @@ train.owner.name=You are not the owner!
 train.locked.name=Locked
 train.unlocked.name=Unlocked
 
+paintbrushmenu.Close Menu.name=Close
+paintbrushmenu.Next Page.name=Next Page
+paintbrushmenu.Previous Page.name=Previous Page
+paintbrushmenu.Pause.name=Pause Animation
+paintbrushmenu.Play.name=Play Animation
+paintbrushmenu.Fixed Overlay.name=Appliqué Selector
+paintbrushmenu.Dynamic Overlay.name=Custom Text Tool
+paintbrushmenu.None.name=No Custom Text or Appliqué
+paintbrushmenu.Lights On.name=Lights On
+paintbrushmenu.Lights Off.name=Lights Off
+paintbrushmenu.Hide Models.name=Hide Models
+paintbrushmenu.Show Models.name=Show Models
+dynamicoverlaymenu.Background Color.name=Background Color
+dynamicoverlaymenu.Foreground Color.name=Foreground Color
+dynamicoverlaymenu.Submit.name=Submit
+dynamicoverlaymenu.Back.name=Back
+
 <!-- ## ENTITY ## -->
 entity.tc.Entity Front Bogie.name=Bogie
 entity.tc.zeppelin big.name=Zeppelin One Balloon

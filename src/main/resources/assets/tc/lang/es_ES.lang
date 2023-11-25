@@ -446,7 +446,24 @@ builder.currElev.name=Altitud acutal
 builder.reqElev.name=Elevación solicitada
 train.owner.name=Tú no eres el propietario
 train.locked.name=Bloqueado 
-train.unlocked.name=Desbloqueado 
+train.unlocked.name=Desbloqueado
+paintbrushmenu.Close Menu.name=Cerrar
+paintbrushmenu.Next Page.name=Página Siguiente
+paintbrushmenu.Previous Page.name=Página Anterior
+paintbrushmenu.Pause.name=Pausar Animacón
+paintbrushmenu.Play.name=Reproducir Animacón
+paintbrushmenu.Fixed Overlay.name=Selector de Apliques
+paintbrushmenu.Dynamic Overlay.name=Utilidad de Texto Personalizado
+paintbrushmenu.None.name=No Texto Personalizado o Apliques
+paintbrushmenu.Lights On.name=Encender Luces
+paintbrushmenu.Lights Off.name=Apagar Luces
+paintbrushmenu.Hide Models.name=Esconder Modelos
+paintbrushmenu.Show Models.name=Mostrar Modelos
+dynamicoverlaymenu.Background Color.name=Color de Fondo
+dynamicoverlaymenu.Foreground Color.name=Color de Primer Plano
+dynamicoverlaymenu.Submit.name=Entregar
+dynamicoverlaymenu.Back.name=Página Anterior
+
 <!-- ## ENTITY ## --> 
 entity.tc.Entity Front Bogie.name=Bogie 
 entity.tc.zeppelin big.name=Zepelín

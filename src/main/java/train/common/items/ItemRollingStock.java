@@ -18,7 +18,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import sun.java2d.loops.DrawLine;
 import train.common.Traincraft;
 import train.common.api.*;
 import train.common.core.handlers.ConfigHandler;
@@ -26,8 +25,6 @@ import train.common.core.util.TraincraftUtil;
 import train.common.entity.rollingStock.EntityTracksBuilder;
 import train.common.items.ItemTCRail.TrackTypes;
 import train.common.library.BlockIDs;
-import train.common.library.EnumTrains;
-import train.common.library.Info;
 import train.common.tile.TileTCRail;
 import train.common.tile.TileTCRailGag;
 
@@ -629,6 +626,8 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 						if (var5.hasKey("trainColor"))
 							rollingStock.setColor(trainColor);
 						rollingStock.trainCreator = trainCreator;
+						if (var5.hasKey("overlayTextureConfigTag")) // Import overlay configuration from NBT and apply it to the entity.
+							rollingStock.getOverlayTextureContainer().importFromConfigTag(var5.getCompoundTag("overlayTextureConfigTag"));
 					}
 					if (player != null)
 						rollingStock.setInformation(((ItemRollingStock) itemstack.getItem()).getTrainType(), player.getDisplayName(), trainCreator, (itemstack.getItem()).getItemStackDisplayName(itemstack), uniID);

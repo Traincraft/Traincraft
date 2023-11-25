@@ -4,6 +4,7 @@ import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 import ebf.XmlBuilder;
 import io.netty.buffer.ByteBuf;
+import jdk.internal.util.xml.impl.Pair;
 import mods.railcraft.api.carts.IMinecart;
 import mods.railcraft.api.carts.IRoutableCart;
 import net.minecraft.entity.Entity;
@@ -21,7 +22,6 @@ import net.minecraft.world.ChunkCoordIntPair;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeChunkManager;
 import net.minecraftforge.common.ForgeChunkManager.Ticket;
-import org.apache.commons.lang3.ArrayUtils;
 import train.common.Traincraft;
 import train.common.adminbook.ItemAdminBook;
 import train.common.core.handlers.ConfigHandler;
@@ -29,10 +29,9 @@ import train.common.core.handlers.TrainHandler;
 import train.common.items.ItemChunkLoaderActivator;
 import train.common.items.ItemRollingStock;
 import train.common.items.ItemWrench;
+import train.common.overlaytexture.OverlayTextureManager;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public abstract class AbstractTrains extends EntityMinecart implements IMinecart, IRoutableCart, IEntityAdditionalSpawnData {
 
@@ -137,6 +136,9 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 	public double trainDistanceTraveled = 0;
 
 	public String destination = "";
+	public final Map<Integer, Pair> textureDescriptionMap = new HashMap<>();
+	private OverlayTextureManager overlayTextureContainer;
+	private boolean acceptsOverlayTextures = false;
 
 
 	public AbstractTrains(World world) {
@@ -357,7 +359,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		TrainRecord trainRecord = Traincraft.instance.traincraftRegistry.findTrainRecordByItem(getCartItem().getItem());
 		if (trainRecord != null && trainRecord.getLiveries().size()>0){
 			if (color==-1 || !trainRecord.getLiveries().contains(getColorAsString(color))) {
-				color = 0;
+				color = color+1>trainRecord.getLiveries().size()-1?0:color+1;
 			}
 		}
 
@@ -370,7 +372,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		TrainRecord trainRecord = Traincraft.instance.traincraftRegistry.findTrainRecordByItem(getCartItem().getItem());
 		if (trainRecord != null && trainRecord.getLiveries() != null){
 			if (color.equals("-1") || trainRecord.getLiveries().contains(color)) {
-				color = (trainRecord.getLiveries().get(0));
+				color = (trainRecord.getLiveries().get(trainRecord.getLiveries().indexOf(color)+1>trainRecord.getLiveries().size()-1?0:trainRecord.getLiveries().indexOf(color)+1));
 			}
 		}
 
@@ -420,6 +422,10 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 
 		nbttagcompound.setLong("UUIDM", this.getUniqueID().getMostSignificantBits());
 		nbttagcompound.setLong("UUIDL", this.getUniqueID().getLeastSignificantBits());
+		nbttagcompound.setBoolean("acceptsOverlayTextures", acceptsOverlayTextures);
+		if (acceptsOverlayTextures) {
+			nbttagcompound.setTag("overlayTextureConfigTag", overlayTextureContainer.getOverlayConfigTag());
+		}
 	}
 
 	@Override
@@ -452,9 +458,12 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		if(nbttagcompound.hasKey("Dim")){
 			this.dimension=nbttagcompound.getInteger("Dim");
 		}
-
 		if(nbttagcompound.hasKey("UUIDM")){
 			this.entityUniqueID = new UUID(nbttagcompound.getLong("UUIDM"), nbttagcompound.getLong("UUIDL"));
+		}
+		if (nbttagcompound.getBoolean("acceptsOverlayTextures")) {
+			acceptsOverlayTextures = true;
+			overlayTextureContainer.importFromConfigTag(nbttagcompound.getCompoundTag("overlayTextureConfigTag"));
 		}
 	}
 
@@ -611,6 +620,10 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		if (this.uniqueID != -1) stack.getTagCompound().setInteger("uniqueID", this.uniqueID);
 		if (this.trainCreator != null && this.trainCreator.length() > 0) stack.getTagCompound().setString("trainCreator", this.trainCreator);
 		stack.getTagCompound().setString("trainColor", this.getColor());
+		// Only save the overlay configuration to NBT if it exists. No need to store an empty configuration in NBT as it will be initialized as the default when the entity spawns in.
+		if (this.acceptsOverlayTextures && this.getOverlayTextureContainer().getType() != OverlayTextureManager.Type.NONE) {
+			stack.getTagCompound().setTag("overlayTextureConfigTag", getOverlayTextureContainer().getOverlayConfigTag());
+		}
 	}
 
 	protected void setDefaultMass(double def) {
@@ -759,4 +772,24 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		}
 	}
 
+	/**
+	 * @author 02skaplan
+	 * <p>Called to setup the overlay texture manager for the given AbstractTrain. It is recommended
+	 * to call this from the constructor of the AbstractTrain-derived entity class.</p>
+	 * <p>After calling, it is recommended to use getOverlayTextureContainer to initialze the fixed, dynamic, or both
+	 * fixed and dynamic overlays with their respective settings.</p>
+	 * @param acceptedType Whether the overlay manager will allow fixed, dynamic, or both fixed and dynamic overlays.
+	 */
+	public void initOverlayTextures(OverlayTextureManager.Type acceptedType) {
+		overlayTextureContainer = new OverlayTextureManager(acceptedType, this);
+		acceptsOverlayTextures = true;
+	}
+
+	public OverlayTextureManager getOverlayTextureContainer() {
+		return overlayTextureContainer;
+	}
+
+	public boolean acceptsOverlayTextures() {
+		return acceptsOverlayTextures;
+	}
 }

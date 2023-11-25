@@ -31,6 +31,8 @@ public class PacketHandler {
 		Traincraft.brakeChannel = NetworkRegistry.INSTANCE.newSimpleChannel("brake");
 		Traincraft.lockChannel = NetworkRegistry.INSTANCE.newSimpleChannel("lock");
 		Traincraft.builderChannel = NetworkRegistry.INSTANCE.newSimpleChannel("builder");
+		Traincraft.paintbrushColorChannel = NetworkRegistry.INSTANCE.newSimpleChannel("paintbrushColor");
+		Traincraft.overlayTextureChannel = NetworkRegistry.INSTANCE.newSimpleChannel("overlayTexture");
 
 
 
@@ -57,6 +59,10 @@ public class PacketHandler {
 				PacketTrackBuilderHeight.class, 8, Side.SERVER);
 		Traincraft.builderChannel.registerMessage(PacketTrackBuilderFollow.Handler.class,
 				PacketTrackBuilderFollow.class, 9, Side.SERVER);
+		Traincraft.paintbrushColorChannel.registerMessage(PacketPaintbrushColor.Handler.class,
+				PacketPaintbrushColor.class, 10, Side.SERVER);
+		Traincraft.overlayTextureChannel.registerMessage(PacketTextureOverlayConfig.Handler.class,
+				PacketTextureOverlayConfig.class, 11, Side.SERVER);
 
 		if (Loader.isModLoaded("ComputerCraft")) {
 			Traincraft.itsChannel.registerMessage(PacketSetSpeedHandler.class, PacketSetSpeed.class, 200, Side.CLIENT);
