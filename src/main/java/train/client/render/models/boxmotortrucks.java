@@ -3,8 +3,8 @@
 
 package train.client.render.models;
 
-import tmt.ModelConverter;
-import tmt.ModelRendererTurbo;
+import fexcraft.tmt.slim.ModelConverter;
+import fexcraft.tmt.slim.ModelRendererTurbo;
 
 /** This file was exported via the (Default) FlansMod Exporter of<br>
  *  FMT (Fex's Modelling Toolbox) v.2.6.5 &copy; 2021 - Fexcraft.net<br>
@@ -827,12 +827,12 @@ public class boxmotortrucks extends ModelConverter {
 		bodyModel[201].setRotationPoint(34.375f, 4.375f, 5.25f);
 
 		bodyModel[202] = new ModelRendererTurbo(this, 116, 3, textureX, textureY);
-		bodyModel[202].flip = true;
+		bodyModel[202].mirror = true;
 		bodyModel[202].addCylinder(0, 0, 0, 1, 12, 14, 1, 1, 0);
 		bodyModel[202].setRotationPoint(27.5f, 5.5f, -6.0f);
 
 		bodyModel[203] = new ModelRendererTurbo(this, 111, 3, textureX, textureY);
-		bodyModel[203].flip = true;
+		bodyModel[203].mirror = true;
 		bodyModel[203].addCylinder(0, 0, 0, 1, 12, 14, 1, 1, 0);
 		bodyModel[203].setRotationPoint(45.5f, 5.5f, -6.0f);
 

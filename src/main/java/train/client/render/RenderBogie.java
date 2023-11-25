@@ -9,32 +9,33 @@ import train.common.library.Info;
 
 public class RenderBogie extends Render {
 
-	protected ModelBase model = new ModelBase() {};
-	private static final ResourceLocation TEXTURE = new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "robot.png");
-	
-	public RenderBogie() {
-	}
+    protected ModelBase model = new ModelBase() {
+    };
+    private static final ResourceLocation TEXTURE = new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "robot.png");
 
-	
-	@Override
-	public void doRender(Entity entity, double x, double y, double z, float f, float f1) {
-		GL11.glPushMatrix();
-		GL11.glTranslated(x, y, z);
+    public RenderBogie() {
+    }
+
+
+    @Override
+    public void doRender(Entity entity, double x, double y, double z, float f, float f1) {
+        GL11.glPushMatrix();
+        GL11.glTranslated(x, y, z);
 
 		/*renderManager.renderEngine.bindTexture(TEXTURE);
 
 		float factor = (float) (1.0 / 16.0);
 		GL11.glScalef(2, 2, 2);
 		box.render(factor);*/
-		
 
-		GL11.glPopMatrix();
-	}
-	
-	@Override
-	protected ResourceLocation getEntityTexture(Entity entity) {
-		return TEXTURE;
-	}
-	
+
+        GL11.glPopMatrix();
+    }
+
+    @Override
+    protected ResourceLocation getEntityTexture(Entity entity) {
+        return TEXTURE;
+    }
+
 
 }

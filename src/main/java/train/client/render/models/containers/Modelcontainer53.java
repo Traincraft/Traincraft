@@ -9,8 +9,8 @@
 
 package train.client.render.models.containers; //Path where the model is located
 
-import tmt.ModelConverter;
-import tmt.ModelRendererTurbo;
+import fexcraft.tmt.slim.ModelConverter;
+import fexcraft.tmt.slim.ModelRendererTurbo;
 
 public class Modelcontainer53 extends ModelConverter //Same as Filename
 {

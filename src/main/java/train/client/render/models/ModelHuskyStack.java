@@ -12,9 +12,9 @@ package train.client.render.models; //Path where the model is located
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
-import tmt.ModelConverter;
-import tmt.ModelRendererTurbo;
-import tmt.Tessellator;
+import fexcraft.tmt.slim.ModelConverter;
+import fexcraft.tmt.slim.ModelRendererTurbo;
+import fexcraft.tmt.slim.Tessellator;
 import train.client.render.models.containers.Modelcontainer40;
 import train.common.entity.rollingStock.EntityFreightBapHuskyStack;
 import train.common.library.Info;

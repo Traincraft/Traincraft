@@ -10,7 +10,7 @@ import train.common.entity.rollingStock.EntityJukeBoxCart;
 
 /**
  * Sent to the server to set a Jukebox' music stream URL.<p>
- * 
+ * <p>
  * Note:<br>
  * The sent packet is handled so that the server directly applies the data.<br>
  * This might be considered bad, as the client's data remains unchecked for validity and such.<br>
@@ -18,51 +18,52 @@ import train.common.entity.rollingStock.EntityJukeBoxCart;
  */
 public class PacketSetJukeboxStreamingUrl implements IMessage {
 
-	/** The entity ID of the {@link EntityJukeBoxCart}. */
-	int entityID;
-	/** True if the EntityJukeBoxCart should start playing, false if it should stop playing. */
-	boolean setPlaying;
-	/** The URL of the music that shall be played. */
-	String url;
+    /**
+     * The entity ID of the {@link EntityJukeBoxCart}.
+     */
+    int entityID;
+    /**
+     * True if the EntityJukeBoxCart should start playing, false if it should stop playing.
+     */
+    boolean setPlaying;
+    /**
+     * The URL of the music that shall be played.
+     */
+    String url;
 
-	public PacketSetJukeboxStreamingUrl() {}
+    public PacketSetJukeboxStreamingUrl() {
+    }
 
-	public PacketSetJukeboxStreamingUrl(EntityJukeBoxCart jukeBoxCart, String url, boolean setPlaying) {
+    public PacketSetJukeboxStreamingUrl(EntityJukeBoxCart jukeBoxCart, String url, boolean setPlaying) {
+        this.entityID = jukeBoxCart.getEntityId();
+        this.url = url;
+        this.setPlaying = setPlaying;
+    }
 
-		this.entityID = jukeBoxCart.getEntityId();
-		this.url = url;
-		this.setPlaying = setPlaying;
-	}
+    @Override
+    public void fromBytes(ByteBuf bbuf) {
+        this.entityID = bbuf.readInt();
+        this.setPlaying = bbuf.readBoolean();
+        this.url = ByteBufUtils.readUTF8String(bbuf);
+    }
 
-	@Override
-	public void fromBytes(ByteBuf bbuf) {
+    @Override
+    public void toBytes(ByteBuf bbuf) {
+        bbuf.writeInt(this.entityID);
+        bbuf.writeBoolean(this.setPlaying);
+        ByteBufUtils.writeUTF8String(bbuf, this.url);
+    }
 
-		this.entityID = bbuf.readInt();
-		this.setPlaying = bbuf.readBoolean();
-		this.url = ByteBufUtils.readUTF8String(bbuf);
-	}
+    public static class Handler implements IMessageHandler<PacketSetJukeboxStreamingUrl, IMessage> {
+        @Override
+        public IMessage onMessage(PacketSetJukeboxStreamingUrl message, MessageContext context) {
+            Entity entity = context.getServerHandler().playerEntity.worldObj.getEntityByID(message.entityID);
 
-	@Override
-	public void toBytes(ByteBuf bbuf) {
+            if (entity instanceof EntityJukeBoxCart) {
+                ((EntityJukeBoxCart) entity).recievePacket(message.url, message.setPlaying);
+            }
 
-		bbuf.writeInt(this.entityID);
-		bbuf.writeBoolean(this.setPlaying);
-		ByteBufUtils.writeUTF8String(bbuf, this.url);
-	}
-
-	public static class Handler implements IMessageHandler<PacketSetJukeboxStreamingUrl, IMessage> {
-
-		@Override
-		public IMessage onMessage(PacketSetJukeboxStreamingUrl message, MessageContext context) {
-
-			Entity entity = context.getServerHandler().playerEntity.worldObj.getEntityByID(message.entityID);
-
-			if (entity instanceof EntityJukeBoxCart) {
-
-				((EntityJukeBoxCart) entity).recievePacket(message.url, message.setPlaying);
-			}
-
-			return null;
-		}
-	}
+            return null;
+        }
+    }
 }

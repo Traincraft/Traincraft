@@ -10,45 +10,41 @@ import train.common.api.Locomotive;
 
 public class PacketParkingBrake implements IMessage {
 
-	boolean	ParkingBrake;
-	int		entityID;
-    public PacketParkingBrake() {}
+    boolean ParkingBrake;
+    int entityID;
 
-	public PacketParkingBrake(boolean parking, int trainEntity) {
-		this.ParkingBrake = parking;
-		this.entityID = trainEntity;
+    public PacketParkingBrake() {
+    }
+
+    public PacketParkingBrake(boolean parking, int trainEntity) {
+        this.ParkingBrake = parking;
+        this.entityID = trainEntity;
     }
 
     @Override
     public void fromBytes(ByteBuf bbuf) {
-		this.ParkingBrake = bbuf.readBoolean();
-		this.entityID = bbuf.readInt();
+        this.ParkingBrake = bbuf.readBoolean();
+        this.entityID = bbuf.readInt();
     }
 
     @Override
     public void toBytes(ByteBuf bbuf) {
-		bbuf.writeBoolean(this.ParkingBrake);
-		bbuf.writeInt(this.entityID);
+        bbuf.writeBoolean(this.ParkingBrake);
+        bbuf.writeInt(this.entityID);
     }
 
     public static class Handler implements IMessageHandler<PacketParkingBrake, IMessage> {
-
         @Override
         public IMessage onMessage(PacketParkingBrake message, MessageContext context) {
-			
-			Entity TrainEntity = context.getServerHandler().playerEntity.worldObj.getEntityByID(message.entityID);
-			
-			if (TrainEntity instanceof Locomotive) {
+            Entity TrainEntity = context.getServerHandler().playerEntity.worldObj.getEntityByID(message.entityID);
 
-				((Locomotive) TrainEntity).setParkingBrakeFromPacket(message.ParkingBrake);
+            if (TrainEntity instanceof Locomotive) {
+                ((Locomotive) TrainEntity).setParkingBrakeFromPacket(message.ParkingBrake);
+            }
 
-			}
-
-			if (TrainEntity instanceof EntityRollingStock) {
-
-				((EntityRollingStock) TrainEntity).isBraking = message.ParkingBrake;
-
-			}
+            if (TrainEntity instanceof EntityRollingStock) {
+                ((EntityRollingStock) TrainEntity).isBraking = message.ParkingBrake;
+            }
 
             return null;
         }

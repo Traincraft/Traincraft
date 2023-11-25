@@ -2,7 +2,7 @@ package train.client.render.models;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
-import tmt.ModelBase;
+import fexcraft.tmt.slim.ModelBase;
 import train.client.render.CustomModelRenderer;
 import train.common.entity.rollingStock.EntityTracksBuilder;
 import train.common.library.Info;
@@ -552,10 +552,10 @@ public class ModelBuilder extends ModelBase {
 		lastframe = now;
 
 		if (((EntityTracksBuilder) entity).getState()) {
-			tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation,Info.trainsPrefix + "builder2.png"));
+			fexcraft.tmt.slim.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation,Info.trainsPrefix + "builder2.png"));
 		}
 		else {
-			tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation,Info.trainsPrefix + "builder.png"));
+			fexcraft.tmt.slim.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation,Info.trainsPrefix + "builder.png"));
 		}
 
 		box.render(f5);
@@ -652,7 +652,7 @@ public class ModelBuilder extends ModelBase {
 		box90.render(f5);
 		box91.render(f5);
 
-		tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation,Info.trainsPrefix + "builder_rotor.png"));
+		fexcraft.tmt.slim.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation,Info.trainsPrefix + "builder_rotor.png"));
 
 		rotor1.render(f5);
 		rotor2.render(f5);

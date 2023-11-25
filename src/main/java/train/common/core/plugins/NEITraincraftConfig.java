@@ -7,9 +7,9 @@ import train.common.library.Info;
 
 public class NEITraincraftConfig implements IConfigureNEI {
 
-	@Override
-	public void loadConfig() {
-		if (!ConfigHandler.DISABLE_NEI_RECIPES) {
+    @Override
+    public void loadConfig() {
+        if (!ConfigHandler.DISABLE_NEI_RECIPES) {
             API.registerRecipeHandler(new NEITraincraftWorkbenchRecipePlugin());
             API.registerUsageHandler(new NEITraincraftWorkbenchRecipePlugin());
             API.registerRecipeHandler(new NEIAssemblyTableRecipePlugin());
@@ -19,15 +19,15 @@ public class NEITraincraftConfig implements IConfigureNEI {
             API.registerRecipeHandler(new NEIDistillationTowerRecipePlugin());
             API.registerUsageHandler(new NEIDistillationTowerRecipePlugin());
         }
-	}
+    }
 
-	@Override
+    @Override
     public String getName() {
-		return Info.modName;
+        return Info.modName;
     }
 
     @Override
     public String getVersion() {
-		return Info.modVersion;
-    }    
+        return Info.modVersion;
+    }
 }

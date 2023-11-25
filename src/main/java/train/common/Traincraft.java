@@ -113,6 +113,7 @@ public class Traincraft {
         configDirectory = event.getModConfigurationDirectory();
         ConfigHandler.init(new File(event.getModConfigurationDirectory(), Info.modName + ".cfg"));
 
+        proxy.configDirectory = event.getModConfigurationDirectory().getAbsolutePath();
         /* Register the KeyBinding Handler */
         proxy.registerKeyBindingHandler();
 
@@ -236,5 +237,9 @@ public class Traincraft {
 
     public static boolean hasNotEnoughItems() {
         return Loader.isModLoaded("NotEnoughItems");
+    }
+
+    public static boolean hasRailcraft() {
+        return Loader.isModLoaded("Railcraft");
     }
 }

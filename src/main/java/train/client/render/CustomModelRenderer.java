@@ -1,11 +1,8 @@
 package train.client.render;
 
 
+import fexcraft.tmt.slim.*;
 import org.lwjgl.opengl.GL11;
-import tmt.ModelBase;
-import tmt.ModelRendererTurbo;
-import tmt.TexturedPolygon;
-import tmt.TexturedVertex;
 
 import java.util.ArrayList;
 
@@ -60,13 +57,9 @@ public class CustomModelRenderer extends ModelRendererTurbo {
 	private static final float degreesF = (float)(180D/Math.PI);
 
 	//same as super, but old models have inverse Y rotations and I don't even understand the Z rotation
-	public void render(float worldScale, boolean invertYZ) {
+	public void render(float worldScale) {
 
 		if(!showModel) {
-			return;
-		}
-		if(!compiled) {
-			compileDisplayList(worldScale);
 			return;
 		}
 		if (rotateAngleX != 0.0F || rotateAngleY != 0.0F || rotateAngleZ != 0.0F) {
@@ -81,16 +74,22 @@ public class CustomModelRenderer extends ModelRendererTurbo {
 			if (rotateAngleX != 0.0F) {
 				GL11.glRotatef(rotateAngleX * degreesF, 1.0F, 0.0F, 0.0F);
 			}
-			callDisplayList();
+			for (TexturedPolygon poly : faces) {
+				Tessellator.getInstance().drawTexturedVertsWithNormal(poly, worldScale);
+			}
 			GL11.glPopMatrix();
 		}
 		else if (rotationPointX != 0.0F || rotationPointY != 0.0F || rotationPointZ != 0.0F) {
 			GL11.glTranslatef(rotationPointX * worldScale, rotationPointY * worldScale, rotationPointZ * worldScale);
-			callDisplayList();
+			for (TexturedPolygon poly : faces) {
+				Tessellator.getInstance().drawTexturedVertsWithNormal(poly, worldScale);
+			}
 			GL11.glTranslatef(-rotationPointX * worldScale, -rotationPointY * worldScale, -rotationPointZ * worldScale);
 		}
 		else {
-			callDisplayList();
+			for (TexturedPolygon poly : faces) {
+				Tessellator.getInstance().drawTexturedVertsWithNormal(poly, worldScale);
+			}
 		}
 	}
 

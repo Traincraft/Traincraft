@@ -1,7 +1,7 @@
 package train.client.render.models;
 //loco
 import net.minecraft.entity.Entity;
-import tmt.ModelBase;
+import fexcraft.tmt.slim.ModelBase;
 import train.client.render.CustomModelRenderer;
 //import src.train.common.core.handlers.ConfigHandler;
 

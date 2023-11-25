@@ -6,10 +6,10 @@ import train.client.render.models.blocks.ModelWaterWheel;
 import train.common.tile.TileWaterWheel;
 
 public class RenderWaterWheel extends TileEntitySpecialRenderer {
-	private static final ModelWaterWheel modelWaterWheel = new ModelWaterWheel();
+    private static final ModelWaterWheel modelWaterWheel = new ModelWaterWheel();
 
-	@Override
-	public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float tick) {
-		modelWaterWheel.render((TileWaterWheel) tileEntity, x, y, z);
-	}
+    @Override
+    public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float tick) {
+        modelWaterWheel.render((TileWaterWheel) tileEntity, x, y, z);
+    }
 }

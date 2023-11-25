@@ -9,8 +9,8 @@
 
 package train.client.render.renderSwitch.models;
 
-import tmt.ModelConverter;
-import tmt.ModelRendererTurbo;
+import fexcraft.tmt.slim.ModelConverter;
+import fexcraft.tmt.slim.ModelRendererTurbo;
 
 public class ModelowoYardSwitchStandOff extends ModelConverter //Same as Filename
 {

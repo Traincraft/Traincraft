@@ -14,311 +14,302 @@ import train.common.entity.rollingStock.EntityBUnitEMDF7;
 
 public abstract class Tender extends Freight implements IFluidHandler {
 
-	public ItemStack tenderItems[];
-	private int maxTank;
-	private int update = 8;
-	private StandardTank theTank;
-	private IFluidTank[] tankArray = new IFluidTank[1];
-	public TileEntity[] blocksToCheck;
-	/**
-	 * 
-	 * @param world
-	 * @param fluid
-	 * @param quantity
-	 * @param capacity
-	 */
-	public Tender(World world, Fluid fluid, int quantity) {
-		this(new FluidStack(fluid, quantity), world, null);
-	}
+    public ItemStack[] tenderItems;
+    private int maxTank;
+    private int update = 8;
+    private StandardTank theTank;
+    public TileEntity[] blocksToCheck;
 
-	public Tender(World world, Fluid fluid, int quantity, FluidStack filter) {
-		this(new FluidStack(fluid, quantity), world, filter);
-	}
+    /**
+     *
+     * @param world world
+     * @param fluid fluid
+     * @param quantity quantity
+     */
+    public Tender(World world, Fluid fluid, int quantity) {
+        this(new FluidStack(fluid, quantity), world, null);
+    }
 
-	private Tender(FluidStack fluid, World world, FluidStack filter) {
-		super(world);
-		this.maxTank = getSpec().getTankCapacity();
-		if (filter == null)
-			this.theTank = LiquidManager.getInstance().new StandardTank(maxTank);
-		if (filter != null)
-			this.theTank = LiquidManager.getInstance().new FilteredTank(maxTank, filter);
-		tankArray[0] = theTank;
-		dataWatcher.addObject(4, 0);
-		this.dataWatcher.addObject(23, 0);
-	}
-	@Override
-	public abstract int getSizeInventory();
-	@Override
-	protected void writeEntityToNBT(NBTTagCompound nbttagcompound) {
-		super.writeEntityToNBT(nbttagcompound);
-		this.theTank.writeToNBT(nbttagcompound);
-	}
-	@Override
-	protected void readEntityFromNBT(NBTTagCompound nbttagcompound) {
-		super.readEntityFromNBT(nbttagcompound);
-		this.theTank.readFromNBT(nbttagcompound);
-	}
+    public Tender(World world, Fluid fluid, int quantity, FluidStack filter) {
+        this(new FluidStack(fluid, quantity), world, filter);
+    }
 
-	@Override
-	public void onUpdate() {
-		super.onUpdate();
-		if (worldObj.isRemote)
-			return;
-		if (theTank != null && theTank.getFluid() != null) {
-			this.dataWatcher.updateObject(23, theTank.getFluid().amount);
-			this.dataWatcher.updateObject(4, theTank.getFluid().getFluidID());
-		}
-		else if (theTank != null && theTank.getFluid() == null) {
-			this.dataWatcher.updateObject(23, 0);
-			this.dataWatcher.updateObject(4, 0);
-		}
-	}
-	/**
-	 * handle mass depending on items and liquid
-	 */
-	@Override
-	protected void handleMass(){
-		if(this.updateTicks%10!=0)return;
-		double preciseAmount=0;
-		this.mass=this.getDefaultMass();
-		if(theTank != null && theTank.getFluid() != null && theTank.getFluid().amount>0){
-			preciseAmount = theTank.getFluid().amount;
-		}		
-		this.itemInsideCount=0;
-		for (int i = 0; i < getSizeInventory(); i++) {
-			ItemStack itemstack = getStackInSlot(i);
-			if (itemstack != null && itemstack.stackSize > 0) {
-				this.itemInsideCount+=itemstack.stackSize;
-			}
-		}
-		mass+=(this.itemInsideCount*0.0001);//1 item = 1 kilo
-		mass+=(preciseAmount/10000);//1 bucket = 1 kilo
-	}
+    private Tender(FluidStack fluid, World world, FluidStack filter) {
+        super(world);
+        this.maxTank = getSpec().getTankCapacity();
+        if (filter == null)
+            this.theTank = LiquidManager.getInstance().new StandardTank(maxTank);
+        if (filter != null)
+            this.theTank = LiquidManager.getInstance().new FilteredTank(maxTank, filter);
+        IFluidTank[] tankArray = new IFluidTank[1];
+        tankArray[0] = theTank;
+        dataWatcher.addObject(4, 0);
+        this.dataWatcher.addObject(23, 0);
+    }
 
-	/**
-	 * added for SMP, used by the HUD
-	 * 
-	 * @return
-	 */
-	public int getWater() {
-		return (this.dataWatcher.getWatchableObjectInt(23));
-	}
+    @Override
+    public abstract int getSizeInventory();
 
-	/**
-	 * used by the GUI
-	 * 
-	 * @return int
-	 */
-	public int getLiquidItemID() {
-		return (this.dataWatcher.getWatchableObjectInt(4));
-	}
+    @Override
+    protected void writeEntityToNBT(NBTTagCompound nbttagcompound) {
+        super.writeEntityToNBT(nbttagcompound);
+        this.theTank.writeToNBT(nbttagcompound);
+    }
 
-	public int getCartTankCapacity() {
-		return maxTank;
-	}
+    @Override
+    protected void readEntityFromNBT(NBTTagCompound nbttagcompound) {
+        super.readEntityFromNBT(nbttagcompound);
+        this.theTank.readFromNBT(nbttagcompound);
+    }
 
-	public StandardTank getTank() {
-		return theTank;
-	}
+    @Override
+    public void onUpdate() {
+        super.onUpdate();
+        if (worldObj.isRemote)
+            return;
+        if (theTank != null && theTank.getFluid() != null) {
+            this.dataWatcher.updateObject(23, theTank.getFluid().amount);
+            this.dataWatcher.updateObject(4, theTank.getFluid().getFluidID());
+        } else if (theTank != null && theTank.getFluid() == null) {
+            this.dataWatcher.updateObject(23, 0);
+            this.dataWatcher.updateObject(4, 0);
+        }
+    }
 
-	private void placeInInvent(ItemStack itemstack1, Tender tender) {
-		for (int i = 1; i < tender.tenderItems.length; i++) {
-			if (tender.tenderItems[i] == null) {
-				tender.tenderItems[i] = itemstack1;
-				return;
-			}
-			else if (tender.tenderItems[i] != null && tender.tenderItems[i].getItem() == itemstack1.getItem() && itemstack1.isStackable() &&
-					(!itemstack1.getHasSubtypes() || tender.tenderItems[i].getItemDamage() == itemstack1.getItemDamage()) && ItemStack.areItemStackTagsEqual(tender.tenderItems[i], itemstack1)) {
-				int var9 = tender.tenderItems[i].stackSize + itemstack1.stackSize;
-				if (var9 <= tender.tenderItems[i].getMaxStackSize()) {
-					tender.tenderItems[i].stackSize = var9;
-					return;
-				}
-				else if (tender.tenderItems[i].stackSize < tender.tenderItems[i].getMaxStackSize()) {
-					tender.tenderItems[i].stackSize += 1;
-					return;
-				}
-			}
-			else if (i == tender.tenderItems.length - 1) {
-				entityDropItem(itemstack1,1);
-				return;
-			}
-		}
-	}
+    /**
+     * handle mass depending on items and liquid
+     */
+    @Override
+    protected void handleMass() {
+        if (this.updateTicks % 10 != 0) return;
+        double preciseAmount = 0;
+        this.mass = this.getDefaultMass();
+        if (theTank != null && theTank.getFluid() != null && theTank.getFluid().amount > 0) {
+            preciseAmount = theTank.getFluid().amount;
+        }
+        this.itemInsideCount = 0;
+        for (int i = 0; i < getSizeInventory(); i++) {
+            ItemStack itemstack = getStackInSlot(i);
+            if (itemstack != null && itemstack.stackSize > 0) {
+                this.itemInsideCount += itemstack.stackSize;
+            }
+        }
+        mass += (this.itemInsideCount * 0.0001);//1 item = 1 kilo
+        mass += (preciseAmount / 10000);//1 bucket = 1 kilo
+    }
 
-	public void liquidInSlot(ItemStack itemstack, Tender tender) {
-		if (worldObj.isRemote)
-			return;
-		this.update += 1;
-		if (this.update % 8 == 0 && itemstack != null) {
-			ItemStack result = LiquidManager.getInstance().processContainer(this, 0, this, itemstack);
-			if (result != null) {
-				placeInInvent(result, tender);
-				decrStackSize(0, 1);
-			}
-		}
-	}
+    /**
+     * added for SMP, used by the HUD
+     *
+     * @return
+     */
+    public int getWater() {
+        return (this.dataWatcher.getWatchableObjectInt(23));
+    }
 
-	protected void checkInvent(ItemStack tenderInvent, Tender loco) {
-		if (tenderInvent != null) {
-			liquidInSlot(tenderInvent, loco);
-		}
+    /**
+     * used by the GUI
+     *
+     * @return int
+     */
+    public int getLiquidItemID() {
+        return (this.dataWatcher.getWatchableObjectInt(4));
+    }
 
-		if(ticksExisted%5==0 && fill(ForgeDirection.UNKNOWN, new FluidStack(FluidRegistry.WATER,100), false)==100) {
-			FluidStack drain =null;
-			blocksToCheck = new TileEntity[]{worldObj.getTileEntity(MathHelper.floor_double(posX), MathHelper.floor_double(posY - 1), MathHelper.floor_double(posZ)),
-					worldObj.getTileEntity(MathHelper.floor_double(posX), MathHelper.floor_double(posY + 2), MathHelper.floor_double(posZ)),
-					worldObj.getTileEntity(MathHelper.floor_double(posX), MathHelper.floor_double(posY + 3), MathHelper.floor_double(posZ)),
-					worldObj.getTileEntity(MathHelper.floor_double(posX), MathHelper.floor_double(posY + 4), MathHelper.floor_double(posZ))
-			};
+    public int getCartTankCapacity() {
+        return maxTank;
+    }
 
-			for (TileEntity block : blocksToCheck) {
-				if (drain == null && block instanceof IFluidHandler) {
-					for (ForgeDirection direction : ForgeDirection.VALID_DIRECTIONS) {
-						if(((IFluidHandler) block).drain(direction,100,false)!=null &&
-								((IFluidHandler) block).drain(direction, 100, false).fluid==FluidRegistry.WATER &&
-								((IFluidHandler) block).drain(direction, 100, false).amount ==100
-						) {
-							drain = ((IFluidHandler) block).drain(
-									direction, 100, true);
-						}
-					}
-				}
-			}
-			if (drain ==null && cartLinked1 instanceof LiquidTank
-					&& !(cartLinked1 instanceof EntityBUnitEMDF7) && !(cartLinked1 instanceof EntityBUnitEMDF3) && !(cartLinked1 instanceof EntityBUnitDD35)) {
-				if (getFluid() == null) {
-					drain = ((LiquidTank) cartLinked1).drain(ForgeDirection.UNKNOWN, new FluidStack(FluidRegistry.WATER, 100), true);
-				} else if (getFluid().getFluid() == FluidRegistry.WATER) {
-					drain = ((LiquidTank) cartLinked1).drain(ForgeDirection.UNKNOWN, new FluidStack(FluidRegistry.WATER, 100), true);
-				}
-			} else if (drain ==null && cartLinked2 instanceof LiquidTank
-					&& !(cartLinked1 instanceof EntityBUnitEMDF7) && !(cartLinked1 instanceof EntityBUnitEMDF3) && !(cartLinked1 instanceof EntityBUnitDD35)) {
-				if (getFluid() == null) {
-					drain = ((LiquidTank) cartLinked2).drain(ForgeDirection.UNKNOWN, new FluidStack(FluidRegistry.WATER, 100), true);
-				} else if (getFluid().getFluid() == FluidRegistry.WATER) {
-					drain = ((LiquidTank) cartLinked2).drain(ForgeDirection.UNKNOWN, new FluidStack(FluidRegistry.WATER, 100), true);
-				}
-			}
-			if (drain != null) {
-				fill(ForgeDirection.UNKNOWN, drain, true);
-			}
-		}
-	}
-	/*IInventory implements*/
-	@Override
-	public ItemStack getStackInSlot(int i) {
-		return tenderItems[i];
-	}
+    public StandardTank getTank() {
+        return theTank;
+    }
 
-	@Override
-	public ItemStack getStackInSlotOnClosing(int par1) {
-		if (this.tenderItems[par1] != null) {
-			ItemStack var2 = this.tenderItems[par1];
-			this.tenderItems[par1] = null;
-			return var2;
-		}
-		else {
-			return null;
-		}
-	}
+    private void placeInInvent(ItemStack itemstack1, Tender tender) {
+        for (int i = 1; i < tender.tenderItems.length; i++) {
+            if (tender.tenderItems[i] == null) {
+                tender.tenderItems[i] = itemstack1;
+                return;
+            } else if (tender.tenderItems[i] != null && tender.tenderItems[i].getItem() == itemstack1.getItem() && itemstack1.isStackable() &&
+                    (!itemstack1.getHasSubtypes() || tender.tenderItems[i].getItemDamage() == itemstack1.getItemDamage()) && ItemStack.areItemStackTagsEqual(tender.tenderItems[i], itemstack1)) {
+                int var9 = tender.tenderItems[i].stackSize + itemstack1.stackSize;
+                if (var9 <= tender.tenderItems[i].getMaxStackSize()) {
+                    tender.tenderItems[i].stackSize = var9;
+                    return;
+                } else if (tender.tenderItems[i].stackSize < tender.tenderItems[i].getMaxStackSize()) {
+                    tender.tenderItems[i].stackSize += 1;
+                    return;
+                }
+            } else if (i == tender.tenderItems.length - 1) {
+                entityDropItem(itemstack1, 1);
+                return;
+            }
+        }
+    }
 
-	@Override
-	public ItemStack decrStackSize(int i, int j) {
-		if (tenderItems[i] != null) {
-			if (tenderItems[i].stackSize <= j) {
-				ItemStack itemstack = tenderItems[i];
-				tenderItems[i] = null;
-				return itemstack;
-			}
-			ItemStack itemstack1 = tenderItems[i].splitStack(j);
-			if (tenderItems[i].stackSize == 0) {
-				tenderItems[i] = null;
-			}
-			return itemstack1;
-		}
-		else {
-			return null;
-		}
-	}
+    public void liquidInSlot(ItemStack itemstack, Tender tender) {
+        if (worldObj.isRemote)
+            return;
+        this.update += 1;
+        if (this.update % 8 == 0 && itemstack != null) {
+            ItemStack result = LiquidManager.getInstance().processContainer(this, 0, this, itemstack);
+            if (result != null) {
+                placeInInvent(result, tender);
+                decrStackSize(0, 1);
+            }
+        }
+    }
 
-	@Override
-	public void setInventorySlotContents(int i, ItemStack itemstack) {
-		tenderItems[i] = itemstack;
-		if (itemstack != null && itemstack.stackSize > getInventoryStackLimit()) {
-			itemstack.stackSize = getInventoryStackLimit();
-		}
-	}
-	
-	public void setLiquid(FluidStack liquid) {
-	}
+    protected void checkInvent(ItemStack tenderInvent, Tender loco) {
+        if (tenderInvent != null) {
+            liquidInSlot(tenderInvent, loco);
+        }
 
-	public void setCapacity(int capacity) {
-		this.maxTank = capacity;
-	}
+        if (ticksExisted % 5 == 0 && fill(ForgeDirection.UNKNOWN, new FluidStack(FluidRegistry.WATER, 100), false) == 100) {
+            FluidStack drain = null;
+            blocksToCheck = new TileEntity[]{worldObj.getTileEntity(MathHelper.floor_double(posX), MathHelper.floor_double(posY - 1), MathHelper.floor_double(posZ)),
+                    worldObj.getTileEntity(MathHelper.floor_double(posX), MathHelper.floor_double(posY + 2), MathHelper.floor_double(posZ)),
+                    worldObj.getTileEntity(MathHelper.floor_double(posX), MathHelper.floor_double(posY + 3), MathHelper.floor_double(posZ)),
+                    worldObj.getTileEntity(MathHelper.floor_double(posX), MathHelper.floor_double(posY + 4), MathHelper.floor_double(posZ))
+            };
 
-	public int getCapacity() {
-		return this.maxTank;
-	}
-	@Override
-    public int fill(ForgeDirection from, FluidStack resource, boolean doFill)
-    {
+            for (TileEntity block : blocksToCheck) {
+                if (drain == null && block instanceof IFluidHandler) {
+                    for (ForgeDirection direction : ForgeDirection.VALID_DIRECTIONS) {
+                        if (((IFluidHandler) block).drain(direction, 100, false) != null &&
+                                ((IFluidHandler) block).drain(direction, 100, false).fluid == FluidRegistry.WATER &&
+                                ((IFluidHandler) block).drain(direction, 100, false).amount == 100
+                        ) {
+                            drain = ((IFluidHandler) block).drain(
+                                    direction, 100, true);
+                        }
+                    }
+                }
+            }
+            if (drain == null && cartLinked1 instanceof LiquidTank
+                    && !(cartLinked1 instanceof EntityBUnitEMDF7) && !(cartLinked1 instanceof EntityBUnitEMDF3) && !(cartLinked1 instanceof EntityBUnitDD35)) {
+                if (getFluid() == null) {
+                    drain = ((LiquidTank) cartLinked1).drain(ForgeDirection.UNKNOWN, new FluidStack(FluidRegistry.WATER, 100), true);
+                } else if (getFluid().getFluid() == FluidRegistry.WATER) {
+                    drain = ((LiquidTank) cartLinked1).drain(ForgeDirection.UNKNOWN, new FluidStack(FluidRegistry.WATER, 100), true);
+                }
+            } else if (drain == null && cartLinked2 instanceof LiquidTank
+                    && !(cartLinked1 instanceof EntityBUnitEMDF7) && !(cartLinked1 instanceof EntityBUnitEMDF3) && !(cartLinked1 instanceof EntityBUnitDD35)) {
+                if (getFluid() == null) {
+                    drain = ((LiquidTank) cartLinked2).drain(ForgeDirection.UNKNOWN, new FluidStack(FluidRegistry.WATER, 100), true);
+                } else if (getFluid().getFluid() == FluidRegistry.WATER) {
+                    drain = ((LiquidTank) cartLinked2).drain(ForgeDirection.UNKNOWN, new FluidStack(FluidRegistry.WATER, 100), true);
+                }
+            }
+            if (drain != null) {
+                fill(ForgeDirection.UNKNOWN, drain, true);
+            }
+        }
+    }
+
+    /*IInventory implements*/
+    @Override
+    public ItemStack getStackInSlot(int i) {
+        return tenderItems[i];
+    }
+
+    @Override
+    public ItemStack getStackInSlotOnClosing(int par1) {
+        if (this.tenderItems[par1] != null) {
+            ItemStack var2 = this.tenderItems[par1];
+            this.tenderItems[par1] = null;
+            return var2;
+        } else {
+            return null;
+        }
+    }
+
+    @Override
+    public ItemStack decrStackSize(int i, int j) {
+        if (tenderItems[i] != null) {
+            if (tenderItems[i].stackSize <= j) {
+                ItemStack itemstack = tenderItems[i];
+                tenderItems[i] = null;
+                return itemstack;
+            }
+            ItemStack itemstack1 = tenderItems[i].splitStack(j);
+            if (tenderItems[i].stackSize == 0) {
+                tenderItems[i] = null;
+            }
+            return itemstack1;
+        } else {
+            return null;
+        }
+    }
+
+    @Override
+    public void setInventorySlotContents(int i, ItemStack itemstack) {
+        tenderItems[i] = itemstack;
+        if (itemstack != null && itemstack.stackSize > getInventoryStackLimit()) {
+            itemstack.stackSize = getInventoryStackLimit();
+        }
+    }
+
+    public void setLiquid(FluidStack liquid) {
+    }
+
+    public void setCapacity(int capacity) {
+        this.maxTank = capacity;
+    }
+
+    public int getCapacity() {
+        return this.maxTank;
+    }
+
+    @Override
+    public int fill(ForgeDirection from, FluidStack resource, boolean doFill) {
         return theTank.fill(resource, doFill);
     }
 
     @Override
-    public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain)
-    {
-        if (resource == null || !resource.isFluidEqual(theTank.getFluid()))
-        {
+    public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain) {
+        if (resource == null || !resource.isFluidEqual(theTank.getFluid())) {
             return null;
         }
         return theTank.drain(resource.amount, doDrain);
     }
 
     @Override
-    public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain)
-    {
+    public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain) {
         return theTank.drain(maxDrain, doDrain);
     }
 
     @Override
-    public boolean canFill(ForgeDirection from, Fluid fluid)
-    {
+    public boolean canFill(ForgeDirection from, Fluid fluid) {
         return true;
     }
 
     @Override
-    public boolean canDrain(ForgeDirection from, Fluid fluid)
-    {
+    public boolean canDrain(ForgeDirection from, Fluid fluid) {
         return true;
     }
 
     @Override
-    public FluidTankInfo[] getTankInfo(ForgeDirection from)
-    {
-        return new FluidTankInfo[] { theTank.getInfo() };
+    public FluidTankInfo[] getTankInfo(ForgeDirection from) {
+        return new FluidTankInfo[]{theTank.getInfo()};
     }
-	
-    public FluidStack getFluid()
-    {
+
+    public FluidStack getFluid() {
         return theTank.getFluid();
     }
 
-    public int getFluidAmount()
-    {
+    public int getFluidAmount() {
         return theTank.getFluidAmount();
     }
 
-	@Override
-	public void dropCartAsItem(boolean isCreative){
-		if(!itemdropped) {
-			super.dropCartAsItem(isCreative);
-			for (ItemStack stack : tenderItems) {
-				if (stack != null) {
-					entityDropItem(stack, 0);
-				}
-			}
-		}
-	}
+    @Override
+    public void dropCartAsItem(boolean isCreative) {
+        if (!itemdropped) {
+            super.dropCartAsItem(isCreative);
+            for (ItemStack stack : tenderItems) {
+                if (stack != null) {
+                    entityDropItem(stack, 0);
+                }
+            }
+        }
+    }
 }

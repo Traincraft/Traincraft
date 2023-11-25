@@ -9,8 +9,8 @@
 package train.client.render;
 
 import net.minecraft.entity.Entity;
-import tmt.ModelBase;
-import tmt.ModelRendererTurbo;
+import fexcraft.tmt.slim.ModelBase;
+import fexcraft.tmt.slim.ModelRendererTurbo;
 
 public class ModelGTNG extends ModelBase {
     int textureX = 512;
@@ -453,5 +453,5 @@ public class ModelGTNG extends ModelBase {
     public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5) {
     }
 
-    public ModelRendererTurbo gtngModel[];
+    public ModelRendererTurbo[] gtngModel;
 }

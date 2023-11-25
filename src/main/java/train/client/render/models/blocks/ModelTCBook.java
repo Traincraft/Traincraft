@@ -30,7 +30,7 @@ public class ModelTCBook extends ModelBase {
 	}
 	
 	public void render(int pages) {
-		tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "book2.png"));
+		fexcraft.tmt.slim.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "book2.png"));
 		GL11.glPushMatrix();
 		GL11.glTranslatef(0.0f, 0.0f, 0.0f);
 		GL11.glScalef(1.0f+(pages*0.158f), 1.0f, 1.0f);
@@ -86,7 +86,7 @@ public class ModelTCBook extends ModelBase {
 	
 	public void render2(int pages) {
 		Tessellator tesselator = Tessellator.instance;
-		tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation,Info.modelTexPrefix + "book2.png"));
+		fexcraft.tmt.slim.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation,Info.modelTexPrefix + "book2.png"));
 		GL11.glPushMatrix();
 		GL11.glTranslatef(0.0f, 0.0f, 0.0f);
 		GL11.glScalef(1.0f+(pages*0.158f), 1.0f, 1.0f);
@@ -157,7 +157,7 @@ public class ModelTCBook extends ModelBase {
 			rot -= 360.0f;
 		}
 		Tessellator tesselator = Tessellator.instance;
-		tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "book2.png"));
+		fexcraft.tmt.slim.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "book2.png"));
 		GL11.glPushMatrix();
 		if(settings.guiScale == 0) {
 			GL11.glScalef(0.2f, 0.2f, 0.2f);
@@ -180,7 +180,7 @@ public class ModelTCBook extends ModelBase {
 		GL11.glPushMatrix();
 		GL11.glTranslatef((float) x + 0.5f, (float) y + 0.205f, (float) z + 0.5f);
 
-		tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "book2.png"));
+		fexcraft.tmt.slim.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "book2.png"));
 		GL11.glScalef(0.4f, 0.4f, 0.4f);
 		GL11.glRotatef(-90, 1, 0, 0);
 		int facing = book.getFacing();

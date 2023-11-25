@@ -1,18 +1,13 @@
-package tmt;
+package fexcraft.tmt.slim;
 
 import java.util.ArrayList;
 
-import static tmt.ModelRendererTurbo.*;
+import static fexcraft.tmt.slim.ModelRendererTurbo.*;
 
-
-/**
- * Cylinder Builder Tool, to prevent the need of XYZ amount of chained methods.
- * @author Ferdinand Calo' (FEX___96)
- */
 public class CylinderBuilder {
 
     private ModelRendererTurbo root;
-    private float x, y, z, radius, radius2, length, base_scale, top_scale;
+    private float x, y, z, radius, radius2, radius3, radius4, length, base_scale, top_scale;
     private int segments, seglimit, direction, texDiameterW, texDiameterH, texHeight;
     private Vec3f topoff = new Vec3f();
     private boolean[] togglesides = new boolean[]{false,false,false,false};
@@ -30,8 +25,12 @@ public class CylinderBuilder {
     }
 
     public CylinderBuilder setRadius(float first, float second){
-        this.radius = first; this.radius2 = second;
-        texDiameterW = (int)Math.floor(radius * 2F); texDiameterH = (int)Math.floor(radius * 2F); return this;
+        this.radius = first; this.radius2 = second; texDiameterW = (int)Math.floor(radius * 2F); texDiameterH = (int)Math.floor(radius * 2F); return this;
+    }
+
+    public CylinderBuilder setRadius(float first_s, float first_c, float second_s, float second_c){
+        this.radius3 = first_c; this.radius4 = second_c;
+        return setRadius(first_s, second_s);
     }
 
     /** Use AFTER `setRadius`, else values will get overriden. */
@@ -120,7 +119,9 @@ public class CylinderBuilder {
     }
 
     public ModelRendererTurbo build(){
-        if(radius2 == 0f && toprot == null){
+        if(radius3 == 0f) radius3 = radius;
+        if(radius4 == 0f) radius4 = radius2;
+        if(radius2 == 0f && toprot == null && radius3 == radius){
             return root.addCylinder(x, y, z, radius, length, segments, base_scale, top_scale, direction, texDiameterW, texDiameterH, texHeight, topoff);
         }
         if(radius < 1){ texDiameterW = 2; texDiameterH = 2; } if(length < 1){ texHeight = 2; }
@@ -131,7 +132,7 @@ public class CylinderBuilder {
         boolean dirMirror = (direction == MR_LEFT || direction == MR_BOTTOM || direction == MR_BACK);
         if(base_scale == 0) base_scale = 1f; if(top_scale == 0) top_scale = 1f;
         if(segments < 3) segments = 3; if(seglimit <= 0) seglimit = segments; boolean segl = seglimit < segments;
-        ArrayList<TexturedPolygon> polis = new ArrayList<TexturedPolygon>();
+        ArrayList<TexturedPolygon> polis = new ArrayList<>();
         //Vertex
         float xLength = (dirSide ? length : 0), yLength = (dirTop ? length : 0), zLength = (dirFront ? length : 0);
         float xStart = (dirMirror ? x + xLength : x);
@@ -152,15 +153,13 @@ public class CylinderBuilder {
         float vHeight = texHeight * vScale - uOffset * 2f;
         float uStart = root.textureOffsetX * uScale, vStart = root.textureOffsetY * vScale;
         //Temporary Arrays
-        ArrayList<TexturedVertex> verts0 = new ArrayList<TexturedVertex>();
-        ArrayList<TexturedVertex> verts1 = new ArrayList<TexturedVertex>();
-        ArrayList<TexturedVertex> verts2 = new ArrayList<TexturedVertex>();
-        ArrayList<TexturedVertex> verts3 = new ArrayList<TexturedVertex>();
+        ArrayList<TexturedVertex> verts0 = new ArrayList<>(), verts1 = new ArrayList<>(),
+                verts2 = new ArrayList<>(), verts3 = new ArrayList<>();
         float xSize,ySize,zSize,xPlace,yPlace,zPlace;
         for(int repeat = 0; repeat < 2; repeat++){//top/base faces
             for(int index = 0; index < segments; index++){
                 xSize = (float)((root.mirror ^ dirMirror ? -1 : 1) * Math.sin((ModelRendererTurbo.pi / segments) * index * 2F + ModelRendererTurbo.pi) * radius * sCur);
-                zSize = (float)(-Math.cos((ModelRendererTurbo.pi / segments) * index * 2F + ModelRendererTurbo.pi) * radius * sCur);
+                zSize = (float)(-Math.cos((ModelRendererTurbo.pi / segments) * index * 2F + ModelRendererTurbo.pi) * radius3 * sCur);
                 xPlace = xCur + (!dirSide ? xSize : 0);
                 yPlace = yCur + (!dirTop ? zSize : 0);
                 zPlace = zCur + (dirSide ? xSize : (dirTop ? zSize : 0));
@@ -170,7 +169,7 @@ public class CylinderBuilder {
                 }
                 //
                 xSize = (float)((root.mirror ^ dirMirror ? -1 : 1) * Math.sin((ModelRendererTurbo.pi / segments) * index * 2F + ModelRendererTurbo.pi) * radius2 * sCur);
-                zSize = (float)(-Math.cos((ModelRendererTurbo.pi / segments) * index * 2F + ModelRendererTurbo.pi) * radius2 * sCur);
+                zSize = (float)(-Math.cos((ModelRendererTurbo.pi / segments) * index * 2F + ModelRendererTurbo.pi) * radius4 * sCur);
                 xPlace = xCur + (!dirSide ? xSize : 0);
                 yPlace = yCur + (!dirTop ? zSize : 0);
                 zPlace = zCur + (dirSide ? xSize : (dirTop ? zSize : 0));
@@ -213,8 +212,7 @@ public class CylinderBuilder {
                         xSize = (float)(Math.sin((ModelRendererTurbo.pi / segments) * (i + 1) * 2F + (!dirTop ? 0 : ModelRendererTurbo.pi)) * (0.5F * uCircle - 2F * uOffset));
                         ySize = (float)(Math.cos((ModelRendererTurbo.pi / segments) * (i + 1) * 2F + (!dirTop ? 0 : ModelRendererTurbo.pi)) * (0.5F * vCircle - 2F * vOffset));
                         arr[3] = verts0.get(i + 1).setTexturePosition(uStart + mul * uCircle + xSize, vStart + 0.5F * vCircle + ySize);
-                    }
-                    else {
+                    } else {
                         float diff = (radius - radius2) * uScale / 4;
                         arr[0] = verts0.get(i).setTexturePosition(uStart + (i * seg_width) * uScale, vStart + (mul * vScale));
                         arr[1] = verts1.get(i).setTexturePosition(uStart + (i * seg_width) * uScale + diff, vStart + ((seg_height + mul) * vScale));
@@ -275,7 +273,7 @@ public class CylinderBuilder {
                 if(!dirFront) polis.get(polis.size() - 1 ).flipFace();
             }
         }
-        return root.copyTo(null, polis.toArray(new TexturedPolygon[0]));
+        root.faces.addAll(polis);
+        return root;
     }
-
 }
