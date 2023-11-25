@@ -42,9 +42,9 @@ public class ModelRightCurvedSlopeTCTrack extends ModelBase {
         }
 
         if (type.equals("large")) {
-            tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
+            fexcraft.tmt.slim.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
            modelLargeRightCurvedTrack.renderAll();
-            tmt.Tessellator.bindTexture(new ResourceLocation(ballastTexture[0],  "textures/blocks/" + ballastTexture[1] +".png"));
+            fexcraft.tmt.slim.Tessellator.bindTexture(new ResourceLocation(ballastTexture[0],  "textures/blocks/" + ballastTexture[1] +".png"));
 
             float r = (float)(ballastColour >> 16 & 255) / 255.0F;
             float g = (float)(ballastColour >> 8 & 255) / 255.0F;
@@ -54,9 +54,9 @@ public class ModelRightCurvedSlopeTCTrack extends ModelBase {
 
         }
         if (type.equals("embedded_large")) {
-            tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_embedded.png"));
+            fexcraft.tmt.slim.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_embedded.png"));
             modelLargeRightCurvedTrack.renderAll();
-            tmt.Tessellator.bindTexture(new ResourceLocation(ballastTexture[0],  "textures/blocks/" + ballastTexture[1] +".png"));
+            fexcraft.tmt.slim.Tessellator.bindTexture(new ResourceLocation(ballastTexture[0],  "textures/blocks/" + ballastTexture[1] +".png"));
 
             float r = (float)(ballastColour >> 16 & 255) / 255.0F;
             float g = (float)(ballastColour >> 8 & 255) / 255.0F;
@@ -66,9 +66,9 @@ public class ModelRightCurvedSlopeTCTrack extends ModelBase {
 
         }
         if (type.equals("verylarge")) {
-            tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
+            fexcraft.tmt.slim.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
             modelVeryLargeRightCurvedTrack.renderAll();
-            tmt.Tessellator.bindTexture(new ResourceLocation(ballastTexture[0],  "textures/blocks/" + ballastTexture[1] +".png"));
+            fexcraft.tmt.slim.Tessellator.bindTexture(new ResourceLocation(ballastTexture[0],  "textures/blocks/" + ballastTexture[1] +".png"));
 
             float r = (float)(ballastColour >> 16 & 255) / 255.0F;
             float g = (float)(ballastColour >> 8 & 255) / 255.0F;
@@ -78,9 +78,9 @@ public class ModelRightCurvedSlopeTCTrack extends ModelBase {
 
         }
         if (type.equals("embedded_verylarge")) {
-            tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_embedded.png"));
+            fexcraft.tmt.slim.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_embedded.png"));
             modelVeryLargeRightCurvedTrack.renderAll();
-            tmt.Tessellator.bindTexture(new ResourceLocation(ballastTexture[0],  "textures/blocks/" + ballastTexture[1] +".png"));
+            fexcraft.tmt.slim.Tessellator.bindTexture(new ResourceLocation(ballastTexture[0],  "textures/blocks/" + ballastTexture[1] +".png"));
 
             float r = (float)(ballastColour >> 16 & 255) / 255.0F;
             float g = (float)(ballastColour >> 8 & 255) / 255.0F;
@@ -90,9 +90,9 @@ public class ModelRightCurvedSlopeTCTrack extends ModelBase {
 
         }
         if (type.equals("superlarge")) {
-            tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
+            fexcraft.tmt.slim.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
             modelSuperLargeRightCurvedTrack.renderAll();
-            tmt.Tessellator.bindTexture(new ResourceLocation(ballastTexture[0],  "textures/blocks/" + ballastTexture[1] +".png"));
+            fexcraft.tmt.slim.Tessellator.bindTexture(new ResourceLocation(ballastTexture[0],  "textures/blocks/" + ballastTexture[1] +".png"));
 
             float r = (float)(ballastColour >> 16 & 255) / 255.0F;
             float g = (float)(ballastColour >> 8 & 255) / 255.0F;
@@ -102,9 +102,9 @@ public class ModelRightCurvedSlopeTCTrack extends ModelBase {
 
         }
         if (type.equals("embedded_superlarge")) {
-            tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_embedded.png"));
+            fexcraft.tmt.slim.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_embedded.png"));
             modelSuperLargeRightCurvedTrack.renderAll();
-            tmt.Tessellator.bindTexture(new ResourceLocation(ballastTexture[0],  "textures/blocks/" + ballastTexture[1] +".png"));
+            fexcraft.tmt.slim.Tessellator.bindTexture(new ResourceLocation(ballastTexture[0],  "textures/blocks/" + ballastTexture[1] +".png"));
 
             float r = (float)(ballastColour >> 16 & 255) / 255.0F;
             float g = (float)(ballastColour >> 8 & 255) / 255.0F;

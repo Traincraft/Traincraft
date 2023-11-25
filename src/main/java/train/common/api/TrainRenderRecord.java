@@ -1,7 +1,6 @@
 package train.common.api;
 
-import tmt.ModelBase;
-import train.common.api.AbstractTrains;
+import fexcraft.tmt.slim.ModelBase;
 import net.minecraft.util.ResourceLocation;
 
 import java.util.ArrayList;

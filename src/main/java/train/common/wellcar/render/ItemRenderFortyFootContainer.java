@@ -46,14 +46,14 @@ public class ItemRenderFortyFootContainer implements IItemRenderer {
         Modelcontainer40 theContainer = new Modelcontainer40();
         if (theItem.getTagCompound() != null) {
             if (theItem.getTagCompound().getString("currentColorString").equals("")) {
-                tmt.Tessellator.bindTexture(new ResourceLocation("tc:textures/trains/container40_generic.png"));
+                fexcraft.tmt.slim.Tessellator.bindTexture(new ResourceLocation("tc:textures/trains/container40_generic.png"));
             } else {
-                tmt.Tessellator.bindTexture(new ResourceLocation("tc:textures/trains/container40_" + theItem.getTagCompound().getString("currentColorString") + ".png"));
+                fexcraft.tmt.slim.Tessellator.bindTexture(new ResourceLocation("tc:textures/trains/container40_" + theItem.getTagCompound().getString("currentColorString") + ".png"));
             }
 
 
         } else {
-            tmt.Tessellator.bindTexture(new ResourceLocation("tc:textures/trains/container40_generic.png"));
+            fexcraft.tmt.slim.Tessellator.bindTexture(new ResourceLocation("tc:textures/trains/container40_generic.png"));
         }
 
         GL11.glPushMatrix();

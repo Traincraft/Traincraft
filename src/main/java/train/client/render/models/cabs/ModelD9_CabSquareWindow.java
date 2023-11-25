@@ -3,8 +3,8 @@ package train.client.render.models.cabs;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
-import tmt.ModelConverter;
-import tmt.ModelRendererTurbo;
+import fexcraft.tmt.slim.ModelConverter;
+import fexcraft.tmt.slim.ModelRendererTurbo;
 
 public class ModelD9_CabSquareWindow extends ModelConverter
 {

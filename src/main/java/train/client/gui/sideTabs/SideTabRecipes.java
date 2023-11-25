@@ -51,7 +51,7 @@ public class SideTabRecipes extends SideTab {
         fontRenderer.drawString("Known recipes:", x - 70, y + 8, headerColour);
 
         //293240
-        tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.guiPrefix + "Icons.png"));
+        fexcraft.tmt.slim.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.guiPrefix + "Icons.png"));
 
         drawRect(x - 59, y + 30, -40, 85, 0xff293240);
         drawRect(x - 58, y + 29, -41, 86, 0xff293240);
@@ -65,7 +65,7 @@ public class SideTabRecipes extends SideTab {
 
         if (recipes.isEmpty()) {
             fontRenderer.drawString("No recipes found", x - 93, y + 78, headerColour);
-            tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.guiPrefix + "Icons.png"));
+            fexcraft.tmt.slim.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.guiPrefix + "Icons.png"));
             gui.drawTexturedModalRect(x - 46, y + 33, 0, 16, 16, 16);
             gui.currentKnownItem = null;
         } else {

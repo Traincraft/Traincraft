@@ -8,8 +8,8 @@
 // Last changed on: 18.01.2019 - 19:05:31
 package train.client.render.models; //Path where the model is located
 
-import tmt.ModelConverter;
-import tmt.ModelRendererTurbo;
+import fexcraft.tmt.slim.ModelConverter;
+import fexcraft.tmt.slim.ModelRendererTurbo;
 
 public class ModelFGV4300Coach extends ModelConverter //Same as Filename
 {

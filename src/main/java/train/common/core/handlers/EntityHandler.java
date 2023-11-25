@@ -35,8 +35,8 @@ public class EntityHandler {
 	}
 
 	public static Entity getEntityServer(World world, int entityId) {
-		if ((world != null) && (world instanceof WorldServer)) {
-			return ((WorldServer) world).getEntityByID(entityId);
+		if ((world instanceof WorldServer)) {
+			return world.getEntityByID(entityId);
 		}
 		return null;
 	}

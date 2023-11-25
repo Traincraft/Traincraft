@@ -8,7 +8,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
 import org.lwjgl.opengl.GL11;
-import tmt.Tessellator;
+import fexcraft.tmt.slim.Tessellator;
 import train.client.render.renderSwitch.models.ModelsignalSpanish;
 import train.common.library.Info;
 

@@ -18,7 +18,7 @@ import train.common.tile.TileAmericanStopper;
 public class RenderAmericanStopper extends TileEntitySpecialRenderer {
 
     private static final ModelAmericanStopper modelAmericanStopper = new ModelAmericanStopper(1.0F / 16.0F);
-    private static final ResourceLocation texture = new ResourceLocation(Info.resourceLocation,Info.modelTexPrefix + "buffer.png");
+    private static final ResourceLocation texture = new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "buffer.png");
 
     public RenderAmericanStopper() {
     }
@@ -27,7 +27,7 @@ public class RenderAmericanStopper extends TileEntitySpecialRenderer {
         GL11.glPushMatrix();
 
         GL11.glTranslated(x, y, z);
-        tmt.Tessellator.bindTexture(texture);
+        fexcraft.tmt.slim.Tessellator.bindTexture(texture);
 
         GL11.glTranslatef(0.5F, 0.0F, 0.5F);
         modelAmericanStopper.render(0.0625F, ((TileAmericanStopper) var1).getFacing());

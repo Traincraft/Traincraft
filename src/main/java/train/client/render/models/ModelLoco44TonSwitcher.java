@@ -12,8 +12,8 @@ package train.client.render.models;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
-import tmt.ModelConverter;
-import tmt.ModelRendererTurbo;
+import fexcraft.tmt.slim.ModelConverter;
+import fexcraft.tmt.slim.ModelRendererTurbo;
 
 public class ModelLoco44TonSwitcher extends ModelConverter //Same as Filename
 {
@@ -37,10 +37,10 @@ public class ModelLoco44TonSwitcher extends ModelConverter //Same as Filename
 		for (ModelRendererTurbo mrt : bodyModel) {
 			if (mrt.boxName.equals("lamp")) {
 				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
-				mrt.render(scale, false);
+				mrt.render(scale);
 				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
 			} else {
-				mrt.render(scale, false);
+				mrt.render(scale);
 			}
 		}
 	}

@@ -1,6 +1,6 @@
 /*******************************************************************************
  * Copyright (c) 2013 Mrbrutal. All rights reserved.
- * 
+ *
  * @name Traincraft
  * @author Mrbrutal
  ******************************************************************************/
@@ -14,10 +14,10 @@ import train.common.tile.TileBook;
 
 public class RenderTCBook extends TileEntitySpecialRenderer {
 
-	private ModelTCBook book = new ModelTCBook();
-	
-	@Override
-	public void renderTileEntityAt(TileEntity tileentity, double x, double y, double z, float tick) {
-		book.render((TileBook) tileentity, x, y, z);
-	}
+    private final ModelTCBook book = new ModelTCBook();
+
+    @Override
+    public void renderTileEntityAt(TileEntity tileentity, double x, double y, double z, float tick) {
+        book.render((TileBook) tileentity, x, y, z);
+    }
 }

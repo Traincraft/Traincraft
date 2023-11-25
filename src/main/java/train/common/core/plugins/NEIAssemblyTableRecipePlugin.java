@@ -23,70 +23,63 @@ import java.util.Random;
 import static codechicken.lib.gui.GuiDraw.*;
 
 public class NEIAssemblyTableRecipePlugin extends ShapedRecipeHandler {
-	private List<TierRecipe> recipeList = assemblyListCleaner(TierRecipeManager.getInstance().getRecipeList());
+	private final List<TierRecipe> recipeList = assemblyListCleaner(TierRecipeManager.getInstance().getRecipeList());
 
 	private CachedShapedRecipe getShape(TierRecipe recipe) {
 		CachedShapedRecipe shape = new CachedShapedRecipe(0, 0, null, recipe.getOutput());
-		PositionedStack stack = null;
+		PositionedStack stack;
 		if (recipe.getInput().get(0) != null) {
 			stack = new PositionedStack(recipe.getInput().get(0), 20, 16);
 			stack.setMaxSize(recipe.getInput().get(0).stackSize);
 			shape.ingredients.add(stack);
-			stack = null;
 		}
+
 		if (recipe.getInput().get(1) != null) {
 			stack = new PositionedStack(recipe.getInput().get(1), 38, 82);
 			stack.setMaxSize(recipe.getInput().get(1).stackSize);
 			shape.ingredients.add(stack);
-			stack = null;
 		}
+
 		if (recipe.getInput().get(2) != null) {
 			stack = new PositionedStack(recipe.getInput().get(2), 74, 82);
 			stack.setMaxSize(recipe.getInput().get(2).stackSize);
 			shape.ingredients.add(stack);
-			stack = null;
 		}
+
 		if (recipe.getInput().get(3) != null) {
 			stack = new PositionedStack(recipe.getInput().get(3), 140, 82);
 			stack.setMaxSize(recipe.getInput().get(3).stackSize);
 			shape.ingredients.add(stack);
-			stack = null;
 		}
 		if (recipe.getInput().get(4) != null) {
 			stack = new PositionedStack(recipe.getInput().get(4), 74, 16);
 			stack.setMaxSize(recipe.getInput().get(4).stackSize);
 			shape.ingredients.add(stack);
-			stack = null;
 		}
 		if (recipe.getInput().get(5) != null) {
 			stack = new PositionedStack(recipe.getInput().get(5), 110, 16);
 			stack.setMaxSize(recipe.getInput().get(5).stackSize);
 			shape.ingredients.add(stack);
-			stack = null;
 		}
 		if (recipe.getInput().get(6) != null) {
 			stack = new PositionedStack(recipe.getInput().get(6), 74, 50);
 			stack.setMaxSize(recipe.getInput().get(6).stackSize);
 			shape.ingredients.add(stack);
-			stack = null;
 		}
 		if (recipe.getInput().get(7) != null) {
 			stack = new PositionedStack(recipe.getInput().get(7), 110, 50);
 			stack.setMaxSize(recipe.getInput().get(7).stackSize);
 			shape.ingredients.add(stack);
-			stack = null;
 		}
 		if (recipe.getInput().get(8) != null) {
 			stack = new PositionedStack(recipe.getInput().get(8), 20, 50);
 			stack.setMaxSize(recipe.getInput().get(8).stackSize);
 			shape.ingredients.add(stack);
-			stack = null;
 		}
 		if (recipe.getInput().get(9) != null) {
 			stack = new PositionedStack(recipe.getInput().get(9), 140, 16);
 			stack.setMaxSize(recipe.getInput().get(9).stackSize);
 			shape.ingredients.add(stack);
-			stack = null;
 		}
 
 		shape.result.relx = 87;
@@ -145,7 +138,7 @@ public class NEIAssemblyTableRecipePlugin extends ShapedRecipeHandler {
 		/**
 		 * This will perform default cycling of ingredients, mulitItem capable
 		 * 
-		 * @return
+		 * @return The cycled ingredients
 		 */
 		private int cycleTicks = 0;
 
@@ -156,7 +149,7 @@ public class NEIAssemblyTableRecipePlugin extends ShapedRecipeHandler {
 
 				String oreName = OreDictionary.getOreName(OreDictionary.getOreID(ingredients.get(itemIndex).item));
 				if (oreName.equals("ingotSteel") || oreName.equals("ingotIron") || oreName.equals("ingotCopper") || oreName.equals("dustPlastic") || oreName.equals("dustCoal")) {
-					ArrayList list = OreDictionary.getOres(OreDictionary.getOreName(OreDictionary.getOreID(ingredients.get(itemIndex).item)));
+					List<?> list = OreDictionary.getOres(OreDictionary.getOreName(OreDictionary.getOreID(ingredients.get(itemIndex).item)));
 					Random rand = new Random(cycle + System.currentTimeMillis());
 					if (cycleTicks % 15 == 0) {
 						int stackSize = ingredients.get(itemIndex).item.stackSize;
@@ -263,22 +256,17 @@ public class NEIAssemblyTableRecipePlugin extends ShapedRecipeHandler {
 		}
 	}
 
-	public static List assemblyListCleaner(List recipeList) {
-		HashSet outputList = new HashSet();
-		ArrayList cleanedList = new ArrayList();
-		for (int i = 0; i < recipeList.size(); i++) {
-			//ItemStack output = ((TierRecipe) recipeList.get(i)).getOutput();
-			int id=Item.getIdFromItem(((TierRecipe) recipeList.get(i)).getOutput().getItem());
-			if (outputList != null) {
-				if (!outputList.contains(id)) {
-					cleanedList.add(recipeList.get(i));
-				}
-			}
-			else {
-				cleanedList.add(recipeList.get(i));
-			}
-			outputList.add(id);
-		}
+	public static List<TierRecipe> assemblyListCleaner(List<?> recipeList) {
+		HashSet<Integer> outputList = new HashSet<>();
+		ArrayList<TierRecipe> cleanedList = new ArrayList<>();
+        for (Object o : recipeList) {
+            //ItemStack output = ((TierRecipe) recipeList.get(i)).getOutput();
+            int id = Item.getIdFromItem(((TierRecipe) o).getOutput().getItem());
+            if (!outputList.contains(id)) {
+                cleanedList.add((TierRecipe) o);
+            }
+            outputList.add(id);
+        }
 		return cleanedList;
 	}
 }

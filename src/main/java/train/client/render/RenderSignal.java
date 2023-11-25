@@ -8,26 +8,20 @@ import train.common.tile.TileSignal;
 
 public class RenderSignal extends TileEntitySpecialRenderer {
 
-	private static final ModelBlockSignal modelSignal = new ModelBlockSignal(1.0F / 16.0F);
+    private static final ModelBlockSignal modelSignal = new ModelBlockSignal(1.0F / 16.0F);
 
-	public RenderSignal() {
-	}
+    public RenderSignal() {
+    }
 
-	public void renderAModelAt(TileSignal var1, double d, double d1, double d2, float f) {
-		GL11.glPushMatrix();
-		GL11.glTranslatef((float) d + 0.46F, (float) d1 + 0.0F, (float) d2 + 0.46F);
-		/*if (var1.state == 1) {
-			bindTextureByName(Info.trainsPrefix + "signal_suisse_green.png");
-		}
-		else {
-			bindTextureByName(Info.trainsPrefix + "signal_suisse_red.png");
-		}*/
-		modelSignal.render(0.0625F, var1.getFacing());
-		GL11.glPopMatrix();
-	}
-	
-	@Override
-	public void renderTileEntityAt(TileEntity tileentity, double d, double d1, double d2, float f) {
-		renderAModelAt((TileSignal) tileentity, d, d1, d2, f);
-	}
+    public void renderAModelAt(TileSignal tile, double x, double y, double z, float f) {
+        GL11.glPushMatrix();
+        GL11.glTranslatef((float) x + 0.46F, (float) y + 0.0F, (float) z + 0.46F);
+        modelSignal.render(0.0625F, tile.getFacing());
+        GL11.glPopMatrix();
+    }
+
+    @Override
+    public void renderTileEntityAt(TileEntity tileentity, double x, double y, double z, float f) {
+        renderAModelAt((TileSignal) tileentity, x, y, z, f);
+    }
 }

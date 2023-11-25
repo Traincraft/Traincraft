@@ -165,7 +165,11 @@ public class GuiLiquid extends GuiContainer {
         int k = (height - ySize) / 2;
         drawTexturedModalRect(j, k, 0, 0, xSize, ySize);
 
-        int l = (liquid.getAmount() * 50) / liquid.getCapacity();
+        int l = 0;
+
+        if (liquid.getAmount() > 0 && liquid.getCapacity() > 0) {
+            l = (liquid.getAmount() * 50) / liquid.getCapacity();
+        }
 
         Fluid theLiquid = FluidRegistry.getFluid(liquid.getLiquidItemID());
         // Don't render anything if the cart is empty.

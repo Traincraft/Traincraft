@@ -2,7 +2,7 @@ package train.common.api;
 
 public interface TrainSoundRecord {
 
-    Class getEntityClass();
+    Class<?> getEntityClass();
 
     String getHornString();
 
@@ -16,9 +16,9 @@ public interface TrainSoundRecord {
 
     Float getIdleVolume();
 
-    int getRunSoundLenght();
+    int getRunSoundLength();
 
-    int getIdleSoundLenght();
+    int getIdleSoundLength();
 
     boolean getSoundChangeWithSpeed();
 }

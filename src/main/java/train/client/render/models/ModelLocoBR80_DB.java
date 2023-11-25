@@ -4,7 +4,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
-import tmt.ModelBase;
+import fexcraft.tmt.slim.ModelBase;
 import train.client.core.ClientProxy;
 import train.client.render.CustomModelRenderer;
 import train.client.render.models.blocks.ModelRing;
@@ -445,7 +445,7 @@ public class ModelLocoBR80_DB extends ModelBase {
 		lastframe = now;
 		
 		if (ClientProxy.isHoliday()) {
-			tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/locoBR80_DB_winter.png"));
+			fexcraft.tmt.slim.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/locoBR80_DB_winter.png"));
 		}
 		
 		body.render(f5);

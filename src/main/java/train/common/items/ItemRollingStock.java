@@ -34,9 +34,8 @@ import java.util.List;
 public class ItemRollingStock extends ItemMinecart implements IMinecart, IMinecartItem {
 
 	private String iconName = "";
-	private String trainName;
+	private final String trainName;
 	private String trainCreator;
-	private int trainColor = -1;
 
 	public ItemRollingStock(String iconName) {
 		super(1);
@@ -85,7 +84,7 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 			trainCreator = var5.getString("trainCreator");
 			/*if (id > 0)
 				par3List.add("\u00a77" + "ID: " + id);*/
-			if (trainCreator.length() > 0) {
+			if (!trainCreator.isEmpty()) {
 				par3List.add("\u00a77" + "Creator: " + trainCreator);
 			}
 			int color = var5.getInteger("trainColor");
@@ -98,7 +97,7 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 		int power = getMHP();
 		int maxSpeed = getMaxSpeed();
 		String additionnalInfo = getAdditionnalInfo();
-		if (getTrainType().length() > 0) {
+		if (!getTrainType().isEmpty()) {
 			par3List.add("\u00a77" + "Type: " + getTrainType());
 		}
 		if (power > 0) {
@@ -622,7 +621,7 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 						if (uniID != -1)
 							rollingStock.getEntityData().setInteger("uniqueID", uniID);
 						trainCreator = var5.getString("trainCreator");
-						trainColor = var5.getInteger("trainColor");
+						int trainColor = var5.getInteger("trainColor");
 						if (var5.hasKey("trainColor"))
 							rollingStock.setColor(trainColor);
 						rollingStock.trainCreator = trainCreator;

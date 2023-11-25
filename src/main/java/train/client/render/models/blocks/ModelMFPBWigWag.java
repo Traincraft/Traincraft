@@ -2,16 +2,17 @@
 package train.client.render.models.blocks;
 
 
+import fexcraft.fvtm.RollingStockModel;
+import fexcraft.fvtm.TurboList;
+import fexcraft.tmt.slim.ModelRendererTurbo;
+import fexcraft.tmt.slim.Vec3f;
 import net.minecraft.entity.Entity;
-import tmt.FVTMFormatBase;
-import tmt.ModelRendererTurbo;
-import tmt.Vec3f;
 
 /** This file was exported via the TiM Exporter V1.0 of<br>
  *  FMT (Fex's Modelling Toolbox) v.2.6.5 &copy; 2021 - Fexcraft.net<br>
  *  All rights reserved. For this Model's License contact the Author/Creator.
  */
-public class ModelMFPBWigWag extends FVTMFormatBase {
+public class ModelMFPBWigWag extends RollingStockModel {
 
 	@Override
 	public void render(Entity entity, float f0, float f1, float f2, float f3, float f4, float scale){
@@ -30,7 +31,7 @@ public class ModelMFPBWigWag extends FVTMFormatBase {
 		textureX = 256; textureY = 256;
 		this.addToCreators("Green PC");
 		//
-		FVTMFormatBase.TurboList group0 = new FVTMFormatBase.TurboList("group0");
+		TurboList group0 = new TurboList("group0");
 		group0.add(new ModelRendererTurbo(group0, 117, 0, textureX, textureY)
 				.addShapeBox(0, 0, 0, 7, 1, 7, 0, 0.0625f, 0, 0.0625f, 0.0625f, 0, 0.0625f, 0.0625f, 0, 0.0625f, 0.0625f, 0, 0.0625f, 0.1875f, 0, 0.1875f, 0.1875f, 0, 0.1875f, 0.1875f, 0, 0.1875f, 0.1875f, 0, 0.1875f)
 				.setRotationPoint(-3.5f, -1, -3.5f).setRotationAngle(0, 0, 0)
@@ -1015,7 +1016,7 @@ public class ModelMFPBWigWag extends FVTMFormatBase {
 		);
 		this.groups.add(group0);
 		//
-		FVTMFormatBase.TurboList Signal = new FVTMFormatBase.TurboList("Signal");
+		TurboList Signal = new TurboList("Signal");
 		Signal.add(new ModelRendererTurbo(Signal, 150, 6, textureX, textureY).addCylinder(3.8125f, 8, 0, 1, 1, 8, 0.4375f, 0.6875f, 2, new Vec3f(0.9375, 0.0, 0.0))
 				.setRotationPoint(-3.5f, -34, 0).setRotationAngle(0, 0, 0).setName("Lamp")
 		);

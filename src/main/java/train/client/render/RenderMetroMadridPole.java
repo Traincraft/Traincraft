@@ -19,7 +19,7 @@ import train.common.tile.TileMetroMadridPole;
 public class RenderMetroMadridPole extends TileEntitySpecialRenderer {
 
     private static final ModelMetroMadridOHW modelMetroMadridOHW = new ModelMetroMadridOHW();
-    private static final ResourceLocation texture = new ResourceLocation(Info.resourceLocation,Info.modelTexPrefix + "MetroMadridPole.png");
+    private static final ResourceLocation texture = new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "MetroMadridPole.png");
 
     public RenderMetroMadridPole() {
     }
@@ -28,7 +28,7 @@ public class RenderMetroMadridPole extends TileEntitySpecialRenderer {
         GL11.glPushMatrix();
 
         GL11.glTranslated(x, y, z);
-        tmt.Tessellator.bindTexture(texture);
+        fexcraft.tmt.slim.Tessellator.bindTexture(texture);
 
         GL11.glTranslatef(0.5F, 0.65F, 0.5F);
 

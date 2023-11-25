@@ -1,6 +1,6 @@
 /*******************************************************************************
  * Copyright (c) 2012 Mrbrutal. All rights reserved.
- * 
+ *
  * @name TrainCraft
  * @author Mrbrutal
  ******************************************************************************/
@@ -11,19 +11,19 @@ import net.minecraft.item.Item;
 
 import java.util.List;
 
-public abstract interface ITier {
+public interface ITier {
 
-	public abstract int Tier();
+    int Tier();
 
-	public abstract List<Item> knownRecipes();
+    List<Item> knownRecipes();
 
-	public abstract int[] getSlotSelected();
+    int[] getSlotSelected();
 
-	public abstract void setSlotSelected(int[] selected);
+    void setSlotSelected(int[] selected);
 
-	public abstract List<Item> getResultList();
+    List<Item> getResultList();
 
-	public abstract String getGUIName();
+    String getGUIName();
 
-	public abstract String getGUITexture();
+    String getGUITexture();
 }

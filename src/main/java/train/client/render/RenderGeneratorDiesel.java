@@ -1,6 +1,6 @@
 /*******************************************************************************
  * Copyright (c) 2012 Mrbrutal. All rights reserved.
- * 
+ *
  * @name TrainCraft
  * @author Mrbrutal
  ******************************************************************************/
@@ -17,27 +17,27 @@ import train.common.tile.TileGeneratorDiesel;
 
 public class RenderGeneratorDiesel extends TileEntitySpecialRenderer {
 
-	private static final ModelGeneratorDiesel modelGenerator = new ModelGeneratorDiesel((float) (1.0 / 16.0));
-	private static final ResourceLocation texture = new ResourceLocation(Info.resourceLocation,Info.modelTexPrefix + "generator_diesel.png");
+    private static final ModelGeneratorDiesel modelGenerator = new ModelGeneratorDiesel((float) (1.0 / 16.0));
+    private static final ResourceLocation texture = new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "generator_diesel.png");
 
-	public RenderGeneratorDiesel() {
-	}
+    public RenderGeneratorDiesel() {
+    }
 
-	public void render(TileEntity var1, double x, double y, double z) {
-		GL11.glPushMatrix();
+    public void render(TileEntity var1, double x, double y, double z) {
+        GL11.glPushMatrix();
 
-		GL11.glTranslated(x, y, z);
-		tmt.Tessellator.bindTexture(texture);
+        GL11.glTranslated(x, y, z);
+        fexcraft.tmt.slim.Tessellator.bindTexture(texture);
 
-		//System.out.println(((TileStopper) var1).getFacing());
-		GL11.glTranslatef(0.5F, 0.0F, 0.5F);
-		modelGenerator.render(0.0625F, ((TileGeneratorDiesel) var1).getFacing());
+        //System.out.println(((TileStopper) var1).getFacing());
+        GL11.glTranslatef(0.5F, 0.0F, 0.5F);
+        modelGenerator.render(0.0625F, ((TileGeneratorDiesel) var1).getFacing());
 
-		GL11.glPopMatrix();
-	}
+        GL11.glPopMatrix();
+    }
 
-	@Override
-	public void renderTileEntityAt(TileEntity var1, double var2, double var4, double var6, float var8) {
-		render(var1, var2, var4, var6);
-	}
+    @Override
+    public void renderTileEntityAt(TileEntity var1, double var2, double var4, double var6, float var8) {
+        render(var1, var2, var4, var6);
+    }
 }

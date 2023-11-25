@@ -9,10 +9,10 @@
 
 package train.client.render.models; //Path where the model is located
 
-import tmt.Coord2D;
-import tmt.ModelConverter;
-import tmt.ModelRendererTurbo;
-import tmt.Shape2D;
+import fexcraft.tmt.slim.Coord2D;
+import fexcraft.tmt.slim.ModelConverter;
+import fexcraft.tmt.slim.ModelRendererTurbo;
+import fexcraft.tmt.slim.Shape2D;
 
 
 public class ModelPanzerI extends ModelConverter //Same as Filename

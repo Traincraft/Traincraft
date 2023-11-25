@@ -9,13 +9,13 @@
 
 package train.client.render.models;
 
+import fexcraft.tmt.slim.ModelConverter;
+import fexcraft.tmt.slim.ModelRendererTurbo;
+import fexcraft.tmt.slim.Tessellator;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
-import tmt.ModelConverter;
-import tmt.ModelRendererTurbo;
-import tmt.Tessellator;
 import train.common.api.AbstractTrains;
 import train.common.library.Info;
 
@@ -1005,6 +1005,7 @@ public class ModelBP4 extends ModelConverter
 
 		GL11.glTranslatef(3.1f,0f,0);
 		bogie.render(entity, f, f1, f2, f3, f4, f5);
+		GL11.glScalef(1f,1f,1f);
 		GL11.glPopMatrix();
 	}
 
