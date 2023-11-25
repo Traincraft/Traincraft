@@ -77,8 +77,8 @@ public abstract class GuiAbstractPaintbrush extends GuiScreen {
         GUI_ANCHOR_Y = (this.height) / 2 - (MENU_TEXTURE_HEIGHT / 2);
         GUI_ANCHOR_X = GUI_ANCHOR_MID_X - MENU_TEXTURE_WIDTH;
         this.buttonList.clear();
-        this.buttonList.add(this.arrowUp = new GuiButtonPaintbrushMenu(0, GUI_ANCHOR_X + 388, GUI_ANCHOR_Y + 59, 12, 38, GuiButtonPaintbrushMenu.Type.ARROWUP));
-        this.buttonList.add(this.arrowDown = new GuiButtonPaintbrushMenu(1, GUI_ANCHOR_X + 388, GUI_ANCHOR_Y + 103, 12, 38, GuiButtonPaintbrushMenu.Type.ARROWDOWN));
+        this.buttonList.add(this.arrowUp = new GuiButtonPaintbrushMenu(0, GUI_ANCHOR_X + 388, GUI_ANCHOR_Y + 59, 12, 38, GuiButtonPaintbrushMenu.Type.ARROWLEFT));
+        this.buttonList.add(this.arrowDown = new GuiButtonPaintbrushMenu(1, GUI_ANCHOR_X + 388, GUI_ANCHOR_Y + 103, 12, 38, GuiButtonPaintbrushMenu.Type.ARROWRIGHT));
         this.buttonList.add(this.closeMenuButton = new GuiButtonPaintbrushMenu(2, GUI_ANCHOR_X + 382, GUI_ANCHOR_Y + 10, 22, 22, GuiButtonPaintbrushMenu.Type.CLOSE));
 
         this.buttonList.add(this.textureOne = new GuiButtonPaintbrushMenu(3, GUI_ANCHOR_X + 10, GUI_ANCHOR_Y + 12, 85, 85, GuiButtonPaintbrushMenu.Type.SELECTIONBOX));

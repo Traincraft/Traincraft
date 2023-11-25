@@ -17,13 +17,11 @@ import train.common.library.Info;
 class GuiButtonPaintbrushMenu extends GuiButton {
     enum Type {
         SELECTIONBOX,
-        ARROWUP,
-        ARROWDOWN,
+        ARROWLEFT,
+        ARROWRIGHT,
         CLOSE,
         PLAY,
         PAUSE,
-        LIGHTSON,
-        LIGHTSOFF,
         STOPRENDER
     }
     enum Texture {
@@ -88,23 +86,23 @@ class GuiButtonPaintbrushMenu extends GuiButton {
                         this.u = 0;
                     }
                     break;
-                case ARROWUP:
-                case ARROWDOWN:
-                    if (type == Type.ARROWDOWN)
-                        this.v = 38;
-                    TEXTURE_WIDTH = 12;
-                    TEXTURE_HEIGHT = 38;
-                    if (texture == Texture.ACTIVE) {
-                        this.u = 182;
-                    } else {
+                case ARROWLEFT:
+                case ARROWRIGHT:
+                    if (type == Type.ARROWLEFT)
                         this.u = 170;
+                    else
+                        this.u = 208;
+                    TEXTURE_WIDTH = 38;
+                    TEXTURE_HEIGHT = 12;
+                    if (texture == Texture.ACTIVE) {
+                        this.v = 12;
+                    } else {
+                        this.v = 0;
                     }
                     break;
                 case CLOSE:
                 case PLAY:
                 case PAUSE:
-                case LIGHTSON:
-                case LIGHTSOFF:
                 case STOPRENDER:
                     TEXTURE_WIDTH = 22;
                     TEXTURE_HEIGHT = 22;
@@ -118,12 +116,8 @@ class GuiButtonPaintbrushMenu extends GuiButton {
                         this.u = 22;
                     else if (type == Type.PAUSE)
                         this.u = 44;
-                    else if (type == Type.LIGHTSOFF)
-                        this.u = 66;
-                    else if (type == Type.LIGHTSON)
-                        this.u = 88;
                     else
-                        this.u = 110;
+                        this.u = 66;
                     break;
             }
         }
