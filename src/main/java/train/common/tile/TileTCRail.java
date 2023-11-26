@@ -135,7 +135,7 @@ public class TileTCRail extends TileEntity {
 		Block type = getBlockType();
 		if (type == BlockIDs.tcRail.block )
 		{
-			bb = AxisAlignedBB.getBoundingBox(xCoord - 18, yCoord, zCoord - 18, xCoord + 18, yCoord , zCoord + 18);
+			bb = AxisAlignedBB.getBoundingBox(xCoord - 32, yCoord, zCoord - 32, xCoord + 32, yCoord , zCoord + 32);
 		}
 
 		return bb;

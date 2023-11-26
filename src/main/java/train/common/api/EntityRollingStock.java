@@ -448,46 +448,36 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
     public void setDead() {
         super.setDead();
         this.unLink();
-        {
-			if (train == null) {
-				return;
-			}
-
-			if (train.getTrains() == null && train.getTrains().isEmpty()) {
-				return;
-			}
-
-			for (int i2 = 0; i2 < train.getTrains().size(); i2++) {
-				if (train.getTrains().get(i2) instanceof Locomotive) {
-					train.getTrains().get(i2).cartLinked1 = null;
-					train.getTrains().get(i2).Link1 = 0;
-					train.getTrains().get(i2).cartLinked2 = null;
-					train.getTrains().get(i2).Link2 = 0;
-				}
-
-				if ((train.getTrains().get(i2)) != this) {
-					if (train != null && train.getTrains() != null && train.getTrains().get(i2) != null && train.getTrains().get(i2).train != null && train.getTrains().get(i2).train.getTrains() != null)
-						train.getTrains().get(i2).train.getTrains().clear();
-				}
-			}
-		}
-
+        if (train != null) {
+            if (train.getTrains() != null) {
+                for (int i2 = 0; i2 < train.getTrains().size(); i2++) {
+                    if ((train.getTrains().get(i2)) instanceof Locomotive) {
+                        train.getTrains().get(i2).cartLinked1 = null;
+                        train.getTrains().get(i2).Link1 = 0;
+                        train.getTrains().get(i2).cartLinked2 = null;
+                        train.getTrains().get(i2).Link2 = 0;
+                    }
+                    if ((train.getTrains().get(i2)) != this) {
+                        if (train != null && train.getTrains() != null && train.getTrains().get(i2) != null && train.getTrains().get(i2).train != null && train.getTrains().get(i2).train.getTrains() != null) train.getTrains().get(i2).train.getTrains().clear();
+                    }
+                }
+            }
+        }
         if (train != null && train.getTrains().size() <= 1) {
             train.getTrains().clear();
             allTrains.remove(train);
         }
-
         if (this.bogieLoco != null) {
             bogieLoco.setDead();
             bogieLoco.isDead = true;
         }
-
         isDead = true;
         Side side = FMLCommonHandler.instance().getEffectiveSide();
         if (side == Side.CLIENT) {
             soundUpdater();
         }
     }
+
 
     @Override
     public boolean canBeCollidedWith() {
@@ -1696,7 +1686,6 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
             return true;
         }
         if (MinecraftForge.EVENT_BUS.post(new MinecartInteractEvent(this, entityplayer))) {
-            entityplayer.addChatMessage(new ChatComponentText("test"));
         }
         if (itemstack != null && itemstack.hasTagCompound() && getTicketDestination(itemstack) != null && getTicketDestination(itemstack).length() > 0) {
             this.setDestination(itemstack);
@@ -1741,7 +1730,6 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
             }
         }
         if ((trainsOnClick.onClickWithStake(this, itemstack, playerEntity, worldObj))) {
-            entityplayer.addChatMessage(new ChatComponentText("test"));
             return true;
         }
 

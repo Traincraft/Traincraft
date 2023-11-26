@@ -16,13 +16,14 @@ public class ModelRightTurnTCTrack extends ModelBase {
 	private IModelCustom modelLargeRightTurn;
 	private IModelCustom modelVeryLargeRightTurn;
 	private IModelCustom modelSuperLargeRightTurn;
+	private IModelCustom model32XRightTurn;
 
 	public ModelRightTurnTCTrack() {
 		modelMediumRightTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_curve_medium.obj"));
 		modelLargeRightTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_curve_big.obj"));
 		modelVeryLargeRightTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_curve_very_big.obj"));
 		modelSuperLargeRightTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_curve_super_big.obj"));
-
+		model32XRightTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_curve_32x.obj"));
 	}
 
 	public void renderMedium() {
@@ -37,6 +38,7 @@ public class ModelRightTurnTCTrack extends ModelBase {
 	public void renderSuperLarge() {
 		modelSuperLargeRightTurn.renderAll();
 	}
+	public void render32X() {model32XRightTurn.renderAll();}
 
 	public void render(String type, TileTCRail tcRail, double x, double y, double z) {
 		int facing = tcRail.getWorldObj().getBlockMetadata(tcRail.xCoord, tcRail.yCoord, tcRail.zCoord);
@@ -68,6 +70,8 @@ public class ModelRightTurnTCTrack extends ModelBase {
 				GL11.glTranslatef(-1.0f, 0.0f, 5.0f);
 			if(type.equals("medium") || type.equals("embedded_medium"))
 				GL11.glTranslatef(1.5f, 0.0f, 2.5f);
+			if(type.equals("32x") || type.equals("embedded_32x"))
+				GL11.glTranslatef(30.5f,0,31.5f);
 		}
 		if (facing == 1) {
 			GL11.glRotatef(180, 0, 1, 0);
@@ -79,6 +83,8 @@ public class ModelRightTurnTCTrack extends ModelBase {
 				GL11.glTranslatef(-1.0f, 0.0f, 5.0f);
 			if(type.equals("medium") || type.equals("embedded_medium"))
 				GL11.glTranslatef(1.5f, 0.0f, 2.5f);
+			if(type.equals("32x") || type.equals("embedded_32x"))
+				GL11.glTranslatef(30.5f,0,31.5f);
 		}
 		if (facing == 2) {
 			GL11.glRotatef(90, 0, 1, 0);
@@ -90,6 +96,8 @@ public class ModelRightTurnTCTrack extends ModelBase {
 				GL11.glTranslatef(-1.0f, 0.0f, 5.0f);
 			if(type.equals("medium") || type.equals("embedded_medium"))
 				GL11.glTranslatef(1.5f, 0.0f, 2.5f);
+			if(type.equals("32x") || type.equals("embedded_32x"))
+				GL11.glTranslatef(30.5f,0f,31.5f);
 		}
 		if (facing == 0) {
 			GL11.glRotatef(-90, 0, 1, 0);
@@ -101,6 +109,8 @@ public class ModelRightTurnTCTrack extends ModelBase {
 				GL11.glTranslatef(-1.0f, 0.0f, 5.0f);
 			if(type.equals("medium") || type.equals("embedded_medium"))
 				GL11.glTranslatef(1.5f, 0.0f, 2.5f);
+			if(type.equals("32x") || type.equals("embedded_32x"))
+				GL11.glTranslatef(30.5f,0,31.5f);
 		}
 		if (type.equals("medium") || type.equals("embedded_medium"))
 			this.renderMedium();
@@ -110,6 +120,8 @@ public class ModelRightTurnTCTrack extends ModelBase {
 			this.renderVeryLarge();
 		if (type.equals("super_large") || type.equals("embedded_super_large"))
 			this.renderSuperLarge();
+		if(type.equals("32x") || type.equals("embedded_32x"))
+			this.render32X();
 
 		// Pop this matrix from the stack.
 		GL11.glPopMatrix();

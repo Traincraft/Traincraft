@@ -274,8 +274,10 @@ public class CustomRenderHandler {
         } else if (item.getTrackType().getType() == TCRailTypes.TURN) {
             if (item.getTrackType() == ItemTCRail.TrackTypes.MEDIUM_TURN || item.getTrackType() == ItemTCRail.TrackTypes.LARGE_TURN
                     || item.getTrackType() == ItemTCRail.TrackTypes.VERY_LARGE_TURN || item.getTrackType() == ItemTCRail.TrackTypes.SUPER_LARGE_TURN
+                    || item.getTrackType() == ItemTCRail.TrackTypes.TURN_32X32
                     || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_MEDIUM_TURN || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_LARGE_TURN
-                    || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_VERY_LARGE_TURN || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_SUPER_LARGE_TURN) {
+                    || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_VERY_LARGE_TURN || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_SUPER_LARGE_TURN
+                    || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_TURN_32X32) {
                 String turnSize = "medium";
                 if (item.getTrackType() == ItemTCRail.TrackTypes.LARGE_TURN || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_LARGE_TURN)
                     turnSize = "large";
@@ -283,6 +285,8 @@ public class CustomRenderHandler {
                     turnSize = "very_large";
                 else if (item.getTrackType() == ItemTCRail.TrackTypes.SUPER_LARGE_TURN || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_SUPER_LARGE_TURN)
                     turnSize = "super_large";
+                else if (item.getTrackType() == ItemTCRail.TrackTypes.TURN_32X32 || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_TURN_32X32)
+                    turnSize = "32x";
 
                 if (item.getTrackOrientation(facing, MathHelper.wrapAngleTo180_float(player.rotationYaw)).equals("left")) {
                     RenderTCRail.modelLeftTurn.render((item.getTrackType().getLabel().contains("EMBEDDED") ? "embedded_" : "") + turnSize, facing, 0, 0, 0, r, g, b, a);
