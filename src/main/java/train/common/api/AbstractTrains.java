@@ -4,7 +4,6 @@ import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 import ebf.XmlBuilder;
 import io.netty.buffer.ByteBuf;
-import jdk.internal.util.xml.impl.Pair;
 import mods.railcraft.api.carts.IMinecart;
 import mods.railcraft.api.carts.IRoutableCart;
 import net.minecraft.entity.Entity;
@@ -136,7 +135,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
     public double trainDistanceTraveled = 0;
 
     public String destination = "";
-	public final Map<Integer, Pair> textureDescriptionMap = new HashMap<>();
+	public final Map<String, TextureDescription> textureDescriptionMap = new HashMap<>();
 	private OverlayTextureManager overlayTextureContainer;
 	private boolean acceptsOverlayTextures = false;
 

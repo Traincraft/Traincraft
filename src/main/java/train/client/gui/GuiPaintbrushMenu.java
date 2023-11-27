@@ -66,17 +66,20 @@ public class GuiPaintbrushMenu extends GuiScreen {
     private GuiButtonPaintbrushMenu closeMenuButton;
     private GuiButtonPaintbrushMenu playPauseButton;
     private GuiButtonPaintbrushMenu renderModelsButton;
+    private GuiButtonPaintbrushMenu randomButton;
+    private GuiButtonPaintbrushMenu applyButton;
     private boolean renderModels;
     private boolean disableLighting = true;
-//    private int optionsOnCurrentPage;
     private final int totalOptions;
     private int currentDisplayTexture = 0;
     private final AbstractTrains renderEntity;
     private final TrainRecord record;
     private boolean doAnimation;
-    ResourceLocation rightMenuTexture = new ResourceLocation(Info.resourceLocation, Info.guiPrefix + "gui_paintbrush_menu_right.png");
-    ResourceLocation leftMenuTexture = new ResourceLocation(Info.resourceLocation, Info.guiPrefix + "gui_paintbrush_menu_left.png");
-    ResourceLocation overlayBarTexture = new ResourceLocation(Info.resourceLocation, Info.guiPrefix + "gui_paintbrush_overlay_controller.png");
+    private static Integer activeButtonID;
+    private final ResourceLocation rightMenuTexture = new ResourceLocation(Info.resourceLocation, Info.guiPrefix + "gui_paintbrush_menu_right.png");
+    private final ResourceLocation leftMenuTexture = new ResourceLocation(Info.resourceLocation, Info.guiPrefix + "gui_paintbrush_menu_left.png");
+    private final ResourceLocation outlinesTexture = new ResourceLocation(Info.resourceLocation, Info.guiPrefix + "gui_paintbrush_menu_outlines.png");
+    private final ResourceLocation overlayBarTexture = new ResourceLocation(Info.resourceLocation, Info.guiPrefix + "gui_paintbrush_overlay_controller.png");
 
     public GuiPaintbrushMenu(EntityPlayer editingPlayer, EntityRollingStock rollingStock) {
         this.editingPlayer = editingPlayer;
@@ -111,24 +114,27 @@ public class GuiPaintbrushMenu extends GuiScreen {
         }
         GUI_ANCHOR_X = GUI_ANCHOR_MID_X - MENU_TEXTURE_WIDTH;
         this.buttonList.clear();
-        this.buttonList.add(this.arrowLeft = new GuiButtonPaintbrushMenu(0, GUI_ANCHOR_X + 5, GUI_ANCHOR_Y + 79, 38, 12, GuiButtonPaintbrushMenu.Type.ARROWLEFT));
-        this.buttonList.add(this.arrowRight = new GuiButtonPaintbrushMenu(1, GUI_ANCHOR_X + 370, GUI_ANCHOR_Y + 79, 38, 12, GuiButtonPaintbrushMenu.Type.ARROWRIGHT));
-        this.buttonList.add(this.renderModelsButton = new GuiButtonPaintbrushMenu(2, GUI_ANCHOR_X + 382, GUI_ANCHOR_Y + MENU_TEXTURE_HEIGHT - 53, 22, 22, GuiButtonPaintbrushMenu.Type.STOPRENDER));
+        this.buttonList.add(this.arrowLeft = new GuiButtonPaintbrushMenu(0, GUI_ANCHOR_X + 15, GUI_ANCHOR_Y + 79, 38, 12, GuiButtonPaintbrushMenu.Type.ARROWLEFT));
+        this.buttonList.add(this.arrowRight = new GuiButtonPaintbrushMenu(1, GUI_ANCHOR_X + 360, GUI_ANCHOR_Y + 79, 38, 12, GuiButtonPaintbrushMenu.Type.ARROWRIGHT));
+        this.buttonList.add(this.renderModelsButton = new GuiButtonPaintbrushMenu(2, GUI_ANCHOR_X + 4, GUI_ANCHOR_Y + MENU_TEXTURE_HEIGHT - 53, 22, 22, GuiButtonPaintbrushMenu.Type.STOPRENDER));
 
         this.buttonList.add(this.textureOne = new GuiButtonPaintbrushMenu(3, GUI_ANCHOR_X + 70, GUI_ANCHOR_Y + 42, 85, 85, GuiButtonPaintbrushMenu.Type.SELECTIONBOX));
         this.buttonList.add(this.textureTwo = new GuiButtonPaintbrushMenu(4, GUI_ANCHOR_X + 164, GUI_ANCHOR_Y + 42, 85, 85, GuiButtonPaintbrushMenu.Type.SELECTIONBOX));
         this.buttonList.add(this.textureThree = new GuiButtonPaintbrushMenu(5, GUI_ANCHOR_X + 258, GUI_ANCHOR_Y + 42, 85, 85, GuiButtonPaintbrushMenu.Type.SELECTIONBOX));
+
+        this.buttonList.add(this.randomButton = new GuiButtonPaintbrushMenu(6, GUI_ANCHOR_MID_X + MENU_TEXTURE_WIDTH - 26, GUI_ANCHOR_Y + MENU_TEXTURE_HEIGHT - 29, 22, 22, GuiButtonPaintbrushMenu.Type.RANDOM));
+        this.buttonList.add(this.applyButton = new GuiButtonPaintbrushMenu(7, GUI_ANCHOR_MID_X + MENU_TEXTURE_WIDTH - 26, GUI_ANCHOR_Y + MENU_TEXTURE_HEIGHT - 53, 22, 22, GuiButtonPaintbrushMenu.Type.APPLY));
         this.buttonList.add(this.overlayControllerNone = new GuiButtonPaintbrushOverlayController(11, GUI_ANCHOR_X + 121, GUI_ANCHOR_Y + 202, 29, 29, GuiButtonPaintbrushOverlayController.Type.NONE));
         this.buttonList.add(this.overlayControllerDynamic = new GuiButtonPaintbrushOverlayController(12, GUI_ANCHOR_X + 179, GUI_ANCHOR_Y + 202, 56, 29, GuiButtonPaintbrushOverlayController.Type.DYNAMIC));
         this.buttonList.add(this.overlayControllerFixed = new GuiButtonPaintbrushOverlayController(13, GUI_ANCHOR_X + 264, GUI_ANCHOR_Y + 202, 29, 29, GuiButtonPaintbrushOverlayController.Type.FIXED));
         this.buttonList.add(this.closeMenuButton = new GuiButtonPaintbrushMenu(14, GUI_ANCHOR_X + 382, GUI_ANCHOR_Y + 10, 22, 22, GuiButtonPaintbrushMenu.Type.CLOSE));
-        this.buttonList.add(this.playPauseButton = new GuiButtonPaintbrushMenu(15, GUI_ANCHOR_X + 382, GUI_ANCHOR_Y + MENU_TEXTURE_HEIGHT - 29, 22, 22, GuiButtonPaintbrushMenu.Type.PLAY));
+        this.buttonList.add(this.playPauseButton = new GuiButtonPaintbrushMenu(15, GUI_ANCHOR_X + 4, GUI_ANCHOR_Y + MENU_TEXTURE_HEIGHT - 29, 22, 22, GuiButtonPaintbrushMenu.Type.PLAY));
         this.updateButtons();
     }
 
     private void updateButtons() {
         hasPreviousTexture = currentDisplayTexture != 0;
-        hasNextTexture = currentDisplayTexture != rollingStock.getSpec().getLiveries().size() - 1;
+        hasNextTexture = currentDisplayTexture != totalOptions - 1;
         this.arrowLeft.visible = (currentDisplayTexture != 0);
         this.arrowLeft.showButton = (currentDisplayTexture != 0);
         this.arrowRight.visible = hasNextTexture;
@@ -145,6 +151,10 @@ public class GuiPaintbrushMenu extends GuiScreen {
         this.playPauseButton.visible = renderModels;
         this.playPauseButton.showButton = renderModels;
         this.playPauseButton.setType(doAnimation ? GuiButtonPaintbrushMenu.Type.PLAY : GuiButtonPaintbrushMenu.Type.PAUSE, playPauseButton.getTexture());
+        this.randomButton.visible = true;
+        this.randomButton.showButton = true;
+        this.applyButton.visible = true;
+        this.applyButton.showButton = true;
 
         this.renderModelsButton.visible = true;
         this.renderModelsButton.showButton = true;
@@ -196,6 +206,15 @@ public class GuiPaintbrushMenu extends GuiScreen {
         mc.renderEngine.bindTexture(leftMenuTexture);
         this.drawTexturedModalRect(GUI_ANCHOR_X, GUI_ANCHOR_Y, 0, 0, MENU_TEXTURE_WIDTH, MENU_TEXTURE_HEIGHT);
 
+        mc.renderEngine.bindTexture(outlinesTexture);
+        // Draw boxes for title.
+        this.drawTexturedModalRect(GUI_ANCHOR_X + 80, GUI_ANCHOR_Y + 4, 0, 0, 256, 24);
+
+        // Left half of box for description.
+        this.drawTexturedModalRect(GUI_ANCHOR_X + 30, GUI_ANCHOR_Y + MENU_TEXTURE_HEIGHT - 66, 0, 24, 256, 68);
+        // Right half of box for description
+        this.drawTexturedModalRect(GUI_ANCHOR_X + MENU_TEXTURE_WIDTH - 10, GUI_ANCHOR_Y + MENU_TEXTURE_HEIGHT - 66, 68, 24, 188, 68);
+
         // Draw overlay controller buttons if overlay is allowed.
         if (rollingStock.acceptsOverlayTextures()) {
             mc.renderEngine.bindTexture(overlayBarTexture);
@@ -203,7 +222,8 @@ public class GuiPaintbrushMenu extends GuiScreen {
             this.drawTexturedModalRect(GUI_ANCHOR_MID_X, GUI_ANCHOR_Y + MENU_TEXTURE_HEIGHT - 2, 0, 38, 206, 38);
         }
 
-        // Draw cargo controller bar if cargo controller is enabled...
+        super.drawScreen(mouseX, mouseY, par3);
+
         String loopRenderColor;
         if (renderModels) {
             // Rolling stock pieces with more than one bogie need offset based on bogie position to render properly.
@@ -218,7 +238,6 @@ public class GuiPaintbrushMenu extends GuiScreen {
             for (int i = startIndex; i <= endIndex; i++) {
                 loopRenderColor = record.getLiveries().get(i + currentDisplayTexture);
                 renderEntity.setColor(loopRenderColor);
-                // Set the button to active or inactive depending on whether the texture is active.
                 GL11.glColor4f(1, 1, 1, 1);
                 GL11.glPushMatrix();
                 GL11.glTranslated(offsetX + 205 + (i * 95), offsetY + 82, 400);
@@ -236,37 +255,77 @@ public class GuiPaintbrushMenu extends GuiScreen {
             }
         }
 
-        super.drawScreen(mouseX, mouseY, par3);
 
+        // Draw Currently Displayed Texture Name and Tooltip
+        String titleString;
+        String descriptionString;
+        String currentDisplayTextureString = rollingStock.getSpec().getLiveries().get(currentDisplayTexture);
+        if (rollingStock.textureDescriptionMap.containsKey(currentDisplayTextureString)) {
+            if (rollingStock.textureDescriptionMap.get(currentDisplayTextureString).title != null) {
+                titleString = rollingStock.textureDescriptionMap.get(currentDisplayTextureString).title;
+            } else {
+                titleString = currentDisplayTextureString;
+            }
+            descriptionString = rollingStock.textureDescriptionMap.get(currentDisplayTextureString).description;
+        } else {
+            titleString = currentDisplayTextureString;
+            descriptionString = StatCollector.translateToLocal("paintbrushmenu.No Description.name");
+        }
+        fontRendererObj.drawString(titleString, GUI_ANCHOR_MID_X - ((int) (fontRendererObj.getStringWidth(titleString) * 0.5)), GUI_ANCHOR_Y + 12, 0);
+
+        // fontRendererObj.splitStringWidth() does not work, use this bodge below instead.
+        int splitStringWidth = Math.min(fontRendererObj.getStringWidth(descriptionString), MENU_TEXTURE_WIDTH * 2 - 80);
+        fontRendererObj.drawSplitString(descriptionString, (int) (GUI_ANCHOR_MID_X - (splitStringWidth * 0.5)), GUI_ANCHOR_Y + MENU_TEXTURE_HEIGHT - 60, (MENU_TEXTURE_WIDTH * 2) - 70, 0);
 
         // Draw Hovering Tooltips
-        // I split this up to hopefully reduce the amount of statements it has to process.
-        if (mouseX > closeMenuButton.xPosition - 5) { // If mouse is on the right-hand side after the textures.
-            if (closeMenuButton.getTexture() == GuiButtonPaintbrushMenu.Texture.ACTIVE)
-                drawHoveringText(Collections.singletonList(StatCollector.translateToLocal("paintbrushmenu.Close Menu.name")), mouseX, mouseY, fontRendererObj);
-            else if (arrowLeft.getTexture() == GuiButtonPaintbrushMenu.Texture.ACTIVE && arrowLeft.visible)
-                drawHoveringText(Collections.singletonList(StatCollector.translateToLocal("paintbrushmenu.Previous Page.name")), mouseX, mouseY, fontRendererObj);
-            else if (arrowRight.getTexture() == GuiButtonPaintbrushMenu.Texture.ACTIVE && arrowRight.visible)
-                drawHoveringText(Collections.singletonList(StatCollector.translateToLocal("paintbrushmenu.Next Page.name")), mouseX, mouseY, fontRendererObj);
-            else if (playPauseButton.getTexture() == GuiButtonPaintbrushMenu.Texture.ACTIVE) {
-                if (doAnimation)
-                    drawHoveringText(Collections.singletonList(StatCollector.translateToLocal("paintbrushmenu.Pause.name")), mouseX, mouseY, fontRendererObj);
-                else
-                    drawHoveringText(Collections.singletonList(StatCollector.translateToLocal("paintbrushmenu.Play.name")), mouseX, mouseY, fontRendererObj);
-            } else if (renderModelsButton.getTexture() == GuiButtonPaintbrushMenu.Texture.ACTIVE) {
-                if (renderModels)
-                    drawHoveringText(Collections.singletonList(StatCollector.translateToLocal("paintbrushmenu.Hide Models.name")), mouseX, mouseY, fontRendererObj);
-                else
-                    drawHoveringText(Collections.singletonList(StatCollector.translateToLocal("paintbrushmenu.Show Models.name")), mouseX, mouseY, fontRendererObj);
+        if (GuiPaintbrushMenu.activeButtonID != null)
+            switch (GuiPaintbrushMenu.activeButtonID) {
+                case 0:
+                case 1: // Arrow left or right button.
+                    if (GuiPaintbrushMenu.activeButtonID == 0) { // If arrow left...
+                        drawHoveringText(Collections.singletonList(StatCollector.translateToLocal("paintbrushmenu.Previous Page.name")), mouseX, mouseY, fontRendererObj);
+                    } else { // If arrow right...
+                        drawHoveringText(Collections.singletonList(StatCollector.translateToLocal("paintbrushmenu.Next Page.name")), mouseX, mouseY, fontRendererObj);
+                    }
+                    updateButtons();
+                    break;
+                case 2: // Render models button.
+                    if (renderModels) {
+                        drawHoveringText(Collections.singletonList(StatCollector.translateToLocal("paintbrushmenu.Hide Models.name")), mouseX, mouseY, fontRendererObj);
+                    } else {
+                        drawHoveringText(Collections.singletonList(StatCollector.translateToLocal("paintbrushmenu.Show Models.name")), mouseX, mouseY, fontRendererObj);
+                    }
+                    break;
+                case 3: // Left texture button.
+                case 4: // Middle (current) texture Button.
+                case 5: // Right texture button.
+                    break;
+                case 6: // Random texture button.
+                    drawHoveringText(Collections.singletonList(StatCollector.translateToLocal("paintbrushmenu.Random Texture.name")), mouseX, mouseY, fontRendererObj);
+                    break;
+                case 7: // Apply & submit button.
+                    drawHoveringText(Collections.singletonList(StatCollector.translateToLocal("paintbrushmenu.Apply Texture.name")), mouseX, mouseY, fontRendererObj);
+                    break;
+                case 11: // Clear overlay button.
+                    drawHoveringText(Collections.singletonList(StatCollector.translateToLocal("paintbrushmenu.None.name")), mouseX, mouseY, fontRendererObj);
+                    break;
+                case 12: // Open dynamic overlay menu button.
+                    drawHoveringText(Collections.singletonList(StatCollector.translateToLocal("paintbrushmenu.Dynamic Overlay.name")), mouseX, mouseY, fontRendererObj);
+                    break;
+                case 13: // Open fixed overlay menu button.
+                    drawHoveringText(Collections.singletonList(StatCollector.translateToLocal("paintbrushmenu.Fixed Overlay.name")), mouseX, mouseY, fontRendererObj);
+                    break;
+                case 14: // Close button.
+                    drawHoveringText(Collections.singletonList(StatCollector.translateToLocal("paintbrushmenu.Close Menu.name")), mouseX, mouseY, fontRendererObj);
+                    break;
+                case 15: // Pause/Play
+                    if (doAnimation)
+                        drawHoveringText(Collections.singletonList(StatCollector.translateToLocal("paintbrushmenu.Pause.name")), mouseX, mouseY, fontRendererObj);
+                    else
+                        drawHoveringText(Collections.singletonList(StatCollector.translateToLocal("paintbrushmenu.Play.name")), mouseX, mouseY, fontRendererObj);
+                    break;
             }
-        } else if (mouseY > overlayControllerDynamic.yPosition) { // If mouse is somewhere on the overlay controller bar...
-            if (overlayControllerNone.getHoveringStatus())
-                drawHoveringText(Collections.singletonList(StatCollector.translateToLocal("paintbrushmenu.None.name")), mouseX, mouseY, fontRendererObj);
-            else if (overlayControllerDynamic.getHoveringStatus())
-                drawHoveringText(Collections.singletonList(StatCollector.translateToLocal("paintbrushmenu.Dynamic Overlay.name")), mouseX, mouseY, fontRendererObj);
-            else if (overlayControllerFixed.getHoveringStatus())
-                drawHoveringText(Collections.singletonList(StatCollector.translateToLocal("paintbrushmenu.Fixed Overlay.name")), mouseX, mouseY, fontRendererObj);
-        }
+
         RenderHelper.enableStandardItemLighting();
     }
 
@@ -277,10 +336,10 @@ public class GuiPaintbrushMenu extends GuiScreen {
             // Select Color
             switch (clickedButton.id) {
                 case 0:
-                case 1: // Page up or down button.
-                    if (clickedButton.id == 0) { // If page up...
+                case 1: // Arrow left or right button.
+                    if (clickedButton.id == 0) { // If arrow left...
                         currentDisplayTexture--;
-                    } else { // If page down...
+                    } else { // If arrow right...
                         currentDisplayTexture++;
                     }
                     updateButtons();
@@ -289,19 +348,27 @@ public class GuiPaintbrushMenu extends GuiScreen {
                     renderModels = !renderModels;
                     updateButtons();
                     break;
-                case 3:
-                case 4:
-                case 5:
-                case 6:
-                case 7:
-                case 8:
-                case 9:
-                case 10: // Color selection button.
-                    String newColor = record.getLiveries().get((currentDisplayTexture * RESULTS_PER_PAGE) + (clickedButton.id - 3));
-                    rollingStock.setColor(newColor);
-                    Traincraft.paintbrushColorChannel.sendToServer(new PacketPaintbrushColor(newColor, rollingStock.getEntityId()));
-                    if (rollingStock.acceptsOverlayTextures())
-                        rollingStock.getOverlayTextureContainer().setTypeAndMarkForUpdate(rollingStock.getOverlayTextureContainer().getType());
+                case 3: // Left texture button.
+                    if (hasPreviousTexture) {
+                        actionPerformed(arrowLeft);
+                    }
+                    break;
+                case 4: // Middle (current) texture Button.
+                    updateTexture(rollingStock.getSpec().getLiveries().get(currentDisplayTexture), false);
+                    break;
+                case 5: // Right texture button.
+                    if (hasNextTexture) {
+                        actionPerformed(arrowRight);
+                    }
+                    break;
+                case 6: // Random texture button.
+                    if (totalOptions > 1) {
+                        currentDisplayTexture = (int) (Math.random() * totalOptions);
+                        updateButtons();
+                    }
+                    break;
+                case 7: // Apply & submit button.
+                    updateTexture(rollingStock.getSpec().getLiveries().get(currentDisplayTexture), true);
                     break;
                 case 11: // Clear overlay button.
                     if (rollingStock.acceptsOverlayTextures() && rollingStock.getOverlayTextureContainer().getType() != OverlayTextureManager.Type.NONE) {
@@ -346,20 +413,27 @@ public class GuiPaintbrushMenu extends GuiScreen {
     protected void keyTyped(char eventChar, int eventKey) {
         if (eventKey == 1 || eventChar == 'e') { // If ESC...
             this.mc.thePlayer.closeScreen();
-        } else {
-            switch (eventChar) {
-                // todo replace below
-                case '1':
-                case '2':
-                case '3': {
-//                    if (Character.getNumericValue(eventChar) <= optionsOnCurrentPage) {
-//                        editingPlayer.playSound("random.click", 1f, 1f);
-//                        String newColor = record.getLiveries().get((currentDisplayTexture * RESULTS_PER_PAGE) + (Character.getNumericValue(eventChar) - 1));
-//                        rollingStock.setColor(newColor);
-//                        Traincraft.paintbrushColorChannel.sendToServer(new PacketPaintbrushColor(newColor, rollingStock.getEntityId()));
-//                    }
-                }
-            }
+        } else if (eventChar == '\r'){
+            updateTexture(rollingStock.getSpec().getLiveries().get(currentDisplayTexture), true);
         }
+    }
+
+    private void updateTexture(String newColor, boolean closeAfterward) {
+        Traincraft.paintbrushColorChannel.sendToServer(new PacketPaintbrushColor(newColor, rollingStock.getEntityId()));
+        if (rollingStock.acceptsOverlayTextures())
+            rollingStock.getOverlayTextureContainer().setTypeAndMarkForUpdate(rollingStock.getOverlayTextureContainer().getType());
+        if (closeAfterward) {
+            this.mc.thePlayer.closeScreen();
+        } else {
+            updateButtons();
+        }
+    }
+
+    public static void setActiveButtonID(Integer activeButtonID) {
+        GuiPaintbrushMenu.activeButtonID = activeButtonID;
+    }
+
+    public static Integer getActiveButtonID() {
+        return GuiPaintbrushMenu.activeButtonID;
     }
 }

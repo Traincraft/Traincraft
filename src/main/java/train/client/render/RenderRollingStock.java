@@ -2,6 +2,7 @@ package train.client.render;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import fexcraft.tmt.slim.Tessellator;
 import net.minecraft.block.BlockRailBase;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.Render;
@@ -10,9 +11,10 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Vec3;
 import org.lwjgl.opengl.GL11;
-import tmt.Tessellator;
+import train.common.Traincraft;
 import train.common.api.EntityRollingStock;
 import train.common.api.Locomotive;
+import train.common.api.TrainRenderRecord;
 import train.common.core.util.TraincraftUtil;
 import train.common.entity.rollingStock.EntityTracksBuilder;
 import train.common.overlaytexture.OverlayTextureManager;
@@ -20,9 +22,6 @@ import train.common.overlaytexture.OverlayTextureManager;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Random;
-
-import train.common.Traincraft;
-import train.common.api.TrainRenderRecord;
 
 @SideOnly(Side.CLIENT)
 public class RenderRollingStock extends Render {
@@ -304,15 +303,15 @@ public class RenderRollingStock extends Render {
             GL11.glEnable(GL11.GL_LIGHTING);
             int skyLight = cart.worldObj.getLightBrightnessForSkyBlocks(i, j, k, 0);
             if (!renderModeGUI) {
-				GL11.glEnable(GL11.GL_LIGHTING);
 				OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, skyLight % 65536,
 						skyLight / 65536f);
 			} else {
-				if (renderGUIFullBright)
-					GL11.glDisable(GL11.GL_LIGHTING);
-				OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240f,
-						240f);
-			}
+				if (renderGUIFullBright) {
+                    GL11.glDisable(GL11.GL_LIGHTING);
+                }
+                OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240f,
+                        240f);
+            }
 
 
             render.getModel().render(cart, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);

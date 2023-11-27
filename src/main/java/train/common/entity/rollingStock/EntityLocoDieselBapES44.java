@@ -10,8 +10,13 @@ import net.minecraftforge.common.util.Constants;
 import train.common.Traincraft;
 import train.common.api.DieselTrain;
 import train.common.api.LiquidManager;
-import train.common.library.EnumTrains;
+import train.common.api.TextureDescription;
 import train.common.library.GuiIDs;
+import train.common.overlaytexture.EnumOverlayFonts;
+import train.common.overlaytexture.OTSpecificationDynamic;
+import train.common.overlaytexture.OverlayTextureManager;
+
+import java.awt.*;
 
 
 public class EntityLocoDieselBapES44 extends DieselTrain {
@@ -19,6 +24,23 @@ public class EntityLocoDieselBapES44 extends DieselTrain {
         super(world, LiquidManager.dieselFilter());
         initLoco();
         //i think i need a scooby doo tie-fighter now
+        initOverlayTextures(OverlayTextureManager.Type.DYNAMIC);
+        getOverlayTextureContainer().initSpecificationDynamic(
+                new OTSpecificationDynamic(
+                        "Engine Number",12, 7,
+                        4, EnumOverlayFonts.BapSansSmall, 7f,
+                        OTSpecificationDynamic.AlignmentMode.ALIGN_CENTER_AND_FILL, new Point[]{ new Point(183, 66), new Point(338, 10) }
+                )
+        );
+        textureDescriptionMap.put("Lime", new TextureDescription("GE Evolution Series Demonstrator", "Built by GE as a demonstration of hybrid technology in locomotives"));
+        textureDescriptionMap.put("Orange", new TextureDescription("BNSF", "BNSF Heritage II Paint Scheme"));
+        textureDescriptionMap.put("Red", new TextureDescription("Canadian Pacific", null));
+        textureDescriptionMap.put("Yellow", new TextureDescription("Union Pacific", null));
+        textureDescriptionMap.put("Blue", new TextureDescription("CSX", "CSX YN3 paint scheme"));
+        textureDescriptionMap.put("LightGrey", new TextureDescription("Citirail", "Paint scheme of the Citicorp Railmark Inc. locomotive leasing company"));
+        textureDescriptionMap.put("Grey", new TextureDescription("Canadian National", "Canadian National deserves no texture description for what they did to IC"));
+        textureDescriptionMap.put("Black", new TextureDescription("Norfolk Southern", "NS — one of the world's foremost destroyers of small Ohio towns"));
+
     }
     public EntityLocoDieselBapES44(World world, double d, double d1, double d2){
         this(world);

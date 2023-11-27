@@ -16,6 +16,7 @@ public enum EnumOverlayFonts {
     OxygenSansSmall("textures/overlayfonts/OxygenSansSmall.ttf"),
     /**
      * Recommended Java font size: 7f.
+     * <p>Graciously created and provided by everyone's favorite fox, Bidahochi.</p>
      */
     BapSansSmall("textures/overlayfonts/BapSans.ttf"),
     /**

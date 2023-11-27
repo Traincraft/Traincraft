@@ -63,6 +63,8 @@ public class PacketHandler {
 				PacketPaintbrushColor.class, 10, Side.SERVER);
 		Traincraft.overlayTextureChannel.registerMessage(PacketTextureOverlayConfig.Handler.class,
 				PacketTextureOverlayConfig.class, 11, Side.SERVER);
+		Traincraft.overlayTextureChannel.registerMessage(PacketTextureOverlayConfig.Handler.class,
+				PacketTextureOverlayConfig.class, 12, Side.CLIENT);
 
 		if (Loader.isModLoaded("ComputerCraft")) {
 			Traincraft.itsChannel.registerMessage(PacketSetSpeedHandler.class, PacketSetSpeed.class, 200, Side.CLIENT);

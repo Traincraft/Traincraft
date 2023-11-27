@@ -22,7 +22,9 @@ class GuiButtonPaintbrushMenu extends GuiButton {
         CLOSE,
         PLAY,
         PAUSE,
-        STOPRENDER
+        STOPRENDER,
+        RANDOM,
+        APPLY
     }
     enum Texture {
         ACTIVE,
@@ -59,8 +61,12 @@ class GuiButtonPaintbrushMenu extends GuiButton {
             if (type != Type.SELECTIONBOX) {
                 if (par2 >= this.xPosition && par3 >= this.yPosition && par2 < this.xPosition + this.width && par3 < this.yPosition + this.height) { // If mouse is hovering over...
                     this.setType(this.type, Texture.ACTIVE);
+                    GuiPaintbrushMenu.setActiveButtonID(this.id);
                 } else {
                     this.setType(this.type, Texture.INACTIVE);
+                    if (GuiPaintbrushMenu.getActiveButtonID() != null && GuiPaintbrushMenu.getActiveButtonID() == this.id) {
+                        GuiPaintbrushMenu.setActiveButtonID(null);
+                    }
                 }
             }
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
@@ -104,6 +110,8 @@ class GuiButtonPaintbrushMenu extends GuiButton {
                 case PLAY:
                 case PAUSE:
                 case STOPRENDER:
+                case RANDOM:
+                case APPLY:
                     TEXTURE_WIDTH = 22;
                     TEXTURE_HEIGHT = 22;
                     if (texture == Texture.INACTIVE)
@@ -116,8 +124,12 @@ class GuiButtonPaintbrushMenu extends GuiButton {
                         this.u = 22;
                     else if (type == Type.PAUSE)
                         this.u = 44;
-                    else
+                    else if (type == Type.STOPRENDER)
                         this.u = 66;
+                    else if (type == Type.RANDOM)
+                        this.u = 88;
+                    else
+                        this.u = 110;
                     break;
             }
         }

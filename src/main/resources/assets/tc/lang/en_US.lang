@@ -133,7 +133,7 @@ item.tc:electronicCircuit.name=Electronic Circuit
 item.tc:chunkLoaderActivator.name=Chunk Loader Activator
 item.tc:emptyCanister.name=Empty Canister
 item.tc:bolt.name=Rail Spike
-item.tc:recipeBook.name=Traincraft guide
+item.tc:recipeBook.name=Traincraft Guide
 item.tc:adminBook.name=Traincraft Admin Book
 
 
@@ -884,6 +884,9 @@ paintbrushmenu.Lights On.name=Lights On
 paintbrushmenu.Lights Off.name=Lights Off
 paintbrushmenu.Hide Models.name=Hide Models
 paintbrushmenu.Show Models.name=Show Models
+paintbrushmenu.Random Texture.name=Random Texture
+paintbrushmenu.Apply Texture.name=Apply Texture
+paintbrushmenu.No Description.name=No description provided for this texture.
 dynamicoverlaymenu.Background Color.name=Background Color
 dynamicoverlaymenu.Foreground Color.name=Foreground Color
 dynamicoverlaymenu.Submit.name=Submit
