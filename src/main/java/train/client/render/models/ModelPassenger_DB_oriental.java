@@ -2,17 +2,17 @@
 // Copyright (C) 2018 Minecraft-SMP.de
 // This file is for Flan's Flying Mod Version 4.0.x+
 
-// Model: 
+// Model:
 // Model Creator:
 // Created on:11.06.2018 - 13:28:00
 // Last changed on: 11.06.2018 - 13:28:00
 
 package train.client.render.models;
 
-import net.minecraft.entity.Entity;
-import org.lwjgl.opengl.GL11;
 import fexcraft.tmt.slim.ModelBase;
 import fexcraft.tmt.slim.ModelRendererTurbo;
+import net.minecraft.entity.Entity;
+import org.lwjgl.opengl.GL11;
 
 public class ModelPassenger_DB_oriental extends ModelBase
 {
@@ -399,8 +399,8 @@ public class ModelPassenger_DB_oriental extends ModelBase
 		passenger_db_orientalModel[83].rotateAngleX = -6.09119909F;
 		passenger_db_orientalModel[83].rotateAngleY = -3.14159265F;
 
-		fixRotation(passenger_db_orientalModel, false, true, true);
-
+		fixRotation(passenger_db_orientalModel,false,true,true);
+		//bodyModel=passenger_db_orientalModel;
 	}
 
 	ModelPassenger_DB_oriental_bogie bogie = new ModelPassenger_DB_oriental_bogie();
@@ -408,24 +408,17 @@ public class ModelPassenger_DB_oriental extends ModelBase
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
-		for(int i = 0; i < 84; i++)
-		{
-			passenger_db_orientalModel[i].render(f5);
-		}
-        GL11.glPushMatrix();
-        GL11.glTranslated(0,0.0,0);
+		super.render(entity, f, f1, f2, f3, f4, f5);
+		GL11.glPushMatrix();
+		GL11.glTranslated(0,0.0,0);
 		bogie.render(entity, f, f1, f2, f3, f4, f5);
 		GL11.glPopMatrix();
 
-        GL11.glPushMatrix();
-        GL11.glTranslated(2.15,0,0);
-        bogie.render(entity, f, f1, f2, f3, f4, f5);
-        GL11.glPopMatrix();
+		GL11.glPushMatrix();
+		GL11.glTranslated(2.15,0,0);
+		bogie.render(entity, f, f1, f2, f3, f4, f5);
+		GL11.glPopMatrix();
 
-	}
-
-	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5)
-	{
 	}
 
 	public ModelRendererTurbo passenger_db_orientalModel[];
