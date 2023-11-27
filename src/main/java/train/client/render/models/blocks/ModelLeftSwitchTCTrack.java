@@ -19,6 +19,8 @@ public class ModelLeftSwitchTCTrack extends ModelBase {
 	private IModelCustom modelLargeLeftSwitchActive;
 	private IModelCustom modelLargeLeftSwitchInactive;
 
+	private IModelCustom modelVeryLargeLeftSwitchActive;
+	private IModelCustom modelVeryLargeLeftSwitchInactive;
 	private IModelCustom modelMediumLeft45degreeSwitchActive;
 	private IModelCustom modelMediumLeft45degreeSwitchInActive;
 
@@ -31,7 +33,9 @@ public class ModelLeftSwitchTCTrack extends ModelBase {
 		modelLargeLeftSwitchInactive = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_switch_medium_inactive_left.obj"));
 		modelMediumLeft45degreeSwitchActive = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_switch_medium_45degree_active_left.obj"));
 		modelMediumLeft45degreeSwitchInActive = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_switch_medium_45degree_inactive_left.obj"));
-		
+		modelVeryLargeLeftSwitchActive = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_switch_very_large_active_left.obj"));
+		modelVeryLargeLeftSwitchInactive = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_switch_very_large_left.obj"));
+
 	}
 
 	public void renderMediumActive() {
@@ -51,6 +55,13 @@ public class ModelLeftSwitchTCTrack extends ModelBase {
 	}
 	public void renderLarge90Inactive() {
 		modelLargeLeftSwitchInactive.renderAll();
+	}
+
+	public void renderVeryLarge90Active() {
+		modelVeryLargeLeftSwitchActive.renderAll();
+	}
+	public void renderVeryLarge90Inactive() {
+		modelVeryLargeLeftSwitchInactive.renderAll();
 	}
 
 	public void renderMedium45degreeActive() {modelMediumLeft45degreeSwitchActive.renderAll();}
@@ -83,6 +94,10 @@ public class ModelLeftSwitchTCTrack extends ModelBase {
 				GL11.glRotatef(0, 0, 1, 0);
 				GL11.glTranslatef(0.0f, 0.0f, -4.0f);
 			}
+			if(type.equals("very_large_90")){
+				GL11.glRotatef(-90, 0, 1, 0);
+				GL11.glTranslatef(-0.5f, 0.0f, 0.5f);
+			}
 			if(type.equals("medium_parallel")){
 				GL11.glRotatef(-90, 0, 1, 0);
 			}
@@ -101,6 +116,10 @@ public class ModelLeftSwitchTCTrack extends ModelBase {
 				GL11.glRotatef(180, 0, 1, 0);
 				GL11.glTranslatef(0.0f, 0.0f, -4.0f);
 			}
+			if(type.equals("very_large_90")){
+				GL11.glRotatef(90, 0, 1, 0);
+				GL11.glTranslatef(-0.5f, 0.0f, 0.5f);
+			}
 			if(type.equals("medium_parallel")){
 				GL11.glRotatef(90, 0, 1, 0);
 			}
@@ -118,9 +137,11 @@ public class ModelLeftSwitchTCTrack extends ModelBase {
 				GL11.glRotatef(90, 0, 1, 0);
 				GL11.glTranslatef(0.0f, 0.0f, -4.0f);
 			}
-			if(type.equals("medium_parallel")){
-				//do something if needed
+			if(type.equals("very_large_90")){
+				GL11.glRotatef(0, 0, 1, 0);
+				GL11.glTranslatef(-0.5f, 0.0f, 0.5f);
 			}
+
 			if(type.equals("medium_45degree")){
 				GL11.glRotatef(0, 0, 1, 0);
 				GL11.glTranslatef(0.0f, 0.0f, 0f);
@@ -134,6 +155,10 @@ public class ModelLeftSwitchTCTrack extends ModelBase {
 			if(type.equals("large_90")){
 				GL11.glRotatef(-90, 0, 1, 0);
 				GL11.glTranslatef(.0f, 0.0f, -4.0f);
+			}
+			if(type.equals("very_large_90")){
+				GL11.glRotatef(180, 0, 1, 0);
+				GL11.glTranslatef(-0.5f, 0.0f, 0.5f);
 			}
 			if(type.equals("medium_parallel")){
 				GL11.glRotatef(180, 0, 1, 0);
@@ -150,6 +175,8 @@ public class ModelLeftSwitchTCTrack extends ModelBase {
 		if(type.equals("medium_parallel")&&active)this.renderMediumParallelActive();
 		if(type.equals("large_90")&&!active)this.renderLarge90Inactive();
 		if(type.equals("large_90")&&active)this.renderLarge90Active();
+		if(type.equals("very_large_90")&&!active)this.renderVeryLarge90Inactive();
+		if(type.equals("very_large_90")&&active)this.renderVeryLarge90Active();
 		if(type.equals("medium_45degree")&&!active)this.renderMedium45degreeInActive();
 		if(type.equals("medium_45degree")&&active)this.renderMedium45degreeActive();
 		//if(type.equals("large"))this.renderLarge();
