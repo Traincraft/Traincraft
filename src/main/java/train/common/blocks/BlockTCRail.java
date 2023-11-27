@@ -41,6 +41,13 @@ public class BlockTCRail extends Block {
 		return false;
 	}
 
+
+	@SideOnly(Side.CLIENT)
+	public int getRenderBlockPass()
+	{
+		return 1;
+	}
+
 	@Override
 	public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z, EntityPlayer player)  {
 		TileTCRail tileEntity = (TileTCRail) world.getTileEntity(x, y, z);
