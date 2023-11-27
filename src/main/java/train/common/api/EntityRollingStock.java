@@ -56,6 +56,7 @@ import train.common.items.ItemWrench;
 import train.common.library.BlockIDs;
 import train.common.tile.TileTCRail;
 import train.common.tile.TileTCRailGag;
+import tv.twitch.chat.Chat;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -1119,7 +1120,6 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
             if (ItemTCRail.isTCStraightTrack(tile)) {
                 moveOnTCStraight(i, j, k, tile.xCoord, tile.zCoord, meta);
             } else if (ItemTCRail.isTCTurnTrack(tile)) {
-
                 if (bogieLoco != null) {
                     if (!bogieLoco.isOnRail()) {
                         derailSpeed = 0;
@@ -1131,6 +1131,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
                 } else {
 
                     if (shouldIgnoreSwitch(tile, i, j, k, meta)) {
+
                         moveOnTCStraight(i, j, k, tile.xCoord, tile.zCoord, meta);
                     } else {
                         if (ItemTCRail.isTCTurnTrack(tile))
@@ -1157,7 +1158,6 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
             TileTCRailGag tileGag = (TileTCRailGag) worldObj.getTileEntity(i, j, k);
             if (worldObj.getTileEntity(tileGag.originX, tileGag.originY, tileGag.originZ) instanceof TileTCRail) {
                 TileTCRail tile = (TileTCRail) worldObj.getTileEntity(tileGag.originX, tileGag.originY, tileGag.originZ);
-
                 if (ItemTCRail.isTCTurnTrack(tile)) {
                     moveOnTC90TurnRail(i, j, k, tile.r, tile.cx, tile.cz);
                 }
@@ -1189,12 +1189,16 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
                 || tile.getType().equals(TrackTypes.MEDIUM_LEFT_TURN.getLabel())
                 || tile.getType().equals(TrackTypes.LARGE_LEFT_TURN.getLabel())
                 || tile.getType().equals(TrackTypes.LARGE_RIGHT_TURN.getLabel()))
+                || tile.getType().equals(TrackTypes.VERY_LARGE_LEFT_TURN.getLabel())
+                || tile.getType().equals(TrackTypes.VERY_LARGE_RIGHT_TURN.getLabel())
                 || tile.getType().equals(TrackTypes.MEDIUM_RIGHT_45DEGREE_TURN.getLabel())
                 || tile.getType().equals(TrackTypes.MEDIUM_LEFT_45DEGREE_TURN.getLabel())
                 || tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_RIGHT_TURN.getLabel())
                 || tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_LEFT_TURN.getLabel())
                 || tile.getType().equals(TrackTypes.EMBEDDED_LARGE_LEFT_TURN.getLabel())
                 || tile.getType().equals(TrackTypes.EMBEDDED_LARGE_RIGHT_TURN.getLabel())
+                || tile.getType().equals(TrackTypes.EMBEDDED_VERY_LARGE_LEFT_TURN.getLabel())
+                || tile.getType().equals(TrackTypes.EMBEDDED_VERY_LARGE_RIGHT_TURN.getLabel())
                 || tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_RIGHT_45DEGREE_TURN.getLabel())
                 || tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_LEFT_45DEGREE_TURN.getLabel())
 

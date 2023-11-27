@@ -234,11 +234,13 @@ item.tc:tcRailEmbeddedSuperLargeCurvedSlopeDynamic.name=Embedded Curved Slope (D
 
 item.tc:tcRailMediumSwitch.name=90 Degrees Switch (4x4)
 item.tc:tcRailLargeSwitch.name=90 Degrees Switch (6x6)
+item.tc:tcRailVeryLargeSwitch.name=90 Degrees Switch (11x11)
 item.tc:tcRailMediumParallelSwitch.name=Parallel Switch (4x11)
 item.tc:tcRailMedium45DegreeSwitch.name=45 Degree Switch (3x5)
 
 item.tc:tcRailEmbeddedMediumSwitch.name=Embedded 90 Degrees Switch (4x4)
 item.tc:tcRailEmbeddedLargeSwitch.name=Embedded 90 Degrees Switch (6x6)
+item.tc:tcRailEmbeddedVeryLargeSwitch.name=Embedded 90 Degrees Switch (11x11)
 item.tc:tcRailEmbeddedMediumParallelSwitch.name=Embedded Parallel Switch (4x11)
 item.tc:tcRailEmbeddedMedium45DegreeSwitch.name=Embedded 45 Degree Switch (3x5)
 
