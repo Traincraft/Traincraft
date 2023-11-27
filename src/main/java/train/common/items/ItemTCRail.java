@@ -3302,7 +3302,7 @@ public class ItemTCRail extends ItemPart {
 
         //Adjust tracklength based on track type.
         if (type == TrackTypes.LONG_STRAIGHT || type == TrackTypes.EMBEDDED_LONG_STRAIGHT) trackLength = 3;
-        if (type == TrackTypes.VERY_LONG_STRAIGHT || type == TrackTypes.EMBEDDED_VERY_LONG_STRAIGHT) trackLength = 27;
+        if (type == TrackTypes.VERY_LONG_STRAIGHT || type == TrackTypes.EMBEDDED_VERY_LONG_STRAIGHT) trackLength = 9;
 
         //Initialise arrays of Rails and Gags, based on tracklength.
         TileTCRail[] tileRail = new TileTCRail[(trackLength / 3) + 1];
@@ -3317,9 +3317,13 @@ public class ItemTCRail extends ItemPart {
         //Check placement
 
         for (int i = 0; i <= trackLength ; i += 3){
-            if (!canPlaceTrack(player,world, x + (trackLength * dx), y + 1, z + (trackLength * dz))
-                    || !canPlaceTrack(player,world, x + (trackLength * dx) + (dx), y + 1, z + (trackLength * dz) + dz)
-                    || !canPlaceTrack(player,world, x + (trackLength * dx) + (dx * 2), y + 1, z + (trackLength * dz) + (dz) * 2)) return false;
+            if (
+                    !canPlaceTrack(player,world, x + (i * dx), y + 1, z + (i * dz))
+                    || !canPlaceTrack(player,world, x + (i * dx) + (dx), y + 1, z + (i * dz) + dz)
+                    || !canPlaceTrack(player,world, x + (i * dx) + (dx * 2), y + 1, z + (i * dz) + (dz) * 2)){
+                return false;
+            }
+
         }
         //places track
         for (int i = 0; i <= trackLength ; i += 3){
