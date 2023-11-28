@@ -23,6 +23,8 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Random;
 
+import static org.lwjgl.opengl.GL11.*;
+
 @SideOnly(Side.CLIENT)
 public class RenderRollingStock extends Render {
     private static final Random random = new Random();
@@ -45,6 +47,15 @@ public class RenderRollingStock extends Render {
 			Tessellator.bindTexture(cart.getOverlayTextureContainer().getOverlaidTextureResource());
 		}
         GL11.glPushMatrix();
+        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+        GL11.glEnable(GL11.GL_BLEND);
+        GL11.glAlphaFunc(GL11.GL_GREATER, 0.1f);
+        GL11.glEnable(GL11.GL_TEXTURE_2D);
+        GL11.glEnable(GL11.GL_LIGHTING);
+        GL11.glLightModelf(GL_LIGHT_MODEL_TWO_SIDE, GL_FALSE);
+        GL11.glLightModelf(GL_LIGHT_MODEL_LOCAL_VIEWER, GL_TRUE);
+        GL11.glShadeModel(GL_SMOOTH);
+        GL11.glEnable(GL_NORMALIZE);
         long var10 = cart.getEntityId() * 493286711L;
         var10 = var10 * var10 * 4392167121L + var10 * 98761L;
         float var12 = (((var10 >> 16 & 7L) + 0.5F) / 8.0F - 0.5F) * 0.004F;

@@ -100,11 +100,13 @@ public enum ItemIDs {
 	tcRailLargeTurn("ItemTCRail", "item_rail_turn_large", 5),
 	tcRailVeryLargeTurn("ItemTCRail", "item_rail_turn_veryLarge", 5),
 	tcRailSuperLargeTurn("ItemTCRail", "item_rail_tc_super_large_turn", 5),
+	tcRail32X32Turn("ItemTCRail", "item_rail_tc_turn_32", 5),
 
 	tcRailMedium45DegreeTurn("ItemTCRail", "item_rail_45degree_turn_medium", 5),
 	tcRailLarge45DegreeTurn("ItemTCRail", "item_rail_45degree_turn_large", 5),
 	tcRailVeryLarge45DegreeTurn("ItemTCRail", "item_rail_45degree_turn_very_large", 5),
 	tcRailSuperLarge45DegreeTurn("ItemTCRail", "item_rail_45degree_turn_super_large", 5),
+
 
 	tcRailSmallParallelCurve("ItemTCRail", "item_rail_tc_parallel_curve_small", 3),
 	tcRailMediumParallelCurve("ItemTCRail", "item_rail_tc_parallel_curve_medium", 3),
@@ -118,6 +120,8 @@ public enum ItemIDs {
 
 	tcRailMediumSwitch("ItemTCRail", "item_rail_switch_medium", 5),
 	tcRailLargeSwitch("ItemTCRail", "item_rail_switch_large", 5),
+	tcRailVeryLargeSwitch("ItemTCRail", "item_rail_switch_large", 5),
+
 	tcRailMediumParallelSwitch("ItemTCRail", "item_rail_switch_parallel", 5),
 	tcRailMedium45DegreeSwitch("ItemTCRail","item_rail_switch_45degree_medium", 5 ),
 
@@ -159,6 +163,7 @@ public enum ItemIDs {
 	tcRailEmbeddedLargeTurn("ItemTCRail", "item_rail_tc_embedded_large_turn", 5),
 	tcRailEmbeddedVeryLargeTurn("ItemTCRail", "item_rail_tc_embedded_very_large_turn", 5),
 	tcRailEmbeddedSuperLargeTurn("ItemTCRail", "item_rail_tc_embedded_super_large_turn", 5 ),
+	tcRailEmbedded32X32Turn("ItemTCRail", "item_rail_tc_embedded_turn_32", 5),
 
 	tcRailEmbeddedMedium45DegreeTurn("ItemTCRail", "item_rail_embedded_45degree_turn_medium", 5),
 	tcRailEmbeddedLarge45DegreeTurn("ItemTCRail", "item_rail_embedded_45degree_turn_large", 5),
@@ -177,6 +182,7 @@ public enum ItemIDs {
 
 	tcRailEmbeddedMediumSwitch("ItemTCRail", "item_rail_embedded_switch_medium", 5),
 	tcRailEmbeddedLargeSwitch("ItemTCRail", "item_rail_embedded_switch_large", 5),
+	tcRailEmbeddedVeryLargeSwitch("ItemTCRail", "item_rail_embedded_switch_large", 5),
 	tcRailEmbeddedMediumParallelSwitch("ItemTCRail", "item_rail_embedded_switch_parallel", 5),
 	tcRailEmbeddedMedium45DegreeSwitch("ItemTCRail","item_rail_embedded_switch_45degree_medium", 5 ),
 

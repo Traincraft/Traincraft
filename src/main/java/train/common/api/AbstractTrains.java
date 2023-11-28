@@ -65,6 +65,8 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
         return trainSpec;
     }
 
+    //@Override
+   // public boolean shouldRenderInPass(int pass){return pass==1;}
     /**
      * The name of the train based on the item name
      */

@@ -59,16 +59,9 @@ public class ModelPassenger_DB_oriental_bogie extends ModelBase
 		passenger_db_oriental_bogieModel[8].setRotationPoint(-7F, 1F, 6F);
 		passenger_db_oriental_bogieModel[8].rotateAngleY = -3.14159265F;
 
+		fixRotation(passenger_db_oriental_bogieModel, false,false,false);
 
-	}
 
-	@Override
-	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
-	{
-		for(int i = 0; i < 9; i++)
-		{
-			passenger_db_oriental_bogieModel[i].render(f5);
-		}
 	}
 
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5)
