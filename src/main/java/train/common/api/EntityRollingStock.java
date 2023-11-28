@@ -3,6 +3,7 @@ package train.common.api;
 import com.mojang.authlib.GameProfile;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
@@ -54,6 +55,7 @@ import train.common.items.ItemTCRail;
 import train.common.items.ItemTCRail.TrackTypes;
 import train.common.items.ItemWrench;
 import train.common.library.BlockIDs;
+import train.common.library.GuiIDs;
 import train.common.tile.TileTCRail;
 import train.common.tile.TileTCRailGag;
 import tv.twitch.chat.Chat;
@@ -243,20 +245,28 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
     }
 
 
-    /**
-     * this is basically NBT for entity spawn, to keep data between client and server in sync because some data is not automatically shared.
-     */
-    @Override
-    public void readSpawnData(ByteBuf additionalData) {
-        isBraking = additionalData.readBoolean();
-        setTrainLockedFromPacket(additionalData.readBoolean());
-    }
-
-    @Override
-    public void writeSpawnData(ByteBuf buffer) {
-        buffer.writeBoolean(isBraking);
-        buffer.writeBoolean(getTrainLockedFromPacket());
-    }
+	/**
+	 * this is basically NBT for entity spawn, to keep data between client and server in sync because some data is not automatically shared.
+	 */
+	@Override
+	public void readSpawnData(ByteBuf additionalData) {
+		isBraking = additionalData.readBoolean();
+		setTrainLockedFromPacket(additionalData.readBoolean());
+		if (additionalData.readBoolean()) { // If accepts overlay textures...
+			getOverlayTextureContainer().importFromConfigTag(ByteBufUtils.readTag(additionalData));
+		}
+	}
+	@Override
+	public void writeSpawnData(ByteBuf buffer) {
+		buffer.writeBoolean(isBraking);
+		buffer.writeBoolean(getTrainLockedFromPacket());
+		buffer.writeBoolean(acceptsOverlayTextures());
+		if (acceptsOverlayTextures()) {
+			if (acceptsOverlayTextures()) {
+				ByteBufUtils.writeTag(buffer, getOverlayTextureContainer().getOverlayConfigTag());
+			}
+		}
+	}
 
     public String getTrainName() {
         return dataWatcher.getWatchableObjectString(9);
@@ -1739,14 +1749,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 
         if (itemstack != null && itemstack.getItem() instanceof ItemPaintbrushThing && entityplayer.isSneaking()) {
             if (this.getSpec().getLiveries().size() > 0) {
-                if (scrollPosition > this.getSpec().getLiveries().size() - 1) {
-                    this.setColor(getSpec().getLiveries().get(0));
-                    scrollPosition = 0;
-                } else {
-                    this.setColor(getSpec().getLiveries().get(scrollPosition));
-                    scrollPosition++;
-
-                }
+                entityplayer.openGui(Traincraft.instance, GuiIDs.PAINTBRUSH, entityplayer.getEntityWorld(), this.getEntityId(), -1, (int) this.posZ);
             }
 
             if (this.getSpec().getLiveries().size() == 0) {

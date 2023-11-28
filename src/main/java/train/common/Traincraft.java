@@ -69,7 +69,8 @@ public class Traincraft {
     public static SimpleNetworkWrapper builderChannel;
     public static SimpleNetworkWrapper updateTrainIDChannel = NetworkRegistry.INSTANCE.newSimpleChannel("TrainIDChannel");
     public static SimpleNetworkWrapper updateDestinationChannel = NetworkRegistry.INSTANCE.newSimpleChannel("updateDestnChannel");
-
+    public static SimpleNetworkWrapper paintbrushColorChannel;
+    public static SimpleNetworkWrapper overlayTextureChannel;
 
     public static final SimpleNetworkWrapper itaChannel = NetworkRegistry.INSTANCE.newSimpleChannel("TransmitterAspect");
     public static SimpleNetworkWrapper itsChannel = NetworkRegistry.INSTANCE.newSimpleChannel("TransmitterSpeed");
