@@ -268,6 +268,12 @@ public class ClientProxy extends CommonProxy {
                 return entity1 != null ? new GuiJukebox(player, (EntityJukeBoxCart) entity1) : null;
             case (GuiIDs.FORTY_FOOT_CONTAINER):
                 return new GuiFortyFootContainer((TileFortyFootContainer) te, player);
+            case (GuiIDs.PAINTBRUSH):
+                return entity1 != null ? new GuiPaintbrushMenu(player, (EntityRollingStock) entity1) : null;
+            case (GuiIDs.FIXED_OVERLAY):
+                return entity1 != null ? new GuiFixedOverlay(player, (EntityRollingStock) entity1) : null;
+            case (GuiIDs.DYNAMIC_OVERLAY):
+                return entity1 != null ? new GuiDynamicOverlay(player, (EntityRollingStock) entity1) : null;
 
             default:
                 return null;

@@ -230,20 +230,12 @@ public class ModelBase extends ArrayList<ModelRendererTurbo> {
 	protected final void fixRotation(ModelRendererTurbo[] model, boolean flipX, boolean flipY, boolean flipZ){
 		bodyModel=model.clone();
 		model= new ModelRendererTurbo[]{};
-		if(true || (!flipX && !flipY && !flipZ)){
-			for(ModelRendererTurbo p : bodyModel){
-				p.rotateAngleX*= CommonUtil.degreesF;
-				p.rotateAngleY*= CommonUtil.degreesF;
-				p.rotateAngleZ*= CommonUtil.degreesF;
-			}
-			return;
+		for(ModelRendererTurbo p : bodyModel){
+			p.rotateAngleX*= CommonUtil.degreesF;
+			p.rotateAngleY*= CommonUtil.degreesF;
+			p.rotateAngleZ*= CommonUtil.degreesF;
 		}
-		for(ModelRendererTurbo mod : bodyModel){
-			if(mod==null){continue;}
-			if(flipX){mod.rotateAngleX = -mod.rotateAngleX;}
-			if(flipY){mod.rotateAngleY = -mod.rotateAngleY;}
-			if(flipZ){mod.rotateAngleZ = -mod.rotateAngleZ;}
-		}
+
 	}
 
 	protected final void fixRotation(ModelRendererTurbo[] parts){

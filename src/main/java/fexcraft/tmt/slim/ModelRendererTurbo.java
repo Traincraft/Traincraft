@@ -1362,6 +1362,7 @@ public class ModelRendererTurbo {
         if(!showModel){
             return;
         }
+        GL11.glPushMatrix();
         if (ignoresLighting){
             Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
         }
@@ -1394,6 +1395,7 @@ public class ModelRendererTurbo {
         if (ignoresLighting){
             Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
         }
+        GL11.glPopMatrix();
     }
 
 

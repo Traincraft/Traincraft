@@ -7,7 +7,7 @@ package fexcraft.tmt.slim;
 public class ModelConverter extends ModelBase {
 
 	public ModelRendererTurbo model[],bodyDoorOpenModel[], bodyDoorCloseModel[],trailerModel[],steeringWheelModel[];
-	
+
 	public ModelRendererTurbo turretModel[],barrelModel[];
 	public ModelRendererTurbo frontWheelModel[],backWheelModel[],
 			leftFrontWheelModel[],rightFrontWheelModel[],leftBackWheelModel[],rightBackWheelModel[];
@@ -102,5 +102,4 @@ public class ModelConverter extends ModelBase {
 		flip(trailerModel);
 		flip(steeringWheelModel);
 	}
-	
 }

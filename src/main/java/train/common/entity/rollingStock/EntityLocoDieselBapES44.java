@@ -10,8 +10,12 @@ import net.minecraftforge.common.util.Constants;
 import train.common.Traincraft;
 import train.common.api.DieselTrain;
 import train.common.api.LiquidManager;
-import train.common.library.EnumTrains;
 import train.common.library.GuiIDs;
+import train.common.overlaytexture.EnumOverlayFonts;
+import train.common.overlaytexture.OTSpecificationDynamic;
+import train.common.overlaytexture.OverlayTextureManager;
+
+import java.awt.*;
 
 
 public class EntityLocoDieselBapES44 extends DieselTrain {
@@ -19,6 +23,14 @@ public class EntityLocoDieselBapES44 extends DieselTrain {
         super(world, LiquidManager.dieselFilter());
         initLoco();
         //i think i need a scooby doo tie-fighter now
+        initOverlayTextures(OverlayTextureManager.Type.DYNAMIC);
+        getOverlayTextureContainer().initSpecificationDynamic(
+                new OTSpecificationDynamic(
+                        "Engine Number",12, 7,
+                        4, EnumOverlayFonts.BapSansSmall, 7f,
+                        OTSpecificationDynamic.AlignmentMode.ALIGN_CENTER_AND_FILL, new Point[]{ new Point(183, 66), new Point(338, 10) }
+                )
+        );
     }
     public EntityLocoDieselBapES44(World world, double d, double d1, double d2){
         this(world);
