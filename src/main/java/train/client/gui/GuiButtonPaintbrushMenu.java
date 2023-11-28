@@ -24,7 +24,9 @@ class GuiButtonPaintbrushMenu extends GuiButton {
         PAUSE,
         STOPRENDER,
         RANDOM,
-        APPLY
+        APPLY,
+        DESC_ARROW_UP,
+        DESC_ARROW_DOWN
     }
     enum Texture {
         ACTIVE,
@@ -76,6 +78,10 @@ class GuiButtonPaintbrushMenu extends GuiButton {
             this.drawTexturedModalRect(this.xPosition, this.yPosition, u, v, TEXTURE_WIDTH, TEXTURE_HEIGHT);
             RenderHelper.disableStandardItemLighting();
             GL11.glPopMatrix();
+        } else {
+            if (GuiPaintbrushMenu.getActiveButtonID() != null && GuiPaintbrushMenu.getActiveButtonID() == this.id) {
+                GuiPaintbrushMenu.setActiveButtonID(null);
+            }
         }
     }
     public void setType(Type type, Texture texture) {
@@ -104,6 +110,21 @@ class GuiButtonPaintbrushMenu extends GuiButton {
                         this.v = 12;
                     } else {
                         this.v = 0;
+                    }
+                    break;
+                case DESC_ARROW_UP:
+                case DESC_ARROW_DOWN:
+                    TEXTURE_WIDTH = 7;
+                    TEXTURE_HEIGHT = 22;
+                    if (type == Type.DESC_ARROW_UP) {
+                        this.u = 170;
+                    } else {
+                        this.u = 177;
+                    }
+                    if (texture == Texture.INACTIVE) {
+                        this.v = 24;
+                    } else {
+                        this.v = 46;
                     }
                     break;
                 case CLOSE:

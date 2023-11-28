@@ -1,15 +1,8 @@
 package train.common.library;
 
-import net.minecraft.item.Item;
 import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.world.World;
-import scala.actors.threadpool.Arrays;
-import train.common.api.AbstractTrains;
 import train.common.api.TrainRecord;
-import train.common.core.util.TraincraftUtil;
 import train.common.entity.rollingStock.*;
-
-import train.common.api.TrainRecord;
 
 public class EnumTrains {
 
@@ -261,7 +254,7 @@ public class EnumTrains {
 				TrainRecord.makeEntry("locoSteamUSATCUS", "Loco Steam USATCUS", EntityLocoSteamUSATCUS.class, ItemIDs.minecartLocoUSATCUS.item, "steam", 210, 75, 0, 80, 100, 200, 0.35, 0.975, 10000, null, 10, -2.5),
 				TrainRecord.makeEntry("locoSteamUSATCUK", "Loco Steam USATCUK", EntityLocoSteamUSATCUK.class, ItemIDs.minecartLocoUSATCUK.item, "steam", 210, 75, 0, 80, 100, 200, 0.35, 0.975, 10000, null, 10, -2.5),
 				TrainRecord.makeEntry("locoSteamC41T", "Loco Steam C41T", EntityLocoSteamC41T.class, ItemIDs.minecartLocoC41T.item, "steam", 1484, 110, 0, 80, 100, 200, 0.35, 0.975, 16000, null, 10, -3.4),
-				TrainRecord.makeEntry("locoSteamForney", "Loco Steam Forney", EntityLocoSteamForneyRed.class, ItemIDs.minecartLocoForneyRed.item, "steam", 600, 70, 0, 60, 160, 130, 0.44, 0.968, 8000, new String[]{"Red", "Grey", "Yellow", "Brown", "Blue", "Green"}, 15, -1.8),
+				TrainRecord.makeEntry("locoSteamForney", "Loco Steam Forney", EntityLocoSteamForneyRed.class, ItemIDs.minecartLocoForneyRed.item, "steam", 600, 70, 0, 60, 160, 130, 0.44, 0.968, 8000, new String[]{"Red", "Grey", "Yellow", "Brown", "Blue", "Green"}, 17, -1.8),
 				TrainRecord.makeEntry("locoSteamMogul", "Loco Steam Mogul", EntityLocoSteamMogulBlue.class, ItemIDs.minecartLocomogulBlue.item, "steam", 500, 65, 0, 50, 180, 180, 0.56, 0.967, 5000, new String[]{"Blue", "Black", "Brown", "Green", "Red", "White"}, 15, -2.2),
 				TrainRecord.makeEntry("locoSteamShay", "Loco Steam Shay", EntityLocoSteamShay.class, ItemIDs.minecartLocoSteamShay.item, "steam", 250, 50, 0, 50, 160, 130, 0.5, 0.968, 4000, null, 15, -1),
 				TrainRecord.makeEntry("locoSteamVBShay", "Loco Steam VB Shay", EntityLocoSteamVBShay.class, ItemIDs.minecartLocoSteamVBShay.item, "steam", 250, 32, 0, 40, 140, 100, 0.5, 0.968, 3000, null, 15, -0.5),
