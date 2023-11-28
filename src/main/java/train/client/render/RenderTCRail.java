@@ -101,6 +101,15 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
                         modelLeftTurn.render("super_large", railTile, x, y, z);
                         break;
                     }
+                    case TURN_29X29:
+                    case RIGHT_TURN_29X29: {
+                        modelRightTurn.render("29x", railTile, x, y, z);
+                        break;
+                    }
+                    case LEFT_TURN_29X29: {
+                        modelLeftTurn.render("29x", railTile, x, y, z);
+                        break;
+                    }
                     case TURN_32X32:
                     case RIGHT_TURN_32X32: {
                         modelRightTurn.render("32x", railTile, x, y, z);
@@ -411,6 +420,15 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
                     }
                     case EMBEDDED_SUPER_LARGE_LEFT_TURN: {
                         modelLeftTurn.render("embedded_super_large", railTile, x, y, z);
+                        break;
+                    }
+                    case EMBEDDED_TURN_29X29:
+                    case EMBEDDED_RIGHT_TURN_29X29: {
+                        modelRightTurn.render("29x", railTile, x, y, z);
+                        break;
+                    }
+                    case EMBEDDED_LEFT_TURN_29X29: {
+                        modelLeftTurn.render("29x", railTile, x, y, z);
                         break;
                     }
                     case EMBEDDED_TURN_32X32:
