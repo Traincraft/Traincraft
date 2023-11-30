@@ -16,6 +16,8 @@ public class ModelRightTurnTCTrack extends ModelBase {
 	private IModelCustom modelLargeRightTurn;
 	private IModelCustom modelVeryLargeRightTurn;
 	private IModelCustom modelSuperLargeRightTurn;
+
+	private IModelCustom model29XRightTurn;
 	private IModelCustom model32XRightTurn;
 
 	public ModelRightTurnTCTrack() {
@@ -23,6 +25,7 @@ public class ModelRightTurnTCTrack extends ModelBase {
 		modelLargeRightTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_curve_big.obj"));
 		modelVeryLargeRightTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_curve_very_big.obj"));
 		modelSuperLargeRightTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_curve_super_big.obj"));
+		model29XRightTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_curve_29x.obj"));
 		model32XRightTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_curve_32x.obj"));
 	}
 
@@ -38,6 +41,8 @@ public class ModelRightTurnTCTrack extends ModelBase {
 	public void renderSuperLarge() {
 		modelSuperLargeRightTurn.renderAll();
 	}
+
+	public void render29X() {model29XRightTurn.renderAll();}
 	public void render32X() {model32XRightTurn.renderAll();}
 
 	public void render(String type, TileTCRail tcRail, double x, double y, double z) {
@@ -70,6 +75,8 @@ public class ModelRightTurnTCTrack extends ModelBase {
 				GL11.glTranslatef(-1.0f, 0.0f, 5.0f);
 			if(type.equals("medium") || type.equals("embedded_medium"))
 				GL11.glTranslatef(1.5f, 0.0f, 2.5f);
+			if(type.equals("29x") || type.equals("embedded_29x"))
+				GL11.glTranslatef(27.5f,0,28.5f);
 			if(type.equals("32x") || type.equals("embedded_32x"))
 				GL11.glTranslatef(30.5f,0,31.5f);
 		}
@@ -83,6 +90,8 @@ public class ModelRightTurnTCTrack extends ModelBase {
 				GL11.glTranslatef(-1.0f, 0.0f, 5.0f);
 			if(type.equals("medium") || type.equals("embedded_medium"))
 				GL11.glTranslatef(1.5f, 0.0f, 2.5f);
+			if(type.equals("29x") || type.equals("embedded_29x"))
+				GL11.glTranslatef(27.5f,0,28.5f);
 			if(type.equals("32x") || type.equals("embedded_32x"))
 				GL11.glTranslatef(30.5f,0,31.5f);
 		}
@@ -96,6 +105,8 @@ public class ModelRightTurnTCTrack extends ModelBase {
 				GL11.glTranslatef(-1.0f, 0.0f, 5.0f);
 			if(type.equals("medium") || type.equals("embedded_medium"))
 				GL11.glTranslatef(1.5f, 0.0f, 2.5f);
+			if(type.equals("29x") || type.equals("embedded_29x"))
+				GL11.glTranslatef(27.5f,0,28.5f);
 			if(type.equals("32x") || type.equals("embedded_32x"))
 				GL11.glTranslatef(30.5f,0f,31.5f);
 		}
@@ -109,6 +120,8 @@ public class ModelRightTurnTCTrack extends ModelBase {
 				GL11.glTranslatef(-1.0f, 0.0f, 5.0f);
 			if(type.equals("medium") || type.equals("embedded_medium"))
 				GL11.glTranslatef(1.5f, 0.0f, 2.5f);
+			if(type.equals("29x") || type.equals("embedded_29x"))
+				GL11.glTranslatef(27.5f,0,28.5f);
 			if(type.equals("32x") || type.equals("embedded_32x"))
 				GL11.glTranslatef(30.5f,0,31.5f);
 		}
@@ -120,6 +133,8 @@ public class ModelRightTurnTCTrack extends ModelBase {
 			this.renderVeryLarge();
 		if (type.equals("super_large") || type.equals("embedded_super_large"))
 			this.renderSuperLarge();
+		if(type.equals("29x") || type.equals("embedded_29x"))
+			this.render29X();
 		if(type.equals("32x") || type.equals("embedded_32x"))
 			this.render32X();
 

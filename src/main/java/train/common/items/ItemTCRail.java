@@ -68,6 +68,10 @@ public class ItemTCRail extends ItemPart {
         SUPER_LARGE_LEFT_TURN("SUPER_LARGE_LEFT_TURN", TURN, ItemIDs.tcRailSuperLargeTurn, ""),
         SUPER_LARGE_RIGHT_TURN("SUPER_LARGE_RIGHT_TURN", TURN, ItemIDs.tcRailSuperLargeTurn, ""),
 
+        TURN_29X29("TURN_29X29", TURN, ItemIDs.tcRail29X29Turn, "29x29"),
+        LEFT_TURN_29X29("LEFT_TURN_29X29", TURN, ItemIDs.tcRail29X29Turn, ""),
+        RIGHT_TURN_29X29("RIGHT_TURN_29X29", TURN, ItemIDs.tcRail29X29Turn, ""),
+
         TURN_32X32("TURN_32X32", TURN, ItemIDs.tcRail32X32Turn, "32x32"),
         LEFT_TURN_32X32("LEFT_TURN_32X32", TURN, ItemIDs.tcRail32X32Turn, ""),
         RIGHT_TURN_32X32("RIGHT_TURN_32X32", TURN, ItemIDs.tcRail32X32Turn, ""),
@@ -193,6 +197,9 @@ public class ItemTCRail extends ItemPart {
         EMBEDDED_SUPER_LARGE_RIGHT_TURN("EMBEDDED_SUPER_LARGE_RIGHT_TURN", TURN, ItemIDs.tcRailEmbeddedSuperLargeTurn, ""),
         EMBEDDED_SUPER_LARGE_LEFT_TURN("EMBEDDED_SUPER_LARGE_LEFT_TURN", TURN, ItemIDs.tcRailEmbeddedSuperLargeTurn, ""),
 
+        EMBEDDED_TURN_29X29("EMBEDDED_TURN_29X29", TURN, ItemIDs.tcRailEmbedded29X29Turn, "29x29"),
+        EMBEDDED_LEFT_TURN_29X29("EMBEDDED_LEFT_TURN_29X29", TURN, ItemIDs.tcRailEmbedded29X29Turn, ""),
+        EMBEDDED_RIGHT_TURN_29X29("EMBEDDED_RIGHT_TURN_29X29", TURN, ItemIDs.tcRailEmbedded29X29Turn, ""),
         EMBEDDED_TURN_32X32("EMBEDDED_TURN_32X32", TURN, ItemIDs.tcRailEmbedded32X32Turn, "32x32"),
         EMBEDDED_LEFT_TURN_32X32("EMBEDDED_LEFT_TURN_32X32", TURN, ItemIDs.tcRailEmbedded32X32Turn, ""),
         EMBEDDED_RIGHT_TURN_32X32("EMBEDDED_RIGHT_TURN_32X32", TURN, ItemIDs.tcRailEmbedded32X32Turn, ""),
@@ -330,6 +337,8 @@ public class ItemTCRail extends ItemPart {
                 || tile.getType().equals(TrackTypes.VERY_LARGE_LEFT_TURN.getLabel())
                 || tile.getType().equals(TrackTypes.SUPER_LARGE_RIGHT_TURN.getLabel())
                 || tile.getType().equals(TrackTypes.SUPER_LARGE_LEFT_TURN.getLabel())
+                || tile.getType().equals(TrackTypes.RIGHT_TURN_29X29.getLabel())
+                || tile.getType().equals(TrackTypes.LEFT_TURN_29X29.getLabel())
                 || tile.getType().equals(TrackTypes.RIGHT_TURN_32X32.getLabel())
                 || tile.getType().equals(TrackTypes.LEFT_TURN_32X32.getLabel())
                 || tile.getType().equals(TrackTypes.SMALL_RIGHT_PARALLEL_CURVE.getLabel())
@@ -364,6 +373,8 @@ public class ItemTCRail extends ItemPart {
                 || tile.getType().equals(TrackTypes.EMBEDDED_VERY_LARGE_LEFT_TURN.getLabel())
                 || tile.getType().equals(TrackTypes.EMBEDDED_SUPER_LARGE_RIGHT_TURN.getLabel())
                 || tile.getType().equals(TrackTypes.EMBEDDED_SUPER_LARGE_LEFT_TURN.getLabel())
+                || tile.getType().equals(TrackTypes.EMBEDDED_RIGHT_TURN_29X29.getLabel())
+                || tile.getType().equals(TrackTypes.EMBEDDED_LEFT_TURN_29X29.getLabel())
                 || tile.getType().equals(TrackTypes.EMBEDDED_RIGHT_TURN_32X32.getLabel())
                 || tile.getType().equals(TrackTypes.EMBEDDED_LEFT_TURN_32X32.getLabel())
                 || tile.getType().equals(TrackTypes.EMBEDDED_SMALL_RIGHT_PARALLEL_CURVE.getLabel())
@@ -849,6 +860,12 @@ public class ItemTCRail extends ItemPart {
             return new int[][]{{0, 0}, {1, 0}, {2, 0}, {3, 0}, {4, 0}, {1, 1}, {2, 1}, {3, 1}, {4, 1}, {5, 1}, {6, 1}, {5, 2}, {6, 2}, {7, 2}, {8, 2},
                     {7, 3}, {8, 3}, {9, 3}, {10, 3}, {9, 4}, {10, 4}, {11, 4}, {10, 5}, {11, 5}, {12, 5}, {11, 6}, {12, 6}, {13, 6}, {12, 7}, {13, 7},
                     {12, 8}, {13, 8}, {14, 8}, {13, 9}, {14, 9}, {13, 10}, {14, 10}, {15, 10}, {14, 11}, {15, 11}, {14, 12}, {15, 12}, {14, 12,}, {15, 13}, {15, 14}, {15, 15}};
+        else if (type == TrackTypes.TURN_29X29 || type == TrackTypes.EMBEDDED_TURN_29X29)
+            return new int[][]{{0, 0}, {1, 0},{2, 0},{3, 0},{4, 0},{5, 0},{6, 0},{7, 0},{3, 1},{4, 1},{5, 1},{6, 1},{7, 1},{8, 1},{9, 1},{10, 1},{8, 2},{9, 2},{10, 2},{11, 2},{12, 2},{11, 3},{12, 3},{13, 3},{14, 3},{13, 4},{14, 4},{15, 4},{14, 5},{15, 5},{16, 5},{17, 5},{16, 6},{17, 6},{18, 6},{17, 7},{18, 7},{19, 7},{18, 8},{19, 8},{20, 8},{19, 9},{20, 9},{21, 9},{20, 10},{21, 10},{22, 10},{21, 11},{22, 11},{23, 11},{22, 12},{23, 12},{23, 13},{24, 13},{23, 14},{24, 14},{25, 14},{24, 15},{25, 15},{24, 16},{25, 16},{26, 16},{25, 17},{26, 17},{25, 18},{26, 18},{27, 18},{26, 19},{27, 19},{26, 20},{27, 20},{26, 21},{27, 21},{28, 21},{27, 22},{28, 22},{27, 23},{28, 23},{27, 24},{28, 24},{27, 25},{28, 25},{28, 26},{28, 27},{28, 28}};
+
+
+
+
         else if (type == TrackTypes.TURN_32X32 || type == TrackTypes.EMBEDDED_TURN_32X32)
             return new int[][]{{0, 0}, {1, 0}, {2, 0}, {3, 0}, {4, 0}, {5, 0}, {6, 0}, {7, 0}, {2, 1}, {3, 1}, {4, 1}, {5, 1}, {6, 1}, {7, 1}, {8, 1}, {9, 1},
                     {10, 1}, {11, 1}, {8, 2}, {9, 2}, {10, 2}, {11, 2}, {12, 2}, {13, 2}, {11, 3}, {12, 3}, {13, 3}, {14, 3}, {15, 3}, {12, 4}, {13, 4}, {14, 4},
@@ -2266,6 +2283,8 @@ public class ItemTCRail extends ItemPart {
 
                     /** Switch rail 4 **/
                     putDownSingleRail(world, x - 4, y + 1, z , l, x , y + 1, z - 9, 9.5, typeVariantStraight, false, x - 2, y + 1, z - 1, true, false);
+
+
                     for (int straight = 5 ; straight < 7 ; straight++){
                         putDownSingleRail(world, x - straight, y + 1, z, l, x, y + 1, z, 0, typeVariantStraight, false, x - 2, y + 1, z - 1, false, false);
 
@@ -2471,14 +2490,6 @@ public class ItemTCRail extends ItemPart {
                 return true;
             }
 
-
-
-
-
-
-
-
-
             else if (tempType == TrackTypes.MEDIUM_RIGHT_PARALLEL_SWITCH || tempType == TrackTypes.EMBEDDED_MEDIUM_RIGHT_PARALLEL_SWITCH) {
                 switch (tempType) {
                     case MEDIUM_RIGHT_PARALLEL_SWITCH:
@@ -2623,6 +2634,33 @@ public class ItemTCRail extends ItemPart {
                 }
                 return true;
             }
+
+            else if (tempType == TrackTypes.RIGHT_TURN_29X29 || tempType == TrackTypes.EMBEDDED_RIGHT_TURN_29X29) {
+
+
+                if (!turn29XRight(player, world, x, y, z, l, tempType)){
+                    return false;
+                }
+
+                if (player ==null || !player.capabilities.isCreativeMode) {
+                    --itemstack.stackSize;
+                }
+                return true;
+            }
+
+            else if (tempType == TrackTypes.LEFT_TURN_29X29 || tempType == TrackTypes.EMBEDDED_LEFT_TURN_29X29) {
+
+                if (!turn29XLeft(player, world, x, y, z, l, tempType)) {
+                    return false;
+                }
+                if (player ==null || !player.capabilities.isCreativeMode) {
+                    --itemstack.stackSize;
+                }
+
+                return true;
+            }
+
+
             else if (tempType == TrackTypes.RIGHT_TURN_32X32 || tempType == TrackTypes.EMBEDDED_RIGHT_TURN_32X32) {
 
 
@@ -2951,6 +2989,15 @@ public class ItemTCRail extends ItemPart {
                 }
                 if (getTrackOrientation(l, yaw).equals("left")) {
                     tempType = TrackTypes.SUPER_LARGE_LEFT_TURN;
+                }
+            }
+            if (type == TrackTypes.TURN_29X29) {
+                if (getTrackOrientation(l, yaw).equals("right")) {
+                    tempType = TrackTypes.RIGHT_TURN_29X29;
+                }
+                if (getTrackOrientation(l, yaw).equals("left")) {
+                    tempType = TrackTypes.LEFT_TURN_29X29;
+
                 }
             }
             if (type == TrackTypes.TURN_32X32) {
@@ -3302,7 +3349,7 @@ public class ItemTCRail extends ItemPart {
 
         //Adjust tracklength based on track type.
         if (type == TrackTypes.LONG_STRAIGHT || type == TrackTypes.EMBEDDED_LONG_STRAIGHT) trackLength = 3;
-        if (type == TrackTypes.VERY_LONG_STRAIGHT || type == TrackTypes.EMBEDDED_VERY_LONG_STRAIGHT) trackLength = 9;
+        if (type == TrackTypes.VERY_LONG_STRAIGHT || type == TrackTypes.EMBEDDED_VERY_LONG_STRAIGHT) trackLength = 57;
 
         //Initialise arrays of Rails and Gags, based on tracklength.
         TileTCRail[] tileRail = new TileTCRail[(trackLength / 3) + 1];
@@ -4279,6 +4326,60 @@ public class ItemTCRail extends ItemPart {
         }
         return true;
     }
+
+
+    private boolean turn29XRight(EntityPlayer player, World world, int x, int y, int z, int l, TrackTypes tempType){
+        int[] xArray = {0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1 ,2,2,2 ,2 ,2 ,3 ,3 ,3 ,3 ,4 ,4 ,4 , 5,5 ,5 ,5 ,6 ,6 ,6 ,7 , 7,7 ,8 ,8 ,8 ,9 ,9 ,9 ,10,10,10,11,11,11,12,12,13,13,14,14,14,15,15,16,16,16,17,17,18,18,18,19,19,20,20,21,21,21,22,22,23,23,24,24,25,25,26,27,28};
+        int[] zArray = {0,1,2,3,4,5,6,7,3,4,5,6,7,8,9,10,8,9,10,11,12,11,12,13,14,13,14,15,14,15,16,17,16,17,18,17,18,19,18,19,20,19,20,21,20,21,22,21,22,23,22,23,23,24,23,24,25,24,25,24,25,26,25,26,25,26,27,26,27,26,27,26,27,28,27,28,27,28,27,28,27,28,28,28,28};
+
+        if (l == 2) {
+            if (!putDownTurn(player, world, false, x, y, z, flipArraySign(xArray, x, false), flipArraySign(zArray, z, true), l, false, 3, x + 29, z - 29, 28.5, x + 29,
+                    y + 1, z + 1, tempType.getLabel(), tempType.getItem().item))
+                return false;
+        }
+        if (l == 0) {
+            if (!putDownTurn(player, world, false, x, y, z, flipArraySign(xArray, x, true), flipArraySign(zArray, z, false), l, false, 1, x - 29, z + 29, 28.5, x - 28,
+                    y + 1, z, tempType.getLabel(), tempType.getItem().item))
+                return false;
+        }
+        if (l == 1) {
+            if (!putDownTurn(player, world, false, x, y, z, flipArraySign(zArray, x, true), flipArraySign(xArray, z, true), l, false, 2, x - 29, z - 29, 28.5,  x + 1 ,
+                    y + 1, z - 28 , tempType.getLabel(), tempType.getItem().item))
+                return false;
+        }
+        if (l == 3) {
+            return putDownTurn(player, world, false, x, y, z, flipArraySign(zArray, x, false), flipArraySign(xArray, z, false), l, false, 0, x + 29, z + 29, 28.5, x, y + 1,
+                    z + 29, tempType.getLabel(), tempType.getItem().item);
+        }
+        return true;
+    }
+
+    private boolean turn29XLeft(EntityPlayer player, World world, int x, int y, int z, int l, TrackTypes tempType) {
+        int[] xArray = {0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1 ,2,2,2 ,2 ,2 ,3 ,3 ,3 ,3 ,4 ,4 ,4 , 5,5 ,5 ,5 ,6 ,6 ,6 ,7 , 7,7 ,8 ,8 ,8 ,9 ,9 ,9 ,10,10,10,11,11,11,12,12,13,13,14,14,14,15,15,16,16,16,17,17,18,18,18,19,19,20,20,21,21,21,22,22,23,23,24,24,25,25,26,27,28};
+        int[] zArray = {0,1,2,3,4,5,6,7,3,4,5,6,7,8,9,10,8,9,10,11,12,11,12,13,14,13,14,15,14,15,16,17,16,17,18,17,18,19,18,19,20,19,20,21,20,21,22,21,22,23,22,23,23,24,23,24,25,24,25,24,25,26,25,26,25,26,27,26,27,26,27,26,27,28,27,28,27,28,27,28,27,28,28,28,28};
+
+        if (l == 2) {
+            if (!putDownTurn(player, world, false, x, y, z, flipArraySign(xArray, x, true), flipArraySign(zArray, z, true), l, false, 1, x - 29, z + 29, 28.5, x - 28,
+                    y + 1, z+1, tempType.getLabel(), tempType.getItem().item))
+                return false;
+        }
+        if (l == 0) {
+            if (!putDownTurn(player, world, false, x, y, z, flipArraySign(xArray, x, false), flipArraySign(zArray, z, false), l, false, 1, x + 29, z + 29, 28.5, x + 29,
+                    y + 1, z , tempType.getLabel(), tempType.getItem().item))
+                return false;
+        }
+        if (l == 1) {
+            if (!putDownTurn(player, world, false, x, y, z, flipArraySign(zArray, x, true), flipArraySign(xArray, z, false), l, false, 2, x - 29, z + 28, 31.5, x + 1 ,
+                    y + 1, z + 29, tempType.getLabel(), tempType.getItem().item))
+                return false;
+        }
+        if (l == 3) {
+            return putDownTurn(player, world, false, x, y, z, flipArraySign(zArray, x, false), flipArraySign(xArray, z, true), l, false, 0, x + 29, z - 29, 28.5, x, y + 1,
+                    z - 28, tempType.getLabel(), tempType.getItem().item);
+        }
+        return true;
+    }
+
     private boolean mediumRight45DegreeTurn(EntityPlayer player, World world, int x, int y, int z, int l, TrackTypes tempType) {
 
         int[] xArray;

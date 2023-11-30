@@ -121,12 +121,14 @@ public class TCItems {
 		ItemIDs.tcRailLargeTurn.item = new ItemTCRail(ItemTCRail.TrackTypes.LARGE_TURN);
 		ItemIDs.tcRailVeryLargeTurn.item = new ItemTCRail(ItemTCRail.TrackTypes.VERY_LARGE_TURN);
 		ItemIDs.tcRailSuperLargeTurn.item = new ItemTCRail(ItemTCRail.TrackTypes.SUPER_LARGE_TURN);
+		ItemIDs.tcRail29X29Turn.item = new ItemTCRail(ItemTCRail.TrackTypes.TURN_29X29);
 		ItemIDs.tcRail32X32Turn.item = new ItemTCRail(ItemTCRail.TrackTypes.TURN_32X32);
 		/* Embedded Turns */
 		ItemIDs.tcRailEmbeddedMediumTurn.item = new ItemTCRail(ItemTCRail.TrackTypes.EMBEDDED_MEDIUM_TURN);
 		ItemIDs.tcRailEmbeddedLargeTurn.item = new ItemTCRail(ItemTCRail.TrackTypes.EMBEDDED_LARGE_TURN);
 		ItemIDs.tcRailEmbeddedVeryLargeTurn.item = new ItemTCRail(ItemTCRail.TrackTypes.EMBEDDED_VERY_LARGE_TURN);
 		ItemIDs.tcRailEmbeddedSuperLargeTurn.item = new ItemTCRail(ItemTCRail.TrackTypes.EMBEDDED_SUPER_LARGE_TURN);
+		ItemIDs.tcRailEmbedded29X29Turn.item = new ItemTCRail(ItemTCRail.TrackTypes.EMBEDDED_TURN_29X29);
 		ItemIDs.tcRailEmbedded32X32Turn.item = new ItemTCRail(ItemTCRail.TrackTypes.EMBEDDED_TURN_32X32);
 
 
