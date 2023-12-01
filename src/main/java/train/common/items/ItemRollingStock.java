@@ -3,6 +3,7 @@ package train.common.items;
 import com.mojang.authlib.GameProfile;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import ebf.tim.utility.CommonUtil;
 import mods.railcraft.api.carts.IMinecart;
 import mods.railcraft.api.core.items.IMinecartItem;
 import net.minecraft.block.BlockRailBase;
@@ -16,11 +17,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import train.common.Traincraft;
 import train.common.api.*;
 import train.common.core.handlers.ConfigHandler;
+import train.common.core.util.DepreciatedUtil;
 import train.common.core.util.TraincraftUtil;
 import train.common.entity.rollingStock.EntityTracksBuilder;
 import train.common.items.ItemTCRail.TrackTypes;
@@ -36,6 +39,15 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 	private String iconName = "";
 	private final String trainName;
 	private String trainCreator;
+
+	private AbstractTrains entity=null;
+
+	private AbstractTrains getEntity(){
+		if(entity==null){
+			entity=Traincraft.instance.traincraftRegistry.findTrainRecordByItem(this).getEntity(null);
+		}
+		return entity;
+	}
 
 	public ItemRollingStock(String iconName) {
 		super(1);
@@ -82,44 +94,92 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 		if (par1ItemStack.hasTagCompound()) {
 			NBTTagCompound var5 = par1ItemStack.getTagCompound();
 			trainCreator = var5.getString("trainCreator");
-			/*if (id > 0)
-				par3List.add("\u00a77" + "ID: " + id);*/
 			if (!trainCreator.isEmpty()) {
 				par3List.add("\u00a77" + "Creator: " + trainCreator);
 			}
-			int color = var5.getInteger("trainColor");
-			if (var5.hasKey("trainColor") && color <= 16) {
-				par3List.add("\u00a77" + "Color: " + AbstractTrains.getColorAsString(color));
+			if (var5.hasKey("train_Color")) {
+				par3List.add("\u00a77" + "Color: " + var5.getString("train_Color"));
 			}
 
 		}
-		double mass = getMass();
-		int power = getMHP();
-		int maxSpeed = getMaxSpeed();
-		String additionnalInfo = getAdditionnalInfo();
-		if (!getTrainType().isEmpty()) {
-			par3List.add("\u00a77" + "Type: " + getTrainType());
-		}
-		if (power > 0) {
-			par3List.add("\u00a77" + "Power: " + power + " Mhp");
-		}
-		if (mass != 0) {
-			par3List.add("\u00a77" + "Mass: " + (mass * 10));
-		}
-		if (maxSpeed > 0) {
-			par3List.add("\u00a77" + "Max Speed: " + maxSpeed);
-		}
-		if(getCargoCapacity()>0){
-			par3List.add("\u00a77" + "Slots: "+getCargoCapacity());
-		}
-		/*if(additionnalInfo!=null){
-			for(String info : additionnalInfo){
-				par3List.add("\u00a77" + info);
+
+		if(getEntity()!=null){
+			//year is the tell for if the TC4.5 API was used in favor of 4.3's.
+			if(!getEntity().transportYear().equals("")) {
+				if (getEntity().transportYear() != null) {
+					par3List.add(EnumChatFormatting.GRAY + t("menu.item.year") + ": " + getEntity().transportYear());
+				}
+				if(getEntity().transportcountry()!=null) {
+					par3List.add(EnumChatFormatting.GRAY + t("menu.item.country") + ": " +
+							t("menu.item." + getEntity().transportcountry().toLowerCase()));
+				}
 			}
-		}*/
-		if(getAdditionnalInfo()!=null){
-			par3List.add("\u00a77" + getAdditionnalInfo());
+
+			if(getEntity().transportFuelType()!=null && !getEntity().transportFuelType().equals("")) {
+				par3List.add(EnumChatFormatting.RED + t("menu.item.fueltype") + ": " +
+						t("menu.item."+getEntity().transportFuelType().toLowerCase()));
+			}
+
+			StringBuilder s = new StringBuilder();
+			par3List.add(EnumChatFormatting.RED + t("menu.item.types")+":");
+			if (getEntity() instanceof Locomotive){
+				s.append(t("menu.item.locomotive")+", ");
+				if(entity instanceof IPassenger){
+					s.append(t("menu.item.passenger")+", ");
+				}
+				if(entity instanceof Freight){
+					s.append(t("menu.item.freight")+", ");
+				}
+			} else {
+				s.append(t("menu.item.rollingstock")+", ");
+				if(entity instanceof IPassenger){
+					s.append(t("menu.item.passenger")+", ");
+				}
+				if(entity instanceof Tender){
+					s.append(t("menu.item.tender")+", ");
+				} else if(entity instanceof LiquidTank){
+					s.append(t("menu.item.tanker")+", ");
+				}
+				if(entity instanceof AbstractWorkCart){
+					s.append(t("menu.item.workcart")+", ");
+				}
+				if(entity instanceof Freight){
+					s.append(t("menu.item.freight")+", ");
+				}
+			}
+			s.delete(s.lastIndexOf(", "),s.length());
+
+			par3List.add(EnumChatFormatting.RED +s.toString());
+
+			par3List.add(EnumChatFormatting.GREEN + t("menu.item.weight") +": " + getEntity().weightKg() + "kg");
+			if (getEntity().transportTopSpeed()!=0){
+				par3List.add(EnumChatFormatting.GREEN + t("menu.item.speed") +": " + getEntity().transportTopSpeed() +" km/h");
+
+				if (getEntity().transportMetricHorsePower() !=0){
+					par3List.add(EnumChatFormatting.GREEN +t("menu.item.mhp") +": " + getEntity().transportMetricHorsePower());
+				}
+				if (getEntity().transportTractiveEffort() != 0){
+					par3List.add(EnumChatFormatting.GREEN + t("menu.item.tractiveeffort") +": " + getEntity().transportTractiveEffort() + " lbf");
+				}
+			}
+			if(getEntity().getInventoryRows()>0){
+				par3List.add(EnumChatFormatting.BLUE +t("menu.item.isizeof")+ ": " + (getEntity().getInventoryRows()*9) + " " + t("menu.item.slots"));
+			}
+			if(getEntity().getRiderOffsets()!=null){
+				par3List.add(EnumChatFormatting.BLUE +t("menu.item.seats")+ ": " + getEntity().getRiderOffsets().length);
+			}
+			if (getEntity().isFictional()){
+				par3List.add(EnumChatFormatting.WHITE +t("menu.item.fictional"));
+			}
+			if (getEntity().additionalItemText()!=null){
+				for (String a : getEntity().additionalItemText()) {
+					if(!a.equals("")) {
+						par3List.add(EnumChatFormatting.LIGHT_PURPLE + a);
+					}
+				}
+			}
 		}
+
 	}
 	@Override
 	public EnumRarity getRarity(ItemStack par1ItemStack) {
@@ -138,9 +198,7 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 	public int getMHP() {
 		return Traincraft.instance.traincraftRegistry.findTrainRecordByItem(this).getMHP();
 	}
-	public String getAdditionnalInfo() {
-		return Traincraft.instance.traincraftRegistry.findTrainRecordByItem(this).getAdditionnalTooltip();
-	}
+
 	public int getCargoCapacity() {
 		return Traincraft.instance.traincraftRegistry.findTrainRecordByItem(this).getCargoCapacity();
 	}
@@ -621,9 +679,8 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 						if (uniID != -1)
 							rollingStock.getEntityData().setInteger("uniqueID", uniID);
 						trainCreator = var5.getString("trainCreator");
-						int trainColor = var5.getInteger("trainColor");
-						if (var5.hasKey("trainColor"))
-							rollingStock.setColor(trainColor);
+						if (var5.hasKey("train_Color"))
+							rollingStock.setColor(var5.getString("train_Color"));
 						rollingStock.trainCreator = trainCreator;
 						if (var5.hasKey("overlayTextureConfigTag")) // Import overlay configuration from NBT and apply it to the entity.
 							rollingStock.getOverlayTextureContainer().importFromConfigTag(var5.getCompoundTag("overlayTextureConfigTag"));
@@ -678,7 +735,7 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 				if(player!=null && player.length()>1) {
 					tag.setString("theOwner", player);
 				}
-				tag.setString("trainColor",color);
+				tag.setString("train_Color",color);
 			} else {
 				tag.setString("trainCreator", creator!=null && creator.length()>1?creator:"Creative");
 			}
@@ -693,6 +750,9 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 
 	}
 
+	private static String t(String translate){
+		return CommonUtil.translate(translate);
+	}
 
 	@Override
 	public boolean canBePlacedByNonPlayer(ItemStack cart) {

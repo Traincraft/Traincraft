@@ -17,6 +17,7 @@ import fexcraft.tmt.slim.ModelConverter;
 import fexcraft.tmt.slim.ModelRendererTurbo;
 import fexcraft.tmt.slim.Tessellator;
 import train.common.api.AbstractTrains;
+import train.common.core.util.DepreciatedUtil;
 import train.common.library.Info;
 
 public class ModelPSscrewyoutoomanydiners extends ModelConverter //Same as Filename
@@ -2278,9 +2279,9 @@ public class ModelPSscrewyoutoomanydiners extends ModelConverter //Same as Filen
 		{
 			bodyModel[i].render(f5);
 		}
-		if(entity instanceof AbstractTrains && AbstractTrains.getColorFromString(((AbstractTrains) entity).getColor())==14){
+		if(entity instanceof AbstractTrains && DepreciatedUtil.getColorFromString(((AbstractTrains) entity).getColor())==14){
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/41-N-11_truck_silver.png"));
-		} else if (entity instanceof AbstractTrains && AbstractTrains.getColorFromString(((AbstractTrains) entity).getColor()) == 13242) {
+		} else if (entity instanceof AbstractTrains && DepreciatedUtil.getColorFromString(((AbstractTrains) entity).getColor()) == 13242) {
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/BAP_41-N-11_truck_NKP_blue.png"));
 		}else {
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/41-N-11_truck_black.png"));

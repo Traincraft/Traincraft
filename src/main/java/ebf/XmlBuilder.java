@@ -36,6 +36,14 @@ public class XmlBuilder {
         buildString=str;
         buildXML();
     }
+
+    public XmlBuilder updateData(String str){
+        if(str.hashCode()!=buildString.hashCode()){
+            buildString=str;
+            buildXML();
+        }
+        return this;
+    }
     public XmlBuilder(){}
     /*
      *----------put Section----------

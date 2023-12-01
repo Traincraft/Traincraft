@@ -18,6 +18,7 @@ import fexcraft.tmt.slim.ModelConverter;
 import fexcraft.tmt.slim.ModelRendererTurbo;
 import fexcraft.tmt.slim.Tessellator;
 import train.common.api.AbstractTrains;
+import train.common.core.util.DepreciatedUtil;
 import train.common.library.Info;
 
 public class ModelC424 extends ModelConverter //Same as Filename
@@ -1390,7 +1391,7 @@ public class ModelC424 extends ModelConverter //Same as Filename
 			}
 		}
 
-		if (entity instanceof AbstractTrains && AbstractTrains.getColorFromString(((AbstractTrains) entity).getColor()) == 14) {
+		if (entity instanceof AbstractTrains && DepreciatedUtil.getColorFromString(((AbstractTrains) entity).getColor()) == 14) {
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/typeb_Grey.png"));
 			GL11.glPushMatrix();
 			GL11.glTranslated(-1.55, 0.25, 0);

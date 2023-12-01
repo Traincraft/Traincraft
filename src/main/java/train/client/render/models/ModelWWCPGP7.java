@@ -17,6 +17,7 @@ import fexcraft.tmt.slim.ModelConverter;
 import fexcraft.tmt.slim.ModelRendererTurbo;
 import fexcraft.tmt.slim.Tessellator;
 import train.common.api.AbstractTrains;
+import train.common.core.util.DepreciatedUtil;
 import train.common.library.Info;
 
 public class ModelWWCPGP7 extends ModelConverter //Same as Filename
@@ -3526,7 +3527,7 @@ public class ModelWWCPGP7 extends ModelConverter //Same as Filename
 		}
 
 
-		if(entity instanceof AbstractTrains && AbstractTrains.getColorFromString(((AbstractTrains) entity).getColor())==5465){
+		if(entity instanceof AbstractTrains && DepreciatedUtil.getColorFromString(((AbstractTrains) entity).getColor())==5465){
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/blombergB_wwcp_black.png"));
 		} else {
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/blombergB_wwcp_black.png"));

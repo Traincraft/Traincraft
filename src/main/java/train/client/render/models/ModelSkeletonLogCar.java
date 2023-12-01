@@ -18,8 +18,8 @@ import fexcraft.tmt.slim.ModelRendererTurbo;
 import fexcraft.tmt.slim.Tessellator;
 import train.client.render.models.loads.ModelBigLog;
 import train.client.render.models.loads.ModelMixedLogs;
-import train.common.api.AbstractTrains;
 import train.common.api.Freight;
+import train.common.core.util.DepreciatedUtil;
 import train.common.library.Info;
 
 import java.util.Arrays;
@@ -311,7 +311,7 @@ public class ModelSkeletonLogCar extends ModelConverter //Same as Filename
 					GL11.glPopMatrix();
 				}*/
 		}
-		if(AbstractTrains.getColorFromString(freight.getColor()) == 5465469){
+		if(DepreciatedUtil.getColorFromString(freight.getColor()) == 5465469){
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/70Ton_Greyish.png"));
 		} else {
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/FrictionTruck_Greyish.png"));

@@ -13,6 +13,7 @@ public abstract class TrainRecord {
 
     public List<String> skins = new ArrayList<>();
 
+    @Deprecated
     public abstract String getName();
 
     public abstract String getInternalName();
@@ -21,8 +22,10 @@ public abstract class TrainRecord {
 
     public abstract String getTrainType();
 
+    @Deprecated
     public abstract int getMHP();
 
+    @Deprecated
     public abstract int getMaxSpeed();
 
     public abstract double getMass();
@@ -54,6 +57,7 @@ public abstract class TrainRecord {
 
     public abstract int getGuiRenderScale();
 
+    @Deprecated
     public abstract String getAdditionnalTooltip();
 
     public abstract int getCargoCapacity();
@@ -67,14 +71,28 @@ public abstract class TrainRecord {
         return makeEntry(entryName, internalName, entityClass, item, trainType, MHP, maxSpeed, mass, fuelConsumption, waterConsumption, heatingTime, accelerationRate, brakeRate, tankCapacity, 0, colors, guiRenderScale, bogieLocoPosition, "");
     }
 
+    @Deprecated
+    /**
+     * #param entryName is depreciated
+     * #param additionalTooltip is depreciated.
+     */
     public static TrainRecord makeEntry(String entryName, String internalName, Class entityClass, Item item, String trainType, int MHP, int maxSpeed, double mass, int fuelConsumption, int waterConsumption, int heatingTime, double accelerationRate, double brakeRate, int tankCapacity, String[] colors, int guiRenderScale, double bogieLocoPositions, String additionnalTooltip) {
         return makeEntry(entryName, internalName, entityClass, item, trainType, MHP, maxSpeed, mass, fuelConsumption, waterConsumption, heatingTime, accelerationRate, brakeRate, tankCapacity, 0, colors, guiRenderScale, bogieLocoPositions, additionnalTooltip);
     }
-
+    @Deprecated
+    /**
+     * #param entryName is depreciated
+     * #param additionalTooltip is depreciated.
+     */
     public static TrainRecord makeEntry(String entryName, String internalName, Class entityClass, Item item, String trainType, double mass, String[] colors, int guiRenderScale, int cargoCapacity, String additionnalTooltip) {
         return makeEntry(entryName, internalName, entityClass, item, trainType, 0, 0, mass, 0, 0, 0, 0, 0, 0, cargoCapacity, colors, guiRenderScale, 0, additionnalTooltip);
     }
 
+    @Deprecated
+    /**
+     * #param entryName is depreciated
+     * #param additionalTooltip is depreciated.
+     */
     public static TrainRecord makeEntry(final String entryName, final String internalName, final Class entityClass, final Item item, final String trainType, final int MHP, final int maxSpeed, final double mass, final int fuelConsumption, final int waterConsumption, final int heatingTime, final double accelerationRate, final double brakeRate, final int tankCapacity, final int cargoCapacity, final String[] colors, final int guiRenderScale, final double bogieLocoPositions, final String additionnalTooltip) {
         return new TrainRecord() {
             @Override

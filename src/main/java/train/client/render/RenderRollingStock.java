@@ -56,12 +56,7 @@ public class RenderRollingStock extends Render {
         GL11.glLightModelf(GL_LIGHT_MODEL_LOCAL_VIEWER, GL_TRUE);
         GL11.glShadeModel(GL_SMOOTH);
         GL11.glEnable(GL_NORMALIZE);
-        long var10 = cart.getEntityId() * 493286711L;
-        var10 = var10 * var10 * 4392167121L + var10 * 98761L;
-        float var12 = (((var10 >> 16 & 7L) + 0.5F) / 8.0F - 0.5F) * 0.004F;
-        float var13 = (((var10 >> 20 & 7L) + 0.5F) / 8.0F - 0.5F) * 0.004F;
-        float var14 = (((var10 >> 24 & 7L) + 0.5F) / 8.0F - 0.5F) * 0.004F;
-        GL11.glTranslatef(var12, var13, var14);
+
         double var15 = cart.lastTickPosX + (cart.posX - cart.lastTickPosX) * time;
         double var17 = cart.lastTickPosY + (cart.posY - cart.lastTickPosY) * time;
         double var19 = cart.lastTickPosZ + (cart.posZ - cart.lastTickPosZ) * time;
@@ -204,10 +199,10 @@ public class RenderRollingStock extends Render {
 
         //GL11.glRotatef(180.0F - yaw, 0.0F, 1.0F, 0.0F);
         if (cart.bogieLoco != null) {// || cart.bogieUtility[0]!=null){
-            GL11.glRotatef((float) -cart.anglePitchClient, 0.0F, 0.0F, 1.0F);
+            GL11.glRotatef(-cart.anglePitchClient, 0.0F, 0.0F, 1.0F);
         } else {
             if (renderYVect != null) {
-                pitch = (float) cart.anglePitchClient / 60;
+                pitch = cart.anglePitchClient / 60;
                 if (cart.rotationYawClientReal > -5 && cart.rotationYawClientReal < 5) {
                     pitch = -pitch;
                 }
