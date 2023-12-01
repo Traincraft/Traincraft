@@ -28,6 +28,7 @@ public abstract class TrainRecord {
     @Deprecated
     public abstract int getMaxSpeed();
 
+    @Deprecated
     public abstract double getMass();
 
     public abstract int getFuelConsumption();
@@ -40,6 +41,7 @@ public abstract class TrainRecord {
 
     public abstract double getBrakeRate();
 
+    @Deprecated
     public abstract int getTankCapacity();
 
     public abstract List<String> getColors();
@@ -55,11 +57,10 @@ public abstract class TrainRecord {
 
     public abstract Class<Entity> getEntityClass();
 
-    public abstract int getGuiRenderScale();
-
     @Deprecated
     public abstract String getAdditionnalTooltip();
 
+    @Deprecated
     public abstract int getCargoCapacity();
 
     public abstract AbstractTrains getEntity(World world);
@@ -177,11 +178,6 @@ public abstract class TrainRecord {
             @Override
             public Class<Entity> getEntityClass() {
                 return entityClass;
-            }
-
-            @Override
-            public int getGuiRenderScale() {
-                return guiRenderScale;
             }
 
             @Override

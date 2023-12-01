@@ -24,7 +24,7 @@ public class EntityFreightBapSkeletonLogCar extends Freight implements IInventor
 
 	public void initFreightWood() {
 		numFreightSlots = 9;
-		freightInventorySize = getSpec().getCargoCapacity();
+		freightInventorySize = getInventoryRows()*9;
 		cargoItems = new ItemStack[freightInventorySize];
 	}
 

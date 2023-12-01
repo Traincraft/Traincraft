@@ -34,7 +34,7 @@ public class EntityFreightBap40highcube extends Freight implements IInventory  {
 
     public void initFreightCart() {
         numFreightSlots = 4;
-        freightInventorySize = getSpec().getCargoCapacity();
+        freightInventorySize = getInventoryRows()*9;
         cargoItems = new ItemStack[freightInventorySize];
     }
     @Override

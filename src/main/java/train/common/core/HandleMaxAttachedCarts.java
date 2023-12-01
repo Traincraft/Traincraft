@@ -34,7 +34,7 @@ public class HandleMaxAttachedCarts {
         if ((cart1).train != null && !(cart1).train.getTrains().isEmpty()) {
 
             for (int j1 = 0; j1 < (cart1).train.getTrains().size(); j1++) {
-                totalMass += (cart1).train.getTrains().get(j1).mass;
+                totalMass += (cart1).train.getTrains().get(j1).weightKg();
             }
             (cart1).currentNumCartsPulled = (cart1).train.getTrains().size() - 1;
             (cart1).currentMassPulled = Math.round(totalMass * 10);
@@ -54,11 +54,11 @@ public class HandleMaxAttachedCarts {
 
         double power = 0;
         if ((cart1).train != null && !(cart1).train.getTrains().isEmpty() && (cart1).train.getTrains().size() > 1) {
-            power = (cart1).getPower();
+            power =cart1.transportMetricHorsePower();
             for (int i = 0; i < (cart1).train.getTrains().size(); i++) {
                 EntityRollingStock stock = (cart1).train.getTrains().get(i);
                 if (stock instanceof Locomotive && stock.uniqueID != (cart1).uniqueID) {
-                    power += ((Locomotive) stock).getPower();
+                    power += stock.transportMetricHorsePower();
                 }
             }
             //power = ((Locomotive) cart1).getPower();//((EntityRollingStock) cart1).train.getTrainPower();

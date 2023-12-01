@@ -35,7 +35,7 @@ public class EntityBoulderWagon extends Freight implements IInventory {
 
     public void initFreightCart() {
         numFreightSlots = 1;
-        freightInventorySize = getSpec().getCargoCapacity();
+        freightInventorySize = getInventoryRows()*9;
         cargoItems = new ItemStack[freightInventorySize];
     }
 
