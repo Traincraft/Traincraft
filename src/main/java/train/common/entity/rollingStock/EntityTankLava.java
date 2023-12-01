@@ -50,9 +50,9 @@ public class EntityTankLava extends LiquidTank {
 		if (worldObj.isRemote)
 			return;
 		if (getAmount() > 0)
-			setColor(TraincraftUtil.getByteFromColor("Full"));
+			setColor("Full");
 		if (getAmount() <= 0)
-			setColor(TraincraftUtil.getByteFromColor("Empty"));
+			setColor("Empty");
 	}
 	
 	@Override

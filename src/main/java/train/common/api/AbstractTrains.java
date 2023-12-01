@@ -25,6 +25,7 @@ import train.common.Traincraft;
 import train.common.adminbook.ItemAdminBook;
 import train.common.core.handlers.ConfigHandler;
 import train.common.core.handlers.TrainHandler;
+import train.common.core.util.DepreciatedUtil;
 import train.common.items.ItemChunkLoaderActivator;
 import train.common.items.ItemRollingStock;
 import train.common.items.ItemWrench;
@@ -244,51 +245,6 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
         return uniqueID;
     }
 
-    public void manageChunkLoading() {
-        //if(this instanceof Locomotive)System.out.println("I'm alive. Remote: " + worldObj.isRemote);
-        if (!worldObj.isRemote && this.uniqueID == -1) {
-            if (FMLCommonHandler.instance().getMinecraftServerInstance() != null) {
-                //TraincraftSaveHandler.createFile(FMLCommonHandler.instance().getMinecraftServerInstance());
-                //int readID = TraincraftSaveHandler.readInt(FMLCommonHandler.instance().getMinecraftServerInstance(), "numberOfTrains:");
-                //int newID = setNewUniqueID(readID);
-                setNewUniqueID(this.getEntityId());
-                //TraincraftSaveHandler.writeValue(FMLCommonHandler.instance().getMinecraftServerInstance(), "numberOfTrains:", new String("" + newID));
-                //System.out.println("Train is missing an ID, adding new one for "+this.trainName+" "+this.uniqueID);
-            }
-        }
-        shouldChunkLoad = getFlag(7);
-        if (shouldChunkLoad) {
-            if (this.chunkTicket == null) {
-                this.requestTicket();
-            }
-        }
-    }
-
-    @Override
-    public void onUpdate() {
-        super.onUpdate();
-        if (!(this instanceof EntityRollingStock)) {
-            manageChunkLoading();
-        }
-        /*
-         * if (worldObj.isRemote) { if (this.getFlag(6)) { if (this.chunks !=
-         * null) { Iterator var3 = this.chunks.iterator(); while
-         * (var3.hasNext()) { ChunkCoordIntPair var4 = (ChunkCoordIntPair)
-         * var3.next(); int x = var4.getCenterXPos(); int z =
-         * var4.getCenterZPosition();
-         * this.worldObj.spawnParticle("mobSpellAmbient", x, posY, z, 0, 0, 0);
-         * for (int i = 0; i < 10; i++) { this.worldObj.spawnParticle("portal",
-         * x + (this.rand.nextDouble() - 0.5D) * (double) 8, this.posY +
-         * this.rand.nextDouble() * (double) 6 - 0.25D, z +
-         * (this.rand.nextDouble() - 0.5D) * (double) 8, (this.rand.nextDouble()
-         * - 0.5D) * 2.0D, -this.rand.nextDouble(), (this.rand.nextDouble() -
-         * 0.5D) * 2.0D); } } } else { this.setupChunks(this.chunkCoordX,
-         * this.chunkCoordZ); } } } else if (!ConfigHandler.CHUNK_LOADING) {
-         * this.releaseTicket(); } else { if (this.ticket == null) {
-         * this.requestTicket(); } }
-         */
-    }
-
     @Override
     public void setDead() {
         ForgeChunkManager.releaseTicket(chunkTicket);
@@ -355,7 +311,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
     public void setColor(int color) {
         TrainRecord trainRecord = Traincraft.instance.traincraftRegistry.findTrainRecordByItem(getCartItem().getItem());
         if (trainRecord != null && !trainRecord.getLiveries().isEmpty()) {
-            if (color == -1 || !trainRecord.getLiveries().contains(getColorAsString(color))) {
+            if (color == -1 || !trainRecord.getLiveries().contains(DepreciatedUtil.getColorAsString(color))) {
                 color = color+1>trainRecord.getLiveries().size()-1?0:color+1;
             }
             entity_data.putString("color", trainRecord.getLiveries().get(color));
@@ -386,7 +342,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
     }
 
     public String getColor() {
-        entity_data = new XmlBuilder(dataWatcher.getWatchableObjectString(12));
+        entity_data.updateData(dataWatcher.getWatchableObjectString(12));
         return entity_data.getString("color");
     }
 
@@ -488,111 +444,6 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
                 dataWatcher.updateObject(13, trainCreator);
             }
         }
-    }
-
-    public static String getColorAsString(int i) {
-        switch (i) {
-            case 0:
-                return "Black";
-            case 1:
-                return "Red";
-            case 2:
-                return "Green";
-            case 3:
-                return "Brown";
-            case 4:
-                return "Blue";
-            case 5:
-                return "Purple";
-            case 6:
-                return "Cyan";
-            case 7:
-                return "LightGrey";
-            case 8:
-                return "Grey";
-            case 13:
-                return "Magenta";
-            case 10:
-                return "Lime";
-            case 11:
-                return "Yellow";
-            case 12:
-                return "LightBlue";
-            case 9:
-                return "Pink";
-            case 14:
-                return "Orange";
-            case 15:
-                return "White";
-            case 16:
-                return "Skin16";
-            case 17:
-                return "Skin17";
-            case 18:
-                return "Skin18";
-            case 19:
-                return "Skin19";
-            case 20:
-                return "Skin20";
-            case 21:
-                return "Skin21";
-            case 22:
-                return "Skin22";
-            case 23:
-                return "Skin23";
-            case 24:
-                return "Skin24";
-            case 25:
-                return "Skin25";
-            case 26:
-                return "Skin26";
-            case 27:
-                return "Skin27";
-            case 28:
-                return "Skin28";
-            case 29:
-                return "Skin29";
-            case 30:
-                return "Skin30";
-            case 100:
-                return "Empty";
-            case 101:
-                return "Full";
-            default:
-                return "" + i;
-        }
-    }
-
-    public static int getColorFromString(String color) {
-        if (color.equals("Black")) return 0;
-        if (color.equals("Red")) return 1;
-        if (color.equals("Green")) return 2;
-        if (color.equals("Brown")) return 3;
-        if (color.equals("Blue")) return 4;
-        if (color.equals("Purple")) return 5;
-        if (color.equals("Cyan")) return 6;
-        if (color.equals("LightGrey")) return 7;
-        if (color.equals("Grey")) return 8;
-        if (color.equals("Magenta")) return 13;
-        if (color.equals("Lime")) return 10;
-        if (color.equals("Yellow")) return 11;
-        if (color.equals("LightBlue")) return 12;
-        if (color.equals("Pink")) return 9;
-        if (color.equals("Orange")) return 14;
-        if (color.equals("White")) return 15;
-        if (color.equals("Skin16")) return 16;
-        if (color.equals("Skin17")) return 17;
-        if (color.equals("Skin18")) return 18;
-        if (color.equals("Skin19")) return 19;
-        if (color.equals("Skin20")) return 20;
-        if (color.equals("Skin21")) return 21;
-        if (color.equals("Skin22")) return 22;
-        if (color.equals("Skin23")) return 23;
-        if (color.equals("Skin24")) return 24;
-        if (color.equals("Skin25")) return 25;
-        if (color.equals("Empty")) return 100;
-        if (color.equals("Full")) return 101;
-        return -1;
     }
 
     public void dropCartAsItem(boolean isCreative) {
@@ -795,4 +646,76 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 	public boolean acceptsOverlayTextures() {
 		return acceptsOverlayTextures;
 	}
+
+
+    /**
+     * Functionality imported from TC5
+     */
+
+    public String transportName(){return getSpec().getName();}
+
+    public String transportcountry(){return "";}
+
+    public String transportYear(){return "";}
+
+    public String transportFuelType(){
+        if(this instanceof SteamTrain) {
+            return "Steam";
+        } else if(this instanceof DieselTrain) {
+            return "Diesel";
+        } else if(this instanceof ElectricTrain) {
+            return "Electric";
+        }
+
+        return "";
+    }
+
+    public boolean isFictional(){return false;}
+
+    public String[] additionalItemText(){return getSpec().getAdditionnalTooltip().split("\n");}
+    /**the top speed in km/h for the transport.
+     * not used tor rollingstock.*/
+    public int transportTopSpeed(){return getSpec().getMaxSpeed();}
+    /**the top speed in km/h for the transportwhen moving in reverse, default is half for diesel and 75% for others.
+     * not used tor rollingstock.*/
+    public float transportTopSpeedReverse(){return this instanceof DieselTrain?transportTopSpeed()*0.5f:transportTopSpeed();}
+    /**this is the default value to define the acceleration speed and pulling power of a transport.*/
+    public int transportMetricHorsePower(){return getSpec().getMHP();}
+    /**the tractive effort for the transport, this is a fallback if metric horsepower (mhp) is not available*/
+    public float transportTractiveEffort(){return 0;}
+
+    /**defines the size of the inventory row by row, not counting any special slots like for fuel.
+     * end result number of slots is this times 9. plus any crafting/fuel slots
+     * may not return null*/
+    public int getInventoryRows(){return (int)(getSpec().getCargoCapacity()*1.1111111111112);}
+
+    /**defines the capacity of the fluidTank tank.
+     * each value defibes another tank.
+     * Usually value is 1,000 *the cubic meter capacity, so 242 gallons, is 0.9161 cubic meters, which is 916.1 tank capacity
+     * mind you one water bucket is values at 1000, a full cubic meter of water.
+     *example:
+     * return new int[]{11000, 1000};
+     * may return null*/
+    public int[] getTankCapacity(){return null;}
+
+    /**defines the rider position offsets, with 0 being the center of the entity.
+     * Each set of coords represents a new rider seat, with the first one being the "driver"
+     * example:
+     * return new float[][]{{x1,y1,z1},{x2,y2,z2}, etc...};
+     * may return null*/
+    public float[][] getRiderOffsets(){return null;}
+
+
+    /**returns the size of the hitbox in blocks.
+     * example:
+     * return new float[]{x,y,z};
+     * may not return null*/
+    public float[] getHitboxSize(){return new float[]{3,1.5f,0.21f};}
+
+    /**defines if the transport is immune to explosions*/
+    public boolean isReinforced(){return false;}
+
+
+    /**defines the weight of the transport.*/
+    public float weightKg(){return (float)getSpec().getMass()*10f;}
 }

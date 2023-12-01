@@ -127,7 +127,9 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
         inventorySize = numCargoSlots + numCargoSlots2 + numCargoSlots1;
         dataWatcher.addObject(2, 0);
         this.setDefaultMass(0);
-        this.setCustomSpeed(getMaxSpeed());
+        if(world!=null) {
+            this.setCustomSpeed(transportTopSpeed());
+        }
         dataWatcher.addObject(3, destination);
         dataWatcher.addObject(22, locoState);
         dataWatcher.addObject(24, fuelTrain);

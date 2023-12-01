@@ -47,6 +47,7 @@ import train.common.blocks.BlockTCRailGag;
 import train.common.core.HandleOverheating;
 import train.common.core.handlers.*;
 import train.common.core.network.PacketRollingStockRotation;
+import train.common.core.util.DepreciatedUtil;
 import train.common.core.util.TraincraftUtil;
 import train.common.entity.rollingStock.EntityTracksBuilder;
 import train.common.items.ItemPaintbrushThing;
@@ -58,7 +59,6 @@ import train.common.library.BlockIDs;
 import train.common.library.GuiIDs;
 import train.common.tile.TileTCRail;
 import train.common.tile.TileTCRailGag;
-import tv.twitch.chat.Chat;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -631,22 +631,28 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
             this.hasSpawnedBogie = true;
         }
 
-        super.manageChunkLoading();
+        /**
+         * manage chunkloading
+         */
+        if (!worldObj.isRemote && this.uniqueID == -1) {
+            if (FMLCommonHandler.instance().getMinecraftServerInstance() != null) {
+
+                setNewUniqueID(this.getEntityId());
+            }
+        }
+        shouldChunkLoad = getFlag(7);
+        if (shouldChunkLoad) {
+            if (this.chunkTicket == null) {
+                this.requestTicket();
+            }
+        }
 
         /**
          * Set the uniqueID if the entity doesn't have one.
          */
         if (!worldObj.isRemote && this.uniqueID == -1) {
             if (FMLCommonHandler.instance().getMinecraftServerInstance() != null) {
-                //TraincraftSaveHandler.createFile(FMLCommonHandler.instance().getMinecraftServerInstance());
-                //int readID = TraincraftSaveHandler.readInt(FMLCommonHandler.instance().getMinecraftServerInstance(), "numberOfTrains:");
-                //int newID = setNewUniqueID(readID);
-
-                //TraincraftSaveHandler seems to not work, may cause uniqueID bug.
                 setNewUniqueID(this.getEntityId());
-
-                //TraincraftSaveHandler.writeValue(FMLCommonHandler.instance().getMinecraftServerInstance(), "numberOfTrains:", "" + newID);
-
             }
         }
 
@@ -733,11 +739,6 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
             }
             return;
         }
-
-        /*
-         * if(this.updateTicks<5){
-
-         */
         /**
          * As entities can't be registered in nbttagcompound I had to setup this
          * system... When world loads, only the (double) Link1 and Link2 are
@@ -780,33 +781,10 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
                 double bogieX1 = (this.posX + (rotationCos1 * Math.abs(bogieShift)));
                 double bogieZ1 = (this.posZ + (rotationSin1 * Math.abs(bogieShift)));
                 this.bogieLoco.setPosition(bogieX1, bogieLoco.posY, bogieZ1);
-                /*
-                 * double rads = this.serverRealRotation *
-                 * 3.141592653589793D / 180.0D; double pitchRads =
-                 * this.renderPitch * 3.141592653589793D / 180.0D;
-                 * this.bogieLoco[bog].setPosition((float) (posX -
-                 * Math.cos(rads) * this.bogieShift[bog]), (float) posY +
-                 * ((Math.tan(pitchRads) * -this.bogieShift[bog]) +
-                 * getMountedYOffset()), (float) (posZ - Math.sin(rads) *
-                 * this.bogieShift[bog]));
-                 */
+
             }
             firstLoad = false;
-            /*
-             * for (int bog = 0; bog < this.bogieUtility.length; bog++) { if
-             * (bogieUtility[bog] != null) {
-             *
-             * double rads = this.serverRealRotation * 3.141592653589793D /
-             * 180.0D; double pitchRads = this.renderPitch * 3.141592653589793D
-             * / 180.0D; this.bogieUtility[bog].setPosition((float) (posX -
-             * Math.cos(rads) * this.bogieShift[bog]), (float) posY +
-             * ((Math.tan(pitchRads) * -this.bogieShift[bog]) +
-             * getMountedYOffset()), (float) (posZ - Math.sin(rads) *
-             * this.bogieShift[bog]));
 
-             * [bog].posX+" "+ this.bogieUtility[bog].posY
-             * +" "+this.bogieUtility[bog].posZ); } }
-             */
             needsBogieUpdate = false;
         }
         if (bogieLoco != null) {
@@ -853,9 +831,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
         } else {
             float rotation = rotationYaw;
 
-            float delta = MathHelper.wrapAngleTo180_float(this.rotationYaw - this.previousServerRealRotation); //Math.abs(this.rotationYaw - this.previousServerRealRotation);
-
-            this.previousServerRealRotation = this.rotationYaw;
+            float delta = MathHelper.wrapAngleTo180_float(this.rotationYaw - this.previousServerRealRotation);
 
             if (delta < -179.0F || delta > 179.0F) { // if (delta > 170.0F || delta < 190.0F) {
 
@@ -878,16 +854,11 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
             float tempPitch = rollingServerPitch;
             float tempPitch2 = tempPitch;
             if (Math.abs(zDist) > 0.02) {
-                double rads = Math.atan((posY - prevPosY) / zDist);
                 tempPitch = (float) ((Math.atan((posY - prevPosY) / zDist)) * degrees);
             } else if (Math.abs(xDist) > 0.02) {
                 tempPitch = (float) ((Math.atan((posY - prevPosY) / xDist)) * degrees);
-                //pitch=tempPitch;
             }
 
-            //if (Math.abs(tempPitch) > 16) {
-            //tempPitch=Math.copySign(16, tempPitch);
-            //}
             if (tempPitch2 < tempPitch && Math.abs(tempPitch2 - tempPitch) > 3) {
                 tempPitch2 += 3;
             } else if (tempPitch2 > tempPitch && Math.abs(tempPitch2 - tempPitch) > 3) {
@@ -1721,7 +1692,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
         if (itemstack != null && itemstack.getItem() instanceof ItemDye) {
             if (this.getSpec().getLiveries().size() > 0) {
                 for (int i = 0; i < this.getSpec().getLiveries().size(); i++) {
-                    if (itemstack.getItemDamage() == getColorFromString(this.getSpec().getLiveries().get(i))) {
+                    if (itemstack.getItemDamage() == DepreciatedUtil.getColorFromString(this.getSpec().getLiveries().get(i))) {
                         this.setColor(this.getSpec().getLiveries().get(i));
                         itemstack.stackSize--;
 

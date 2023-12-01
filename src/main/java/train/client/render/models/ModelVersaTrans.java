@@ -18,6 +18,7 @@ import fexcraft.tmt.slim.ModelRendererTurbo;
 import fexcraft.tmt.slim.Tessellator;
 import train.common.api.AbstractTrains;
 import train.common.api.Freight;
+import train.common.core.util.DepreciatedUtil;
 import train.common.library.Info;
 
 public class ModelVersaTrans extends ModelConverter //Same as Filename
@@ -397,7 +398,7 @@ public class ModelVersaTrans extends ModelConverter //Same as Filename
 		GL11.glTranslated(2.5, 0, 0.03);
 		bogie.render(entity, f, f1, f2, f3, f4, f5);
 		GL11.glPopMatrix();*/
-		if(entity instanceof AbstractTrains && AbstractTrains.getColorFromString(((AbstractTrains) entity).getColor())==3456){
+		if(entity instanceof AbstractTrains && DepreciatedUtil.getColorFromString(((AbstractTrains) entity).getColor())==3456){
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/70Ton_Greyish.png"));
 		} else {
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/70Ton_Black.png"));
