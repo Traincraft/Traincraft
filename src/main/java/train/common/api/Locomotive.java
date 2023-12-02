@@ -246,12 +246,12 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
     public float getMaxSpeed() {
         if (getSpec() != null) {
             if (currentMassPulled > 1) {
-                float power = (float) currentMassPulled / (((float) getSpec().getMHP()) * 0.37f);
+                float power = (float) currentMassPulled / (transportMetricHorsePower() * 0.37f);
                 if (power > 1) {
-                    return getSpec().getMaxSpeed() / (power);
+                    return transportTopSpeed() / (power);
                 }
             }
-            return getSpec().getMaxSpeed();
+            return transportTopSpeed();
         }
         return 50;
     }
@@ -324,15 +324,6 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
      */
     public int getFuelConsumption() {
         return fuelRate == 0 ? getSpec().getFuelConsumption() : fuelRate;
-    }
-
-    /**
-     * Return the power of the loco, used for cart pulling
-     *
-     * @see HandleMaxAttachedCarts for calculations
-     */
-    public int getPower() {
-        return getSpec().getMHP();
     }
 
     /**

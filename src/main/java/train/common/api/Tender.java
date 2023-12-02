@@ -36,7 +36,7 @@ public abstract class Tender extends Freight implements IFluidHandler {
 
     private Tender(FluidStack fluid, World world, FluidStack filter) {
         super(world);
-        this.maxTank = getSpec().getTankCapacity();
+        this.maxTank = getTankCapacity()[0];
         if (filter == null)
             this.theTank = LiquidManager.getInstance().new StandardTank(maxTank);
         if (filter != null)

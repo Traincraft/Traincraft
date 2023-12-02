@@ -34,7 +34,7 @@ public class EntityFreightBapPS160 extends Freight implements IInventory {
 
     public void initFreightCart() {
         numFreightSlots = 5;
-        freightInventorySize = getSpec().getCargoCapacity();
+        freightInventorySize = getInventoryRows()*9;
         cargoItems = new ItemStack[freightInventorySize];
     }
     @Override

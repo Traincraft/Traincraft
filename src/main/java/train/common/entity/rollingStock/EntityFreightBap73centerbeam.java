@@ -35,7 +35,7 @@ public class EntityFreightBap73centerbeam extends Freight implements IInventory 
 
     public void initFreightCart() {
         numFreightSlots = 6;
-        freightInventorySize = getSpec().getCargoCapacity();
+        freightInventorySize = getInventoryRows()*9;
         cargoItems = new ItemStack[freightInventorySize];
     }
 

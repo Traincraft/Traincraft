@@ -159,25 +159,10 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
         this.setFlag(7, shouldChunkLoad);
 
 
-		/*for (EnumTrains trains : EnumTrains.values()) {
-			if (trains.getEntityClass().equals(this.getClass())) {
-				this.setDefaultMass(trains.getMass());
-				trainSpec = trains;
-				if (trains.getColors() != null) {
-					for (int i = 0; i < trains.getColors().length; i++) {
-						this.acceptedColors.add(AbstractTrains.getColorFromString(trains.getColors()[i]));
-					}
-				}
-				this.setSize(0.98f, 1.98f);
-				this.setMinecartName(trainSpec.name());
-
-				break;
-			}
-		}*/
         if (getSpec() != null) {
-            this.setDefaultMass(getSpec().getMass());
+            this.setDefaultMass(weightKg());
             this.setSize(0.98f, 1.98f);
-            this.setMinecartName(getSpec().getName());
+            this.setMinecartName(transportName());
         }
     }
 
@@ -696,7 +681,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
      *example:
      * return new int[]{11000, 1000};
      * may return null*/
-    public int[] getTankCapacity(){return null;}
+    public int[] getTankCapacity(){return new int[]{getSpec().getTankCapacity()};}
 
     /**defines the rider position offsets, with 0 being the center of the entity.
      * Each set of coords represents a new rider seat, with the first one being the "driver"
@@ -710,7 +695,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
      * example:
      * return new float[]{x,y,z};
      * may not return null*/
-    public float[] getHitboxSize(){return new float[]{3,1.5f,0.21f};}
+    public float[] getHitboxSize(){return new float[]{getOptimalDistance(null)-((float)getSpec().getBogieLocoPosition()*0.5f),1.5f,0.21f};}
 
     /**defines if the transport is immune to explosions*/
     public boolean isReinforced(){return false;}

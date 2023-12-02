@@ -22,7 +22,7 @@ public class EntityFreightHopperUK extends Freight implements IInventory {
 
     public void initFreightCart() {
         numFreightSlots = 36;
-        freightInventorySize = getSpec().getCargoCapacity();
+        freightInventorySize = getInventoryRows()*9;
         cargoItems = new ItemStack[freightInventorySize];
     }
 

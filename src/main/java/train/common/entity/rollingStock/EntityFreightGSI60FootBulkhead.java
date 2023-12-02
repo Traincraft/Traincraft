@@ -34,7 +34,7 @@ public class EntityFreightGSI60FootBulkhead extends Freight implements IInventor
 
     public void initFreightCart() {
         numFreightSlots = 5;
-        freightInventorySize = getSpec().getCargoCapacity();
+        freightInventorySize = getInventoryRows()*9;
         cargoItems = new ItemStack[freightInventorySize];
     }
     @Override

@@ -24,7 +24,7 @@ public class EntityFreightLongCoveredHopper extends Freight implements IInventor
 
 	public void initFreightGrain() {
 		numFreightSlots = 9;
-		freightInventorySize = getSpec().getCargoCapacity();
+		freightInventorySize = getInventoryRows()*9;
 		cargoItems = new ItemStack[freightInventorySize];
 	}
 

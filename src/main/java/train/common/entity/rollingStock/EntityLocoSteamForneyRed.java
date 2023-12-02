@@ -161,10 +161,10 @@ public class EntityLocoSteamForneyRed extends SteamTrain {
 	}
 
 	@Override
-	public float getMaxSpeed() { return super.getMaxSpeed()*(ridingEntity instanceof EntityPlayerMP &&(((EntityPlayerMP) ridingEntity).getDisplayName().equals("EternalBlueFlame") || ((EntityPlayerMP) ridingEntity).getDisplayName().equals("minecarftmano9"))?3f:1f);}
+	public int transportTopSpeed() { return super.transportTopSpeed()*(ridingEntity instanceof EntityPlayerMP &&(((EntityPlayerMP) ridingEntity).getDisplayName().equals("EternalBlueFlame") || ((EntityPlayerMP) ridingEntity).getDisplayName().equals("minecarftmano9"))?3:1);}
 
 	@Override
-	public int getPower() {
-		return super.getPower()*(ridingEntity instanceof EntityPlayerMP &&(((EntityPlayerMP) ridingEntity).getDisplayName().equals("EternalBlueFlame") || ((EntityPlayerMP) ridingEntity).getDisplayName().equals("minecarftmano9"))?3:1);
+	public int transportMetricHorsePower() {
+		return super.transportMetricHorsePower()*(ridingEntity instanceof EntityPlayerMP &&(((EntityPlayerMP) ridingEntity).getDisplayName().equals("EternalBlueFlame") || ((EntityPlayerMP) ridingEntity).getDisplayName().equals("minecarftmano9"))?3:1);
 	}
 }

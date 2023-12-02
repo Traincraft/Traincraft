@@ -24,7 +24,7 @@ public class EntityBUnitEMDF7 extends LiquidTank implements IFluidHandler {
     public EntityBUnitEMDF7(World world) {
         super(world);
         initFreightWater();
-        this.theTank = LiquidManager.getInstance().new FilteredTank(getSpec().getTankCapacity(), LiquidManager.dieselFilter());
+        this.theTank = LiquidManager.getInstance().new FilteredTank(getTankCapacity()[0], LiquidManager.dieselFilter());
     }
 
     public EntityBUnitEMDF7(World world, double d, double d1, double d2) {
@@ -66,14 +66,14 @@ public class EntityBUnitEMDF7 extends LiquidTank implements IFluidHandler {
 
         if (getAmount() > 0) {
             // setColor(getColorFromString("Full"));
-            setDefaultMass(-getSpec().getMass());
+            setDefaultMass(-weightKg());
             if ((motionX > 0.01 || motionZ > 0.01) && ticksExisted % 40 == 0) {
                 drain(ForgeDirection.UNKNOWN, 6, true);
             }
 
         } else if (getAmount() <= 0) {
             // setColor(getColorFromString("Empty"));
-            setDefaultMass(getSpec().getMass());
+            setDefaultMass(weightKg());
         }
     }
 

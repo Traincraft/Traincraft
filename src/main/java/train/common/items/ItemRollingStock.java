@@ -189,22 +189,6 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 	public String getTrainType() {
 		return Traincraft.instance.traincraftRegistry.findTrainRecordByItem(this).getTrainType();
 	}
-	public double getMass() {
-		return Traincraft.instance.traincraftRegistry.findTrainRecordByItem(this).getMass();
-	}
-	public int getMaxSpeed() {
-		return Traincraft.instance.traincraftRegistry.findTrainRecordByItem(this).getMaxSpeed();
-	}
-	public int getMHP() {
-		return Traincraft.instance.traincraftRegistry.findTrainRecordByItem(this).getMHP();
-	}
-
-	public int getCargoCapacity() {
-		return Traincraft.instance.traincraftRegistry.findTrainRecordByItem(this).getCargoCapacity();
-	}
-	public String getTrainName() {
-		return trainName;
-	}
 
 	@Override
 	public boolean onItemUse(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, World par3World, int par4, int par5, int par6, int par7, float par8, float par9, float par10) {
@@ -668,7 +652,7 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 					if (player != null) {
 						rollingStock.trainOwner = player.getDisplayName();
 					}
-					rollingStock.mass = getMass();
+					rollingStock.mass = rollingStock.weightKg();
 
 					int uniID = -1;
 					if (itemstack.hasTagCompound()) {

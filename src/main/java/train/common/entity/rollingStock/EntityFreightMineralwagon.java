@@ -22,7 +22,7 @@ public class EntityFreightMineralwagon extends Freight implements IInventory {
 
     public void initFreightCart() {
         numFreightSlots = 45;
-        freightInventorySize = getSpec().getCargoCapacity();
+        freightInventorySize = getInventoryRows()*9;
         cargoItems = new ItemStack[freightInventorySize];
     }
 

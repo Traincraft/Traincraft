@@ -2,6 +2,7 @@ package train.client.gui;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import ebf.tim.utility.DebugUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
@@ -259,7 +260,11 @@ public class GuiPaintbrushMenu extends GuiScreen {
                 GL11.glColor4f(1, 1, 1, 1);
                 GL11.glPushMatrix();
                 GL11.glTranslated(offsetX + 205 + (i * 95), offsetY + 82, 400);
-                GL11.glScalef(-record.getGuiRenderScale(), record.getGuiRenderScale(), record.getGuiRenderScale());
+                float scale = renderEntity.getHitboxSize()[0];
+                if(scale!=0){
+                    scale = 5.8f/(scale /5.8f);
+                }
+                GL11.glScalef(-scale, scale, scale);
                 GL11.glRotatef(180, 0, 0, 1);
                 GL11.glRotatef(yaw, 0, 1, 0);
                 RenderManager.instance.renderEntityWithPosYaw(renderEntity, bogieOffset, 0, 0, 0, 0);

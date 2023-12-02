@@ -35,7 +35,7 @@ public class EntityFreightBapMILW40boxcar extends Freight implements IInventory 
 
     public void initFreightCart() {
         numFreightSlots = 3;
-        freightInventorySize = getSpec().getCargoCapacity();
+        freightInventorySize = getInventoryRows()*9;
         cargoItems = new ItemStack[freightInventorySize];
     }
 

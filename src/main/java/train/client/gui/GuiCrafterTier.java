@@ -144,8 +144,11 @@ public class GuiCrafterTier extends GuiTraincraft {
                         renderEntity.setColor(train.getLiveries().get(color));
                     }
                 }
-
-                GL11.glScalef(-train.getGuiRenderScale(), train.getGuiRenderScale(), train.getGuiRenderScale());
+                float scale = renderEntity.getHitboxSize()[0];
+                if(scale!=0){
+                    scale = 5.8f/(scale /5.8f);
+                }
+                GL11.glScalef(-scale, scale, scale);
                 GL11.glRotatef(180, 0, 0, 1);
                 GL11.glRotatef(roll, 1, 0, 0);
                 GL11.glRotatef(yaw, 0, 1, 0);

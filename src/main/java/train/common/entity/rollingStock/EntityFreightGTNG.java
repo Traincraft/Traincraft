@@ -20,7 +20,7 @@ public class EntityFreightGTNG extends Freight implements IInventory {
 	}
 
 	public void initFreightCart() {
-		freightInventorySize = getSpec().getCargoCapacity();
+		freightInventorySize = getInventoryRows()*9;
 		cargoItems = new ItemStack[freightInventorySize];
 	}
 

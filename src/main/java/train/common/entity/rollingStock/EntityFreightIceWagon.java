@@ -24,7 +24,7 @@ public class EntityFreightIceWagon extends Freight implements IInventory {
 
 	public void initFreightCart() {
 		numFreightSlots = 9;
-		freightInventorySize = getSpec().getCargoCapacity();
+		freightInventorySize = getInventoryRows()*9;
 		cargoItems = new ItemStack[freightInventorySize];
 	}
 
