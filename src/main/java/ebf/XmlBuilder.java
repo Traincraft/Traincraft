@@ -40,6 +40,7 @@ public class XmlBuilder {
     public XmlBuilder updateData(String str){
         if(str.hashCode()!=buildString.hashCode()){
             buildString=str;
+            isBuilt=false;
             buildXML();
         }
         return this;
