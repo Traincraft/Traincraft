@@ -48,8 +48,9 @@ public class CommonProxy implements IGuiHandler {
     }
 
     public boolean isClient(){
-		return true;
-	}public void setKeyBinding(String name, int value) {
+		return false;
+	}
+	public void setKeyBinding(String name, int value) {
     }
 
     public void registerRenderInformation() {
