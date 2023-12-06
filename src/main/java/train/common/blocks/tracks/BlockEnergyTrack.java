@@ -8,6 +8,7 @@ package train.common.blocks.tracks;
 import cofh.api.energy.IEnergyHandler;
 import cofh.api.energy.IEnergyProvider;
 import cpw.mods.fml.common.FMLCommonHandler;
+import ebf.tim.utility.DebugUtil;
 import mods.railcraft.api.core.items.IToolCrowbar;
 import mods.railcraft.api.electricity.IElectricGrid;
 import mods.railcraft.api.tracks.ITrackPowered;
@@ -85,7 +86,7 @@ public class BlockEnergyTrack extends TrackBaseTraincraft implements ITrackPower
         if(this.updateTicks % 10 == 0) {
 			if (this.maxEnergy > this.RFChandler.getCharge()) {
 				if (this.getWorld().getTileEntity(this.getX(), this.getY() - 1, this.getZ()) instanceof IEnergyProvider) {
-					TraincraftUtil.println("found input and it gives " + ((IEnergyProvider)this.getWorld().getTileEntity(this.getX(), this.getY() - 1, this.getZ())).extractEnergy(ForgeDirection.UP, 100, true));
+					DebugUtil.println("found input and it gives " + ((IEnergyProvider)this.getWorld().getTileEntity(this.getX(), this.getY() - 1, this.getZ())).extractEnergy(ForgeDirection.UP, 100, true));
 					this.receiveEnergy(ForgeDirection.DOWN, ((IEnergyProvider) this.getWorld().getTileEntity(this.getX(), this.getY() - 1, this.getZ())).extractEnergy(ForgeDirection.UP, 100, false), false);
 				}
 				int x = this.getX();
