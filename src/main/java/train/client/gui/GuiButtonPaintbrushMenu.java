@@ -26,7 +26,9 @@ class GuiButtonPaintbrushMenu extends GuiButton {
         RANDOM,
         APPLY,
         DESC_ARROW_UP,
-        DESC_ARROW_DOWN
+        DESC_ARROW_DOWN,
+        SKINLISTDROPDOWN,
+        SKINS
     }
     enum Texture {
         ACTIVE,

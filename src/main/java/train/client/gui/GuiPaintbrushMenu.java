@@ -26,7 +26,9 @@ import train.common.library.Info;
 import train.common.overlaytexture.OverlayTextureManager;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -71,8 +73,12 @@ public class GuiPaintbrushMenu extends GuiScreen {
     private GuiButtonPaintbrushMenu applyButton;
     private GuiButtonPaintbrushMenu descriptionArrowUp;
     private GuiButtonPaintbrushMenu descriptionArrowDown;
+    private GuiButtonPaintbrushMenu skinListDropdown;
+
+    public HashMap<String, GuiButtonPaintbrushMenu> skinList;
     private boolean renderModels;
     private boolean disableLighting = true;
+    private boolean drawList;
     private final int totalOptions;
     private int currentDisplayTexture = 0;
     private final AbstractTrains renderEntity;
@@ -92,6 +98,7 @@ public class GuiPaintbrushMenu extends GuiScreen {
     public GuiPaintbrushMenu(EntityPlayer editingPlayer, EntityRollingStock rollingStock) {
         this.editingPlayer = editingPlayer;
         this.rollingStock = rollingStock;
+        drawList = false;
         try {
             renderEntity = rollingStock.getClass().getConstructor(new Class[]{ World.class }).newInstance(rollingStock.worldObj);
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
@@ -140,6 +147,14 @@ public class GuiPaintbrushMenu extends GuiScreen {
         this.buttonList.add(this.overlayControllerFixed = new GuiButtonPaintbrushOverlayController(13, GUI_ANCHOR_X + 264, GUI_ANCHOR_Y + 202, 29, 29, GuiButtonPaintbrushOverlayController.Type.FIXED));
         this.buttonList.add(this.closeMenuButton = new GuiButtonPaintbrushMenu(14, GUI_ANCHOR_X + 382, GUI_ANCHOR_Y + 6, 22, 22, GuiButtonPaintbrushMenu.Type.CLOSE));
         this.buttonList.add(this.playPauseButton = new GuiButtonPaintbrushMenu(15, GUI_ANCHOR_X + 4, GUI_ANCHOR_Y + MENU_TEXTURE_HEIGHT - 29, 22, 22, GuiButtonPaintbrushMenu.Type.PLAY));
+        this.buttonList.add(this.skinListDropdown = new GuiButtonPaintbrushMenu(17,GUI_ANCHOR_MID_X - ((int) (fontRendererObj.getStringWidth(currentDisplayTextureTitle) * 0.5)), GUI_ANCHOR_Y + 14,60,22,GuiButtonPaintbrushMenu.Type.SKINLISTDROPDOWN));
+        int yOffset = 22;
+        int entry = buttonList.size()+1;
+        for(int i=0;i<rollingStock.getSpec().getLiveries().size();i++) {
+            this.buttonList.add(new GuiButtonPaintbrushMenu(entry,GUI_ANCHOR_X + 80 + 64, GUI_ANCHOR_Y + 10+yOffset,60,22, GuiButtonPaintbrushMenu.Type.SKINS));
+            entry++;
+            yOffset += 16;
+        }
         this.updateButtons();
     }
 
@@ -208,6 +223,16 @@ public class GuiPaintbrushMenu extends GuiScreen {
             this.overlayControllerFixed.visible = false;
             this.overlayControllerFixed.showButton = false;
         }
+        if(drawList) {
+            int yOffset = 22;
+            int entry = buttonList.size()+1;
+            for(String t:rollingStock.getSpec().getLiveries()) {
+                skinList.put(t,new GuiButtonPaintbrushMenu(entry,GUI_ANCHOR_X + 80 + 64, GUI_ANCHOR_Y + 10+yOffset,60,22, GuiButtonPaintbrushMenu.Type.SKINS));
+                entry++;
+                yOffset += 16;
+            }
+            this.buttonList.add(skinList.keySet());
+        }
     }
 
     @Override
@@ -224,9 +249,9 @@ public class GuiPaintbrushMenu extends GuiScreen {
         this.drawTexturedModalRect(GUI_ANCHOR_X + 80, GUI_ANCHOR_Y + 6, 0, 0, 256, 24);
 
         // Left half of box for description.
-        this.drawTexturedModalRect(GUI_ANCHOR_X + 30, GUI_ANCHOR_Y + MENU_TEXTURE_HEIGHT - 66, 0, 24, 256, 68);
+        this.drawTexturedModalRect(GUI_ANCHOR_X + 30, GUI_ANCHOR_Y + MENU_TEXTURE_HEIGHT - 66, 0, 24, 256, 59);
         // Right half of box for description
-        this.drawTexturedModalRect(GUI_ANCHOR_X + MENU_TEXTURE_WIDTH - 10, GUI_ANCHOR_Y + MENU_TEXTURE_HEIGHT - 66, 68, 24, 188, 68);
+        this.drawTexturedModalRect(GUI_ANCHOR_X + MENU_TEXTURE_WIDTH - 10, GUI_ANCHOR_Y + MENU_TEXTURE_HEIGHT - 66, 68, 24, 188, 59);
 
         // Draw overlay controller buttons if overlay is allowed.
         if (rollingStock.acceptsOverlayTextures()) {
@@ -281,7 +306,6 @@ public class GuiPaintbrushMenu extends GuiScreen {
 
         // Draw Currently Displayed Texture Name and Tooltip
         fontRendererObj.drawString(currentDisplayTextureTitle, GUI_ANCHOR_MID_X - ((int) (fontRendererObj.getStringWidth(currentDisplayTextureTitle) * 0.5)), GUI_ANCHOR_Y + 14, 0);
-
         // Draw description.
         int stringWidth;
         for (int i = 0; i < Math.min(MAX_LINES_OF_DESCRIPTION, currentTextureDescription.size()); i++) {
@@ -289,6 +313,17 @@ public class GuiPaintbrushMenu extends GuiScreen {
             fontRendererObj.drawString(currentTextureDescription.get(i + descriptionScrollerIndex), GUI_ANCHOR_MID_X - ((int) (stringWidth * 0.5)) - 5, GUI_ANCHOR_Y + MENU_TEXTURE_HEIGHT - 60 + (i * fontRendererObj.FONT_HEIGHT), 0);
         }
 
+        if (drawList == true) {
+            int yOffset = 22;
+            for (String t : rollingStock.getSpec().getLiveries()) {
+                super.drawScreen(mouseX, mouseY, par3);
+                mc.renderEngine.bindTexture(outlinesTexture);
+                this.drawTexturedModalRect(GUI_ANCHOR_X + 80 + 64, GUI_ANCHOR_Y + 6+yOffset, 0, 83, 128, 16);
+                fontRendererObj.drawString(t, GUI_ANCHOR_MID_X - ((int) (fontRendererObj.getStringWidth(t) * 0.5)),GUI_ANCHOR_Y + 10+yOffset,0);
+                yOffset += 16;
+
+            }
+        }
 
         // Draw Hovering Tooltips
         if (GuiPaintbrushMenu.activeButtonID != null)
@@ -339,6 +374,8 @@ public class GuiPaintbrushMenu extends GuiScreen {
                     else
                         drawHoveringText(Collections.singletonList(StatCollector.translateToLocal("paintbrushmenu.Play.name")), mouseX, mouseY, fontRendererObj);
                     break;
+                case 16:
+                    drawHoveringText(Collections.singletonList("paintbrushmenu.Dropdown.name"), mouseX, mouseY, fontRendererObj);
             }
 
         RenderHelper.enableStandardItemLighting();
@@ -439,6 +476,10 @@ public class GuiPaintbrushMenu extends GuiScreen {
                     break;
                 case 16:
                     disableLighting = !disableLighting;
+                    updateButtons();
+                    break;
+                case 17:
+                    drawList = !drawList;
                     updateButtons();
                     break;
             }
