@@ -735,7 +735,7 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 	}
 
 	private static String t(String translate){
-		return CommonUtil.translate(translate);
+		return translate==null?"":CommonUtil.translate(translate);
 	}
 
 	@Override
