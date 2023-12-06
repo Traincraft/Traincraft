@@ -4,6 +4,7 @@ package train.common.mtc.packets.handlers;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import ebf.tim.utility.DebugUtil;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.Vec3;
 import train.common.Traincraft;
@@ -44,7 +45,7 @@ public class PacketATODOSlowDownHandler implements IMessageHandler<PacketATODoSl
          ((Locomotive)entity).zFromStopPoint = 0.0;
          Traincraft.atoSetStopPoint.sendToAll(new PacketATOSetStopPoint(entity.getEntityId(),0.0, 0.0, 0.0, 0.0,0.0,0.0));
          ((Locomotive)entity).atoStatus = 0;
-         TraincraftUtil.println("ato ended!");
+         DebugUtil.println("ato ended!");
          Traincraft.atoChannel.sendToServer(new PacketATO(entity.getEntityId(), 0));
 
       }
