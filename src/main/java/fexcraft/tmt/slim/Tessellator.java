@@ -65,7 +65,13 @@ public class Tessellator{
 	public void drawTexturedVertsWithNormal(TexturedPolygon polygon, float scale){
 		GL11.glBegin(polygon.vertices.size()==4?GL11.GL_QUADS:polygon.vertices.size()==3?GL11.GL_TRIANGLES:GL11.GL_POLYGON);
 
-		setNormal(polygon.vertices.get(0).vector3F, polygon.vertices.get(1).vector3F, polygon.vertices.get(2).vector3F);
+		if(polygon.vertices.get(3).vector3F==polygon.vertices.get(1).vector3F
+				|| polygon.vertices.get(1).vector3F ==polygon.vertices.get(2).vector3F
+				|| polygon.vertices.get(3).vector3F ==polygon.vertices.get(2).vector3F){
+			setNormal(polygon.vertices.get(2).vector3F, polygon.vertices.get(0).vector3F, polygon.vertices.get(1).vector3F);
+		} else {
+			setNormal(polygon.vertices.get(3).vector3F, polygon.vertices.get(1).vector3F, polygon.vertices.get(2).vector3F);
+		}
 
 		for (TexturedVertex vert : polygon.vertices) {
 			GL11.glTexCoord2f(vert.textureX, vert.textureY);
@@ -83,10 +89,10 @@ public class Tessellator{
 
 	public static void setNormal(Vec3f vec0, Vec3f vec1, Vec3f vec2) {
 		Vec3f vec = new Vec3f(vec1.subtract(vec2)).crossProduct(vec1.subtract(vec0)).normalize();
-		GL11.glNormal3f(
-				(byte)((vec.xCoord+90) * 127.0F),
-				(byte)(vec.yCoord * 127.0F),
-				(byte)(vec.zCoord * 127.0F));
+		GL11.glNormal3b(
+				((byte)((int)(vec.xCoord * 100F))),
+				((byte)((int)(vec.yCoord * 100F))),
+				((byte)((int)(vec.zCoord * 100F))));
 	}
 
 }
