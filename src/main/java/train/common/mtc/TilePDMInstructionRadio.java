@@ -4,6 +4,7 @@ import dan200.computercraft.api.lua.ILuaContext;
 import dan200.computercraft.api.lua.LuaException;
 import dan200.computercraft.api.peripheral.IComputerAccess;
 import dan200.computercraft.api.peripheral.IPeripheral;
+import ebf.tim.utility.DebugUtil;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
@@ -54,7 +55,7 @@ public class TilePDMInstructionRadio extends TileEntity implements IPeripheral, 
         switch(method) {
             case 0: {
                 isActivated = true;
-                TraincraftUtil.println(uniqueID);
+                DebugUtil.println(uniqueID);
                 return new Object[] {true};
 
             } case 1: {
@@ -66,7 +67,7 @@ public class TilePDMInstructionRadio extends TileEntity implements IPeripheral, 
                 return new Object[]{true};
             } case 3 : {
 
-                TraincraftUtil.println(uniqueID);
+                DebugUtil.println(uniqueID);
                 return new Object[]{uniqueID};
             } case 4 : {
                return new Object[]{connectedTrains};

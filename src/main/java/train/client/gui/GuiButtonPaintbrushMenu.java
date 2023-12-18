@@ -26,7 +26,9 @@ class GuiButtonPaintbrushMenu extends GuiButton {
         RANDOM,
         APPLY,
         DESC_ARROW_UP,
-        DESC_ARROW_DOWN
+        DESC_ARROW_DOWN,
+        SKINLISTDROPDOWN,
+        SKINS
     }
     enum Texture {
         ACTIVE,
@@ -75,6 +77,9 @@ class GuiButtonPaintbrushMenu extends GuiButton {
             RenderHelper.enableGUIStandardItemLighting();
             GL11.glPushMatrix();
             mc.renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation, Info.guiPrefix + "gui_paintbrush_menu_buttons.png"));
+            if(this.type == Type.SKINS) {
+                mc.renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation, Info.guiPrefix + "gui_paintbrush_menu_outlines.png"));
+            }
             this.drawTexturedModalRect(this.xPosition, this.yPosition, u, v, TEXTURE_WIDTH, TEXTURE_HEIGHT);
             RenderHelper.disableStandardItemLighting();
             GL11.glPopMatrix();
@@ -152,6 +157,15 @@ class GuiButtonPaintbrushMenu extends GuiButton {
                     else
                         this.u = 110;
                     break;
+                case SKINS:
+                    TEXTURE_WIDTH = 128;
+                    TEXTURE_HEIGHT = 16;
+                    this.u = 0;
+                    if (texture == Texture.INACTIVE) {
+                        this.v = 83;
+                    } else {
+                        this.v = 99;
+                    }
             }
         }
     }

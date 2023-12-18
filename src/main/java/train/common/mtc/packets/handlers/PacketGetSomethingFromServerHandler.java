@@ -4,6 +4,7 @@ package train.common.mtc.packets.handlers;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import ebf.tim.utility.DebugUtil;
 import train.common.Traincraft;
 import train.common.api.Locomotive;
 import train.common.core.util.TraincraftUtil;
@@ -29,8 +30,8 @@ public class PacketGetSomethingFromServerHandler implements IMessageHandler<Pack
             packetToSend.xFromSpeedChange = trainEntity.xSpeedLimitChange;
             packetToSend.yFromSpeedChange = trainEntity.ySpeedLimitChange;
             packetToSend.zFromSpeedChange = trainEntity.zSpeedLimitChange;
-            TraincraftUtil.println("Completed creation!");
-            TraincraftUtil.println(packetToSend.xFromSpeedChange);
+            DebugUtil.println("Completed creation!");
+            DebugUtil.println(packetToSend.xFromSpeedChange);
             Traincraft.gsfsrChannel.sendToAll(packetToSend);
 
         }

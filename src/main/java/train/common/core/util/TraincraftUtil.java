@@ -13,18 +13,6 @@ import train.common.api.Locomotive;
 
 public class TraincraftUtil {
 
-    public static boolean dev = false;
-
-    public static void println(Object... o) {
-        if (dev) {
-            System.out.println("------------------Traincraft Debug Begin------------------");
-            System.out.println(Thread.currentThread().getStackTrace()[2]);//print what function just called this
-            for (Object obj : o) {
-                System.out.println(obj);
-            }
-            System.out.println("------------------Traincraft Debug End--------------------");
-        }
-    }
 
     public static Item getItemFromName(String name) {
         if (Item.itemRegistry.containsKey(name)) {
@@ -40,86 +28,6 @@ public class TraincraftUtil {
             return new ItemStack(item, 1, meta);
         }
         return null;
-    }
-
-    public static int getByteFromColor(String c) {
-        switch (c) {
-            case "Black":
-                return 0;
-            case "Red":
-                return 1;
-            case "Green":
-                return 2;
-            case "Brown":
-                return 3;
-            case "Blue":
-                return 4;
-            case "Purple":
-                return 5;
-            case "Cyan":
-                return 6;
-            case "LightGrey":
-                return 7;
-            case "Grey":
-                return 8;
-            case "Magenta":
-                return 13;
-            case "Lime":
-                return 10;
-            case "Yellow":
-                return 11;
-            case "LightBlue":
-                return 12;
-            case "Pink":
-                return 9;
-            case "Orange":
-                return 14;
-            case "White":
-                return 15;
-            case "Skin16":
-                return 16;
-            case "Skin17":
-                return 17;
-            case "Skin18":
-                return 18;
-            case "Skin19":
-                return 19;
-            case "Skin20":
-                return 20;
-            case "Skin21":
-                return 21;
-            case "Skin22":
-                return 22;
-            case "Skin23":
-                return 23;
-            case "Skin24":
-                return 24;
-            case "Skin25":
-                return 25;
-            case "Skin26":
-                return 26;
-            case "Skin27":
-                return 27;
-            case "Skin28":
-                return 28;
-            case "Skin29":
-                return 29;
-            case "Skin30":
-                return 30;
-            case "Full":
-                return 101;
-            case "Empty":
-                return 100;
-        }
-        return 0;
-    }
-
-    public static int[] getBytesFromColors(String[] c) {
-        int[] ret = new int[c.length];
-        for (int i = 0; i < c.length; i++) {
-            ret[i] = getByteFromColor(c[i]);
-        }
-        return ret;
     }
 
     public static boolean itemStackMatches(ItemStack item1, ItemStack item2) {
