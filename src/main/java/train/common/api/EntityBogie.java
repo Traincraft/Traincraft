@@ -560,7 +560,9 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 
 		}
 		else {
-
+			if(ticksExisted>60 && ticksExisted%120==0 && entityMainTrain == null){
+				worldObj.removeEntity(this);
+			}
 			int i = MathHelper.floor_double(this.posX);
 			int j = MathHelper.floor_double(this.posY);
 			int k = MathHelper.floor_double(this.posZ);
