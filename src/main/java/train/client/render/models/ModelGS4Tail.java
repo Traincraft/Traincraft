@@ -662,6 +662,9 @@ public class ModelGS4Tail extends ModelBase
 		gs4tailModel[157].setRotationPoint(46F, -1F, -9.5F);
 		fixRotation(gs4tailModel, false, true, true);
 
+		fixRotation(gs4tailModel);
+		bodyModel=gs4tailModel;
+
 	}
 
 
@@ -669,10 +672,7 @@ public class ModelGS4Tail extends ModelBase
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
-		for(int i = 0; i < 158; i++)
-		{
-			gs4tailModel[i].render(f5);
-		}
+		super.render(entity, f, f1, f2, f3, f4, f5);
 		if(entity instanceof AbstractTrains && DepreciatedUtil.getColorFromString(((AbstractTrains) entity).getColor())==2){
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/GS4_bogie_Red.png"));
 		} else {

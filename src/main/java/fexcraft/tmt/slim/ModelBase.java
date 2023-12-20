@@ -5,6 +5,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GLAllocation;
 import net.minecraft.entity.Entity;
 import org.lwjgl.opengl.GL11;
+import train.common.core.handlers.ConfigHandler;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,9 +13,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
-* Similar to 'FlansMod'-type Models, for a fast convert.
-* @Author Ferdinand Calo' (FEX___96)
-*/
+ * Similar to 'FlansMod'-type Models, for a fast convert.
+ * @Author Ferdinand Calo' (FEX___96)
+ */
 public class ModelBase extends ArrayList<ModelRendererTurbo> {
 
 	@Deprecated //box list for static parts should be completley unnecessary by making a displaylist of it as a whole.
@@ -32,14 +33,14 @@ public class ModelBase extends ArrayList<ModelRendererTurbo> {
 	public static Map<String,Integer> staticPartMap = new HashMap<>();
 	public Integer localGLID = null;
 
-	public static boolean disableCache=false;
-	public static boolean EnableAnimations=false;
 
 	public int textureWidth=512, textureHeight=512;
 
+	public boolean disableCache=false, EnableAnimations=true;
+
 	public void render(){
 		if(init){
-		    initAllParts();
+			initAllParts();
 		}
 
 		if(disableCache) {
@@ -167,7 +168,7 @@ public class ModelBase extends ArrayList<ModelRendererTurbo> {
 	public void render(Object type, Entity ent){render(); }
 
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {render();}
-	
+
 
 	public void translateAll(float x, float y, float z){
 		translate(base, x, y, z);
@@ -207,35 +208,34 @@ public class ModelBase extends ArrayList<ModelRendererTurbo> {
 		rotate(boxList,x,y,z);
 		rotate(namedList,x,y,z);
 	}
-    public void flipAll(){
-        flip(base);
-        flip(open);
-        flip(closed);
-        flip(r0);
-        flip(r1);
-        flip(r2);
-        flip(r3);
-        flip(r4);
-        flip(r5);
-        flip(r6);
-        flip(r7);
-        flip(r8);
-        flip(r9);
+	public void flipAll(){
+		flip(base);
+		flip(open);
+		flip(closed);
+		flip(r0);
+		flip(r1);
+		flip(r2);
+		flip(r3);
+		flip(r4);
+		flip(r5);
+		flip(r6);
+		flip(r7);
+		flip(r8);
+		flip(r9);
 		flip(bodyModel);
 		flip(boxList);
 		flip(namedList);
-    }
+	}
 
 
 	protected final void fixRotation(ModelRendererTurbo[] model, boolean flipX, boolean flipY, boolean flipZ){
-		bodyModel=model.clone();
-		model= new ModelRendererTurbo[]{};
-		for(ModelRendererTurbo p : bodyModel){
-			p.rotateAngleX*= CommonUtil.degreesF;
-			p.rotateAngleY*= CommonUtil.degreesF;
-			p.rotateAngleZ*= CommonUtil.degreesF;
+		if(!flipX && !flipY && !flipZ){return;}
+		for(ModelRendererTurbo mod : model){
+			if(mod==null){continue;}
+			if(flipX){mod.rotateAngleX = -mod.rotateAngleX;}
+			if(flipY){mod.rotateAngleY = -mod.rotateAngleY;}
+			if(flipZ){mod.rotateAngleZ = -mod.rotateAngleZ;}
 		}
-
 	}
 
 	protected final void fixRotation(ModelRendererTurbo[] parts){
@@ -285,15 +285,15 @@ public class ModelBase extends ArrayList<ModelRendererTurbo> {
 		}
 	}
 
-    public void flip(ModelRendererTurbo[] model) {
-        if(model==null){return;}
+	public void flip(ModelRendererTurbo[] model) {
+		if(model==null){return;}
 		for(ModelRendererTurbo mod : model){
 			if(mod==null){continue;}
 			mod.rotateAngleY = -mod.rotateAngleY * 57.29578F;
 			mod.rotateAngleZ = -mod.rotateAngleZ * 57.29578F;
 			mod.rotateAngleX *= 57.29578F;
 		}
-    }
+	}
 	public void flip(List<ModelRendererTurbo> model) {
 		if(model==null){return;}
 		for(ModelRendererTurbo sub : model){
@@ -326,28 +326,28 @@ public class ModelBase extends ArrayList<ModelRendererTurbo> {
 
 
 	public void initAllParts(){
-        base=initList(base);
-        open=initList(open);
-        closed=initList(closed);
-        bodyModel=initList(bodyModel);
-        r0=initList(r0);
-        r1=initList(r1);
-        r2=initList(r2);
-        r3=initList(r3);
-        r4=initList(r4);
-        r5=initList(r5);
-        r6=initList(r6);
-        r7=initList(r7);
-        r8=initList(r8);
-        r9=initList(r9);
-        init=false;
-    }
+		base=initList(base);
+		open=initList(open);
+		closed=initList(closed);
+		bodyModel=initList(bodyModel);
+		r0=initList(r0);
+		r1=initList(r1);
+		r2=initList(r2);
+		r3=initList(r3);
+		r4=initList(r4);
+		r5=initList(r5);
+		r6=initList(r6);
+		r7=initList(r7);
+		r8=initList(r8);
+		r9=initList(r9);
+		init=false;
+	}
 
 	public ModelRendererTurbo[] initList(ModelRendererTurbo[] list){
-	    if(list==null){return null;}
-        for(ModelRendererTurbo model : list){
-            addPart(model);
-        }
-        return null;
-    }
+		if(list==null){return null;}
+		for(ModelRendererTurbo model : list){
+			addPart(model);
+		}
+		return null;
+	}
 }

@@ -195,17 +195,16 @@ public class ModelFreightCarL extends ModelBase
 		freightcarlModel[41].setRotationPoint(43F, 3F, 12F);
 		fixRotation(freightcarlModel, false, true, true);
 
+		fixRotation(freightcarlModel);
+		bodyModel=freightcarlModel;
+
 	}
 	ModelWellcarBogie bogie = new ModelWellcarBogie();
 
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
-		for(int i = 0; i < 42; i++)
-		{
-			freightcarlModel[i].render(f5);
-		}
-
+		super.render(entity, f, f1, f2, f3, f4, f5);
 
 		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/wellcar_bogie.png"));
 

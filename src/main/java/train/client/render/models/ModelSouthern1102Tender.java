@@ -711,19 +711,9 @@ public class ModelSouthern1102Tender extends ModelBase
 
 
 		fixRotation(southern1102tenderModel, false, true, true);
-	}
 
-	@Override
-	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
-	{
-		for(int i = 0; i < 169; i++)
-		{
-			southern1102tenderModel[i].render(f5);
-		}
-	}
-
-	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5)
-	{
+		fixRotation(southern1102tenderModel);
+		bodyModel=southern1102tenderModel;
 	}
 
 	public ModelRendererTurbo southern1102tenderModel[];
