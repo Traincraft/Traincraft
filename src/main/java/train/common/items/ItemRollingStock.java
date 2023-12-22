@@ -198,7 +198,7 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 		if (par3World.isRemote) {
 			return false;
 		}
-		if(tileentity!=null && tileentity instanceof TileTCRail){
+		if(tileentity instanceof TileTCRail){
 			TileTCRail tile = (TileTCRail) tileentity;
 			if (tile.getType().equals(TrackTypes.SMALL_STRAIGHT.getLabel())
 					||tile.getType().equals(TrackTypes.MEDIUM_STRAIGHT.getLabel())
@@ -229,7 +229,7 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 			par2EntityPlayer.addChatMessage(new ChatComponentText("Place me on a straight piece of track !"));
 			return false;
 		}
-		else if(tileentity!=null && tileentity instanceof TileTCRailGag){
+		else if(tileentity instanceof TileTCRailGag){
 
 			TileTCRailGag tileGag = (TileTCRailGag) tileentity;
 			TileTCRail tile = (TileTCRail) par3World.getTileEntity(tileGag.originX, tileGag.originY, tileGag.originZ);
