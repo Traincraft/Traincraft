@@ -115,13 +115,9 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 				}
 			}
 
-			if(getEntity().transportFuelType()!=null && !getEntity().transportFuelType().equals("")) {
-				par3List.add(EnumChatFormatting.RED + t("menu.item.fueltype") + ": " +
-						t("menu.item."+getEntity().transportFuelType().toLowerCase()));
-			}
-
 			StringBuilder s = new StringBuilder();
-			par3List.add(EnumChatFormatting.RED + t("menu.item.types")+":");
+			s.append(t("menu.item.types"));
+			s.append(": ");
 			if (getEntity() instanceof Locomotive){
 				s.append(t("menu.item.locomotive")+", ");
 				if(entity instanceof IPassenger){
@@ -150,6 +146,11 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 			s.delete(s.lastIndexOf(", "),s.length());
 
 			par3List.add(EnumChatFormatting.RED +s.toString());
+
+			if(getEntity().transportFuelType()!=null && !getEntity().transportFuelType().equals("")) {
+				par3List.add(EnumChatFormatting.RED + t("menu.item.fueltype") + ": " +
+						t("menu.item."+getEntity().transportFuelType().toLowerCase()));
+			}
 
 			par3List.add(EnumChatFormatting.GREEN + t("menu.item.weight") +": " + getEntity().weightKg() + "kg");
 			if (getEntity().transportTopSpeed()!=0){
