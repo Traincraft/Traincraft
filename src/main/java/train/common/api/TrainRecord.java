@@ -167,7 +167,9 @@ public abstract class TrainRecord {
                 if (colors == null || colors.length==0) {
                     return new ArrayList<>();
                 } else {
-                    return Arrays.asList(colors);
+                    //this isnt redundant, Arrays.asList overrides and breaks the List.Add method,
+                    // so we have to dump content to a proper instance.
+                    return new ArrayList<String>(Arrays.asList(colors));
                 }
             }
 

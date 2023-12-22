@@ -77,7 +77,6 @@ public class TraincraftRegistry {
 
     public void registerTrainRenderRecord(TrainRenderRecord record) {
         trainRenderRecords.put(record.getEntityClass(), record);
-        addLivery(train.common.entity.rollingStock.EntityBoxCartUS.class, "burple");
     }
 
     public void registerTrainSoundRecord(TrainSoundRecord sound) {
@@ -86,7 +85,7 @@ public class TraincraftRegistry {
 
     public void addLivery(Class<?> entityClass, String name){
         for (TrainRecord record : trainRecords) {
-            if (entityClass.equals(record.getEntityClass())) {
+            if (entityClass.equals(record.getEntityClass()) && !record.getLiveries().contains(name)) {
                 record.skins.add(name);
             }
         }
