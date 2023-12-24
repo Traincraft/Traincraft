@@ -1024,6 +1024,18 @@ public class ItemTCRail extends ItemPart {
              *  l = 7 = south-east
              **/
 
+            /*todo: switch below logic to a simplified switch statement. will reduce overall code dramatically as requested by doc a long time ago
+            switch (type){
+                case SMALL_STRAIGHT: case EMBEDDED_SMALL_STRAIGHT: case SMALL_ROAD_CROSSING: case SMALL_ROAD_CROSSING_1: case SMALL_ROAD_CROSSING_2 :{
+                    if (!smallStraight(player, world, x, y, z, l, type)) {return false;}
+                }
+
+            }
+            if (player == null || !player.capabilities.isCreativeMode) {
+                --itemstack.stackSize;
+            }
+            return true;*/
+
             if (type == TrackTypes.SMALL_STRAIGHT || type == TrackTypes.EMBEDDED_SMALL_STRAIGHT || type == TrackTypes.SMALL_ROAD_CROSSING || type == TrackTypes.SMALL_ROAD_CROSSING_1 || type == TrackTypes.SMALL_ROAD_CROSSING_2) {
 
                 if (!smallStraight(player, world, x, y, z, l, type))

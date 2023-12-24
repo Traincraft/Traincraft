@@ -300,19 +300,9 @@ public class ModelVB040 extends ModelBase
 
         fixRotation(vb040Model, false, true, true);
 
-    }
+        fixRotation(vb040Model);
+        bodyModel=vb040Model;
 
-    @Override
-    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
-    {
-        for(int i = 0; i < 68; i++)
-        {
-            vb040Model[i].render(f5);
-        }
-    }
-
-    public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5)
-    {
     }
 
     public ModelRendererTurbo vb040Model[];

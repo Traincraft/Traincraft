@@ -307,7 +307,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 
     public void setColor(String color) {
         TrainRecord trainRecord = Traincraft.instance.traincraftRegistry.findTrainRecordByItem(getCartItem().getItem());
-        if (trainRecord != null && trainRecord.getLiveries() != null) {
+        if (trainRecord != null && trainRecord.getLiveries() != null && trainRecord.getLiveries().size()>0) {
             if (color.equals("-1") || !trainRecord.getLiveries().contains(color)) {
                 color = (trainRecord.getLiveries().get(trainRecord.getLiveries().indexOf(color)+1>trainRecord.getLiveries().size()-1?0:trainRecord.getLiveries().indexOf(color)+1));
             }
@@ -328,7 +328,11 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 
     public String getColor() {
         entity_data.updateData(dataWatcher.getWatchableObjectString(12));
-        return entity_data.getString("color");
+        if(entity_data.hasString("color")) {
+            return entity_data.getString("color");
+        } else {
+            return trainSpec.getLiveries().get(0);
+        }
     }
 
     @Override

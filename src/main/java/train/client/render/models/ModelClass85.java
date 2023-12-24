@@ -56,17 +56,17 @@ public class ModelClass85 extends ModelBase
 		class85Model[27] = new ModelRendererTurbo(this, 81, 17, textureX, textureY); // 28
 		class85Model[28] = new ModelRendererTurbo(this, 481, 1, textureX, textureY); // 29
 		class85Model[29] = new ModelRendererTurbo(this, 49, 9, textureX, textureY); // 30
-		class85Model[30] = new ModelRendererTurbo(this, 465, 1, textureX, textureY); // 31
-		class85Model[31] = new ModelRendererTurbo(this, 505, 1, textureX, textureY); // 32
+		class85Model[30] = new ModelRendererTurbo(this, 465, 1, textureX, textureY, "lamp"); // 31
+		class85Model[31] = new ModelRendererTurbo(this, 505, 1, textureX, textureY, "lamp"); // 32
 		class85Model[32] = new ModelRendererTurbo(this, 177, 9, textureX, textureY); // 33
 		class85Model[33] = new ModelRendererTurbo(this, 345, 9, textureX, textureY); // 34
-		class85Model[34] = new ModelRendererTurbo(this, 201, 9, textureX, textureY); // 35
-		class85Model[35] = new ModelRendererTurbo(this, 209, 9, textureX, textureY); // 36
+		class85Model[34] = new ModelRendererTurbo(this, 201, 9, textureX, textureY, "lamp"); // 35
+		class85Model[35] = new ModelRendererTurbo(this, 209, 9, textureX, textureY, "lamp"); // 36
 		class85Model[36] = new ModelRendererTurbo(this, 3, 99, textureX, textureY); // 37
-		class85Model[37] = new ModelRendererTurbo(this, 369, 9, textureX, textureY); // 38
-		class85Model[38] = new ModelRendererTurbo(this, 465, 9, textureX, textureY); // 39
-		class85Model[39] = new ModelRendererTurbo(this, 489, 9, textureX, textureY); // 42
-		class85Model[40] = new ModelRendererTurbo(this, 497, 9, textureX, textureY); // 43
+		class85Model[37] = new ModelRendererTurbo(this, 369, 9, textureX, textureY, "lamp"); // 38
+		class85Model[38] = new ModelRendererTurbo(this, 465, 9, textureX, textureY, "lamp"); // 39
+		class85Model[39] = new ModelRendererTurbo(this, 489, 9, textureX, textureY, "lamp"); // 42
+		class85Model[40] = new ModelRendererTurbo(this, 497, 9, textureX, textureY, "lamp"); // 43
 		class85Model[41] = new ModelRendererTurbo(this, 225, 17, textureX, textureY); // 44
 		class85Model[42] = new ModelRendererTurbo(this, 505, 9, textureX, textureY); // 45
 		class85Model[43] = new ModelRendererTurbo(this, 49, 17, textureX, textureY); // 46
@@ -831,6 +831,9 @@ public class ModelClass85 extends ModelBase
 
 		fixRotation(class85Model, false, true, true);
 
+		fixRotation(class85Model);
+		bodyModel=class85Model;
+
 
 	}
 	private ModelDeiticBogie fronttrucks = new ModelDeiticBogie();
@@ -839,16 +842,7 @@ public class ModelClass85 extends ModelBase
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
-		for(int i = 0; i < 193; i++)
-		{
-			if (i==30 || i==31 || i==37 || i== 38 || i==39 || i==40 || i==35 || i ==34){
-				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
-			}
-			class85Model[i].render(f5);
-			if (i==30 || i==31 || i==37 || i== 38 || i==39 || i==40 || i==35 || i ==34){
-				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
-			}
-		}
+		super.render(entity, f, f1, f2, f3, f4, f5);
 
 		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/Class85_Bogie.png"));
 		GL11.glPushMatrix();

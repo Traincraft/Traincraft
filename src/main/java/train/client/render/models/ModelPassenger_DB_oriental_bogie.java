@@ -61,6 +61,9 @@ public class ModelPassenger_DB_oriental_bogie extends ModelBase
 
 		fixRotation(passenger_db_oriental_bogieModel, false,false,false);
 
+		fixRotation(passenger_db_oriental_bogieModel);
+		bodyModel=passenger_db_oriental_bogieModel;
+
 
 	}
 

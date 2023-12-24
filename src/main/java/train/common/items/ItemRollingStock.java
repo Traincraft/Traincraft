@@ -115,13 +115,9 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 				}
 			}
 
-			if(getEntity().transportFuelType()!=null && !getEntity().transportFuelType().equals("")) {
-				par3List.add(EnumChatFormatting.RED + t("menu.item.fueltype") + ": " +
-						t("menu.item."+getEntity().transportFuelType().toLowerCase()));
-			}
-
 			StringBuilder s = new StringBuilder();
-			par3List.add(EnumChatFormatting.RED + t("menu.item.types")+":");
+			s.append(t("menu.item.types"));
+			s.append(": ");
 			if (getEntity() instanceof Locomotive){
 				s.append(t("menu.item.locomotive")+", ");
 				if(entity instanceof IPassenger){
@@ -150,6 +146,11 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 			s.delete(s.lastIndexOf(", "),s.length());
 
 			par3List.add(EnumChatFormatting.RED +s.toString());
+
+			if(getEntity().transportFuelType()!=null && !getEntity().transportFuelType().equals("")) {
+				par3List.add(EnumChatFormatting.RED + t("menu.item.fueltype") + ": " +
+						t("menu.item."+getEntity().transportFuelType().toLowerCase()));
+			}
 
 			par3List.add(EnumChatFormatting.GREEN + t("menu.item.weight") +": " + getEntity().weightKg() + "kg");
 			if (getEntity().transportTopSpeed()!=0){
@@ -198,7 +199,7 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 		if (par3World.isRemote) {
 			return false;
 		}
-		if(tileentity!=null && tileentity instanceof TileTCRail){
+		if(tileentity instanceof TileTCRail){
 			TileTCRail tile = (TileTCRail) tileentity;
 			if (tile.getType().equals(TrackTypes.SMALL_STRAIGHT.getLabel())
 					||tile.getType().equals(TrackTypes.MEDIUM_STRAIGHT.getLabel())
@@ -229,7 +230,7 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 			par2EntityPlayer.addChatMessage(new ChatComponentText("Place me on a straight piece of track !"));
 			return false;
 		}
-		else if(tileentity!=null && tileentity instanceof TileTCRailGag){
+		else if(tileentity instanceof TileTCRailGag){
 
 			TileTCRailGag tileGag = (TileTCRailGag) tileentity;
 			TileTCRail tile = (TileTCRail) par3World.getTileEntity(tileGag.originX, tileGag.originY, tileGag.originZ);
@@ -247,7 +248,7 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 					|| tile.getType().equals(TrackTypes.EMBEDDED_LONG_DIAGONAL_STRAIGHT.getLabel())
 					|| tile.getType().equals(TrackTypes.EMBEDDED_VERY_LONG_DIAGONAL_STRAIGHT.getLabel()))){
 				if (tile.getTrackType().getLabel().contains("DIAGONAL")){
-					if (tileGag.canPlaceRollingstock == true) {
+					if (tileGag.canPlaceRollingstock) {
 						this.placeCart(par2EntityPlayer, par1ItemStack, par3World, par4, par5, par6);
 						return true;
 					}

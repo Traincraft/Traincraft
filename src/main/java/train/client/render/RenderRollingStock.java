@@ -12,6 +12,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Vec3;
 import org.lwjgl.opengl.GL11;
 import train.common.Traincraft;
+import train.common.api.AbstractTrains;
 import train.common.api.EntityRollingStock;
 import train.common.api.Locomotive;
 import train.common.api.TrainRenderRecord;
@@ -459,9 +460,11 @@ public class RenderRollingStock extends Render {
     }
 
     public static ResourceLocation getTexture(Entity entity) {
-        TrainRenderRecord render = Traincraft.instance.traincraftRegistry.getTrainRenderRecord(entity.getClass());
-        if (render != null) {
-            return render.getTextureFile(((EntityRollingStock) entity).getColor());
+        if(entity instanceof AbstractTrains) {
+            TrainRenderRecord render = Traincraft.instance.traincraftRegistry.getTrainRenderRecord(entity.getClass());
+            if (render != null) {
+                return render.getTextureFile(((AbstractTrains) entity).getColor());
+            }
         }
         return null;
     }

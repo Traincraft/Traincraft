@@ -222,6 +222,9 @@ public class Model100TonHopper extends ModelBase
 
 		fixRotation(model100tonhopperModel, false, true, true);
 
+		fixRotation(model100tonhopperModel);
+		bodyModel=model100tonhopperModel;
+
 	}
 	private ModelFreightTruckM fronttrucks = new ModelFreightTruckM();
 	private ModelFreightTruckM backtrucks = new ModelFreightTruckM();
@@ -229,10 +232,7 @@ public class Model100TonHopper extends ModelBase
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
-		for(int i = 0; i < 48; i++)
-		{
-			model100tonhopperModel[i].render(f5);
-		}
+		super.render(entity, f, f1, f2, f3, f4, f5);
 		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/freighttruckm.png"));
 
 		GL11.glPushMatrix();

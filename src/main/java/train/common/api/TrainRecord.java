@@ -1,5 +1,6 @@
 package train.common.api;
 
+import ebf.tim.utility.DebugUtil;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
@@ -94,7 +95,7 @@ public abstract class TrainRecord {
      * #param entryName is depreciated
      * #param additionalTooltip is depreciated.
      */
-    public static TrainRecord makeEntry(final String entryName, final String internalName, final Class entityClass, final Item item, final String trainType, final int MHP, final int maxSpeed, final double mass, final int fuelConsumption, final int waterConsumption, final int heatingTime, final double accelerationRate, final double brakeRate, final int tankCapacity, final int cargoCapacity, final String[] colors, final int guiRenderScale, final double bogieLocoPositions, final String additionnalTooltip) {
+    public static TrainRecord makeEntry(final String entryName, final String internalName, final Class entityClass, final Item item, final String trainType, final int MHP, final int maxSpeed, final double mass, final int fuelConsumption, final int waterConsumption, final int heatingTime, final double accelerationRate, final double brakeRate, final int tankCapacity, final int cargoCapacity, final String[] colors, int guiRenderScale, final double bogieLocoPositions, final String additionnalTooltip) {
         return new TrainRecord() {
             @Override
             public String getName() {
@@ -163,10 +164,12 @@ public abstract class TrainRecord {
 
             @Override
             public List<String> getColors() {
-                if (colors == null) {
+                if (colors == null || colors.length==0) {
                     return new ArrayList<>();
                 } else {
-                    return Arrays.asList(colors);
+                    //this isnt redundant, Arrays.asList overrides and breaks the List.Add method,
+                    // so we have to dump content to a proper instance.
+                    return new ArrayList<String>(Arrays.asList(colors));
                 }
             }
 

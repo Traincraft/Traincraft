@@ -9,6 +9,7 @@
 
 package train.client.render.models; //Path where the model is located
 
+import fexcraft.tmt.slim.ModelBase;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
@@ -20,7 +21,7 @@ import train.common.api.AbstractTrains;
 import train.common.core.util.DepreciatedUtil;
 import train.common.library.Info;
 
-public class ModelF7A extends ModelConverter //Same as Filename
+public class ModelF7A extends ModelBase //Same as Filename
 {
 	int textureX = 512;
 	int textureY = 256;
@@ -34,7 +35,7 @@ public class ModelF7A extends ModelConverter //Same as Filename
 		translateAll(0F, 0F, 0F);
 
 
-		flipAll();
+		//flipAll();
 	}
 
 	private void initbodyModel_1()
@@ -1700,16 +1701,7 @@ public class ModelF7A extends ModelConverter //Same as Filename
 	ModelBlombergBnew theTrucc = new ModelBlombergBnew();
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-		for (int i = 0; i < 411; i++) {
-			if (bodyModel[i].boxName != null && bodyModel[i].boxName.contains("lamp")) {
-				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
-				bodyModel[i].render(f5);
-				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
-			} else {
-				bodyModel[i].render(f5);
-			}
-		}
-
+		super.render(entity, f, f1, f2, f3, f4, f5);
 		if (entity instanceof AbstractTrains && DepreciatedUtil.getColorFromString(((AbstractTrains) entity).getColor()) == 3||entity instanceof AbstractTrains && DepreciatedUtil.getColorFromString(((AbstractTrains) entity).getColor()) == 11||entity instanceof AbstractTrains && DepreciatedUtil.getColorFromString(((AbstractTrains) entity).getColor()) == 1||entity instanceof AbstractTrains && DepreciatedUtil.getColorFromString(((AbstractTrains) entity).getColor()) == 4||entity instanceof AbstractTrains && DepreciatedUtil.getColorFromString(((AbstractTrains) entity).getColor()) == 5||entity instanceof AbstractTrains && DepreciatedUtil.getColorFromString(((AbstractTrains) entity).getColor()) == 16) {
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/blombergB_2_Silver.png"));
 			GL11.glPushMatrix();

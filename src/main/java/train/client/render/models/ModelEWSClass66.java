@@ -33,8 +33,8 @@ public class ModelEWSClass66 extends ModelBase
 		ewsclass66Model[4] = new ModelRendererTurbo(this, 49, 1, textureX, textureY); // 06
 		ewsclass66Model[5] = new ModelRendererTurbo(this, 245, 250, textureX, textureY); // 07
 		ewsclass66Model[6] = new ModelRendererTurbo(this, 57, 1, textureX, textureY); // 08
-		ewsclass66Model[7] = new ModelRendererTurbo(this, 73, 1, textureX, textureY); // 09
-		ewsclass66Model[8] = new ModelRendererTurbo(this, 145, 1, textureX, textureY); // 10
+		ewsclass66Model[7] = new ModelRendererTurbo(this, 73, 1, textureX, textureY, "lamp"); // 09
+		ewsclass66Model[8] = new ModelRendererTurbo(this, 145, 1, textureX, textureY, "lamp"); // 10
 		ewsclass66Model[9] = new ModelRendererTurbo(this, 233, 17, textureX, textureY); // 11
 		ewsclass66Model[10] = new ModelRendererTurbo(this, 169, 1, textureX, textureY); // 12
 		ewsclass66Model[11] = new ModelRendererTurbo(this, 33, 1, textureX, textureY); // 13
@@ -53,14 +53,14 @@ public class ModelEWSClass66 extends ModelBase
 		ewsclass66Model[24] = new ModelRendererTurbo(this, 313, 1, textureX, textureY); // 26
 		ewsclass66Model[25] = new ModelRendererTurbo(this, 329, 1, textureX, textureY); // 27
 		ewsclass66Model[26] = new ModelRendererTurbo(this, 345, 1, textureX, textureY); // 28
-		ewsclass66Model[27] = new ModelRendererTurbo(this, 249, 1, textureX, textureY); // 32
+		ewsclass66Model[27] = new ModelRendererTurbo(this, 249, 1, textureX, textureY, "lamp"); // 32
 		ewsclass66Model[28] = new ModelRendererTurbo(this, 462, 1, textureX, textureY); // 33
 		ewsclass66Model[29] = new ModelRendererTurbo(this, 281, 1, textureX, textureY); // 34
 		ewsclass66Model[30] = new ModelRendererTurbo(this, 297, 1, textureX, textureY); // 35
 		ewsclass66Model[31] = new ModelRendererTurbo(this, 153, 17, textureX, textureY); // 36
 		ewsclass66Model[32] = new ModelRendererTurbo(this, 97, 9, textureX, textureY); // 37
 		ewsclass66Model[33] = new ModelRendererTurbo(this, 1, 17, textureX, textureY); // 38
-		ewsclass66Model[34] = new ModelRendererTurbo(this, 257, 1, textureX, textureY); // 39
+		ewsclass66Model[34] = new ModelRendererTurbo(this, 257, 1, textureX, textureY, "lamp"); // 39
 		ewsclass66Model[35] = new ModelRendererTurbo(this, 97, 25, textureX, textureY); // 40
 		ewsclass66Model[36] = new ModelRendererTurbo(this, 377, 1, textureX, textureY); // 41
 		ewsclass66Model[37] = new ModelRendererTurbo(this, 401, 1, textureX, textureY); // 42
@@ -72,14 +72,14 @@ public class ModelEWSClass66 extends ModelBase
 		ewsclass66Model[43] = new ModelRendererTurbo(this, 441, 1, textureX, textureY); // 48
 		ewsclass66Model[44] = new ModelRendererTurbo(this, 281, 25, textureX, textureY); // 49
 		ewsclass66Model[45] = new ModelRendererTurbo(this, 1, 9, textureX, textureY); // 50
-		ewsclass66Model[46] = new ModelRendererTurbo(this, 313, 1, textureX, textureY); // 51
-		ewsclass66Model[47] = new ModelRendererTurbo(this, 17, 9, textureX, textureY); // 53
+		ewsclass66Model[46] = new ModelRendererTurbo(this, 313, 1, textureX, textureY, "lamp"); // 51
+		ewsclass66Model[47] = new ModelRendererTurbo(this, 17, 9, textureX, textureY, "lamp"); // 53
 		ewsclass66Model[48] = new ModelRendererTurbo(this, 377, 9, textureX, textureY); // 54
-		ewsclass66Model[49] = new ModelRendererTurbo(this, 73, 17, textureX, textureY); // 55
+		ewsclass66Model[49] = new ModelRendererTurbo(this, 73, 17, textureX, textureY, "lamp"); // 55
 		ewsclass66Model[50] = new ModelRendererTurbo(this, 65, 9, textureX, textureY); // 56
 		ewsclass66Model[51] = new ModelRendererTurbo(this, 377, 25, textureX, textureY); // 57
 		ewsclass66Model[52] = new ModelRendererTurbo(this, 425, 25, textureX, textureY); // 58
-		ewsclass66Model[53] = new ModelRendererTurbo(this, 329, 1, textureX, textureY); // 59
+		ewsclass66Model[53] = new ModelRendererTurbo(this, 329, 1, textureX, textureY, "lamp"); // 59
 		ewsclass66Model[54] = new ModelRendererTurbo(this, 281, 17, textureX, textureY); // 60
 		ewsclass66Model[55] = new ModelRendererTurbo(this, 401, 9, textureX, textureY); // 61
 		ewsclass66Model[56] = new ModelRendererTurbo(this, 345, 1, textureX, textureY); // 62
@@ -644,6 +644,9 @@ public class ModelEWSClass66 extends ModelBase
 
 		fixRotation(ewsclass66Model, false, true, true);
 
+		fixRotation(ewsclass66Model);
+		bodyModel=ewsclass66Model;
+
 	}
 	private ModelEWSClass66_Bogie fronttrucks = new ModelEWSClass66_Bogie();
 	private ModelEWSClass66_Bogie backtrucks = new ModelEWSClass66_Bogie();
@@ -651,16 +654,7 @@ public class ModelEWSClass66 extends ModelBase
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
-		for(int i = 0; i < 141; i++)
-		{
-			if (i==53 || i==46 || i== 27 || i==34 || i==8 || i==7 || i==47 || i==49){
-				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
-			}
-			ewsclass66Model[i].render(f5);
-			if (i==53 || i==46 || i== 27 || i==34 || i==8 || i==7 || i==47 || i==49){
-				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
-			}
-		}
+		super.render(entity, f, f1, f2, f3, f4, f5);
 
 		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/Class66Bogie.png"));
 		GL11.glPushMatrix();
