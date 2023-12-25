@@ -24,12 +24,10 @@ public class RenderStopper extends TileEntitySpecialRenderer {
     }
 
     public void render(TileEntity tile, double x, double y, double z) {
+        fexcraft.tmt.slim.Tessellator.bindTexture(texture);
         GL11.glPushMatrix();
 
-        GL11.glTranslated(x, y, z);
-        fexcraft.tmt.slim.Tessellator.bindTexture(texture);
-
-        GL11.glTranslatef(0.5F, 0.0F, 0.5F);
+        GL11.glTranslatef((float) x + 0.5f, (float) y, (float) z + 0.5f);
         modelStopper.render(0.0625F, ((TileStopper) tile).getFacing());
 
         GL11.glPopMatrix();
@@ -37,6 +35,6 @@ public class RenderStopper extends TileEntitySpecialRenderer {
 
     @Override
     public void renderTileEntityAt(TileEntity tile, double x, double y, double z, float var8) {
-        render(tile, x, z, z);
+        render(tile, x, y, z);
     }
 }

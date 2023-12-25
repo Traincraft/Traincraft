@@ -100,7 +100,6 @@ public class ModelStopper extends ModelBase {
 		box5.render(f5);
 		
 		GL11.glPushMatrix();
-		GL11.glTranslatef(0, 0, 0);
 		GL11.glRotatef(90, 0, 1, 0);
 		fexcraft.tmt.slim.Tessellator
 				.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
