@@ -2,7 +2,10 @@ package train.common.api;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import ebf.XmlBuilder;
+import fexcraft.tmt.slim.ModelBase;
 import io.netty.buffer.ByteBuf;
 import mods.railcraft.api.carts.IMinecart;
 import mods.railcraft.api.carts.IRoutableCart;
@@ -21,6 +24,7 @@ import net.minecraft.world.ChunkCoordIntPair;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeChunkManager;
 import net.minecraftforge.common.ForgeChunkManager.Ticket;
+import train.client.render.Bogie;
 import train.common.Traincraft;
 import train.common.adminbook.ItemAdminBook;
 import train.common.core.handlers.ConfigHandler;
@@ -59,11 +63,22 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
      */
     private TrainRecord trainSpec = null;
 
+    @SideOnly(Side.CLIENT)
+    private TrainRenderRecord render = null;
+
     public TrainRecord getSpec() {
         if (trainSpec == null) {
             trainSpec = Traincraft.instance.traincraftRegistry.getTrainRecord(this.getClass());
         }
         return trainSpec;
+    }
+
+    @SideOnly(Side.CLIENT)
+    public TrainRenderRecord getRender() {
+        if (render == null) {
+            render = Traincraft.instance.traincraftRegistry.getTrainRenderRecord(this.getClass());
+        }
+        return render;
     }
 
     //@Override
@@ -707,4 +722,66 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 
     /**defines the weight of the transport.*/
     public float weightKg(){return (float)getSpec().getMass()*10f;}
+
+        /*
+    <h1>Bogies and models</h1>
+    */
+
+    /**returns a list of models to be used for the bogies
+     * example:
+     * return new Bogie[]{new Bogie(new MyModel1(), offset), new Bogie(new MyModel2(), offset2), etc...};
+     * may return null. */
+    @SideOnly(Side.CLIENT)
+    public Bogie[] bogies(){
+        return new Bogie[]{null};
+    }
+
+    /**defines the points that the entity uses for path-finding and rotation, with 0 being the entity center.
+     * Usually the point where the front and back bogies would connect to the transport.
+     * Or the center of the frontmost and backmost wheel if there are no bogies.
+     * The first value is the back point, the second is the front point
+     * example:
+     * return new float{2f, -1f};
+     * may not return null*/
+    public float[] rotationPoints(){return new float[]{1,-1};}
+
+    /**defines the scale to render the model at. Default is 0.0625*/
+    public float[][] getRenderScale(){return new float[][]{getRender().getScale()};}
+
+    /**defines the scale to render the model at. Default is 0.65*/
+    public float getPlayerScale(){return 0.65f;}
+
+    /**returns the x/y/z offset each model should render at, with 0 being the entity center, in order with getModels
+     * example:
+     * return new float[][]{{x1,y1,z1},{x2,y2,z2}, etc...};
+     * may return null.*/
+    @SideOnly(Side.CLIENT)
+    public float[][] modelOffsets(){return new float[][]{getRender().getTrans()};}
+
+
+    /**returns the x/y/z rotation each model should render at in degrees, in order with getModels
+     * example:
+     * return new float[][]{{x1,y1,z1},{x2,y2,z2}, etc...};
+     * may return null.*/
+    @SideOnly(Side.CLIENT)
+    public float[][] modelRotations(){return new float[][]{getRender().getRotate()};}
+
+    /**event is to add skins for the model to the skins registry on mod initialization.
+     * this function can be used to register multiple skins, one after another.
+     * example:
+     * SkinRegistry.addSkin(this.class, MODID, "folder/mySkin.png", new int[][]{{oldHex, newHex},{oldHex, newHex}, etc... }, displayName, displayDescription);
+     * the int[][] for hex recolors may be null.
+     * hex values use "0x" in place of "#"
+     * "0xff00aa" as an example.
+     * the first TransportSkin added to the registry for a transport class will be the default
+     * additionally the addSkin function may be called from any other class at any time.
+     * the registerSkins method is only for organization and convenience.*/
+    public void registerSkins(){}
+
+    /**returns a list of models to be used for the transport
+     * example:
+     * return new MyModel();
+     * may return null. */
+    @SideOnly(Side.CLIENT)
+    public ModelBase[] getModel(){return new ModelBase[]{getRender().getModel()};}
 }
