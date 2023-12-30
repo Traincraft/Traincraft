@@ -16,6 +16,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
@@ -371,6 +372,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
         nbttagcompound.setBoolean("linked", this.linked);
         //nbttagcompound.setDouble("motionX", motionX);
         //nbttagcompound.setDouble("motionZ", motionZ);
+        nbttagcompound.setTag("Motion", this.newDoubleNBTList(this.motionX, this.motionY, this.motionZ));
         nbttagcompound.setDouble("Link1", Link1);
         nbttagcompound.setDouble("Link2", Link2);
 
@@ -409,6 +411,9 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		linked = nbttagcompound.getBoolean("linked");
 		//motionX = nbttagcompound.getDouble("motionX");
 		//motionZ = nbttagcompound.getDouble("motionZ");
+        NBTTagList nbttaglist1 = nbttagcompound.getTagList("Motion", 6);            this.motionX = nbttaglist1.func_150309_d(0);
+        this.motionX = nbttaglist1.func_150309_d(0);
+        this.motionZ = nbttaglist1.func_150309_d(2);
 		Link1 = nbttagcompound.getDouble("Link1");
 		Link2 = nbttagcompound.getDouble("Link2");
 		if(nbttagcompound.hasKey("Dim")){
