@@ -249,6 +249,7 @@ public class RenderRollingStock extends Render {
             //loadTexture(getTextureFile(renders.getTexture(), renders.getIsMultiTextured(), cart));
 
             for(int m=0; m<cart.getModel().length;m++) {
+                GL11.glPushMatrix();
                 if(cart.modelOffsets()[m]!=null) {
                     GL11.glTranslatef(cart.modelOffsets()[m][0], cart.modelOffsets()[m][1], cart.modelOffsets()[m][2]);
                 }
@@ -258,9 +259,10 @@ public class RenderRollingStock extends Render {
                     GL11.glRotatef(cart.modelRotations()[m][2], 0,0,1);
                 }
                 if(cart.getRenderScale()[m]!=null) {
-                    GL11.glTranslatef(cart.getRenderScale()[m][0], cart.getRenderScale()[m][1], cart.getRenderScale()[m][2]);
+                    GL11.glScalef(cart.getRenderScale()[m][0], cart.getRenderScale()[m][1], cart.getRenderScale()[m][2]);
                 }
                 cart.getModel()[m].render(cart, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
+                GL11.glPopMatrix();
             }
 
 

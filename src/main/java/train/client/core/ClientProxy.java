@@ -61,6 +61,12 @@ public class ClientProxy extends CommonProxy {
      * @return true if it is December or January
      */
     public static boolean isHoliday() {
+        if(ConfigHandler.HOLIDAY_SKINS==2){
+            return true;
+        }
+        if(ConfigHandler.HOLIDAY_SKINS==1){
+            return false;
+        }
         Calendar cal = Calendar.getInstance();
         return (cal.get(Calendar.MONTH) == Calendar.DECEMBER || (cal.get(Calendar.MONTH) == Calendar.JANUARY) && cal.get(Calendar.DATE) < 7);
     }
