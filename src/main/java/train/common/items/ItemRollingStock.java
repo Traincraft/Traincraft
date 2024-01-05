@@ -282,8 +282,7 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 			rollingStock = (EntityRollingStock) train.getEntity(world, i + 0.5F, j + 0.2F, k + 0.5F);
 			if (train.getLiveries().size()>0) {
 				if (rollingStock != null) {
-					//rollingStock.setColor(AbstractTrains.getColorFromString(train.getColors()[0]));
-					rollingStock.setColor((train.getLiveries().get(0)));
+					rollingStock.setColor(rollingStock.getDefaultSkin());
 				}
 			}
 		}

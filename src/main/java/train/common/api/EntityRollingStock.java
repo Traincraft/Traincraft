@@ -183,6 +183,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 
     public EntityRollingStock(World world, double d, double d1, double d2) {
         super(world, d, d1, d2);
+        if(world==null){return;}
         initRollingStock(world);
         setPosition(d, d1 + yOffset, d2);
         motionX = 0.0D;

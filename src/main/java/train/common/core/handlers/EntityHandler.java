@@ -27,6 +27,9 @@ public class EntityHandler {
 		int trainID= 32;
 		for(TrainRecord trains : EnumTrains.trains()){
 			EntityRegistry.registerModEntity(trains.getEntityClass(), trains.getInternalName(), trainID, Traincraft.instance, 512, 1, true);
+			if(trains.getEntity(null)!=null) {
+				trains.getEntity(null).registerSkins();
+			}
 			trainID++;
 			if(trainID== 112 || trainID==51){
 				trainID++;

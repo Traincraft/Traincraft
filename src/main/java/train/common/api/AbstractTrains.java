@@ -34,6 +34,7 @@ import train.common.core.util.DepreciatedUtil;
 import train.common.items.ItemChunkLoaderActivator;
 import train.common.items.ItemRollingStock;
 import train.common.items.ItemWrench;
+import train.common.library.Info;
 import train.common.overlaytexture.OverlayTextureManager;
 
 import java.util.*;
@@ -161,6 +162,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 
     public AbstractTrains(World world) {
         super(world);
+        if(world==null){return;}
         renderDistanceWeight = 2.0D;
         entity_data.putString("color", !getSpec().getLiveries().isEmpty() ? getSpec().getLiveries().get(0) : "");
         dataWatcher.addObject(12, entity_data.toXMLString());
@@ -684,12 +686,12 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
     public String[] additionalItemText(){return getSpec().getAdditionnalTooltip().split("\n");}
     /**the top speed in km/h for the transport.
      * not used tor rollingstock.*/
-    public int transportTopSpeed(){return getSpec().getMaxSpeed();}
+    public float transportTopSpeed(){return getSpec().getMaxSpeed();}
     /**the top speed in km/h for the transportwhen moving in reverse, default is half for diesel and 75% for others.
      * not used tor rollingstock.*/
     public float transportTopSpeedReverse(){return this instanceof DieselTrain?transportTopSpeed()*0.5f:transportTopSpeed();}
     /**this is the default value to define the acceleration speed and pulling power of a transport.*/
-    public int transportMetricHorsePower(){return getSpec().getMHP();}
+    public float transportMetricHorsePower(){return getSpec().getMHP();}
     /**the tractive effort for the transport, this is a fallback if metric horsepower (mhp) is not available*/
     public float transportTractiveEffort(){return 0;}
 
@@ -782,6 +784,13 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
      * additionally the addSkin function may be called from any other class at any time.
      * the registerSkins method is only for organization and convenience.*/
     public void registerSkins(){}
+
+    /**
+     * return the name for the default TransportSkin of the transport.
+     */
+    public String getDefaultSkin(){
+        return getSpec().getLiveries().get(0);
+    }
 
     /**returns a list of models to be used for the transport
      * example:

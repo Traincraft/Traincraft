@@ -130,7 +130,6 @@ public class Traincraft {
         trainCompositeSuit = proxy.addArmor("CompositeSuit");
         TCBlocks.init();
         TCItems.init();
-        EntityHandler.init();
         proxy.registerTileEntities();
         proxy.registerSounds();
         proxy.setHook(); // Moved file needed to run JLayer, we need to set a hook in order to retrieve it
@@ -197,6 +196,7 @@ public class Traincraft {
         /* Register the liquids */
         tcLog.info("Initialize Fluids");
         LiquidManager.getInstance().registerLiquids();
+        EntityHandler.init();
 
         /* Liquid FX */
         proxy.registerTextureFX();
