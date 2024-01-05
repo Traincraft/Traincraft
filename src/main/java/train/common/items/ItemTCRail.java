@@ -861,6 +861,8 @@ public class ItemTCRail extends ItemPart {
         else if (type == TrackTypes.FOUR_WAYS_CROSSING || type == TrackTypes.EMBEDDED_FOUR_WAYS_CROSSING)
             return new int[][]{{0, 0}, {1, 0}, {-1, 0}, {0, -1}, {1, -1}, {-1, -1}, {0, 1}, {1, 1}, {-1, 1}};
         /** Turns */
+        else if (type == TrackTypes.TURN_1X1 || type == TrackTypes.EMBEDDED_TURN_1X1)
+            return new int[][]{{0,0}};
         else if (type == TrackTypes.MEDIUM_TURN || type == TrackTypes.EMBEDDED_MEDIUM_TURN)
             return new int[][]{{0, 0}, {1, 0}, {1, 1}, {2, 1}, {2, 2}};
         else if (type == TrackTypes.LARGE_TURN || type == TrackTypes.EMBEDDED_LARGE_TURN)
