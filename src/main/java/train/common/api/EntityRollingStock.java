@@ -382,12 +382,6 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
         if (worldObj.isRemote || isDead) {
             return true;
         }
-        if(damagesource.getEntity() instanceof EntityPlayerMP){
-            if(((EntityPlayerMP) damagesource.getEntity()).getHeldItem().getItem() instanceof ItemPaintbrushThing){
-
-            }
-
-        }
         if (damagesource.getEntity() instanceof EntityPlayer && !damagesource.isProjectile()) {
             if (this instanceof IPassenger) {
                 if (canBeDestroyedByPlayer(damagesource)) return false;
@@ -1725,7 +1719,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
             return true;
         }
 
-        if (itemstack != null && itemstack.getItem() instanceof ItemPaintbrushThing) {
+        if (itemstack != null && itemstack.getItem() instanceof ItemPaintbrushThing && !entityplayer.isSneaking()) {
             if (this.getSpec().getLiveries().size() > 0) {
                 entityplayer.openGui(Traincraft.instance, GuiIDs.PAINTBRUSH, entityplayer.getEntityWorld(), this.getEntityId(), -1, (int) this.posZ);
             }
