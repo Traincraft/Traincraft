@@ -274,6 +274,7 @@ public class CustomRenderHandler {
         } else if (item.getTrackType().getType() == TCRailTypes.TURN) {
             if (item.getTrackType() == ItemTCRail.TrackTypes.MEDIUM_TURN || item.getTrackType() == ItemTCRail.TrackTypes.LARGE_TURN
                     || item.getTrackType() == ItemTCRail.TrackTypes.VERY_LARGE_TURN || item.getTrackType() == ItemTCRail.TrackTypes.SUPER_LARGE_TURN
+                    || item.getTrackType() == ItemTCRail.TrackTypes.TURN_1X1 || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_TURN_1X1
                     || item.getTrackType() == ItemTCRail.TrackTypes.TURN_29X29 || item.getTrackType() == ItemTCRail.TrackTypes.TURN_32X32
                     || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_MEDIUM_TURN || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_LARGE_TURN
                     || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_VERY_LARGE_TURN || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_SUPER_LARGE_TURN
@@ -289,6 +290,8 @@ public class CustomRenderHandler {
                     turnSize = "29x";
                 else if (item.getTrackType() == ItemTCRail.TrackTypes.TURN_32X32 || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_TURN_32X32)
                     turnSize = "32x";
+                else if (item.getTrackType() == ItemTCRail.TrackTypes.TURN_1X1 || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_TURN_1X1)
+                    turnSize = "1x";
 
                 if (item.getTrackOrientation(facing, MathHelper.wrapAngleTo180_float(player.rotationYaw)).equals("left")) {
                     RenderTCRail.modelLeftTurn.render((item.getTrackType().getLabel().contains("EMBEDDED") ? "embedded_" : "") + turnSize, facing, 0, 0, 0, r, g, b, a);

@@ -65,6 +65,16 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
                         break;
                     }
 
+                    case TURN_1X1:
+                    case RIGHT_TURN_1X1: {
+                        modelRightTurn.render("1x", railTile, x, y, z);
+                        break;
+                    }
+                    case LEFT_TURN_1X1: {
+                        modelLeftTurn.render("1x", railTile, x, y, z);
+                        break;
+                    }
+
                     case MEDIUM_TURN:
                     case MEDIUM_RIGHT_TURN: {
                         modelRightTurn.render("medium", railTile, x, y, z);
@@ -386,6 +396,16 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
                         modelMediumDiagonalStraight.render("embedded_diagonal", railTile, x, y, z);
                         break;
                     }
+                    case EMBEDDED_TURN_1X1:
+                    case EMBEDDED_RIGHT_TURN_1X1: {
+                        modelRightTurn.render("embedded_1x", railTile, x, y, z);
+                        break;
+                    }
+                    case EMBEDDED_LEFT_TURN_1X1: {
+                        modelLeftTurn.render("embedded_1x", railTile, x, y, z);
+                        break;
+                    }
+
                     case EMBEDDED_MEDIUM_TURN:
                     case EMBEDDED_MEDIUM_RIGHT_TURN: {
                         modelRightTurn.render("embedded_medium", railTile, x, y, z);

@@ -157,6 +157,7 @@ item.tc:tcRailEmbeddedMediumDiagonalStraight.name=Embedded Diagonal Straight (1x
 item.tc:tcRailEmbeddedLongDiagonalStraight.name=Embedded Diagonal Straight (1x6)
 item.tc:tcRailEmbeddedVeryLongDiagonalStraight.name=Embedded Diagonal Straight (1x12)
 
+item.tc:tcRail1X1Turn.name=Turn (1x1)
 item.tc:tcRailMediumTurn.name=Turn (3x3)
 item.tc:tcRailLargeTurn.name=Turn (5x5)
 item.tc:tcRailVeryLargeTurn.name=Turn (10x10)
@@ -164,6 +165,7 @@ item.tc:tcRailSuperLargeTurn.name=Turn (16x16)
 item.tc:tcRail29X29Turn.name=Turn (29X29)
 item.tc:tcRail32X32Turn.name=Turn (32x32)
 
+item.tc:tcRailEmbedded1X1Turn.name=Embedded Turn (1x1)
 item.tc:tcRailEmbeddedMediumTurn.name=Embedded Turn (3x3)
 item.tc:tcRailEmbeddedLargeTurn.name=Embedded Turn (5x5)
 item.tc:tcRailEmbeddedVeryLargeTurn.name=Embedded Turn (10x10)

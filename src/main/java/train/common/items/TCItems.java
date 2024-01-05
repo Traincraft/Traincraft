@@ -117,6 +117,7 @@ public class TCItems {
 		ItemIDs.tcRailEmbeddedLargeParallelCurve.item = new ItemTCRail(ItemTCRail.TrackTypes.EMBEDDED_LARGE_PARALLEL_CURVE);
 
 		/* Normal Turns*/
+		ItemIDs.tcRail1X1Turn.item = new ItemTCRail(ItemTCRail.TrackTypes.TURN_1X1);
 		ItemIDs.tcRailMediumTurn.item = new ItemTCRail(ItemTCRail.TrackTypes.MEDIUM_TURN);
 		ItemIDs.tcRailLargeTurn.item = new ItemTCRail(ItemTCRail.TrackTypes.LARGE_TURN);
 		ItemIDs.tcRailVeryLargeTurn.item = new ItemTCRail(ItemTCRail.TrackTypes.VERY_LARGE_TURN);
@@ -124,6 +125,7 @@ public class TCItems {
 		ItemIDs.tcRail29X29Turn.item = new ItemTCRail(ItemTCRail.TrackTypes.TURN_29X29);
 		ItemIDs.tcRail32X32Turn.item = new ItemTCRail(ItemTCRail.TrackTypes.TURN_32X32);
 		/* Embedded Turns */
+		ItemIDs.tcRailEmbedded1X1Turn.item = new ItemTCRail(ItemTCRail.TrackTypes.EMBEDDED_TURN_1X1);
 		ItemIDs.tcRailEmbeddedMediumTurn.item = new ItemTCRail(ItemTCRail.TrackTypes.EMBEDDED_MEDIUM_TURN);
 		ItemIDs.tcRailEmbeddedLargeTurn.item = new ItemTCRail(ItemTCRail.TrackTypes.EMBEDDED_LARGE_TURN);
 		ItemIDs.tcRailEmbeddedVeryLargeTurn.item = new ItemTCRail(ItemTCRail.TrackTypes.EMBEDDED_VERY_LARGE_TURN);
