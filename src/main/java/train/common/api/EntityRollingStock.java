@@ -24,6 +24,7 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
@@ -1718,7 +1719,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
             return true;
         }
 
-        if (itemstack != null && itemstack.getItem() instanceof ItemPaintbrushThing && entityplayer.isSneaking()) {
+        if (itemstack != null && itemstack.getItem() instanceof ItemPaintbrushThing && !entityplayer.isSneaking()) {
             if (this.getSpec().getLiveries().size() > 0) {
                 entityplayer.openGui(Traincraft.instance, GuiIDs.PAINTBRUSH, entityplayer.getEntityWorld(), this.getEntityId(), -1, (int) this.posZ);
             }
@@ -1727,6 +1728,17 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
                 entityplayer.addChatMessage(new ChatComponentText("There are no other colors available."));
             }
             return true;
+        } else if (itemstack != null && itemstack.getItem() instanceof ItemPaintbrushThing && entityplayer.isSneaking()){
+            for (int i = 0; i < this.getSpec().getLiveries().size(); i++) {
+                if (this.getColor().equals(this.getSpec().getLiveries().get(i))) {
+                    if(this.getSpec().getLiveries().size()>i+1){
+                        setColor(i+1);
+                    } else {
+                        setColor(0);
+                    }
+                    return true;
+                }
+            }
         }
 
         return worldObj.isRemote;

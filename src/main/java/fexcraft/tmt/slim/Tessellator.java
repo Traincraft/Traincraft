@@ -65,7 +65,7 @@ public class Tessellator{
 	public void drawTexturedVertsWithNormal(TexturedPolygon polygon, float scale){
 		GL11.glBegin(polygon.vertices.size()==4?GL11.GL_QUADS:polygon.vertices.size()==3?GL11.GL_TRIANGLES:GL11.GL_POLYGON);
 
-		if(polygon.vertices.get(3).vector3F==polygon.vertices.get(1).vector3F
+		if(polygon.vertices.size()==3 || polygon.vertices.get(3).vector3F==polygon.vertices.get(1).vector3F
 				|| polygon.vertices.get(1).vector3F ==polygon.vertices.get(2).vector3F
 				|| polygon.vertices.get(3).vector3F ==polygon.vertices.get(2).vector3F){
 			setNormal(polygon.vertices.get(2).vector3F, polygon.vertices.get(0).vector3F, polygon.vertices.get(1).vector3F);

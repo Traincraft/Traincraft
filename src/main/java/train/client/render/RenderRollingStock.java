@@ -2,6 +2,7 @@ package train.client.render;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import fexcraft.tmt.slim.ModelBase;
 import fexcraft.tmt.slim.Tessellator;
 import net.minecraft.block.BlockRailBase;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -231,100 +232,43 @@ public class RenderRollingStock extends Render {
             angle = Math.copySign(angle, cart.getRollingDirection());
             GL11.glRotatef(angle, 1.0F, 0.0F, 0.0F);
         }
-        TrainRenderRecord render = Traincraft.instance.traincraftRegistry.getTrainRenderRecord(cart.getClass());
-        if (render != null) {
+
+        GL11.glEnable(GL11.GL_LIGHTING);
+        int skyLight = cart.worldObj.getLightBrightnessForSkyBlocks(i, j, k, 0);
+        if (!renderModeGUI) {
+            OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, skyLight % 65536,
+                    skyLight / 65536f);
+        } else {
+            if (renderGUIFullBright) {
+                GL11.glDisable(GL11.GL_LIGHTING);
+            }
+            OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240f,
+                    240f);
+        }
+        if (cart instanceof AbstractTrains) {
             //loadTexture(getTextureFile(renders.getTexture(), renders.getIsMultiTextured(), cart));
 
-            try {
-                if (render.getModel().getClass().getDeclaredMethod("getTrans") != null) {
-                    Method theTransMethod = render.getModel().getClass().getDeclaredMethod("getTrans");
-                    float[] theTrans = (float[]) theTransMethod.invoke(render.getModel().getClass().newInstance());
-                    if (theTrans != null) {
-                        GL11.glTranslatef(theTrans[0], theTrans[1], theTrans[2]);
-                    }
-
+            for(int m=0; m<cart.getModel().length;m++) {
+                GL11.glPushMatrix();
+                if(cart.modelOffsets()[m]!=null) {
+                    GL11.glTranslatef(cart.modelOffsets()[m][0], cart.modelOffsets()[m][1], cart.modelOffsets()[m][2]);
                 }
-            } catch (InstantiationException e) {
-                e.printStackTrace();
-            } catch (Exception e) {
-                if (render.getTrans() != null) {
-                    GL11.glTranslatef(render.getTrans()[0], render.getTrans()[1], render.getTrans()[2]);
+                if(cart.modelRotations()[m]!=null) {
+                    GL11.glRotatef(cart.modelRotations()[m][0], 1,0,0);
+                    GL11.glRotatef(cart.modelRotations()[m][1], 0,1,0);
+                    GL11.glRotatef(cart.modelRotations()[m][2], 0,0,1);
                 }
+                if(cart.getRenderScale()[m]!=null) {
+                    GL11.glScalef(cart.getRenderScale()[m][0], cart.getRenderScale()[m][1], cart.getRenderScale()[m][2]);
+                }
+                cart.getModel()[m].render(cart, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
+                GL11.glPopMatrix();
             }
 
 
-            /*if (renders.getTrans() != null) {
-                GL11.glTranslatef(renders.getTrans()[0], renders.getTrans()[1], renders.getTrans()[2]);
-            }*/
-
-            try {
-                if (render.getModel().getClass().getDeclaredMethod("getRotate") != null) {
-                    Method theTransMethod = render.getModel().getClass().getDeclaredMethod("getRotate");
-                    float[] theRotate = (float[]) theTransMethod.invoke(render.getModel().getClass().newInstance());
-                    if (theRotate != null) {
-                        GL11.glRotatef(theRotate[0], 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(theRotate[1], 0.0F, 1.0F, 0.0F);
-                        GL11.glRotatef(theRotate[2], 0.0F, 0.0F, 1.0F);
-                    }
-
-                }
-            } catch (InstantiationException e) {
-                e.printStackTrace();
-            } catch (Exception e) {
-                if (render.getRotate() != null) {
-                    GL11.glRotatef(render.getRotate()[0], 1.0F, 0.0F, 0.0F);
-                    GL11.glRotatef(render.getRotate()[1], 0.0F, 1.0F, 0.0F);
-                    GL11.glRotatef(render.getRotate()[2], 0.0F, 0.0F, 1.0F);
-                }
-            }
-
-            /*if (renders.getRotate() != null) {
-                GL11.glRotatef(renders.getRotate()[0], 1.0F, 0.0F, 0.0F);
-                GL11.glRotatef(renders.getRotate()[1], 0.0F, 1.0F, 0.0F);
-                GL11.glRotatef(renders.getRotate()[2], 0.0F, 0.0F, 1.0F);
-            }*/
-
-            try {
-                if (render.getModel().getClass().getDeclaredMethod("getScale") != null) {
-                    Method theScaleMethod = render.getModel().getClass().getDeclaredMethod("getScale");
-                    float[] theRotate = (float[]) theScaleMethod.invoke(render.getModel().getClass().newInstance());
-                    if (theRotate != null) {
-                        GL11.glScalef(theRotate[0], theRotate[1], theRotate[2]);
-                    }
-                }
-            } catch (InstantiationException e) {
-                e.printStackTrace();
-            } catch (Exception e) {
-                if (render.getScale() != null) {
-                    GL11.glScalef(render.getScale()[0], render.getScale()[1], render.getScale()[2]);
-                }
-
-            }
-
-
-            /*if (renders.getScale() != null) {
-                GL11.glScalef(renders.getScale()[0], renders.getScale()[1], renders.getScale()[2]);
-            }*/
-
-
-            GL11.glEnable(GL11.GL_LIGHTING);
-            int skyLight = cart.worldObj.getLightBrightnessForSkyBlocks(i, j, k, 0);
-            if (!renderModeGUI) {
-				OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, skyLight % 65536,
-						skyLight / 65536f);
-			} else {
-				if (renderGUIFullBright) {
-                    GL11.glDisable(GL11.GL_LIGHTING);
-                }
-                OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240f,
-                        240f);
-            }
-
-
-            render.getModel().render(cart, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
 
             //GL11.glEnable(GL11.GL_LIGHTING);
-
+            TrainRenderRecord render = cart.getRender();
             if (render.hasSmoke()) {
                 ArrayList<double[]> smokePosition = new ArrayList<double[]>();
                 try {

@@ -16,14 +16,10 @@ public class ModelMFPBWigWag extends RollingStockModel {
 
 	@Override
 	public void render(Entity entity, float f0, float f1, float f2, float f3, float f4, float scale){
-		for(ModelRendererTurbo turbo : groups.get(0)){
-			turbo.render();
-		}
-
 		for(ModelRendererTurbo turbo : groups.get(1)){
 			turbo.rotateAngleX=f0*0.0174533f;
-			turbo.render();
 		}
+		super.render(entity, f0, f1, f2, f3, f4, scale);
 	}
 
 	public ModelMFPBWigWag(){
