@@ -96,6 +96,7 @@ public enum ItemIDs {
 	tcRailLongDiagonalStraight("ItemTCRail", "item_rail_diagonal_straight_long", 5 ),
 	tcRailVeryLongDiagonalStraight("ItemTCRail", "item_rail_diagonal_straight_very_long", 5 ),
 
+	tcRail1X1Turn("ItemTCRail", "item_rail_tc_turn_1", 5),
 	tcRailMediumTurn("ItemTCRail", "item_rail_turn_medium", 5),
 	tcRailLargeTurn("ItemTCRail", "item_rail_turn_large", 5),
 	tcRailVeryLargeTurn("ItemTCRail", "item_rail_turn_veryLarge", 5),
@@ -160,6 +161,7 @@ public enum ItemIDs {
 	tcRailEmbeddedLongDiagonalStraight("ItemTCRail", "item_rail_embedded_straight_diagonal_long", 5),
 	tcRailEmbeddedVeryLongDiagonalStraight("ItemTCRail", "item_rail_embedded_straight_diagonal_very_long", 5),
 
+	tcRailEmbedded1X1Turn("ItemTCRail", "item_rail_tc_embedded_turn_1", 5),
 	tcRailEmbeddedMediumTurn("ItemTCRail", "item_rail_tc_embedded_medium_turn", 5),
 	tcRailEmbeddedLargeTurn("ItemTCRail", "item_rail_tc_embedded_large_turn", 5),
 	tcRailEmbeddedVeryLargeTurn("ItemTCRail", "item_rail_tc_embedded_very_large_turn", 5),

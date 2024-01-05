@@ -12,6 +12,8 @@ import train.common.tile.TileTCRail;
 
 @SideOnly(Side.CLIENT)
 public class ModelRightTurnTCTrack extends ModelBase {
+
+	private IModelCustom model1XRightTurn;
 	private IModelCustom modelMediumRightTurn;
 	private IModelCustom modelLargeRightTurn;
 	private IModelCustom modelVeryLargeRightTurn;
@@ -21,6 +23,7 @@ public class ModelRightTurnTCTrack extends ModelBase {
 	private IModelCustom model32XRightTurn;
 
 	public ModelRightTurnTCTrack() {
+		model1XRightTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_curve_1x.obj"));
 		modelMediumRightTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_curve_medium.obj"));
 		modelLargeRightTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_curve_big.obj"));
 		modelVeryLargeRightTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_curve_very_big.obj"));
@@ -29,6 +32,7 @@ public class ModelRightTurnTCTrack extends ModelBase {
 		model32XRightTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_curve_32x.obj"));
 	}
 
+	public void render1X() {model1XRightTurn.renderAll();}
 	public void renderMedium() {
 		modelMediumRightTurn.renderAll();
 	}
@@ -75,6 +79,8 @@ public class ModelRightTurnTCTrack extends ModelBase {
 				GL11.glTranslatef(-1.0f, 0.0f, 5.0f);
 			if(type.equals("medium") || type.equals("embedded_medium"))
 				GL11.glTranslatef(1.5f, 0.0f, 2.5f);
+			if(type.equals("1x") || type.equals("embedded_1x"))
+				GL11.glTranslatef(-0.5f,0,0.5f);
 			if(type.equals("29x") || type.equals("embedded_29x"))
 				GL11.glTranslatef(27.5f,0,28.5f);
 			if(type.equals("32x") || type.equals("embedded_32x"))
@@ -90,6 +96,8 @@ public class ModelRightTurnTCTrack extends ModelBase {
 				GL11.glTranslatef(-1.0f, 0.0f, 5.0f);
 			if(type.equals("medium") || type.equals("embedded_medium"))
 				GL11.glTranslatef(1.5f, 0.0f, 2.5f);
+			if(type.equals("1x") || type.equals("embedded_1x"))
+				GL11.glTranslatef(-0.5f,0,0.5f);
 			if(type.equals("29x") || type.equals("embedded_29x"))
 				GL11.glTranslatef(27.5f,0,28.5f);
 			if(type.equals("32x") || type.equals("embedded_32x"))
@@ -105,6 +113,8 @@ public class ModelRightTurnTCTrack extends ModelBase {
 				GL11.glTranslatef(-1.0f, 0.0f, 5.0f);
 			if(type.equals("medium") || type.equals("embedded_medium"))
 				GL11.glTranslatef(1.5f, 0.0f, 2.5f);
+			if(type.equals("1x") || type.equals("embedded_1x"))
+				GL11.glTranslatef(-0.5f,0,0.5f);
 			if(type.equals("29x") || type.equals("embedded_29x"))
 				GL11.glTranslatef(27.5f,0,28.5f);
 			if(type.equals("32x") || type.equals("embedded_32x"))
@@ -120,11 +130,15 @@ public class ModelRightTurnTCTrack extends ModelBase {
 				GL11.glTranslatef(-1.0f, 0.0f, 5.0f);
 			if(type.equals("medium") || type.equals("embedded_medium"))
 				GL11.glTranslatef(1.5f, 0.0f, 2.5f);
+			if(type.equals("1x") || type.equals("embedded_1x"))
+				GL11.glTranslatef(-0.5f,0,0.5f);
 			if(type.equals("29x") || type.equals("embedded_29x"))
 				GL11.glTranslatef(27.5f,0,28.5f);
 			if(type.equals("32x") || type.equals("embedded_32x"))
 				GL11.glTranslatef(30.5f,0,31.5f);
 		}
+		if(type.equals("1x") || type.equals("embedded_1x"))
+			this.render1X();
 		if (type.equals("medium") || type.equals("embedded_medium"))
 			this.renderMedium();
 		if (type.equals("large") || type.equals("embedded_large"))

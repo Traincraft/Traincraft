@@ -58,7 +58,7 @@ public class ItemTrackDebugger extends Item {
                     player.addChatMessage(new ChatComponentText(EnumChatFormatting.BOLD.GOLD + "LinkedX: "    +  EnumChatFormatting.WHITE +  tile.linkedX + EnumChatFormatting.GOLD +  " LinkedY: " +  EnumChatFormatting.WHITE +tile.linkedY +  EnumChatFormatting.GOLD + " LinkedZ: "+  EnumChatFormatting.WHITE + tile.linkedZ));
                     player.addChatMessage(new ChatComponentText(EnumChatFormatting.BOLD.GOLD + "SlopeLength: "    +  EnumChatFormatting.WHITE +  tile.slopeLength + EnumChatFormatting.GOLD +  " SlopeHeight: " +  EnumChatFormatting.WHITE +tile.slopeHeight +  EnumChatFormatting.GOLD + " SlopeAngle: "+  EnumChatFormatting.WHITE + tile.slopeAngle));
                     player.addChatMessage(new ChatComponentText(EnumChatFormatting.BOLD.GOLD + "RailLength: " + EnumChatFormatting.WHITE + tile.railLength));
-                player.addChatMessage(new ChatComponentText(EnumChatFormatting.BOLD.GOLD + "BallastMaterial: "    +  EnumChatFormatting.WHITE +  Block.getBlockById(tile.getBallastMaterial()).getLocalizedName() + EnumChatFormatting.GOLD +  " BallastMetadata: " +  EnumChatFormatting.WHITE +tile.ballastMetadata +  EnumChatFormatting.GOLD + " BallastColour: "+  EnumChatFormatting.WHITE + tile.ballastColour));
+                    player.addChatMessage(new ChatComponentText(EnumChatFormatting.BOLD.GOLD + "BallastMaterial: "    +  EnumChatFormatting.WHITE +  Block.getBlockById(tile.getBallastMaterial()).getLocalizedName() + EnumChatFormatting.GOLD +  " BallastMetadata: " +  EnumChatFormatting.WHITE +tile.ballastMetadata +  EnumChatFormatting.GOLD + " BallastColour: "+  EnumChatFormatting.WHITE + tile.ballastColour));
 
 
                     player.addChatMessage(new ChatComponentText(" "));
