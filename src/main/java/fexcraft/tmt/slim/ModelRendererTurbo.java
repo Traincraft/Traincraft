@@ -81,8 +81,14 @@ public class ModelRendererTurbo {
         boxName = "";
         textureOffsetX = textureX;
         textureOffsetY = textureY;
-        textureWidth = 0;
-        textureHeight = 0;}
+        if(modelbase!=null){
+            textureWidth=modelbase.textureWidth;
+            textureHeight=modelbase.textureHeight;
+        } else {
+            textureWidth = 512;
+            textureHeight = 512;
+        }
+    }
 
     public ModelRendererTurbo(ModelBase modelbase, String s){this(s);}
     public ModelRendererTurbo(TurboList modelbase, String s){this(s);}
