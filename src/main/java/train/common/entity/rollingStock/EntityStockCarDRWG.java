@@ -48,7 +48,6 @@ public class EntityStockCarDRWG extends EntityRollingStock implements IPassenger
 		if (!worldObj.isRemote) {
 			if (riddenByEntity != null) {
 				riddenByEntity.mountEntity(this);
-				riddenByEntity.ridingEntity = null;
 				return true;
 			}
 		}
