@@ -253,10 +253,18 @@ public class RenderRollingStock extends Render {
                 if(cart.modelOffsets()[m]!=null) {
                     GL11.glTranslatef(cart.modelOffsets()[m][0], cart.modelOffsets()[m][1], cart.modelOffsets()[m][2]);
                 }
+                if(cart.getModel()[m].getTrans()!=null){
+                    GL11.glTranslatef(cart.getModel()[m].getTrans()[0],cart.getModel()[m].getTrans()[1],cart.getModel()[m].getTrans()[2]);
+                }
                 if(cart.modelRotations()[m]!=null) {
                     GL11.glRotatef(cart.modelRotations()[m][0], 1,0,0);
                     GL11.glRotatef(cart.modelRotations()[m][1], 0,1,0);
                     GL11.glRotatef(cart.modelRotations()[m][2], 0,0,1);
+                }
+                if(cart.getModel()[m].getRotate()!=null){
+                    GL11.glRotatef(cart.getModel()[m].getRotate()[0], 1,0,0);
+                    GL11.glRotatef(cart.getModel()[m].getRotate()[1], 0,1,0);
+                    GL11.glRotatef(cart.getModel()[m].getRotate()[2], 0,0,1);
                 }
                 if(cart.getRenderScale()[m]!=null) {
                     GL11.glScalef(cart.getRenderScale()[m][0], cart.getRenderScale()[m][1], cart.getRenderScale()[m][2]);

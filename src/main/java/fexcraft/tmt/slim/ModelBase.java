@@ -350,4 +350,7 @@ public class ModelBase extends ArrayList<ModelRendererTurbo> {
 		}
 		return null;
 	}
+
+	public float[] getTrans(){return null;}
+	public float[] getRotate(){return null;}
 }

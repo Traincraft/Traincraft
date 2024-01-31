@@ -652,7 +652,7 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 					if (player != null) {
 						rollingStock.trainOwner = player.getDisplayName();
 					}
-					rollingStock.mass = rollingStock.weightKg();
+					rollingStock.mass = rollingStock.weightKg()*0.1;
 
 					int uniID = -1;
 					if (itemstack.hasTagCompound()) {

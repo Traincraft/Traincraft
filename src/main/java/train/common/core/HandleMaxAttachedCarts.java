@@ -34,7 +34,7 @@ public class HandleMaxAttachedCarts {
         if ((cart1).train != null && !(cart1).train.getTrains().isEmpty()) {
 
             for (int j1 = 0; j1 < (cart1).train.getTrains().size(); j1++) {
-                totalMass += (cart1).train.getTrains().get(j1).weightKg();
+                totalMass += ((cart1).train.getTrains().get(j1).weightKg()*0.1);
             }
             (cart1).currentNumCartsPulled = (cart1).train.getTrains().size() - 1;
             (cart1).currentMassPulled = Math.round(totalMass * 10);
